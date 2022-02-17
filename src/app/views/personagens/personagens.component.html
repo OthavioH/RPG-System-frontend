@@ -1,16 +1,59 @@
+<section class="container pb-2 pt-4 bg-dark border border-secondary rounded-3">
+    <p class="text-center text-light fs-1  mb-4">Personagens</p>
+    <div class="container d-flex flex-row flex-wrap justify-content-around">
+        <a class="card mb-2 btn align-items-center " routerLink="/create" role="button" style="width: 18rem;">
+            <div class="card-body justify-content-center my-auto row align-items-center" >
+                <i class="bi bi-plus-square-fill text-dark h1"></i>
+            </div>
+        </a>
+        <a class="card mb-2 btn" style="width: 18rem;" *ngFor="let personagem of personagensLista" [routerLink]="['/personagens', personagem.id]" >
+            <div class="card-img-top align-items-center pt-2" >
+                <img class="img-card mt-2 " src="../../assets/unknown_character.png" alt="">
+                <h3 class="text-center">{{ personagem.nome }}</h3>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Jogador: {{ personagem.jogador }}</h6>
+            </div>
+        </a>
+    </div>
+</section>
 
-<div class="d-flex justify-content-end ">
-    <mat-icon class="text-success h2" aria-hidden="false" aria-label="Example add icon" role="button" (click)="onAddClick()">add</mat-icon>
-</div>
+<section class="container mt-3">
+    <div class="d-flex row justify-content-between">
+        <div class="container col rounded-3 pb-2 pt-5 px-4 bg-dark" style="min-height: 500px;">
+            <div class="row align-items-start">
+                <div class="col">
+                    <div class="row d-flex justify-content-between">
+                        <p class="text-start fs-3 text-light w-25">ATRIBUTOS</p>
+                        <button class="btn btn-outline-success w-auto">
+                            <i class="bi bi-plus-lg text-light"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 20px;"></div>
+        <div class="container col rounded-3  pb-2 pt-5 px-4 bg-dark" style="min-height: 500px;">
+            <div class="col">
+                <div class="row d-flex justify-content-between">
+                    <p class="text-start fs-3 text-light w-25">HABILIDADES</p>
+                    <button class="btn btn-outline-success w-auto">
+                        <i class="bi bi-plus-lg text-light"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<div class="container py-2 bg-dark border border-secondary rounded d-flex flex-row flex-wrap justify-content-around" >
-    <a class="card mb-2 btn" style="width: 18rem;" *ngFor="let personagem of personagensLista" [routerLink]="['/personagens', personagem.id]" >
-        <div class="card-img-top align-items-center pt-2" >
-            <img class="img-card mt-2" src="../../assets/unknown_character.png" alt="">
-            <h3 class="text-center">{{ personagem.nome }}</h3>
-        </div>
-        <div class="card-body">
-          <h6 class="card-title">Jogador: {{ personagem.jogador }}</h6>
-        </div>
-    </a>
-</div>
+<section class="container rounded-3 mt-3 pb-4 pt-4 ps-5 bg-dark">
+    <p class="text-center fs-1 text-light">Configurações</p>
+    <div class="mt-2 row w-50">
+        <label for="diceScreenTime" class="text-start fs-5 col-5 text-light">Tempo de dado na tela:</label>
+        <input type="number" name="diceScreenTime" id="diceScreenTime" class="input-group-text col-1" value="1" min="1" step="1" max="20">
+    </div>
+    <div class="mt-2 row w-50">
+        <label for="diceCooldown" class="text-start fs-5 col-5 text-light">Cooldown do dado:</label>
+        <input type="number" name="diceCooldown" id="diceCooldown" class="input-group-text col-1" value="1" min="1" step="1" max="20">
+    </div>
+</section>

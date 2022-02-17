@@ -9,10 +9,11 @@
         <a routerLinkActive="active" routerLink="/create" routerLinkActive="router-link-active"  class="nav-item nav-link" role="button">Criar personagem</a>
       </div>
     </div>
+    <a routerLink="/dashboard" type="button" class="btn btn-dark">
+      <i class="bi bi-gear"></i>
+    </a>
 </nav>
 
-<div class="main">
-    <section class="container pb-2 my-5">
-      <router-outlet></router-outlet>
-    </section>
+<div class="main pt-5 pb-5 bg-secondary min-vh-100" >
+  <router-outlet></router-outlet>
 </div>
