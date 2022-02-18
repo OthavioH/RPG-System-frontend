@@ -1,4 +1,4 @@
-export interface IPersonagem {
+export interface ICharacter {
     id: number;
     nome: string;
     jogador: string;

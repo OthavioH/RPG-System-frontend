@@ -1,148 +1,79 @@
-<div class="container py-2 bg-dark border border-secondary rounded d-flex flex-row flex-wrap justify-content-start" >
-    <div class="card mb-2" style="width: 100%" >
-        <form action="" class="d-flex flex-row card-body flex-wrap justify-content-around col">
-            <div class="form-group row">
-                <div class="form-group col">
-                    <p class="h6 text-center">Características</p>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Nome</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Nome do personagem" aria-label="nome-personagem"/>
+
+<section class="container w-100 px-0">
+    <div class="d-flex flex-row flex-wrap row">
+        <div class="d-flex col-md-6 mt-3">
+            <div class="container rounded-3  pb-2 pt-4 pb-4 px-4 bg-dark col-md-12" style="min-height: 300px; min-width: 300px;">
+                <p class="fs-3 text-center text-warning mb-4">Características</p>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text " id="basic-addon1">Nome</span>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Jogador(a)</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Jogador(a)" aria-label="nome-jogador"/>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Ocupação</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Ocupação" aria-label="ocupacao"/>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Formação acadêmica</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Formação acadêmica" aria-label="formacao"/>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Idade</span>
-                        </div>
-                        <input type="number" class="form-control" placeholder="Idade" aria-label="idade"/>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Gênero</span>
-                          </div>
-                          <input type="text" class="form-control" placeholder="Gênero" aria-label="genero"/>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Transtornos mentais</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Transtornos mentais" aria-label="transtornos-mentais"/>
-                    </div>
+                    <input type="text" class="form-control w-auto" placeholder="Nome do personagem" aria-label="nome-personagem"/>
                 </div>
-                <div class="form-group col-6">
-                    <p class="h6 text-center">Rolagens</p>
-                    <div class="input-group mb-3 justify-content-around">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1" role="button" (click)="rolarDado(20)">FOR</span>
-                        </div>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1" role="button" (click)="rolarDado(20)">DES</span>
-                        </div>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1" role="button" (click)="rolarDado(20)">INT</span>
-                        </div>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1" role="button" (click)="rolarDado(20)">CON</span>
-                        </div>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1" role="button" (click)="rolarDado(20)">APA</span>
-                        </div>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1" role="button" (click)="rolarDado(20)">POD</span>
-                        </div>
-                        <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1" role="button" (click)="rolarDado(20)">TAM</span>
-                        </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Jogador(a)</span>
                     </div>
-                    <div class="input-group mb-3 justify-content-around">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1" role="button" (click)="rolarDado(100)">SAN</span>
-                        </div>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1" role="button" (click)="rolarDado(20)">EDU</span>
-                        </div>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1" role="button" (click)="rolarDado(20)">Idéia</span>
-                        </div>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1" role="button" (click)="rolarDado(20)">Sorte</span>
-                        </div>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1" role="button" (click)="rolarDado(20)">Saber</span>
-                        </div>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1" role="button" (click)="rolarDado(20)">MOV</span>
-                        </div>
+                    <input type="text" class="form-control" placeholder="Nome do jogador(a)" aria-label="nome-jogador"/>
+                </div>
+                <div class="input-group mb-3 justify-content-between">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Idade</span>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Resultado</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Resultado" [value]="resultadoDado" readonly aria-label="Resultado" aria-describedby="basic-addon1">
+                    <input type="number" class="form-control" placeholder="Idade" aria-label="idade"/>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Gênero</span>
                     </div>
+                    <input type="text" class="form-control" placeholder="Gênero" aria-label="genero"/>
                 </div>
             </div>
-            <div class="form-group row">
-                <div class="form-group col">
-                    <p class="h6 text-center">Características</p>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Nome</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Nome do personagem" aria-label="nome-personagem"/>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Jogador(a)</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Jogador(a)" aria-label="nome-jogador"/>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Ocupação</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Ocupação" aria-label="ocupacao"/>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Formação acadêmica</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Formação acadêmica" aria-label="formacao"/>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Idade</span>
-                        </div>
-                        <input type="number" class="form-control" placeholder="Idade" aria-label="idade"/>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Gênero</span>
-                          </div>
-                          <input type="text" class="form-control" placeholder="Gênero" aria-label="genero"/>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon1">Transtornos mentais</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Transtornos mentais" aria-label="transtornos-mentais"/>
-                    </div>
+        </div>
+        <div class="d-flex col-md-6 mt-3">
+            <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12" style="min-height: 300px; min-width: 300px;">
+                <div class="input-group mb-3 justify-content-around">
+                    <button class="btn btn-warning text-dark fw-bold" type="button"  role="button" (click)="rolarDado(20)">Rolar dado</button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</section>
+
+<section class="container w-100 px-0">
+    <div class="d-flex flex-row flex-wrap row">
+        <div class="d-flex col-md-6 mt-3">
+            <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12" style="min-height: 300px; min-width: 300px;">
+                <div class="row d-flex justify-content-between col-md-12">
+                    <p class="text-start fs-3 fw-bold text-warning w-25">ATRIBUTOS</p>
+                </div>
+                <div class="col d-flex flex-wrap justify-content-between col-md-12 px-4 mt-3 py-2 overflow-auto" style="max-height: 400px;">
+                    <div class="col d-flex justify-content-between mb-4 me-5" *ngFor="let attribute of attributeList">
+                        <p role="button" class="text-light col me-3 text-nowrap">{{attribute.name}}</p>
+                        <input class="col form-control" [aria-label]="attribute.name + value" type="text" name="" id="" style="width: 70px; height:fit-content">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="d-flex col-md-6 mt-3">
+            <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12" style="min-height: 300px; min-width: 300px;">
+                <div class="row d-flex justify-content-between col-md-12">
+                    <p class="text-start fs-3 fw-bold text-warning w-25">HABILIDADES</p>
+                </div>
+                <div class="row d-flex justify-content-between col-md-12 px-4 py-2 mt-3 overflow-auto" style="max-height: 400px;">
+                    <div class="row d-flex justify-content-between mb-2" *ngFor="let skill of skillList">
+                        <p role="button" class=" text-light text-start fs-6" (click)="openModal(skillsModal, skill)" type="text">{{skill.name}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<ng-template #skillsModal id="skillsModal">
+    <div class="col justify-content-between rounded-2 bg-dark p-4" style="height:200px;">
+        <p class="text-white fs-4 w-100 text-center d-flex col">{{selectedSkill.name}}</p>
+        <div style="height: 35px;"></div>
+        <p class="text-white d-flex col" id="disabledInput" type="text" placeholder="Nome">{{selectedSkill.description}}</p>
+        <button class="btn btn-warning float-end" (click)="close()">OK</button>
+    </div>
+</ng-template>
