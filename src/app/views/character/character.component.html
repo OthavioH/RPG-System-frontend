@@ -29,6 +29,16 @@
         </div>
         <div class="d-flex col-md-6 mt-3">
             <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12" style="min-height: 300px; min-width: 300px;">
+                <p class="row mb-2 text-warning fs-5">VIDA</p>
+                <div class="row d-flex mb-3">
+                    <app-progress-bar [total]="character.hpTotal" [value]="character.hp" [color]="'red'" class=" col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
+                    <p class="text-light fs-5 col">{{character.hp}}/{{character.hpTotal}}</p>
+                </div>
+                <p class="row mb-2 text-warning fs-5">Sanidade</p>
+                <div class="row d-flex mb-3">
+                    <app-progress-bar [total]="character.sanityTotal" [value]="character.sanity" [color]="'blue'" class="col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
+                    <p class="text-light fs-5 col">{{character.sanity}}/{{character.sanityTotal}}</p>
+                </div>
                 <app-roll-dice-dialog></app-roll-dice-dialog>
             </div>
         </div>

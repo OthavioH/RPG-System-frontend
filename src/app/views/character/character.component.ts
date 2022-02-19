@@ -5,6 +5,7 @@ import { ISkill } from 'src/model/Skill';
 import { RollDiceDialogComponent } from '../common/roll-dice-dialog/roll-dice-dialog.component';
 import { SkillsDialogComponent } from '../common/skills-dialog/skills-dialog.component';
 import { CaracthersService } from '../characters/shared/services/characters.service';
+import { ICharacter } from 'src/model/Character';
 
 @Component({
   selector: 'app-character',
@@ -15,26 +16,26 @@ export class CharacterComponent implements OnInit {
   attributeList: IAttribute[];
   skillList: ISkill[];
 
-  selectedSkill: ISkill;
-  selectedAttribute: ISkill;
+  character: ICharacter;
 
   constructor(private charactersService:CaracthersService, private modalService:MatDialog) {
 
   }
 
   ngOnInit(): void {
+    this.character = {
+      id:1,
+      nome:'okasdoka',
+      hp:25,
+      hpTotal: 30,
+      sanity: 15,
+      sanityTotal: 30,
+    };
     this.attributeList = this.charactersService.getAttributeList();
     this.skillList = this.charactersService.getSkillList();
   }
 
-  dismissDialog(): boolean {
-    this.selectedSkill = null;
-    this.selectedAttribute = null;
-    return true;
-  }
-
   openSkillDialog(skill: ISkill): void {
-    this.selectedSkill = skill;
     this.modalService.open(SkillsDialogComponent, {data: skill, });
   }
 

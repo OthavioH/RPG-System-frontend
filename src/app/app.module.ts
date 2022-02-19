@@ -6,6 +6,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -16,9 +19,9 @@ import { CharactersComponent } from './views/characters/characters.component';
 import { CharacterComponent } from './views/character/character.component';
 import { SkillsDialogComponent } from './views/common/skills-dialog/skills-dialog.component';
 import { RollDiceDialogComponent } from './views/common/roll-dice-dialog/roll-dice-dialog.component';
-import { MatSelectModule } from '@angular/material/select';
 import { CreateCharacterDialogComponent } from './views/common/create-character-dialog/create-character-dialog.component';
-import { HttpClientModule } from '@angular/common/http';
+import { EditGamePreferenceDialogComponent } from './views/common/edit-game-preference-dialog/edit-game-preference-dialog.component';
+import { ProgressBarComponent } from './views/common/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     SkillsDialogComponent,
     RollDiceDialogComponent,
     CreateCharacterDialogComponent,
+    EditGamePreferenceDialogComponent,
+    ProgressBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +47,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     MatExpansionModule,
     MatIconModule,
+    MatProgressBarModule,
     MatTableModule,
   ],
   providers: [],

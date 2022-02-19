@@ -4,6 +4,10 @@ import { ISkill } from "./Skill";
 export interface ICharacter {
     id: number;
     nome: string;
+    hp?: number;
+    hpTotal?: number;
+    sanity?:number;
+    sanityTotal?:number;
     jogador?: string;
     idade?: number;
     genero?: string;
