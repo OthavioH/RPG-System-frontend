@@ -1,0 +1,67 @@
+
+<section class="container w-75 px-0 w-auto">
+    <div class="d-flex flex-row flex-wrap row">
+        <div class="d-flex col-md-6 mt-3">
+            <div class="container rounded-3  pb-2 pt-4 pb-4 px-4 bg-dark col-md-12" style="min-height: 300px; min-width: 300px;">
+                <p class="text-start fs-3 fw-bold text-warning w-25 mb-4">CARACTERÍSTICAS</p>
+                <div class="input-group justify-content-between">
+                    <mat-form-field color="accent" class="w-auto" style="min-width: 250px;">
+                        <mat-label>Nome do Jogador(a)</mat-label>
+                        <input matInput type="text" class="text-light" aria-label="nome-jogador"/>
+                    </mat-form-field>
+                    <mat-form-field color="accent" class="w-auto" style="min-width: 250px;">
+                        <mat-label>Nome do personagem</mat-label>
+                        <input matInput type="text" class="text-light" aria-label="nome-personagem"/>
+                    </mat-form-field>
+                </div>
+                <div class="input-group mb-3 justify-content-between">
+                    <mat-form-field color="accent" class="w-auto" style="min-width: 250px;">
+                        <mat-label>Idade</mat-label>
+                        <input matInput type="number" class="w-auto text-light" aria-label="nome-jogador"/>
+                    </mat-form-field>
+                    <mat-form-field color="accent" class="w-auto" style="min-width: 250px;">
+                        <mat-label>Gênero</mat-label>
+                        <input matInput type="text" class="w-auto text-light" aria-label="nome-personagem"/>
+                    </mat-form-field>
+                </div>
+                <button class="btn btn-warning text-dark fw-bold float-end" type="button"  role="button">Salvar</button>
+            </div>
+        </div>
+        <div class="d-flex col-md-6 mt-3">
+            <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12" style="min-height: 300px; min-width: 300px;">
+                <app-roll-dice-dialog></app-roll-dice-dialog>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container w-75 px-0 w-auto">
+    <div class="d-flex flex-row flex-wrap row">
+        <div class="d-flex col-md-6 mt-3">
+            <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12" style="min-height: 300px; min-width: 300px;">
+                <div class="row d-flex justify-content-between col-md-12">
+                    <p class="text-start fs-3 fw-bold text-warning w-25">ATRIBUTOS</p>
+                </div>
+                <div class="col d-flex flex-wrap justify-content-between col-md-12 px-4 mt-3 py-2 overflow-auto" style="max-height: 400px;">
+                    <div class="col d-flex justify-content-between mb-4 me-5" *ngFor="let attribute of attributeList">
+                        <p role="button" class="text-light col me-3 text-nowrap">{{attribute.name}}</p>
+                        <input class="col form-control text-center" [aria-label]="attribute.name + value" type="text" name="" id="" style="width: 70px; height:fit-content">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="d-flex col-md-6 mt-3">
+            <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12" style="min-height: 300px; min-width: 300px;">
+                <div class="row d-flex justify-content-between col-md-12">
+                    <p class="text-start fs-3 fw-bold text-warning w-25">HABILIDADES</p>
+                </div>
+                <div class="row d-flex justify-content-between col-md-12 px-4 py-2 mt-3 overflow-auto" style="max-height: 400px;">
+                    <div class="row d-flex justify-content-between mb-2" *ngFor="let skill of skillList">
+                        <p role="button" class=" text-light text-start fs-6" (click)="openSkillDialog(skill)" type="text">{{skill.name}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

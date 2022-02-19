@@ -1,11 +1,12 @@
+import { IAttribute } from "./Attribute";
+import { ISkill } from "./Skill";
+
 export interface ICharacter {
     id: number;
     nome: string;
-    jogador: string;
-    ocupacao: string;
-    formacaoAcademica: string;
-    idade: number;
-    genero: string;
-    localNascimento: string;
-    transtornosMentais: string;
+    jogador?: string;
+    idade?: number;
+    genero?: string;
+    attributes?:IAttribute[];
+    skills?:ISkill[];
 }

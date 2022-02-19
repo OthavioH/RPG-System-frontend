@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PersonagensComponent } from './personagens.component';
+import { SkillsDialogComponent } from './skills-dialog.component';
 
-describe('PersonagensComponent', () => {
-  let component: PersonagensComponent;
-  let fixture: ComponentFixture<PersonagensComponent>;
+describe('SkillsDialogComponent', () => {
+  let component: SkillsDialogComponent;
+  let fixture: ComponentFixture<SkillsDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PersonagensComponent ]
+      declarations: [ SkillsDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PersonagensComponent);
+    fixture = TestBed.createComponent(SkillsDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

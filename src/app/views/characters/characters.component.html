@@ -1,11 +1,12 @@
 <section class="container pb-2 pt-4 bg-dark border border-secondary rounded-3">
-    <p class="text-center text-light fs-3 fw-bold mb-4">FICHAS E PERSONAGENS</p>
+    <p class="text-center fs-1 text-light fw-bolder mb-4">Dashboard</p>
+    <p class="text-center text-warning fs-3 fw-bold mb-4">FICHAS E PERSONAGENS</p>
     <div class="container d-flex flex-row flex-wrap justify-content-around">
-        <a class="card mb-2 btn align-items-center " routerLink="/create" role="button" style="width: 18rem;">
+        <div class="card mb-2 btn align-items-center" role="button" (click)="openCreateCharacterDialog()" style="width: 18rem; min-height: 300px;">
             <div class="card-body justify-content-center my-auto row align-items-center" >
                 <i class="bi bi-plus-square-fill text-dark h1"></i>
             </div>
-        </a>
+        </div>
         <a class="card mb-2 btn" style="width: 18rem;" *ngFor="let character of charactersList" [routerLink]="['/personagens', character.id]" >
             <div class="card-img-top align-items-center pt-2" >
                 <img class="img-card mt-2 " src="../../assets/unknown_character.png" alt="">
@@ -23,12 +24,12 @@
         <div class="d-flex col-md-6 mt-3">
             <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12" style="min-height: 300px; min-width: 300px;">
                 <div class="row d-flex justify-content-between col-md-12">
-                    <p class="text-start fs-3 fw-bold text-light w-25">ATRIBUTOS</p>
+                    <p class="text-start fs-3 fw-bold text-warning w-25">ATRIBUTOS</p>
                     <button class="btn btn-outline-success w-auto" (click)="openModal(attributeModal)">
                         <i class="bi bi-plus-lg text-light"></i>
                     </button>
                 </div>
-                <div class="row d-flex justify-content-between col-md-12 px-4 mt-3 py-2 overflow-auto" style="max-height: 400px;">
+                <div class="row d-flex justify-content-between col-md-12 px-4 mt-3 py-2 overflow-auto" style="max-height: 400px;" >
                     <div class="row d-flex justify-content-between mb-2" *ngFor="let attribute of attributeList">
                         <button class="btn btn-outline-danger w-auto me-2 col-md-2">
                             <i class="bi bi-trash3 text-light"></i>
@@ -36,7 +37,7 @@
                         <button class="btn btn-outline-success w-auto me-2 col-md-2" >
                             <i class="bi bi-pencil text-light"></i>
                         </button>
-                        <input class="form-control w-75 text-light" id="disabledInput" type="text" [value]="attribute.name" disabled style="background: none;border: none; border-bottom: 2px dashed rgba(173, 173, 173, 0.705);">
+                        <input class="form-control w-75 text-light" id="disabledInput" type="text" [(ngModel)]="attributeList" [value]="attribute.name" disabled style="background: none;border: none; border-bottom: 2px dashed rgba(173, 173, 173, 0.705);">
                     </div>
                 </div>
             </div>
@@ -45,7 +46,7 @@
         <div class="d-flex col-md-6 mt-3">
             <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12" style="min-height: 300px; min-width: 300px;">
                 <div class="row d-flex justify-content-between col-md-12">
-                    <p class="text-start fs-3 fw-bold text-light w-25">HABILIDADES</p>
+                    <p class="text-start fs-3 fw-bold text-warning w-25">HABILIDADES</p>
                     <button class="btn btn-outline-success w-auto" (click)="openModal(skillsModal)">
                         <i class="bi bi-plus-lg text-light"></i>
                     </button>
@@ -66,13 +67,26 @@
     </div>
 </section>
 
+<section class="container rounded-3 mt-3 pb-4 pt-4 ps-5 bg-dark ">
+    <p class="text-center fs-2 fw-bold text-warning">CONFIGURAÇÕES</p>
+    <div class="mt-2 row w-75">
+        <label for="diceScreenTime" class="text-start fs-5 col-5 text-light w-auto">Tempo de dado na tela:</label>
+        <input type="number" name="diceScreenTime" id="diceScreenTime" class="input-group-text col-1" [value]="gameSettings.diceScreenTime" min="1" step="1" max="20" style="min-width:50px">
+    </div>
+    <div class="mt-2 row w-75">
+        <label for="diceCooldown" class="text-start fs-5 col-5 text-light w-auto">Cooldown do dado:</label>
+        <input type="number" name="diceCooldown" id="diceCooldown" class="input-group-text col-1" [value]="gameSettings.diceCooldown" min="1" step="1" max="20" style="min-width:50px">
+        <button class="btn btn-warning ms-2 w-auto">Salvar</button>
+    </div>
+</section>
+
 <ng-template #skillsModal let-c="close" let-d="dismiss" class="col justify-content-between rounded-2 bg-dark p-4">
-    <div class="col justify-content-between rounded-2 bg-dark p-4" style="height:200px;">
+    <div class="col justify-content-between rounded-2 bg-dark p-4" style="height:300px;min-width: 400px;">
         <p class="text-white fs-4 w-100 text-center d-flex col">Criar nova habilidade</p>
         <div style="height: 35px;"></div>
         <input class="form-control w-100 text-white d-flex col" id="disabledInput" type="text" placeholder="Nome" style="background: none;border: none; border-bottom: 2px dashed rgba(173, 173, 173, 0.705);">
         <div style="height: 35px;"></div>
-        <input class="form-control w-100 text-white d-flex col" id="disabledInput" type="text" placeholder="Descrição" style="background: none;border: none; border-bottom: 2px dashed rgba(173, 173, 173, 0.705);">
+        <textarea class="form-control w-100 text-white d-flex col" id="disabledInput" type="text" placeholder="Descrição" style="background: none;border: none; border-bottom: 2px dashed rgba(173, 173, 173, 0.705);"></textarea>
         <div class="modal-footer bg-dark">
             <button type="button" class="btn btn-outline-secondary" (click)="close(skillsModal)">Cancel</button>
             <button type="button" class="btn btn-danger" (click)="close(skillsModal)">Ok</button>
@@ -82,28 +96,15 @@
 </ng-template>
 
 <ng-template #attributeModal let-c="close" let-d="dismiss" class="col justify-content-between rounded-2 bg-dark p-4">
-    <div class="col justify-content-between rounded-2 bg-dark p-4" style="height:200px;">
+    <div class="col justify-content-between rounded-2 bg-dark p-4" style="min-height:300px;min-width: 400px;">
         <p class="text-white fs-4 w-100 text-center d-flex col">Criar novo atributo</p>
         <div style="height: 35px;"></div>
         <input class="form-control w-100 text-white d-flex col" id="disabledInput" type="text" placeholder="Nome" style="background: none;border: none; border-bottom: 2px dashed rgba(173, 173, 173, 0.705);">
         <div style="height: 35px;"></div>
-        <input class="form-control w-100 text-white d-flex col" id="disabledInput" type="text" placeholder="Descrição" style="background: none;border: none; border-bottom: 2px dashed rgba(173, 173, 173, 0.705);">
+        <textarea matInput class="form-control w-100 text-white d-flex col" id="disabledInput" type="text" placeholder="Descrição" style="background: none;border: none; border-bottom: 2px dashed rgba(173, 173, 173, 0.705);"></textarea>
         <div class="modal-footer bg-dark">
             <button type="button" class="btn btn-outline-secondary" (click)="close(attributeModal)">Cancel</button>
             <button type="button" class="btn btn-danger" (click)="close(attributeModal)">Ok</button>
-          </div>
+        </div>
     </div>
-    
 </ng-template>
-
-<section class="container rounded-3 mt-3 pb-4 pt-4 ps-5 bg-dark">
-    <p class="text-center fs-2 fw-bold text-light">CONFIGURAÇÕES</p>
-    <div class="mt-2 row w-75">
-        <label for="diceScreenTime" class="text-start fs-5 col-5 text-light w-auto">Tempo de dado na tela:</label>
-        <input type="number" name="diceScreenTime" id="diceScreenTime" class="input-group-text col-1" value="1" min="1" step="1" max="20">
-    </div>
-    <div class="mt-2 row w-75">
-        <label for="diceCooldown" class="text-start fs-5 col-5 text-light w-auto">Cooldown do dado:</label>
-        <input type="number" name="diceCooldown" id="diceCooldown" class="input-group-text col-1" value="1" min="1" step="1" max="20">
-    </div>
-</section>
