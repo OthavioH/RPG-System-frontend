@@ -22,6 +22,10 @@ import { RollDiceDialogComponent } from './views/common/roll-dice-dialog/roll-di
 import { CreateCharacterDialogComponent } from './views/common/create-character-dialog/create-character-dialog.component';
 import { EditGamePreferenceDialogComponent } from './views/common/edit-game-preference-dialog/edit-game-preference-dialog.component';
 import { ProgressBarComponent } from './views/common/progress-bar/progress-bar.component';
+import { EditProgressBarValuesDialogComponent } from './views/common/edit-hp-dialog/edit-progress-bar-values-dialog.component';
+import { FormsModule } from '@angular/forms';
+import { OpenChooseSkillsDialogComponent } from './views/common/open-choose-skills-dialog/open-choose-skills-dialog.component';
+import { OpenChooseAttributesDialogComponent } from './views/common/open-choose-attributes-dialog/open-choose-attributes-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,10 +38,14 @@ import { ProgressBarComponent } from './views/common/progress-bar/progress-bar.c
     CreateCharacterDialogComponent,
     EditGamePreferenceDialogComponent,
     ProgressBarComponent,
+    EditProgressBarValuesDialogComponent,
+    OpenChooseSkillsDialogComponent,
+    OpenChooseAttributesDialogComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatFormFieldModule,

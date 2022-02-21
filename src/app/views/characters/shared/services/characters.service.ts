@@ -1,15 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { GameSettingsService } from 'src/app/game-settings.service';
+import { environment } from 'src/environments/environment';
 import { IAttribute } from 'src/model/Attribute';
 import { ISkill } from 'src/model/Skill';
 
-import { ICharacter as ICharacter } from '../../../../../model/Character';
+import { ICharacter } from '../../../../../model/Character';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CaracthersService {
+export class CharactersService {
 
-  constructor() {
+  onCharacterChanged :BehaviorSubject<ICharacter> = new BehaviorSubject(null);
+  onCharacterListChanged: BehaviorSubject<ICharacter[]> = new BehaviorSubject(null);
+
+  constructor(private http:HttpClient,private gameSettingsService: GameSettingsService) {
     
   }
 
@@ -18,19 +25,60 @@ export class CaracthersService {
 
   private characters: ICharacter[] = [];
 
-  getCharacters(): ICharacter[]{
-    return this.characters;
+  async getCharacterById(characterId: number): Promise<ICharacter> {
+    const response: any = await this.http.get(`${environment.apiUrl}/sheets/${characterId}`).toPromise();
+    const character:ICharacter = response.sheet;
+
+    this.onCharacterChanged.next(character);
+    return character;
+  }
+
+  async getCharacters(){
+    const response: any = await this.http.get(`${environment.apiUrl}/sheets`).toPromise();
+    this.characters = response.sheetList;
+    this.onCharacterListChanged.next(this.characters);
   }
 
   getSkillList(): ISkill[] {
     return this.skillList;
   }
 
-  getAttributeList(): IAttribute[] {
+  async updateCharacter(character: ICharacter) {
+    await this.http.put(`${environment.apiUrl}/sheets/${character.id}/update`,{
+      playerName:character.playerName,
+      name: character.name, age: character.age, 
+      gender:character.gender, 
+      hp:character.hp, 
+      maxHp:character.maxHp, 
+      sanity:character.sanity, 
+      maxSanity:character.maxSanity, 
+      skills:character.skills, 
+      attributes:character.attributes,
+    }).toPromise();
+    await this.getCharacterById(character.id);
+  }
+
+  async updateHp(currentHpValue: number, hpLimit: number, character: ICharacter) {
+    character.hp = currentHpValue;
+    character.maxHp = hpLimit;
+    await this.http.put(`${environment.apiUrl}/sheets/${character.id}/status/update`,{character: character}).toPromise();
+    this.onCharacterChanged.next(character);
+  }
+
+  async updateSanity(currentSanityValue: number, sanityLimit: number, character: ICharacter) {
+    character.sanity = currentSanityValue;
+    character.maxSanity = sanityLimit;
+    await this.http.put(`${environment.apiUrl}/sheets/${character.id}/status/update`,{character: character}).toPromise();
+    this.onCharacterChanged.next(character);
+  }
+
+  async getDefaultAttributeList(): Promise<IAttribute[]> {
+    this.attributeList = (await this.gameSettingsService.getGameSettings()).attributes;
     return this.attributeList;
   }
 
-  createNewCharacter(characterName:string): void {
-    this.characters.push({id:this.characters.length + 1,nome:characterName});
+  async createNewCharacter(characterName:string) {
+    await this.http.post(`${environment.apiUrl}/sheets/create`,{name:characterName}).toPromise();
+    await this.getCharacters();
   }
 }

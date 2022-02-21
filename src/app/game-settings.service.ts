@@ -42,45 +42,37 @@ export class GameSettingsService {
 
   // SKILLS AND PROPERTIES
   async setGameProperties(skillList : ISkill[], attributeList: IAttribute[]) {
+    await this.getGameSettings();
     const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/save/properties`,{
       skills: skillList,
       attributes: attributeList,
     }).toPromise();
     this.gameSettings = response;
     console.log(response);
-    this.gameSettings.skills = Array.of(response.skills);
-    this.gameSettings.attributes = Array.of(response.attributes);
+    this.gameSettings.skills = response.skills;
+    this.gameSettings.attributes = response.attributes;
 
     this.updateGameSettingsEvent$.next(this.gameSettings);
   }
 
-  async removeAttribute(attribute : IAttribute) {
-    this.gameSettings.attributes = this.gameSettings.attributes.filter(element => element.id != attribute.id);
+  async removeAttribute(attributeId) {
+    console.log(attributeId);
+    this.gameSettings.attributes = this.gameSettings.attributes.filter(element => element.id != attributeId);
     await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes);
   }
 
-  async removeSkill(skill : ISkill) {
-    this.gameSettings.skills = this.gameSettings.skills.filter(element => element.id != skill.id);
+  async removeSkill(skillId) {
+    console.log(skillId);
+    
+    this.gameSettings.skills = this.gameSettings.skills.filter(element => element.id != skillId);
     await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes);
   }
 
   async createNewSkill(skillName: string, skillDescription:string) {
     if (skillName.length > 0 && skillDescription.length > 0) {
       await this.getGameSettings();
-      let lastId;
-      if (this.gameSettings.skills != null) {
-        if (this.gameSettings.skills.length > 0) {
-          lastId = this.gameSettings.skills[this.gameSettings.skills.length -1].id;
-        }
-        else {
-          lastId = 0;
-        }
-      }
-      else {
-        lastId = 0;
-      }
+      const lastId = this.gameSettings.skills != null && this.gameSettings.skills.length >= 1 ? this.gameSettings.skills[this.gameSettings.skills.length -1].id : 0;
       
-
       const newSkill: ISkill = {
         id:lastId +1,
         name: skillName,
@@ -100,8 +92,7 @@ export class GameSettingsService {
 
   async createNewAttribute(attributeName: string, attributeDescription:string){
     if (attributeName.length > 0 && attributeDescription.length > 0) {
-      await this.getGameSettings();
-      const lastId = this.gameSettings.attributes != null || this.gameSettings.attributes.length > 0 ? this.gameSettings.attributes[this.gameSettings.attributes.length -1].id : 0;
+      const lastId = this.gameSettings.attributes != null && this.gameSettings.attributes.length >= 1 ? this.gameSettings.attributes[this.gameSettings.attributes.length -1].id : 0;
       const newAttribute: IAttribute = {
         id:lastId +1,
         name: attributeName,

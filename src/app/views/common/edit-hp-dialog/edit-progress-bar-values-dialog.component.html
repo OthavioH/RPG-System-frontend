@@ -1,0 +1,13 @@
+<div class="col justify-content-between rounded-2 bg-dark p-4" style="min-height:270px;min-width: 200px;">
+    <p class="text-white fs-4 w-100 text-center d-flex col">Alterar pontos de vida</p>
+    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
+        <mat-label>Atual</mat-label>
+        <input #currentHp matInput type="number" class="text-light" [value]="value" aria-label="nome-habilidade"/>
+    </mat-form-field>
+    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
+        <mat-label>Máximo</mat-label>
+        <input #maxHp matInput type="number" class="text-light" [value]="maxLimit" aria-label="nome-habilidade"/>
+    </mat-form-field>
+    <button mat-button class="float-end" (click)="updateValues(currentHp.value, maxHp.value)">OK</button>
+</div>
+

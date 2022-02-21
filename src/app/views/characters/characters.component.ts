@@ -1,7 +1,6 @@
-import { CaracthersService } from './shared/services/characters.service';
+import { CharactersService } from './shared/services/characters.service';
 import {Title} from "@angular/platform-browser"
 import { Component, OnInit, SimpleChanges } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialog } from '@angular/material/dialog';
 import { ICharacter } from 'src/model/Character';
 import { IAttribute } from 'src/model/Attribute';
@@ -22,6 +21,7 @@ export class CharactersComponent implements OnInit {
 
   subscribe: Subscription;
   gameSettingsSubscription: Subscription;
+  charactersSubscription: Subscription;
   charactersList: ICharacter[] = [];
   attributeList: IAttribute[] = [];
   gameSettings: GameSettings;
@@ -29,10 +29,10 @@ export class CharactersComponent implements OnInit {
   loading: boolean;
 
   constructor(
-    private charactersService: CaracthersService, 
+    private charactersService: CharactersService, 
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private appService: GameSettingsService,
+    private gameSettingsService: GameSettingsService,
     private titleService: Title, private modalService:MatDialog) { 
     this.router.events.subscribe(event =>{
       if (event instanceof NavigationStart || event instanceof NavigationError) {
@@ -42,18 +42,24 @@ export class CharactersComponent implements OnInit {
         this.loading = false;
       }
     });
-    this.charactersList = this.charactersService.getCharacters();
+
+    this.gameSettingsSubscription = this.gameSettingsService.updateGameSettingsEvent$.subscribe(newGameSettings => {
+      this.gameSettings = newGameSettings;
+      this.attributeList = this.gameSettings.attributes;
+      this.skillList = this.gameSettings.skills;
+    });
+
+    this.charactersService.getCharacters();
+
+    this.charactersSubscription = this.charactersService.onCharacterListChanged.subscribe((newCharactersList:ICharacter[]) =>{
+      this.charactersList = newCharactersList;
+    });
+    
     this.titleService.setTitle("Dashboard | RPG System");
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.gameSettingsSubscription = this.appService.updateGameSettingsEvent$.subscribe(newGameSettings => {
-      console.log(newGameSettings);
-      this.gameSettings = newGameSettings;
-      console.log(this.gameSettings);
-      this.attributeList = this.gameSettings.attributes;
-      this.skillList = this.gameSettings.skills;
-    });
+    
   }
 
   ngOnInit(): void {
@@ -81,29 +87,25 @@ export class CharactersComponent implements OnInit {
   }
 
   saveGameSettings() {
-    this.appService.setGameTimers(this.gameSettings.diceCooldown, this.gameSettings.diceScreenTime);
+    this.gameSettingsService.setGameTimers(this.gameSettings.diceCooldown, this.gameSettings.diceScreenTime);
   }
 
   createNewSkill(skillName: string, skillDescription:string): void {
-    this.appService.createNewSkill(skillName, skillDescription);
+    this.gameSettingsService.createNewSkill(skillName, skillDescription);
     this.close();
   }
 
   createNewAttribute(attributeName: string, attributeDescription:string): void {
-    this.appService.createNewAttribute(attributeName, attributeDescription);
+    this.gameSettingsService.createNewAttribute(attributeName, attributeDescription);
     this.close();
   }
 
   deleteAttribute(attributeId: number): void {
-    this.attributeList = this.attributeList.filter(attribute => attribute.id != attributeId);
-
-    this.appService.setGameProperties(this.skillList, this.attributeList);
+    this.gameSettingsService.removeAttribute(attributeId);
   }
 
   deleteSkill(skillId: number): void {
-    this.skillList = this.skillList.filter(skill => skill.id != skillId);
-
-    this.appService.setGameProperties(this.skillList, this.attributeList);
+    this.gameSettingsService.removeSkill(skillId);
   }
 
   openModal(content): void {

@@ -3,14 +3,14 @@ import { ISkill } from "./Skill";
 
 export interface ICharacter {
     id: number;
-    nome: string;
+    name: string;
     hp?: number;
-    hpTotal?: number;
+    maxHp?: number;
     sanity?:number;
-    sanityTotal?:number;
-    jogador?: string;
-    idade?: number;
-    genero?: string;
+    maxSanity?:number;
+    playerName?: string;
+    age?: number;
+    gender?: string;
     attributes?:IAttribute[];
     skills?:ISkill[];
 }
