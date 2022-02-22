@@ -67,12 +67,23 @@ export class GameSettingsService {
   }
 
   async createNewSkill(skillName: string, skillDescription:string) {
+    await this.getGameSettings();
     if (skillName.length > 0 && skillDescription.length > 0) {
-      await this.getGameSettings();
-      const lastId = this.gameSettings.skills != null && this.gameSettings.skills.length >= 1 ? this.gameSettings.skills[this.gameSettings.skills.length -1].id : 0;
+      let greaterId = 0;
+      if (this.gameSettings.attributes != null) {
+        for (let i = 0; i < this.gameSettings.attributes.length; i++) {
+          const attribute = this.gameSettings.attributes[i];
+          if (attribute.id > greaterId) {
+            greaterId = attribute.id;
+          }
+        }
+      }
+      else {
+        greaterId = 0;
+      }
       
       const newSkill: ISkill = {
-        id:lastId +1,
+        id:greaterId +1,
         name: skillName,
         description: skillDescription
       };
@@ -88,22 +99,16 @@ export class GameSettingsService {
     }
   }
   async createNewAttribute(attributeName: string, attributeDescription:string){
+    await this.getGameSettings();
+    
     if (attributeName.length > 0 && attributeDescription.length > 0) {
-      let greaterId;
+      let greaterId = 0;
       if (this.gameSettings.attributes != null) {
         for (let i = 0; i < this.gameSettings.attributes.length; i++) {
           const attribute = this.gameSettings.attributes[i];
-          if (i > 0) {
-            const lastAttribute = this.gameSettings.attributes[i-1];
-            
-            if (attribute.id < lastAttribute.id) {
-              greaterId = lastAttribute.id;
-            }
-          }
-          else {
+          if (attribute.id > greaterId) {
             greaterId = attribute.id;
           }
-          
         }
       }
       else {
