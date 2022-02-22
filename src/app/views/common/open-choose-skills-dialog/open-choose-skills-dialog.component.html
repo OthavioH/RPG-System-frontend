@@ -1,0 +1,14 @@
+<div class="col justify-content-between rounded-2 bg-dark py-4 pb-2" style="min-height:250px;max-width: 500px;">
+    <div class="row mb-2 px-4">
+        <p class="text-light fs-4 fs-bold text-center">Adicione novos atributos</p>
+    </div>
+    <div class="row px-4 d-flex flex-wrap justify-content-between overflow-auto btn-group mb-4" role="group" style="min-height:100px">
+        <div class="col d-flex justify-content-between mb-2" style="max-height: 35px;" *ngFor="let skill of chooseSkillList">
+            <input type="checkbox" class="btn-check" [id]="'checkSkill'+skill.name" autocomplete="off" (change)="onSelectSkill(skill)">
+            <label class="btn btn-outline-warning shadow-none" [for]="'checkSkill'+skill.name">{{skill.name}}</label>
+        </div>
+    </div>
+    <div class="row px-4 align-bottom">
+        <button role="button" type="button" class="btn btn-warning" (click)="saveNewSkillList()">Adicionar</button>
+    </div>
+</div>

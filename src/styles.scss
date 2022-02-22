@@ -1,5 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 @import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import '~@angular/material/theming';
+@include mat-core();
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+mat-dialog-container {
+    background-color: transparent !important;
+    padding: 0px 0px 0px 0px !important;
+    overflow: hidden !important;
+    width: auto;
+    height: auto;
+}

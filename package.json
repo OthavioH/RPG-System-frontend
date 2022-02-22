@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild":"ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -21,13 +22,16 @@
     "@angular/platform-browser": "~12.2.14",
     "@angular/platform-browser-dynamic": "~12.2.14",
     "@angular/router": "~12.2.14",
+    "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "bootstrap": "^5.0.0",
+    "bootstrap-icons": "^1.8.1",
+    "express": "^4.17.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.2.13",
+    "@angular-devkit/build-angular": "12.2.14",
     "@angular/cli": "~12.2.13",
     "@angular/compiler-cli": "~12.2.14",
     "@types/jasmine": "~3.6.0",

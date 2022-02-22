@@ -1,0 +1,30 @@
+<div class="d-flex flex-wrap justify-content-between w-auto">
+    <mat-form-field appearance="fill" class="w-auto">
+        <mat-label class="text-light">Número de faces</mat-label>
+        <select matNativeControl class="text-light" #diceFaces>
+            <option value="3">D3</option>
+            <option value="4">D4</option>
+            <option value="6">D6</option>
+            <option value="8">D8</option>
+            <option value="10">D10</option>
+            <option value="12">D12</option>
+            <option value="16">D16</option>
+            <option value="20">D20</option>
+            <option value="30">D30</option>
+            <option value="100">D100</option>
+        </select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="w-auto">
+        <mat-label class="text-light">Quantidade de dados</mat-label>
+        <input matInput type="number" value="1" min="1" class="text-light" #diceQuantity>
+    </mat-form-field>
+</div>
+
+<div class="input-group mb-3 justify-content-around">
+    <button class="btn btn-outline-warning" type="button"  role="button" (click)="rollDice(diceFaces.value, diceQuantity.value)">Rolar dado</button>
+</div>
+
+<div *ngIf="diceResult.length > 0" >
+    <p class="text-warning text-center fs-6">Resultado:{{diceResult}}</p>
+</div>
+
