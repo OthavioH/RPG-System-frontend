@@ -31,6 +31,8 @@ export class CharacterComponent implements OnInit {
     ) {
     this.onCharacterChanged = this.charactersService.onCharacterChanged.subscribe((character: ICharacter) => {
       this.character = character;
+      this.character.attributes = character.attributes.sort((a,b) => a.name.localeCompare(b.name)) ?? [];
+      this.character.skills = character.skills.sort((a,b) => a.name.localeCompare(b.name)) ?? [];
     });
 
   }

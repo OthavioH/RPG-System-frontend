@@ -69,14 +69,14 @@ export class CharactersService {
     character.hp = currentHpValue;
     character.maxHp = hpLimit;
     await this.http.put(`${environment.apiUrl}/sheets/${character.id}/status/update`,{character: character}).toPromise();
-    this.onCharacterChanged.next(character);
+    this.getCharacterById(character.id);
   }
 
   async updateSanity(currentSanityValue: number, sanityLimit: number, character: ICharacter) {
     character.sanity = currentSanityValue;
     character.maxSanity = sanityLimit;
     await this.http.put(`${environment.apiUrl}/sheets/${character.id}/status/update`,{character: character}).toPromise();
-    this.onCharacterChanged.next(character);
+    this.getCharacterById(character.id);
   }
 
   async getDefaultAttributeList(): Promise<IAttribute[]> {
