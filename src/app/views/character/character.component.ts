@@ -55,8 +55,6 @@ export class CharacterComponent implements OnInit {
         attribute.value = newAttributeValue;
       }
     }
-    console.log(this.character.attributes);
-    
   }
 
   close(): void {

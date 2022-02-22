@@ -26,7 +26,6 @@ export class EditGamePreferenceDialogComponent implements OnInit {
   }
 
   editPreference(name: string, description:string,): void {
-    console.log(this.gamePreference.id);
     
     if(this.data.isSkill){
       this.gameSettingsService.editSkill(name,description,this.gamePreference.id);
