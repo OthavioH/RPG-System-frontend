@@ -44,7 +44,8 @@ export class CharactersService {
   }
 
   async deleteById(id: number): Promise<void> {
-    await this.http.delete(`${environment.apiUrl}/sheets/id/delete`);
+    await this.http.put(`${environment.apiUrl}/sheets/${id}/delete`,{}).toPromise();
+    
     await this.getCharacters();
   }
 

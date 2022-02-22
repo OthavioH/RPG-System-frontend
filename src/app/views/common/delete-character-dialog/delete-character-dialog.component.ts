@@ -19,8 +19,8 @@ export class DeleteCharacterDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onConfirmButtonClicked() {
-    this.charactersService.deleteById(this.characterId);
+  async onConfirmButtonClicked() {
+    await this.charactersService.deleteById(this.characterId);
     this.closeDialog();
   }
 
