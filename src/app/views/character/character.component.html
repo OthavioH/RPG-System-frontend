@@ -2,33 +2,33 @@
 <section class="container w-75 px-0 w-auto">
     <div class="d-flex flex-row flex-wrap row">
         <div class="d-flex col-md-6 mt-3">
-            <div class="container rounded-3  pb-2 pt-4 pb-4 px-4 bg-dark col-md-12" style="min-height: 300px; min-width: 300px;">
+            <div class="container rounded-3  pb-2 pt-4 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
                 <p class="text-start fs-3 fw-bold text-warning w-25 mb-4">CARACTERÍSTICAS</p>
                 <div class="input-group justify-content-between">
-                    <mat-form-field color="accent" class="w-auto" style="min-width: 250px;">
+                    <mat-form-field color="accent" class="w-auto min-width-250">
                         <mat-label>Nome do Jogador(a)</mat-label>
                         <input matInput #inputPlayerName type="text" class="text-light" [(ngModel)]="character.playerName" aria-label="nome-jogador"/>
                     </mat-form-field>
-                    <mat-form-field color="accent" class="w-auto" style="min-width: 250px;">
+                    <mat-form-field color="accent" class="w-auto min-width-250">
                         <mat-label>Nome do personagem</mat-label>
                         <input matInput #inputName type="text" class="text-light" [(ngModel)]="character.name" aria-label="nome-personagem"/>
                     </mat-form-field>
                 </div>
                 <div class="input-group mb-3 justify-content-between">
-                    <mat-form-field color="accent" class="w-auto" style="min-width: 250px;">
+                    <mat-form-field color="accent" class="w-auto min-width-250">
                         <mat-label>Idade</mat-label>
                         <input matInput #inputAge type="number" class="w-auto text-light" [(ngModel)]="character.age" aria-label="nome-jogador"/>
                     </mat-form-field>
-                    <mat-form-field color="accent" class="w-auto" style="min-width: 250px;">
+                    <mat-form-field color="accent" class="w-auto min-width-250">
                         <mat-label>Gênero</mat-label>
                         <input matInput #inputGender type="text" class="w-auto text-light" [(ngModel)]="character.gender" aria-label="nome-personagem"/>
                     </mat-form-field>
                 </div>
-                <button class="btn btn-warning text-dark fw-bold float-end" type="button" (click)="saveCharacter()" role="button">Salvar</button>
+                <button class="btn btn-outline-warning float-end" type="button" (click)="saveCharacter()" role="button">Salvar</button>
             </div>
         </div>
         <div class="d-flex col-md-6 mt-3">
-            <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12" style="min-height: 300px; min-width: 300px;">
+            <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
                 <p class="row mb-2 text-warning fs-5">VIDA</p>
                 <div class="row d-flex mb-3">
                     <app-progress-bar [total]="character.maxHp" [value]="character.hp" (click)="openEditHPDialog()" role="button" [color]="'red'" class=" col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
@@ -48,41 +48,52 @@
 <section class="container w-75 px-0 w-auto">
     <div class="d-flex flex-row flex-wrap row">
         <div class="d-flex col-md-6 mt-3">
-            <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12" style="min-height: 300px; min-width: 300px;">
+            <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
                 <div class="row d-flex justify-content-between col-md-12">
                     <p class="text-start fs-3 fw-bold text-warning w-25 col">ATRIBUTOS</p>
-                    <button class="btn btn-outline-success w-auto" (click)="openChooseAttributes()">
+                    <button class="btn btn-outline-warning w-auto" (click)="openChooseAttributes()">
                         <i class="bi bi-plus-lg text-light"></i>
                     </button>
                 </div>
                 <div class="col d-flex flex-wrap justify-content-between col-md-12 px-4 mt-3 py-2 overflow-auto" style="max-height: 400px;">
-                    <div class="col d-flex justify-content-between mb-4 me-5" *ngFor="let attribute of character.attributes">
-                        <button class="btn btn-outline-danger w-auto me-2 col" (click)="deleteAttribute(attribute.id)">
+                    <div class="col d-flex justify-content-between mb-2 me-5" *ngFor="let attribute of character.attributes">
+                        <button class="btn btn-outline-danger w-auto me-2 col" (click)="deleteAttribute(attribute.id)" style="height:fit-content">
                             <i class="bi bi-trash3 text-light"></i>
                         </button>
-                        <p role="button" class="text-light col me-3 text-nowrap text-center">{{attribute.name}}</p>
-                        <input class="col form-control text-center" [aria-label]="attribute.name + value" type="text" style="width: 70px; height:fit-content">
+                        <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center" (click)="openAttributeDialog(attribute)">{{attribute.name}}</p>
+                        <input class="col form-control text-center btn-light shadow-none bg-transparent text-light" [aria-label]="attribute.name + value" type="text" style="width: 70px; height:fit-content">
                     </div>
                 </div>
             </div>
         </div>
         
         <div class="d-flex col-md-6 mt-3">
-            <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12" style="min-height: 300px; min-width: 300px;">
+            <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
                 <div class="row d-flex justify-content-between col-md-12">
                     <p class="text-start fs-3 fw-bold text-warning w-25 col">HABILIDADES</p>
-                    <button class="btn btn-outline-success w-auto" (click)="openChooseSkills()">
+                    <button class="btn btn-outline-warning w-auto" (click)="openChooseSkills()">
                         <i class="bi bi-plus-lg text-light"></i>
                     </button>
                 </div>
                 <div class="row d-flex justify-content-between col-md-12 px-4 py-2 mt-3 overflow-auto" style="max-height: 400px;">
                     <div class="row d-flex justify-content-between mb-2" *ngFor="let skill of character.skills">
-                        <button class="btn btn-outline-danger w-25 me-2 col" (click)="deleteSkill(skill.id)">
+                        <button class="btn btn-outline-danger w-25 me-2 col" (click)="deleteSkill(skill.id)" style="height:fit-content;">
                             <i class="bi bi-trash3 text-light"></i>
                         </button>
-                        <p class="form-control w-75 text-light" role="button" id="disabledInput" type="text" (click)="openSkillDialog(skill)" style="background: none;border: none; border-bottom: 2px dashed rgba(173, 173, 173, 0.705);">{{skill.name}}</p>
+                        <p class="btn w-75 text-light btn-outline-warning" role="button" id="disabledInput" type="text" (click)="openSkillDialog(skill)" >{{skill.name}}</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container w-75 px-0 w-auto">
+    <div class="d-flex flex-row flex-wrap row">
+        <div class="d-flex col-md-6 mt-3">
+            <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+                <p class="text-start fs-3 fw-bold text-warning text-center w-25 row">NOTES</p>
+                <textarea class="form-control w-100 bg-dark text-light border-warning min-height-300" id="notes-text-area" [(ngModel)]="character.notes" ></textarea>
             </div>
         </div>
     </div>

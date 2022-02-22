@@ -13,4 +13,5 @@ export interface ICharacter {
     gender?: string;
     attributes?:IAttribute[];
     skills?:ISkill[];
+    notes:string;
 }

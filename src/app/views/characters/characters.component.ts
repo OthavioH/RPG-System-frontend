@@ -9,13 +9,16 @@ import { CreateCharacterDialogComponent } from '../common/create-character-dialo
 import { GameSettingsService } from 'src/app/game-settings.service';
 import { GameSettings } from 'src/model/GameSettings';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { ActivatedRoute, ActivationEnd, ActivationStart, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, ResolveStart, Router, RouterEvent } from '@angular/router';
 import { EditGamePreferenceDialogComponent } from '../common/edit-game-preference-dialog/edit-game-preference-dialog.component';
+import { SkillsDialogComponent } from '../common/skills-dialog/skills-dialog.component';
+import { AttributeDialogComponent } from '../common/attribute-dialog/attribute-dialog.component';
+import { DeleteCharacterDialogComponent } from '../common/delete-character-dialog/delete-character-dialog.component';
 
 @Component({
   selector: 'app-characters',
   templateUrl: './characters.component.html',
-  styleUrls: ['./characters.component.scss']
+  styleUrls: ['./characters.component.scss','./../../app.component.scss']
 })
 export class CharactersComponent implements OnInit {
 
@@ -26,7 +29,7 @@ export class CharactersComponent implements OnInit {
   attributeList: IAttribute[] = [];
   gameSettings: GameSettings;
   skillList: ISkill[] = [];
-  loading: boolean;
+  loading: boolean = true;
 
   constructor(
     private charactersService: CharactersService, 
@@ -34,7 +37,7 @@ export class CharactersComponent implements OnInit {
     private router: Router,
     private gameSettingsService: GameSettingsService,
     private titleService: Title, private modalService:MatDialog) { 
-    this.router.events.subscribe(event =>{
+    this.router.events.subscribe((event: RouterEvent) =>{
       if (event instanceof NavigationStart || event instanceof NavigationError) {
         this.loading = true;
       }
@@ -45,8 +48,8 @@ export class CharactersComponent implements OnInit {
 
     this.gameSettingsSubscription = this.gameSettingsService.updateGameSettingsEvent$.subscribe(newGameSettings => {
       this.gameSettings = newGameSettings;
-      this.attributeList = this.gameSettings.attributes;
-      this.skillList = this.gameSettings.skills;
+      this.attributeList = this.gameSettings.attributes.sort((a,b) => a.name.localeCompare(b.name));;
+      this.skillList = this.gameSettings.skills.sort((a,b) => a.name.localeCompare(b.name));;
     });
 
     this.charactersService.getCharacters();
@@ -59,19 +62,14 @@ export class CharactersComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    
   }
 
   ngOnInit(): void {
     this.subscribe = this.activatedRoute.data.subscribe((info: {gameSettings: GameSettings}) => {
       this.gameSettings = info.gameSettings;
     });
-    this.attributeList = this.gameSettings.attributes ?? [];
-    this.skillList = this.gameSettings.skills ?? [];
-  }
-  
-  openEditDialog(gamePreference: ISkill | IAttribute, isSkill: boolean): void {
-    this.modalService.open(EditGamePreferenceDialogComponent,{data:{gamePreference:gamePreference, isSkill:isSkill}})
+    this.attributeList = this.gameSettings.attributes.sort((a,b) => a.name.localeCompare(b.name)) ?? [];
+    this.skillList = this.gameSettings.skills.sort((a,b) => a.name.localeCompare(b.name)) ?? [];
   }
 
   ngOnDestroy(): void {
@@ -110,6 +108,22 @@ export class CharactersComponent implements OnInit {
 
   openModal(content): void {
     this.modalService.open(content);
+  }
+
+  openEditDialog(gamePreference: ISkill | IAttribute, isSkill: boolean): void {
+    this.modalService.open(EditGamePreferenceDialogComponent,{data:{gamePreference:gamePreference, isSkill:isSkill}})
+  }
+
+  openSkillDialog(skill: ISkill): void {
+    this.modalService.open(SkillsDialogComponent, {data: skill});
+  }
+
+  openAttributeDialog(attribute: IAttribute): void {
+    this.modalService.open(AttributeDialogComponent, {data: attribute});
+  }
+
+  openDeleteCharacterDialog(id:number):void{
+    this.modalService.open(DeleteCharacterDialogComponent, {data:id})
   }
 
   openCreateCharacterDialog(): void {

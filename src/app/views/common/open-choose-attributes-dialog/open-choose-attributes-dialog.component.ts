@@ -33,10 +33,27 @@ export class OpenChooseAttributesDialogComponent implements OnInit {
   async initLists() {
     this.gameSettingsAttributeList = (await this.gameSettingsService.getGameSettings()).attributes;
 
-    this.chooseAttributeList = await this.concatList(this.gameSettingsAttributeList, this.data.character.attributes);
+    this.chooseAttributeList = await this.concatAttributeList(this.gameSettingsAttributeList, this.data.character.attributes);
   }
 
-  async concatList<T>(firstList, secondList): Promise<T[]> {
+  async onSelectAttribute(selectedAttribute: IAttribute){
+    if (this.selectedAttributeList.includes(selectedAttribute)) {
+      this.selectedAttributeList = this.selectedAttributeList.filter(attribute => attribute.id != selectedAttribute.id);
+    }
+    else {
+      this.selectedAttributeList.push(selectedAttribute);
+    }
+  }
+
+  async saveNewAttributeList(){
+    if (this.selectedAttributeList.length > 0) {
+      this.data.character.attributes = await this.selectedAttributeList.concat(this.data.character.attributes);
+      this.charactersService.updateCharacter(this.data.character);
+    }
+    this.dialogRef.close();
+  }
+
+  async concatAttributeList<T>(firstList, secondList): Promise<T[]> {
     let newList = new Array<T>();
     if (secondList != null) {
       for (let i = 0; i < firstList.length; i++) {
@@ -55,23 +72,6 @@ export class OpenChooseAttributesDialogComponent implements OnInit {
       newList = firstList;
     }
     return newList;
-  }
-
-  async onSelectAttribute(selectedAttribute: IAttribute){
-    if (this.selectedAttributeList.includes(selectedAttribute)) {
-      this.selectedAttributeList = this.selectedAttributeList.filter(attribute => attribute.id != selectedAttribute.id);
-    }
-    else {
-      this.selectedAttributeList.push(selectedAttribute);
-    }
-  }
-
-  async saveNewAttributeList(){
-    if (this.selectedAttributeList.length > 0) {
-      this.data.character.attributes = await this.selectedAttributeList.concat(this.data.character.attributes);
-      this.charactersService.updateCharacter(this.data.character);
-    }
-    this.dialogRef.close();
   }
 
 }

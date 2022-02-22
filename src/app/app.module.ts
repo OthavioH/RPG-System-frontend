@@ -24,8 +24,10 @@ import { EditGamePreferenceDialogComponent } from './views/common/edit-game-pref
 import { ProgressBarComponent } from './views/common/progress-bar/progress-bar.component';
 import { EditProgressBarValuesDialogComponent } from './views/common/edit-hp-dialog/edit-progress-bar-values-dialog.component';
 import { FormsModule } from '@angular/forms';
-import { OpenChooseSkillsDialogComponent } from './views/common/open-choose-skills-dialog/open-choose-skills-dialog.component';
 import { OpenChooseAttributesDialogComponent } from './views/common/open-choose-attributes-dialog/open-choose-attributes-dialog.component';
+import { OpenChooseSkillsDialogComponent } from './views/common/open-choose-skills-dialog/open-choose-skills-dialog.component';
+import { AttributeDialogComponent } from './views/common/attribute-dialog/attribute-dialog.component';
+import { DeleteCharacterDialogComponent } from './views/common/delete-character-dialog/delete-character-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +41,10 @@ import { OpenChooseAttributesDialogComponent } from './views/common/open-choose-
     EditGamePreferenceDialogComponent,
     ProgressBarComponent,
     EditProgressBarValuesDialogComponent,
-    OpenChooseSkillsDialogComponent,
     OpenChooseAttributesDialogComponent,
+    OpenChooseSkillsDialogComponent,
+    AttributeDialogComponent,
+    DeleteCharacterDialogComponent,
   ],
   imports: [
     BrowserModule,

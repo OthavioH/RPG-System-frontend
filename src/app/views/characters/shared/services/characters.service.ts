@@ -43,6 +43,11 @@ export class CharactersService {
     return this.skillList;
   }
 
+  async deleteById(id: number): Promise<void> {
+    await this.http.delete(`${environment.apiUrl}/sheets/id/delete`);
+    await this.getCharacters();
+  }
+
   async updateCharacter(character: ICharacter) {
     await this.http.put(`${environment.apiUrl}/sheets/${character.id}/update`,{
       playerName:character.playerName,
@@ -54,6 +59,7 @@ export class CharactersService {
       maxSanity:character.maxSanity, 
       skills:character.skills, 
       attributes:character.attributes,
+      notes:character.notes,
     }).toPromise();
     await this.getCharacterById(character.id);
   }

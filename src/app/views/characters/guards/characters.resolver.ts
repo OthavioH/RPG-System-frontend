@@ -10,7 +10,6 @@ export class CharactersResolver implements Resolve<GameSettings> {
     constructor(private appService:GameSettingsService){}
 
     resolve(route: ActivatedRouteSnapshot): Observable<GameSettings> | Promise<GameSettings> | GameSettings {
-        console.log("sokdoaskd");
         return this.appService.getGameSettings();
     }
 }

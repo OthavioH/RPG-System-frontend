@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { IAttribute } from 'src/model/Attribute';
 import { ISkill } from 'src/model/Skill';
-import { RollDiceDialogComponent } from '../common/roll-dice-dialog/roll-dice-dialog.component';
 import { SkillsDialogComponent } from '../common/skills-dialog/skills-dialog.component';
 import { CharactersService } from '../characters/shared/services/characters.service';
 import { ICharacter } from 'src/model/Character';
 import { EditProgressBarValuesDialogComponent } from '../common/edit-hp-dialog/edit-progress-bar-values-dialog.component';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OpenChooseSkillsDialogComponent } from '../common/open-choose-skills-dialog/open-choose-skills-dialog.component';
 import { OpenChooseAttributesDialogComponent } from '../common/open-choose-attributes-dialog/open-choose-attributes-dialog.component';
+import { OpenChooseSkillsDialogComponent } from '../common/open-choose-skills-dialog/open-choose-skills-dialog.component';
+import { AttributeDialogComponent } from '../common/attribute-dialog/attribute-dialog.component';
+import { IAttribute } from 'src/model/Attribute';
 
 @Component({
   selector: 'app-character',
   templateUrl: './character.component.html',
-  styleUrls: ['./character.component.scss']
+  styleUrls: ['./character.component.scss','./../../app.component.scss']
 })
 export class CharacterComponent implements OnInit {
 
@@ -45,12 +45,16 @@ export class CharacterComponent implements OnInit {
     this.modalService.open(SkillsDialogComponent, {data: skill});
   }
 
+  openAttributeDialog(attribute: IAttribute): void {
+    this.modalService.open(AttributeDialogComponent, {data: attribute});
+  }
+
   close(): void {
     this.modalService.closeAll();
   }
 
   openChooseSkills(): void {
-    this.modalService.open(OpenChooseSkillsDialogComponent, {data:this.character.skills});
+    this.modalService.open(OpenChooseSkillsDialogComponent, {data:{character:this.character}});
   }
 
   openChooseAttributes(): void {
