@@ -70,11 +70,11 @@ export class GameSettingsService {
     await this.getGameSettings();
     if (skillName.length > 0 && skillDescription.length > 0) {
       let greaterId = 0;
-      if (this.gameSettings.attributes != null) {
-        for (let i = 0; i < this.gameSettings.attributes.length; i++) {
-          const attribute = this.gameSettings.attributes[i];
-          if (attribute.id > greaterId) {
-            greaterId = attribute.id;
+      if (this.gameSettings.skills != null) {
+        for (let i = 0; i < this.gameSettings.skills.length; i++) {
+          const skill = this.gameSettings.skills[i];
+          if (skill.id > greaterId) {
+            greaterId = skill.id;
           }
         }
       }
