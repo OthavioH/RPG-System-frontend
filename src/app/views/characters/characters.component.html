@@ -71,11 +71,11 @@
         <p class="text-center fs-2 fw-bold text-warning">CONFIGURAÇÕES</p>
         <div class="mt-2 row w-75">
             <label for="diceScreenTime" class="text-start fs-5 col-5 text-light w-auto">Tempo de dado na tela:</label>
-            <input #diceScreenTime type="number" name="diceScreenTime" id="diceScreenTime" class="input-group-text col-1" [value]="gameSettings.diceScreenTime" [(ngModel)]="gameSettings.diceScreenTime" (change)="onChangeDiceScreenTime(diceScreenTime.value)" min="1" step="1" max="20" style="min-width:50px">
+            <input #diceScreenTime type="number" name="diceScreenTime" id="diceScreenTime" class="input-group-text col-1" [(ngModel)]="gameSettings.diceScreenTime" (change)="onChangeDiceScreenTime(diceScreenTime.value)" min="1" step="1" max="20" style="min-width:50px">
         </div>
         <div class="mt-2 row w-75">
             <label for="diceCooldown" class="text-start fs-5 col-5 text-light w-auto">Cooldown do dado:</label>
-            <input #diceCooldown type="number" name="diceCooldown" id="diceCooldown" class="input-group-text col-1" [value]="gameSettings.diceCooldown" (change)="onChangeDiceCooldown(diceCooldown.value)" min="1" step="1" max="20" style="min-width:50px">
+            <input #diceCooldown type="number" name="diceCooldown" id="diceCooldown" class="input-group-text col-1" [(ngModel)]="gameSettings.diceCooldown" min="1" step="1" max="20" style="min-width:50px">
             <button class="btn btn-outline-warning ms-2 w-auto" (click)="saveGameSettings()">Salvar</button>
         </div>
     </section>

@@ -49,6 +49,16 @@ export class CharacterComponent implements OnInit {
     this.modalService.open(AttributeDialogComponent, {data: attribute});
   }
 
+  onChangedAttributeValue(attributeId:number, newAttributeValue:number):void{
+    for (const attribute of this.character.attributes) {
+      if (attribute.id == attributeId) {
+        attribute.value = newAttributeValue;
+      }
+    }
+    console.log(this.character.attributes);
+    
+  }
+
   close(): void {
     this.modalService.closeAll();
   }

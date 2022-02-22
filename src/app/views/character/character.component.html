@@ -24,7 +24,7 @@
                         <input matInput #inputGender type="text" class="w-auto text-light" [(ngModel)]="character.gender" aria-label="nome-personagem"/>
                     </mat-form-field>
                 </div>
-                <button class="btn btn-outline-warning float-end" type="button" (click)="saveCharacter()" role="button">Salvar</button>
+                <button class="btn btn-outline-warning float-end shadow-none" type="button" (click)="saveCharacter()" role="button">Salvar</button>
             </div>
         </div>
         <div class="d-flex col-md-6 mt-3">
@@ -61,7 +61,7 @@
                             <i class="bi bi-trash3 text-light"></i>
                         </button>
                         <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center" (click)="openAttributeDialog(attribute)">{{attribute.name}}</p>
-                        <input class="col form-control text-center btn-light shadow-none bg-transparent text-light" [aria-label]="attribute.name + value" type="text" style="width: 70px; height:fit-content">
+                        <input #attributeValue type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light" [aria-label]="attribute.name + value" [value]="attribute.value ?? 0" (change)="onChangedAttributeValue(attribute.id,attributeValue.value)" style="width: 70px; height:fit-content">
                     </div>
                 </div>
             </div>

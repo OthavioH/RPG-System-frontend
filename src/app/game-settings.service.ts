@@ -31,6 +31,7 @@ export class GameSettingsService {
   }
 
   async setGameTimers(diceCooldown : number, diceScreenTime: number) {
+    
     const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/save/timers`,{
       diceCooldown: diceCooldown,
       diceScreenTime: diceScreenTime,
