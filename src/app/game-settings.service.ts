@@ -44,6 +44,8 @@ export class GameSettingsService {
   // SKILLS AND PROPERTIES
   async setGameProperties(skillList : ISkill[], attributeList: IAttribute[]) {
     await this.getGameSettings();
+    skillList = skillList.sort((a,b) => a.id > b.id ? 1 : -1);
+    attributeList = attributeList.sort((a,b) => a.id > b.id ? 1 : -1);
     const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/save/properties`,{
       skills: skillList,
       attributes: attributeList,
