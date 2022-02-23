@@ -29,12 +29,12 @@
         </div>
         <div class="d-flex col-md-6 mt-3">
             <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
-                <p class="row mb-2 text-warning fs-5">VIDA</p>
+                <p class="row mb-2 text-light fs-5">VIDA</p>
                 <div class="row d-flex mb-3">
                     <app-progress-bar [total]="character.maxHp" [value]="character.hp" (click)="openEditHPDialog()" role="button" [color]="'red'" class=" col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
                     <p class="text-light fs-5 col">{{character.hp}}/{{character.maxHp}}</p>
                 </div>
-                <p class="row mb-2 text-warning fs-5">Sanidade</p>
+                <p class="row mb-2 text-light fs-5">Sanidade</p>
                 <div class="row d-flex mb-3">
                     <app-progress-bar [total]="character.maxSanity" [value]="character.sanity" (click)="openEditSanityDialog()" role="button" [color]="'blue'" class="col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
                     <p class="text-light fs-5 col">{{character.sanity}}/{{character.maxSanity}}</p>
@@ -61,7 +61,7 @@
                             <i class="bi bi-trash3 text-light"></i>
                         </button>
                         <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto" (click)="openAttributeDialog(attribute)">{{attribute.name}}</p>
-                        <input #attributeValue type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light" [aria-label]="attribute.name + value" [value]="attribute.value ?? 0" (change)="onChangedAttributeValue(attribute.id,attributeValue.value)" style="max-width: 50px; height:fit-content">
+                        <input #attributeValue type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light" [aria-label]="attribute.name + value" [value]="attribute.value ?? 0" (change)="onChangedAttributeValue(attribute.id,attributeValue.value)" style="min-width:50px;max-width: 150px; height:fit-content">
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                             <i class="bi bi-trash3 text-light"></i>
                         </button>
                         <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto" (click)="openSkillDialog(skill)">{{skill.name}}</p>
-                        <input #skillValue type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light" [aria-label]="skill.name + value" [value]="skill.value ?? 0" (change)="onChangedSkillValue(skill.id,skillValue.value)" style="width: 70px; height:fit-content">
+                        <input #skillValue type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light" [aria-label]="skill.name + value" [value]="skill.value ?? 0" (change)="onChangedSkillValue(skill.id,skillValue.value)" style="min-width:70px;max-width: 150px; height:fit-content">
                     </div>
                 </div>
             </div>
@@ -90,73 +90,127 @@
 </section>
 
 <section class="container w-75 px-0 w-auto">
-    <div class="d-flex flex-row flex-wrap row overflow-hidden">
-        <div class="d-flex col-md-6 mt-3 overflow-hidden">
-            <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300 overflow-hidden" >
-                <div class="row d-flex justify-content-between col-md-12">
-                    <p class="text-start fs-3 fw-bold text-warning w-25 col">ARMAS</p>
-                    <button class="btn btn-outline-warning w-auto" (click)="openCreateWeaponDialog()">
+    <div class="d-flex col mt-3 overflow-hidden">
+        <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300 overflow-hidden" >
+            <div class="row d-flex justify-content-between col-md-12">
+                <p class="text-center fs-3 fw-bold text-warning col">ARMAS</p>
+                
+            </div>
+            <div class="row d-flex justify-content-between col-md-12">
+                <div class="form-group">
+                    <button class="btn btn-outline-warning w-auto float-end" (click)="openCreateWeaponDialog()">
                         <i class="bi bi-plus-lg text-light"></i>
                     </button>
-                </div>
-                <div class="overflow-auto" style="max-height: 300px;">
-                    <table class="table text-light">
-                        <thead>
-                          <tr >
-                            <th scope="col">#</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Dano</th>
-                            <th scope="col">Ctc</th>
-                            <th scope="col">Tipo</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let weapon of character.weapons">
-                            <th scope="row"><button class="btn btn-outline-danger w-auto me-2 col" style="height:fit-content;font-size: 14px;" (click)="deleteWeapon(weapon.id)">
-                                <i class="bi bi-trash3 text-light text-center"></i>
-                            </button></th>
-                            <td><input #weaponName type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [aria-label]="weapon.name + value" [value]="weapon.name ?? ''" [(ngModel)]="weapon.name" style="max-width:90px;height:fit-content;font-size:12px;"></td>
-                            <td>
-                                <input #weaponDamageValue type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [aria-label]="weapon.name + value" [value]="weapon.damage ?? ''" [(ngModel)]="weapon.damage" style="max-width:90px;height:fit-content;font-size:12px;">
-                            </td>
-                            <td>
-                                <input #weaponCriticalDamageInput type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [aria-label]="weapon.name + value" [value]="weapon.criticalDamage ?? ''" [(ngModel)]="weapon.criticalDamage" style="max-width:90px;height:fit-content; font-size:12px;">
-                            </td>
-                            <td>
-                                <input #weaponTypeInput type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [aria-label]="weapon.name + value" [value]="weapon.type ?? ''" [(ngModel)]="weapon.type" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
-                            </td>
-                          </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
-        </div>
-        <div class="d-flex col-md-6 mt-3 overflow-hidden">
-            <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300 overflow-hidden" >
-                <div class="row d-flex justify-content-between col-md-12">
-                    <p class="text-start fs-3 fw-bold text-warning w-25 col">Equipamentos</p>
-                    <button class="btn btn-outline-warning w-auto" (click)="openCreateEquipmentDialog()">
-                        <i class="bi bi-plus-lg text-light"></i>
-                    </button>
-                </div>
-                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto">
-                    <div class="d-flex col justify-content-between mb-2 me-5 w-auto" *ngFor="let equipment of character.equipments">
-                        <button class="btn btn-outline-danger w-auto me-2 col" style="height:fit-content;max-width: 40px;font-size: 14px;" (click)="deleteEquipment(equipment.id)">
-                            <i class="bi bi-trash3 text-light"></i>
-                        </button>
-                        <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto">{{equipment.name}}</p>
-                        <input #attributeValue type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light" [aria-label]="equipment.name + value" [value]="equipment.quantity ?? 0" [(ngModel)]="equipment.quantity" style="max-width: 120px; height:fit-content;">
-                    </div>
-                </div>
+            <div class="overflow-auto" style="max-height: 300px;">
+                <table class="table text-light">
+                    <thead>
+                      <tr >
+                        <th scope="col"></th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Dano</th>
+                        <th scope="col">Ctc</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Mun. Atual</th>
+                        <th scope="col">Mun. Máxima</th>
+                        <th scope="col">Ataques</th>
+                        <th scope="col">Alcance</th>
+                        <th scope="col">Defeito</th>
+                        <th scope="col">Área</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let weapon of character.weapons">
+                        <th scope="row"><button class="btn btn-outline-danger w-auto me-2 col" style="height:fit-content;font-size: 14px;" (click)="deleteWeapon(weapon.id)">
+                            <i class="bi bi-trash3 text-light text-center"></i>
+                        </button></th>
+                        <td><input #weaponName type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [aria-label]="weapon.name + value" [value]="weapon.name ?? ''" [(ngModel)]="weapon.name" style="max-width:90px;height:fit-content;font-size:12px;"></td>
+                        <td>
+                            <input #weaponDamageValue type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [aria-label]="weapon.name + value" [value]="weapon.damage ?? ''" [(ngModel)]="weapon.damage" style="max-width:90px;height:fit-content;font-size:12px;">
+                        </td>
+                        <td>
+                            <input #weaponCriticalDamageInput type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [aria-label]="weapon.name + value" [value]="weapon.criticalDamage ?? ''" [(ngModel)]="weapon.criticalDamage" style="max-width:90px;height:fit-content; font-size:12px;">
+                        </td>
+                        <td>
+                            <input #weaponTypeInput type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [aria-label]="weapon.name + value" [value]="weapon.type ?? ''" [(ngModel)]="weapon.type" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
+                        </td>
+                        <td>
+                            <input #weaponCurrentAmmo type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [aria-label]="weapon.name + value" [value]="weapon.currentAmmo ?? ''" [(ngModel)]="weapon.currentAmmo" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
+                        </td>
+                        <td>
+                            <input #weaponMaxAmmo type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [aria-label]="weapon.name + value" [value]="weapon.maxAmmo ?? ''" [(ngModel)]="weapon.maxAmmo" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
+                        </td>
+                        <td>
+                            <input #weaponAttacksQuantity type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [aria-label]="weapon.name + value" [value]="weapon.attacksQuantity ?? ''" [(ngModel)]="weapon.attacksQuantity" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
+                        </td>
+                        <td>
+                            <input #weaponRange type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [aria-label]="weapon.name + value" [value]="weapon.range ?? ''" [(ngModel)]="weapon.range" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
+                        </td>
+                        <td>
+                            <input #weaponMalfunction type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [aria-label]="weapon.name + value" [value]="weapon.malfunction ?? ''" [(ngModel)]="weapon.malfunction" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
+                        </td>
+                        <td>
+                            <input #weaponRangeInArea type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [aria-label]="weapon.name + value" [value]="weapon.rangeInArea ?? ''" [(ngModel)]="weapon.rangeInArea" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </section>
 
 <section class="container w-75 px-0 w-auto">
-    <div class="d-flex col-md-6 mt-3" style="max-height: 400px;">
+    <div class="d-flex col mt-3 overflow-hidden">
+        <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300 overflow-hidden" >
+            <div class="row d-flex justify-content-between col-md-12">
+                <p class="text-center fs-3 fw-bold text-warning col">INVENTÁRIO</p>
+            </div>
+            <div class="row d-flex justify-content-between col-md-12">
+                <p class="text-center fs-6 fw-bold text-light col">PESO: {{+character.inventory.weight}}/{{+character.inventory.maxWeight}}</p>
+            </div>
+            <div class="row d-flex justify-content-between col-md-12">
+                <div class="form-group">
+                    <button class="btn btn-outline-warning float-end" (click)="openCreateInventoryItemDialog()">
+                        <i class="bi bi-plus-lg text-light"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="overflow-auto" style="max-height: 300px;">
+                <table class="table text-light">
+                    <thead>
+                      <tr >
+                        <th scope="col"></th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Qtd.</th>
+                        <th scope="col">Peso</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of character.inventory.items">
+                        <th scope="row"><button class="btn btn-outline-danger w-auto me-2 col" style="height:fit-content;font-size: 14px;" (click)="deleteInventoryItem(item.id,item.weight)">
+                            <i class="bi bi-trash3 text-light text-center"></i>
+                        </button></th>
+                        <td><input #itemName type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [aria-label]="item.name + value" [value]="item.name ?? ''" [(ngModel)]="item.name" style="max-width:90px;height:fit-content;font-size:12px;"></td>
+                        <td>
+                            <input #itemQuantity type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [aria-label]="item.name + value" [value]="item.quantity ?? ''" [(ngModel)]="item.quantity" style="max-width:90px;height:fit-content;font-size:12px;">
+                        </td>
+                        <td>
+                            <input #itemWeight type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [aria-label]="item.name + value" [value]="item.weight ?? ''" [(ngModel)]="item.weight" style="max-width:90px;height:fit-content; font-size:12px;">
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container w-75 px-0 w-auto">
+    <div class="d-flex col mt-3" style="max-height: 400px;">
         <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-width-300">
-            <p class="text-start fs-3 fw-bold text-warning text-center w-25 row">ANOTAÇÕES</p>
+            <p class="text-center fs-3 fw-bold text-warning w-100 col">ANOTAÇÕES</p>
             <textarea class="form-control w-100 bg-dark text-light border-warning" id="notes-text-area" style="height: 300px;max-height: 300px;" [(ngModel)]="character.notes" ></textarea>
         </div>
     </div>

@@ -5,7 +5,7 @@ import { GameSettingsService } from 'src/app/game-settings.service';
 import { generateRandomId } from 'src/app/views/common/view_utils';
 import { environment } from 'src/environments/environment';
 import { IAttribute } from 'src/models/Attribute';
-import { IEquipment } from 'src/models/Equipment';
+import { InventoryItem } from 'src/models/InventoryItem';
 import { ISkill } from 'src/models/Skill';
 import { IWeapon } from 'src/models/Weapon';
 
@@ -18,7 +18,7 @@ export class CharactersService {
 
   onCharacterChanged :BehaviorSubject<ICharacter> = new BehaviorSubject(null);
   onCharacterListChanged: BehaviorSubject<ICharacter[]> = new BehaviorSubject(null);
-  equipmentList : IEquipment[] = [];
+  equipmentList : InventoryItem[] = [];
   weaponList : IWeapon[] = [];
 
   private attributeList: IAttribute[] = [];
@@ -65,7 +65,7 @@ export class CharactersService {
       maxSanity:character.maxSanity, 
       skills:character.skills, 
       attributes:character.attributes,
-      equipments:character.equipments,
+      inventory:character.inventory,
       weapons:character.weapons,
       notes:character.notes,
     }).toPromise();

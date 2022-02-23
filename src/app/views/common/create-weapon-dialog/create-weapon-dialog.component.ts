@@ -22,7 +22,21 @@ export class CreateWeaponDialogComponent implements OnInit {
   async onConfirmClicked(weaponName: string, damage:string, criticalDamage:string, type:string) {
     this.dialogRef.close();
     if (weaponName.length > 0) {
-      this.data.character.weapons.push({id:generateRandomId(), name:weaponName, damage:damage, criticalDamage:criticalDamage, type:type});
+      this.data.character.weapons.push(
+        {
+          id:generateRandomId(), 
+          name:weaponName, 
+          damage:damage, 
+          criticalDamage:criticalDamage, 
+          type:type,
+          currentAmmo:0,
+          maxAmmo:0,
+          attacksQuantity:0,
+          malfunction:0,
+          range:0,
+          rangeInArea:0,
+        }
+      );
       await this.charactersService.updateCharacter(this.data.character);
     }
     

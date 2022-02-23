@@ -12,9 +12,10 @@ import { OpenChooseSkillsDialogComponent } from '../common/open-choose-skills-di
 import { AttributeDialogComponent } from '../common/attribute-dialog/attribute-dialog.component';
 import { IAttribute } from 'src/models/Attribute';
 import { IWeapon } from 'src/models/Weapon';
-import { IEquipment } from 'src/models/Equipment';
+import { InventoryItem } from 'src/models/InventoryItem';
 import { CreateEquipmentDialogComponent } from '../common/create-equipment-dialog/create-equipment-dialog.component';
 import { CreateWeaponDialogComponent } from '../common/create-weapon-dialog/create-weapon-dialog.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-character',
@@ -32,15 +33,16 @@ export class CharacterComponent implements OnInit {
     private charactersService:CharactersService, 
     private modalService:MatDialog, 
     private activatedRoute: ActivatedRoute,
+    private titleService: Title,
     ) {
     this.onCharacterChanged = this.charactersService.onCharacterChanged.subscribe((character: ICharacter) => {
       this.character = character;
       this.character.attributes = character.attributes != null ? character.attributes.sort((a,b) => a.name.localeCompare(b.name)) : [];
       this.character.skills = character.skills != null ? character.skills.sort((a,b) => a.name.localeCompare(b.name)) : [];
-      this.character.equipments = character.equipments  ?? [];
+      this.character.inventory = character.inventory ?? {weight:0, maxWeight:0,items:[]};
       this.character.weapons = character.weapons ?? [];
     });
-
+    this.titleService.setTitle(`Personagem | ${this.character.name}`);
   }
 
   ngOnInit() {
@@ -53,7 +55,7 @@ export class CharacterComponent implements OnInit {
     this.modalService.open(SkillsDialogComponent, {data: skill});
   }
 
-  openCreateEquipmentDialog(): void {
+  openCreateInventoryItemDialog(): void {
     this.modalService.open(CreateEquipmentDialogComponent, {data:{character: this.character}});
   }
 
@@ -110,8 +112,9 @@ export class CharacterComponent implements OnInit {
     this.saveCharacter();
   }
 
-  deleteEquipment(equipmentId: string): void {
-    this.character.equipments = this.character.equipments.filter(equipment => equipment.id != equipmentId);
+  deleteInventoryItem(itemId: string,weight:number): void {
+    this.character.inventory.weight -= weight;
+    this.character.inventory.items = this.character.inventory.items.filter(item => item.id != itemId);
     this.saveCharacter();
   }
 

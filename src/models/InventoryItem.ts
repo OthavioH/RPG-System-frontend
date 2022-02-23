@@ -1,5 +1,6 @@
-export interface IEquipment {
+export interface InventoryItem {
     id: string;
     name: string;
     quantity: number;
+    weight:number;
 }
