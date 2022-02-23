@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GameSettingsService } from 'src/app/game-settings.service';
-import { ISkill } from 'src/model/Skill';
-import { IAttribute } from 'src/model/Attribute';
+import { ISkill } from 'src/models/Skill';
+import { IAttribute } from 'src/models/Attribute';
 
 @Component({
   selector: 'app-edit-game-preference-dialog',

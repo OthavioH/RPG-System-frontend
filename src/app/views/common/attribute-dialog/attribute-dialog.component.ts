@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IAttribute } from 'src/model/Attribute';
+import { IAttribute } from 'src/models/Attribute';
 
 @Component({
   selector: 'app-attribute-dialog',

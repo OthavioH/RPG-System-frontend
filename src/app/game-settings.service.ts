@@ -3,28 +3,28 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IAttribute } from 'src/model/Attribute';
-import { GameSettings } from 'src/model/GameSettings';
-import { ISkill } from 'src/model/Skill';
+import { IAttribute } from 'src/models/Attribute';
+import { IGameSettings } from 'src/models/GameSettings';
+import { ISkill } from 'src/models/Skill';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameSettingsService {
 
-  private gameSettings : GameSettings;
+  private gameSettings : IGameSettings;
 
-  updateGameSettingsEvent$ :BehaviorSubject<GameSettings>;
+  updateGameSettingsEvent$ :BehaviorSubject<IGameSettings>;
 
   constructor(private http:HttpClient, private route: Router) {
     this.initSettings();
   }
 
   async initSettings(){
-    this.updateGameSettingsEvent$ = new BehaviorSubject<GameSettings>(await this.getGameSettings());
+    this.updateGameSettingsEvent$ = new BehaviorSubject<IGameSettings>(await this.getGameSettings());
   }
 
-  async getGameSettings(): Promise<GameSettings> {
+  async getGameSettings(): Promise<IGameSettings> {
     const response: any = await this.http.get(`${environment.apiUrl}/gamesettings`).toPromise();
     this.gameSettings = response;
     return this.gameSettings;
@@ -43,9 +43,8 @@ export class GameSettingsService {
 
   // SKILLS AND PROPERTIES
   async setGameProperties(skillList : ISkill[], attributeList: IAttribute[]) {
-    await this.getGameSettings();
-    skillList = skillList.sort((a,b) => a.id > b.id ? 1 : -1);
-    attributeList = attributeList.sort((a,b) => a.id > b.id ? 1 : -1);
+    skillList = skillList != null ? skillList.sort((a,b) => a.id > b.id ? 1 : -1) : [];
+    attributeList = attributeList != null ? attributeList.sort((a,b) => a.id > b.id ? 1 : -1) : [];
     const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/save/properties`,{
       skills: skillList,
       attributes: attributeList,
@@ -57,35 +56,21 @@ export class GameSettingsService {
     this.updateGameSettingsEvent$.next(this.gameSettings);
   }
 
-  async removeAttribute(attributeId:number) {
+  async removeAttribute(attributeId:string) {
     this.gameSettings.attributes = this.gameSettings.attributes.filter(element => element.id != attributeId);
     await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes);
   }
 
-  async removeSkill(skillId:number) {
+  async removeSkill(skillId:string) {
     
     this.gameSettings.skills = this.gameSettings.skills.filter(element => element.id != skillId);
     await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes);
   }
 
   async createNewSkill(skillName: string, skillDescription:string) {
-    await this.getGameSettings();
     if (skillName.length > 0 && skillDescription.length > 0) {
-      let greaterId = 0;
-      if (this.gameSettings.skills != null) {
-        for (let i = 0; i < this.gameSettings.skills.length; i++) {
-          const skill = this.gameSettings.skills[i];
-          if (skill.id > greaterId) {
-            greaterId = skill.id;
-          }
-        }
-      }
-      else {
-        greaterId = 0;
-      }
-      
       const newSkill: ISkill = {
-        id:greaterId +1,
+        id:this.generateRandomId(),
         name: skillName,
         description: skillDescription
       };
@@ -101,23 +86,10 @@ export class GameSettingsService {
     }
   }
   async createNewAttribute(attributeName: string, attributeDescription:string){
-    await this.getGameSettings();
-    
     if (attributeName.length > 0 && attributeDescription.length > 0) {
-      let greaterId = 0;
-      if (this.gameSettings.attributes != null) {
-        for (let i = 0; i < this.gameSettings.attributes.length; i++) {
-          const attribute = this.gameSettings.attributes[i];
-          if (attribute.id > greaterId) {
-            greaterId = attribute.id;
-          }
-        }
-      }
-      else {
-        greaterId = 0;
-      }
+      
       const newAttribute: IAttribute = {
-        id:greaterId +1,
+        id:this.generateRandomId(),
         name: attributeName,
         description: attributeDescription
       };
@@ -133,7 +105,7 @@ export class GameSettingsService {
     }
   }
 
-  async editSkill(skillName: string, skillDescription:string, skillId: number) {
+  async editSkill(skillName: string, skillDescription:string, skillId: string) {
     if (skillName.length > 0 && skillDescription.length > 0) {
       this.gameSettings.skills.map((skill)=>{
         if (skill.id == skillId) {
@@ -146,7 +118,7 @@ export class GameSettingsService {
     }
   }
 
-  async editAttribute(attributeName: string, attributeDescription:string, attributeId: number) {
+  async editAttribute(attributeName: string, attributeDescription:string, attributeId: string) {
     if (attributeName.length > 0 && attributeDescription.length > 0) {
       this.gameSettings.attributes.map((attribute)=>{
         if (attribute.id == attributeId) {
@@ -157,5 +129,12 @@ export class GameSettingsService {
   
       await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes);
     }
+  }
+
+  generateRandomId():string {
+    var S4 = function() {
+       return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+    };
+    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
   }
 }

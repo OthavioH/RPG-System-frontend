@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ICharacter } from 'src/model/Character';
+import { ICharacter } from 'src/models/Character';
 import { CharactersService } from '../../characters/shared/services/characters.service';
 
 @Injectable({ providedIn: 'root' })

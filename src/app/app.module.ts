@@ -28,6 +28,8 @@ import { OpenChooseAttributesDialogComponent } from './views/common/open-choose-
 import { OpenChooseSkillsDialogComponent } from './views/common/open-choose-skills-dialog/open-choose-skills-dialog.component';
 import { AttributeDialogComponent } from './views/common/attribute-dialog/attribute-dialog.component';
 import { DeleteCharacterDialogComponent } from './views/common/delete-character-dialog/delete-character-dialog.component';
+import { CreateEquipmentDialogComponent } from './views/common/create-equipment-dialog/create-equipment-dialog.component';
+import { CreateWeaponDialogComponent } from './views/common/create-weapon-dialog/create-weapon-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { DeleteCharacterDialogComponent } from './views/common/delete-character-
     OpenChooseSkillsDialogComponent,
     AttributeDialogComponent,
     DeleteCharacterDialogComponent,
+    CreateEquipmentDialogComponent,
+    CreateWeaponDialogComponent,
   ],
   imports: [
     BrowserModule,
