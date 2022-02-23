@@ -1,5 +1,6 @@
 import { IAttribute } from "./Attribute";
-import { IEquipment } from "./Equipment";
+import { Inventory } from "./Inventory";
+import { InventoryItem } from "./InventoryItem";
 import { ISkill } from "./Skill";
 import { IWeapon } from "./Weapon";
 
@@ -16,6 +17,6 @@ export interface ICharacter {
     attributes?:IAttribute[];
     skills?:ISkill[];
     weapons?:IWeapon[];
-    equipments?:IEquipment[];
+    inventory?:Inventory;
     notes:string;
 }

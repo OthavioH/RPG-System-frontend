@@ -19,10 +19,11 @@ export class CreateEquipmentDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async onConfirmClicked(equipmentName: string, quantity:number) {
+  async onConfirmClicked(itemName: string, quantity:number, weight:number) {
     this.dialogRef.close();
-    if (equipmentName.length > 0) {
-      this.data.character.equipments.push({id:generateRandomId(), name:equipmentName, quantity:quantity});
+    if (itemName.length > 0) {
+      this.data.character.inventory.items.push({id:generateRandomId(), name:itemName, quantity:quantity,weight:weight});
+      this.data.character.inventory.weight += weight;
       await this.charactersService.updateCharacter(this.data.character);
     }
     
