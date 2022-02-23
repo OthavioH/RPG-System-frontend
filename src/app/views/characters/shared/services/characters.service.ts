@@ -2,11 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { GameSettingsService } from 'src/app/game-settings.service';
+import { generateRandomId } from 'src/app/views/common/view_utils';
 import { environment } from 'src/environments/environment';
-import { IAttribute } from 'src/model/Attribute';
-import { ISkill } from 'src/model/Skill';
+import { IAttribute } from 'src/models/Attribute';
+import { IEquipment } from 'src/models/Equipment';
+import { ISkill } from 'src/models/Skill';
+import { IWeapon } from 'src/models/Weapon';
 
-import { ICharacter } from '../../../../../model/Character';
+import { ICharacter } from '../../../../../models/Character';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +18,17 @@ export class CharactersService {
 
   onCharacterChanged :BehaviorSubject<ICharacter> = new BehaviorSubject(null);
   onCharacterListChanged: BehaviorSubject<ICharacter[]> = new BehaviorSubject(null);
-
-  constructor(private http:HttpClient,private gameSettingsService: GameSettingsService) {
-    
-  }
+  equipmentList : IEquipment[] = [];
+  weaponList : IWeapon[] = [];
 
   private attributeList: IAttribute[] = [];
   private skillList: ISkill[] = [];
 
   private characters: ICharacter[] = [];
+
+  constructor(private http:HttpClient,private gameSettingsService: GameSettingsService) {
+    
+  }
 
   async getCharacterById(characterId: number): Promise<ICharacter> {
     const response: any = await this.http.get(`${environment.apiUrl}/sheets/${characterId}`).toPromise();
@@ -60,6 +65,8 @@ export class CharactersService {
       maxSanity:character.maxSanity, 
       skills:character.skills, 
       attributes:character.attributes,
+      equipments:character.equipments,
+      weapons:character.weapons,
       notes:character.notes,
     }).toPromise();
     await this.getCharacterById(character.id);
@@ -88,4 +95,11 @@ export class CharactersService {
     await this.http.post(`${environment.apiUrl}/sheets/create`,{name:characterName}).toPromise();
     await this.getCharacters();
   }
+
+  async createNewEquipment(equipmentName: string, quantity:number, characterId:number) {
+    await this.http.post(`${environment.apiUrl}/sheets/${characterId}/equipment/create`,{id:generateRandomId(),name:equipmentName, quantity:quantity}).toPromise();
+    this.getCharacterById(characterId);
+  }
+
+  
 }

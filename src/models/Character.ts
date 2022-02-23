@@ -1,5 +1,7 @@
 import { IAttribute } from "./Attribute";
+import { IEquipment } from "./Equipment";
 import { ISkill } from "./Skill";
+import { IWeapon } from "./Weapon";
 
 export interface ICharacter {
     id: number;
@@ -13,5 +15,7 @@ export interface ICharacter {
     gender?: string;
     attributes?:IAttribute[];
     skills?:ISkill[];
+    weapons?:IWeapon[];
+    equipments?:IEquipment[];
     notes:string;
 }

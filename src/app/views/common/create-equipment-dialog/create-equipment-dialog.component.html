@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-between rounded-2 bg-dark p-4 w-auto h-auto overflow-hidden" style="max-height:500px;max-width: 500px;">
+    <mat-form-field color="accent" class="w-auto row me-5" style="min-width: 150px;">
+        <mat-label>Nome</mat-label>
+        <input matInput #equipmentName type="text" class="text-light" aria-label="equipment-name"/>
+    </mat-form-field>
+    <mat-form-field color="accent" class="w-auto row me-5" style="min-width: 150px;">
+        <mat-label>Quantidade</mat-label>
+        <input matInput #quantity type="number" class="text-light" aria-label="equipment-value" min="0" value="0"/>
+    </mat-form-field>
+    
+    <button mat-button class="float-end row" (click)="onConfirmClicked(equipmentName.value, quantity.value)">OK</button>
+</div>

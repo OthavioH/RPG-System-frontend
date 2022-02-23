@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GameSettingsService } from 'src/app/game-settings.service';
-import { ICharacter } from 'src/model/Character';
-import { ISkill } from 'src/model/Skill';
+import { ICharacter } from 'src/models/Character';
+import { ISkill } from 'src/models/Skill';
 import { CharactersService } from '../../characters/shared/services/characters.service';
 
 @Component({

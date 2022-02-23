@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ICharacter } from 'src/model/Character';
+import { ICharacter } from 'src/models/Character';
 import { CharactersService } from '../../characters/shared/services/characters.service';
 
 @Component({

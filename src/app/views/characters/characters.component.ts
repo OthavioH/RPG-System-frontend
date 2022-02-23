@@ -2,12 +2,12 @@ import { CharactersService } from './shared/services/characters.service';
 import {Title} from "@angular/platform-browser"
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ICharacter } from 'src/model/Character';
-import { IAttribute } from 'src/model/Attribute';
-import { ISkill } from 'src/model/Skill';
+import { ICharacter } from 'src/models/Character';
+import { IAttribute } from 'src/models/Attribute';
+import { ISkill } from 'src/models/Skill';
 import { CreateCharacterDialogComponent } from '../common/create-character-dialog/create-character-dialog.component';
 import { GameSettingsService } from 'src/app/game-settings.service';
-import { GameSettings } from 'src/model/GameSettings';
+import { IGameSettings } from 'src/models/GameSettings';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, ActivationEnd, ActivationStart, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, ResolveStart, Router, RouterEvent } from '@angular/router';
 import { EditGamePreferenceDialogComponent } from '../common/edit-game-preference-dialog/edit-game-preference-dialog.component';
@@ -27,7 +27,7 @@ export class CharactersComponent implements OnInit {
   charactersSubscription: Subscription;
   charactersList: ICharacter[] = [];
   attributeList: IAttribute[] = [];
-  gameSettings: GameSettings;
+  gameSettings: IGameSettings;
   skillList: ISkill[] = [];
   loading: boolean = true;
 
@@ -48,8 +48,8 @@ export class CharactersComponent implements OnInit {
 
     this.gameSettingsSubscription = this.gameSettingsService.updateGameSettingsEvent$.subscribe(newGameSettings => {
       this.gameSettings = newGameSettings;
-      this.attributeList = this.gameSettings.attributes.sort((a,b) => a.name.localeCompare(b.name));;
-      this.skillList = this.gameSettings.skills.sort((a,b) => a.name.localeCompare(b.name));;
+      this.attributeList = this.gameSettings.attributes != null ? this.gameSettings.attributes.sort((a,b) => a.name.localeCompare(b.name)) : [];
+      this.skillList = this.gameSettings.skills != null ? this.gameSettings.skills.sort((a,b) => a.name.localeCompare(b.name)) : [];
     });
 
     this.charactersService.getCharacters();
@@ -65,11 +65,11 @@ export class CharactersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subscribe = this.activatedRoute.data.subscribe((info: {gameSettings: GameSettings}) => {
+    this.subscribe = this.activatedRoute.data.subscribe((info: {gameSettings: IGameSettings}) => {
       this.gameSettings = info.gameSettings;
     });
-    this.attributeList = this.gameSettings.attributes.sort((a,b) => a.name.localeCompare(b.name)) ?? [];
-    this.skillList = this.gameSettings.skills.sort((a,b) => a.name.localeCompare(b.name)) ?? [];
+    this.attributeList = this.gameSettings.attributes != null ? this.gameSettings.attributes.sort((a,b) => a.name.localeCompare(b.name)) : [];
+      this.skillList = this.gameSettings.skills != null ? this.gameSettings.skills.sort((a,b) => a.name.localeCompare(b.name)) : [];
   }
 
   ngOnDestroy(): void {
@@ -98,11 +98,11 @@ export class CharactersComponent implements OnInit {
     this.close();
   }
 
-  deleteAttribute(attributeId: number): void {
+  deleteAttribute(attributeId: string): void {
     this.gameSettingsService.removeAttribute(attributeId);
   }
 
-  deleteSkill(skillId: number): void {
+  deleteSkill(skillId: string): void {
     this.gameSettingsService.removeSkill(skillId);
   }
 

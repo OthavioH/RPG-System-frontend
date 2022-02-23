@@ -1,6 +1,6 @@
 export interface IAttribute {
-    id: number;
+    id: string;
     name: string;
     value?: number;
-    description:string;
+    description: string;
 }
