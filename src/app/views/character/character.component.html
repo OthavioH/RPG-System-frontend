@@ -55,13 +55,19 @@
                         <i class="bi bi-plus-lg text-light"></i>
                     </button>
                 </div>
-                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto">
+                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto" style="min-height: 150px;">
                     <div class="d-flex col justify-content-between mb-2 me-5 w-auto" *ngFor="let attribute of character.attributes">
-                        <button class="btn btn-outline-danger w-auto me-2 col" (click)="deleteAttribute(attribute.id)" style="height:fit-content;max-width: 40px;font-size: 14px;">
-                            <i class="bi bi-trash3 text-light"></i>
-                        </button>
-                        <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto" (click)="openAttributeDialog(attribute)">{{attribute.name}}</p>
-                        <input #attributeValue type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light" [value]="attribute.value ?? 0" (change)="onChangedAttributeValue(attribute.id,+attributeValue.value)" style="min-width:50px;max-width: 150px; height:fit-content">
+                        <div class="col">
+                            <div class="card align-items-center bg-warning border-2 border-warning" style="width:fit-content;height:fit-content">
+                                <div class="card-header bg-warning row pt-3 px-0 mx-0" style="width:115px;height:fit-content;">
+                                    <p class="text-light text-center text-uppercase fs-3 fw-bold" style="text-shadow: 1px 1px 2px black;">{{attribute.abbreviation}}</p>
+                                    <p class="text-light text-center fs-6 text-break fw-bold" style="text-shadow: 1px 1px 2px black;">{{attribute.name}}</p>
+                                </div>
+                                <div class="card-body py-0 my-0 bg-dark rounded-bottom row align-items-center px-0 mx-0" style="width:115px;height:50px;">
+                                    <input #attributeValue type="text" class="col form-control text-center border-0 shadow-none bg-transparent fw-bold text-light w-100" [value]="attribute.value ?? 0" (change)="onChangedAttributeValue(attribute.id,+attributeValue.value)" style="width:50px;">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

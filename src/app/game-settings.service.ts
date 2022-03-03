@@ -47,7 +47,7 @@ export class GameSettingsService {
     skillList = skillList != null ? skillList.sort((a,b) => a.id > b.id ? 1 : -1) : [];
     attributeList = attributeList != null ? attributeList.sort((a,b) => a.id > b.id ? 1 : -1) : [];
     abilitiesList = abilitiesList != null ? abilitiesList.sort((a,b) => a.id > b.id ? 1 : -1) : [];
-    const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/save/properties`,{
+    const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/properties/save/`,{
       skills: skillList,
       attributes: attributeList,
       abilities:abilitiesList,
