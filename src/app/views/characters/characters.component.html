@@ -39,7 +39,7 @@
             <div class="d-flex col-md-6 mt-3">
                 <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
                     <div class="row d-flex justify-content-between col-md-12">
-                        <p class="text-start fs-3 fw-bold text-warning w-25">HABILIDADES</p>
+                        <p class="text-start fs-3 fw-bold text-warning w-25">PERÍCIAS</p>
                         <button class="btn btn-outline-warning w-auto" (click)="openModal(skillsModal)">
                             <i class="bi bi-plus-lg text-light"></i>
                         </button>
@@ -81,10 +81,10 @@
 
 <ng-template #skillsModal let-c="close" let-d="dismiss" class="col justify-content-between rounded-2 bg-dark p-4">
     <div class="col justify-content-between rounded-2 bg-dark p-4" style="min-height:270px;min-width: 200px;">
-        <p class="text-white fs-4 w-100 text-center d-flex col">Criar nova habilidade</p>
+        <p class="text-white fs-4 w-100 text-center d-flex col">Criar nova perícia</p>
         <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
-            <mat-label>Nome da habilidade</mat-label>
-            <input #newSkillName matInput type="text" class="text-light" aria-label="nome-habilidade"/>
+            <mat-label>Nome da perícia</mat-label>
+            <input #newSkillName matInput type="text" class="text-light" aria-label="nome-pericia"/>
         </mat-form-field>
         <mat-form-field color="accent" class="w-100 d-flex col " style="min-width: 150px;">
             <mat-label>Descrição</mat-label>
@@ -102,9 +102,9 @@
             <input #attributeName matInput type="text" class="text-light" aria-label="nome-atributo"/>
         </mat-form-field>
         <mat-form-field color="accent" class="w-100 d-flex col " style="min-width: 150px;">
-            <mat-label>Descrição</mat-label>
-            <textarea #attributeDescription matInput class="text-light" type="text" placeholder="Descrição"></textarea>
+            <mat-label>Abreviação</mat-label>
+            <input #attributeAbbr matInput type="text" class="text-light" aria-label="abbr-atributo"/>
         </mat-form-field>
-        <button mat-button class="float-end" (click)="createNewAttribute(attributeName.value, attributeDescription.value)">OK</button>
+        <button mat-button class="float-end" (click)="createNewAttribute(attributeName.value, attributeAbbr.value)">OK</button>
     </div>
 </ng-template>
