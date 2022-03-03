@@ -8,6 +8,6 @@
         <mat-label>Máximo</mat-label>
         <input #maxHp matInput type="number" class="text-light" [value]="maxLimit" aria-label="nome-habilidade"/>
     </mat-form-field>
-    <button mat-button class="float-end" (click)="updateValues(currentHp.value, maxHp.value)">OK</button>
+    <button mat-button class="float-end" (click)="updateValues(+currentHp.value, +maxHp.value)">OK</button>
 </div>
 

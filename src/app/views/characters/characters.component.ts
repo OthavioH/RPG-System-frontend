@@ -1,19 +1,20 @@
-import { CharactersService } from './shared/services/characters.service';
 import {Title} from "@angular/platform-browser"
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
+
+import { CharactersService } from './shared/services/characters.service';
+import { EditAttributeDialogComponent } from '../common/edit-attribute-dialog/edit-attribute-dialog.component';
+import { SkillsDialogComponent } from '../common/skills-dialog/skills-dialog.component';
+import { AttributeDialogComponent } from '../common/attribute-dialog/attribute-dialog.component';
+import { EditSkillDialogComponent } from 'src/app/views/common/edit-skill-dialog/edit-skill-dialog.component';
 import { ICharacter } from 'src/models/Character';
 import { IAttribute } from 'src/models/Attribute';
 import { ISkill } from 'src/models/Skill';
 import { CreateCharacterDialogComponent } from '../common/create-character-dialog/create-character-dialog.component';
 import { GameSettingsService } from 'src/app/game-settings.service';
 import { IGameSettings } from 'src/models/GameSettings';
-import { Subscription } from 'rxjs';
-import { ActivatedRoute, ActivationEnd, ActivationStart, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, ResolveStart, Router, RouterEvent } from '@angular/router';
-import { EditGamePreferenceDialogComponent } from '../common/edit-game-preference-dialog/edit-game-preference-dialog.component';
-import { SkillsDialogComponent } from '../common/skills-dialog/skills-dialog.component';
-import { AttributeDialogComponent } from '../common/attribute-dialog/attribute-dialog.component';
-import { DeleteCharacterDialogComponent } from '../common/delete-character-dialog/delete-character-dialog.component';
 
 @Component({
   selector: 'app-characters',
@@ -110,8 +111,12 @@ export class CharactersComponent implements OnInit {
     this.modalService.open(content);
   }
 
-  openEditDialog(gamePreference: ISkill | IAttribute, isSkill: boolean): void {
-    this.modalService.open(EditGamePreferenceDialogComponent,{data:{gamePreference:gamePreference, isSkill:isSkill}})
+  openEditAttributeDialog(attribute: IAttribute): void {
+    this.modalService.open(EditAttributeDialogComponent,{data:attribute})
+  }
+
+  openEditSkillDialog(skill: ISkill): void {
+    this.modalService.open(EditSkillDialogComponent,{data:skill})
   }
 
   openSkillDialog(skill: ISkill): void {
@@ -120,10 +125,6 @@ export class CharactersComponent implements OnInit {
 
   openAttributeDialog(attribute: IAttribute): void {
     this.modalService.open(AttributeDialogComponent, {data: attribute});
-  }
-
-  openDeleteCharacterDialog(id:number):void{
-    this.modalService.open(DeleteCharacterDialogComponent, {data:id})
   }
 
   openCreateCharacterDialog(): void {

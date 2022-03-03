@@ -55,20 +55,7 @@ export class CharactersService {
   }
 
   async updateCharacter(character: ICharacter) {
-    await this.http.put(`${environment.apiUrl}/sheets/${character.id}/update`,{
-      playerName:character.playerName,
-      name: character.name, age: character.age, 
-      gender:character.gender, 
-      hp:character.hp, 
-      maxHp:character.maxHp, 
-      sanity:character.sanity, 
-      maxSanity:character.maxSanity, 
-      skills:character.skills, 
-      attributes:character.attributes,
-      inventory:character.inventory,
-      weapons:character.weapons,
-      notes:character.notes,
-    }).toPromise();
+    await this.http.put(`${environment.apiUrl}/sheets/${character.id}/update`,{character:character}).toPromise();
     await this.getCharacterById(character.id);
   }
 

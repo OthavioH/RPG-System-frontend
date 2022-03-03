@@ -112,8 +112,7 @@ export class CharacterComponent implements OnInit {
     this.saveCharacter();
   }
 
-  deleteInventoryItem(itemId: string,weight:number): void {
-    this.character.inventory.weight -= weight;
+  deleteInventoryItem(itemId: string,): void {
     this.character.inventory.items = this.character.inventory.items.filter(item => item.id != itemId);
     this.saveCharacter();
   }

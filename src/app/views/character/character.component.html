@@ -61,7 +61,7 @@
                             <i class="bi bi-trash3 text-light"></i>
                         </button>
                         <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto" (click)="openAttributeDialog(attribute)">{{attribute.name}}</p>
-                        <input #attributeValue type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light" [aria-label]="attribute.name + value" [value]="attribute.value ?? 0" (change)="onChangedAttributeValue(attribute.id,attributeValue.value)" style="min-width:50px;max-width: 150px; height:fit-content">
+                        <input #attributeValue type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light" [value]="attribute.value ?? 0" (change)="onChangedAttributeValue(attribute.id,+attributeValue.value)" style="min-width:50px;max-width: 150px; height:fit-content">
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                             <i class="bi bi-trash3 text-light"></i>
                         </button>
                         <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto" (click)="openSkillDialog(skill)">{{skill.name}}</p>
-                        <input #skillValue type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light" [aria-label]="skill.name + value" [value]="skill.value ?? 0" (change)="onChangedSkillValue(skill.id,skillValue.value)" style="min-width:70px;max-width: 150px; height:fit-content">
+                        <input #skillValue type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light" [value]="skill.value ?? 0" (change)="onChangedSkillValue(skill.id,+skillValue.value)" style="min-width:70px;max-width: 150px; height:fit-content">
                     </div>
                 </div>
             </div>
@@ -109,15 +109,14 @@
                       <tr >
                         <th scope="col"></th>
                         <th scope="col">Nome</th>
-                        <th scope="col">Dano</th>
-                        <th scope="col">Ctc</th>
                         <th scope="col">Tipo</th>
+                        <th scope="col">Ataque</th>
+                        <th scope="col">Alcance</th>
+                        <th scope="col">Dano</th>
+                        <th scope="col">Crítico</th>
                         <th scope="col">Mun. Atual</th>
                         <th scope="col">Mun. Máxima</th>
-                        <th scope="col">Ataques</th>
-                        <th scope="col">Alcance</th>
-                        <th scope="col">Defeito</th>
-                        <th scope="col">Área</th>
+                        <th scope="col">Especial</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -125,33 +124,32 @@
                         <th scope="row"><button class="btn btn-outline-danger w-auto me-2 col" style="height:fit-content;font-size: 14px;" (click)="deleteWeapon(weapon.id)">
                             <i class="bi bi-trash3 text-light text-center"></i>
                         </button></th>
-                        <td><input #weaponName type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [aria-label]="weapon.name + value" [value]="weapon.name ?? ''" [(ngModel)]="weapon.name" style="max-width:90px;height:fit-content;font-size:12px;"></td>
                         <td>
-                            <input #weaponDamageValue type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [aria-label]="weapon.name + value" [value]="weapon.damage ?? ''" [(ngModel)]="weapon.damage" style="max-width:90px;height:fit-content;font-size:12px;">
+                            <input #weaponName type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto"   [value]="weapon.name ?? ''" [(ngModel)]="weapon.name" style="max-width:90px;height:fit-content;font-size:12px;">
                         </td>
                         <td>
-                            <input #weaponCriticalDamageInput type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [aria-label]="weapon.name + value" [value]="weapon.criticalDamage ?? ''" [(ngModel)]="weapon.criticalDamage" style="max-width:90px;height:fit-content; font-size:12px;">
+                            <input #weaponTypeInput type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light "   [value]="weapon.type ?? ''" [(ngModel)]="weapon.type" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
                         </td>
                         <td>
-                            <input #weaponTypeInput type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [aria-label]="weapon.name + value" [value]="weapon.type ?? ''" [(ngModel)]="weapon.type" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
+                            <input #weaponAttack type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light "   [value]="weapon.attack ?? ''" [(ngModel)]="weapon.attack" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
                         </td>
                         <td>
-                            <input #weaponCurrentAmmo type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [aria-label]="weapon.name + value" [value]="weapon.currentAmmo ?? ''" [(ngModel)]="weapon.currentAmmo" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
+                            <input #weaponRange type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light "   [value]="weapon.range ?? ''" [(ngModel)]="weapon.range" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
                         </td>
                         <td>
-                            <input #weaponMaxAmmo type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [aria-label]="weapon.name + value" [value]="weapon.maxAmmo ?? ''" [(ngModel)]="weapon.maxAmmo" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
+                            <input #weaponDamageValue type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light w-auto"   [value]="weapon.damage ?? ''" [(ngModel)]="weapon.damage" style="max-width:90px;height:fit-content;font-size:12px;">
                         </td>
                         <td>
-                            <input #weaponAttacksQuantity type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [aria-label]="weapon.name + value" [value]="weapon.attacksQuantity ?? ''" [(ngModel)]="weapon.attacksQuantity" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
+                            <input #weaponCriticalDamageInput type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light w-auto"   [value]="weapon.criticalDamage ?? ''" [(ngModel)]="weapon.criticalDamage" style="max-width:90px;height:fit-content; font-size:12px;">
                         </td>
                         <td>
-                            <input #weaponRange type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [aria-label]="weapon.name + value" [value]="weapon.range ?? ''" [(ngModel)]="weapon.range" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
+                            <input #weaponCurrentAmmo type="number" class="col form-control text-center btn-warning shadow-none bg-transparent text-light "   [value]="weapon.currentAmmo ?? ''" [(ngModel)]="weapon.currentAmmo" style="width: 70px; height:fit-content;font-size:12px;">
                         </td>
                         <td>
-                            <input #weaponMalfunction type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [aria-label]="weapon.name + value" [value]="weapon.malfunction ?? ''" [(ngModel)]="weapon.malfunction" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
+                            <input #weaponMaxAmmo type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light "   [value]="weapon.maxAmmo ?? ''" [(ngModel)]="weapon.maxAmmo" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
                         </td>
                         <td>
-                            <input #weaponRangeInArea type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [aria-label]="weapon.name + value" [value]="weapon.rangeInArea ?? ''" [(ngModel)]="weapon.rangeInArea" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
+                            <input #weaponSpecial type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [value]="weapon.special ?? ''" [(ngModel)]="weapon.special" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
                         </td>
                       </tr>
                     </tbody>
@@ -183,21 +181,29 @@
                       <tr >
                         <th scope="col"></th>
                         <th scope="col">Nome</th>
+                        <th scope="col">Detalhes</th>
                         <th scope="col">Qtd.</th>
-                        <th scope="col">Peso</th>
+                        <th scope="col">Prestígio</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let item of character.inventory.items">
-                        <th scope="row"><button class="btn btn-outline-danger w-auto me-2 col" style="height:fit-content;font-size: 14px;" (click)="deleteInventoryItem(item.id,item.weight)">
-                            <i class="bi bi-trash3 text-light text-center"></i>
-                        </button></th>
-                        <td><input #itemName type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [aria-label]="item.name + value" [value]="item.name ?? ''" [(ngModel)]="item.name" style="max-width:90px;height:fit-content;font-size:12px;"></td>
+                        <th scope="row">
+                            <button class="btn btn-outline-danger w-auto me-2 col" style="height:fit-content;font-size: 14px;" (click)="deleteInventoryItem(item.id)">
+                                <i class="bi bi-trash3 text-light text-center"></i>
+                            </button>
+                        </th>
                         <td>
-                            <input #itemQuantity type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [aria-label]="item.name + value" [value]="item.quantity ?? ''" [(ngModel)]="item.quantity" style="max-width:90px;height:fit-content;font-size:12px;">
+                            <input #itemName type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto"  [value]="item.name ?? ''" [(ngModel)]="item.name" style="max-width:90px;height:fit-content;font-size:12px;">
                         </td>
                         <td>
-                            <input #itemWeight type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [aria-label]="item.name + value" [value]="item.weight ?? ''" [(ngModel)]="item.weight" style="max-width:90px;height:fit-content; font-size:12px;">
+                            <textarea #itemDetails type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [value]="item.details ?? ''" [(ngModel)]="item.details" style="max-width:500px;height:fit-content; font-size:12px;"></textarea>
+                        </td>
+                        <td>
+                            <input #itemQuantity type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [value]="item.quantity ?? 0" [(ngModel)]="item.quantity" style="max-width:90px;height:fit-content;font-size:12px;">
+                        </td>
+                        <td>
+                            <input #itemPrestigy type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [value]="item.prestige ?? ''" [(ngModel)]="item.prestige" style="max-width:90px;height:fit-content;font-size:12px;">
                         </td>
                       </tr>
                     </tbody>

@@ -85,13 +85,13 @@ export class GameSettingsService {
       await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes);
     }
   }
-  async createNewAttribute(attributeName: string, attributeDescription:string){
-    if (attributeName.length > 0 && attributeDescription.length > 0) {
+  async createNewAttribute(attributeName: string, abbreviation:string){
+    if (attributeName.length > 0 && abbreviation.length > 0) {
       
       const newAttribute: IAttribute = {
         id:this.generateRandomId(),
         name: attributeName,
-        description: attributeDescription
+        abbreviation:abbreviation,
       };
 
       if (this.gameSettings.attributes != null) {
@@ -118,12 +118,12 @@ export class GameSettingsService {
     }
   }
 
-  async editAttribute(attributeName: string, attributeDescription:string, attributeId: string) {
-    if (attributeName.length > 0 && attributeDescription.length > 0) {
+  async editAttribute(attributeName: string, attributeAbbreviation:string, attributeId: string) {
+    if (attributeName.length > 0 && attributeAbbreviation.length > 0) {
       this.gameSettings.attributes.map((attribute)=>{
         if (attribute.id == attributeId) {
           attribute.name = attributeName;
-          attribute.description = attributeDescription;
+          attribute.abbreviation = attributeAbbreviation;
         }
       });
   
