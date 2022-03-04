@@ -60,7 +60,7 @@
             <div class="d-flex col-md-6 mt-3">
                 <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
                     <div class="row d-flex justify-content-between col-md-12">
-                        <p class="text-start fs-3 fw-bold text-warning w-25">Habilidades</p>
+                        <p class="text-start fs-3 fw-bold text-warning w-25">HABILIDADES</p>
                         <button class="btn btn-outline-warning w-auto" (click)="openModal(abilitiesModal)">
                             <i class="bi bi-plus-lg text-light"></i>
                         </button>
@@ -74,6 +74,27 @@
                                 <i class="bi bi-pencil text-light"></i>
                             </button>
                             <input class="form-control w-75 text-light btn-outline-secondary bg-transparent shadow-none" id="disabledInput" type="text" [value]="ability.name" readonly (click)="openAbilityDialog(ability)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex col-md-6 mt-3">
+                <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+                    <div class="row d-flex justify-content-between col-md-12">
+                        <p class="text-start fs-3 fw-bold text-warning w-25">RITUAIS</p>
+                        <button class="btn btn-outline-warning w-auto" (click)="openCreateRitualDialog()">
+                            <i class="bi bi-plus-lg text-light"></i>
+                        </button>
+                    </div>
+                    <div class="row d-flex justify-content-between col-md-12 px-4 py-2 mt-3 overflow-auto" style="max-height: 400px;">
+                        <div class="row d-flex justify-content-between mb-2" *ngFor="let ritual of gameSettings.rituals">
+                            <button class="btn btn-outline-danger w-auto me-2 col-md-2" (click)="deleteRitual(ritual.id)">
+                                <i class="bi bi-trash3 text-light"></i>
+                            </button>
+                            <button class="btn btn-outline-warning w-auto me-2 col-md-2" (click)="openEditRitualDialog(ritual)">
+                                <i class="bi bi-pencil text-light"></i>
+                            </button>
+                            <input class="form-control w-75 text-light btn-outline-secondary bg-transparent shadow-none" id="disabledInput" type="text" [value]="ritual.name" readonly (click)="openAbilityDialog(ritual)">
                         </div>
                     </div>
                 </div>

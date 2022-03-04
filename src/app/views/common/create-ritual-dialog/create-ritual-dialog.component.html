@@ -1,0 +1,55 @@
+<div class="col justify-content-between rounded-2 bg-dark p-4 overflow-auto" style="min-height:270px;min-width: 200px;">
+    <p class="text-white fs-4 w-100 text-center d-flex col">Criar novo ritual</p>
+    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
+        <mat-label>Nome do ritual</mat-label>
+        <input #newRitualName matInput type="text" class="text-light" aria-label="nome-habilidade"/>
+    </mat-form-field>
+    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
+        <mat-label>Circulo</mat-label>
+        <input #newRitualCircle matInput type="text" class="text-light" aria-label="nome-habilidade"/>
+    </mat-form-field>
+    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
+        <mat-label>Execução</mat-label>
+        <input #newRitualExecution matInput type="text" class="text-light" aria-label="nome-habilidade"/>
+    </mat-form-field>
+    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
+        <mat-label>Alcance</mat-label>
+        <input #newRitualRange matInput type="text" class="text-light" aria-label="nome-habilidade"/>
+    </mat-form-field>
+    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
+        <mat-label>Alvo</mat-label>
+        <input #newRitualTarget matInput type="text" class="text-light" aria-label="nome-habilidade"/>
+    </mat-form-field>
+    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
+        <mat-label>Duração</mat-label>
+        <input #newRitualDuration matInput type="text" class="text-light" aria-label="nome-habilidade"/>
+    </mat-form-field>
+    <div class="w-100">
+        <p class="fs-4 text-warning">Elementos</p>
+    </div>
+    <div class="w-100">
+        <mat-checkbox #energyCheckbox class="col me-3 text-purple" value="energia" (change)="onElementSelected(energyCheckbox.value)">
+            Energia
+        </mat-checkbox>
+        <mat-checkbox #fearCheckbox class="col me-3 text-light-blue" value="medo" (change)="onElementSelected(fearCheckbox.value)">
+            Medo
+        </mat-checkbox>
+        <mat-checkbox #knowledgeCheckbox class="col me-3 text-yellow" value="conhecimento" (change)="onElementSelected(knowledgeCheckbox.value)">
+            Conhecimento
+        </mat-checkbox>
+        <mat-checkbox #bloodCheckbox class="col me-3 text-red" value="sangue" (change)="onElementSelected(bloodCheckbox.value)">
+            Sangue
+        </mat-checkbox>
+        <mat-checkbox #deathCheckbox class="col me-3 text-black" value="morte" (change)="onElementSelected(deathCheckbox.value)">
+            Morte
+        </mat-checkbox>
+        <mat-checkbox #unknownCheckbox class="col me-3 text-light" value="desconhecido" (change)="onElementSelected(unknownCheckbox.value)">
+            Desconhecido
+        </mat-checkbox>
+    </div>
+    <mat-form-field color="accent" class="w-100 d-flex col mb-2 mt-4" style="min-width: 150px;">
+        <mat-label>Descrição</mat-label>
+        <textarea #newRitualDescription matInput class="text-light" type="text" placeholder="Descrição"></textarea>
+    </mat-form-field>
+    <button mat-button class="float-end" (click)="createNewRitual(newRitualName.value,newRitualCircle.value,newRitualExecution.value,newRitualRange.value,newRitualTarget.value,newRitualDuration.value, newRitualDescription.value)">OK</button>
+</div>

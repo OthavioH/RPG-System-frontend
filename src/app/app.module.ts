@@ -5,11 +5,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
@@ -35,6 +36,8 @@ import { EditSkillDialogComponent } from './views/common/edit-skill-dialog/edit-
 import { ShowAbilityDetailsDialogComponent } from './views/common/show-ability-details-dialog/show-ability-details-dialog.component';
 import { EditAbilityDialogComponent } from './views/common/edit-ability-dialog/edit-ability-dialog.component';
 import { ChooseAbilitiesDialogComponent } from './views/common/choose-abilities-dialog/choose-abilities-dialog.component';
+import { CreateRitualDialogComponent } from './views/common/create-ritual-dialog/create-ritual-dialog.component';
+import { EditRitualDialogComponent } from './views/common/edit-ritual-dialog/edit-ritual-dialog.component';
 
 @NgModule({
   declarations: [
@@ -59,18 +62,21 @@ import { ChooseAbilitiesDialogComponent } from './views/common/choose-abilities-
     ShowAbilityDetailsDialogComponent,
     EditAbilityDialogComponent,
     ChooseAbilitiesDialogComponent,
+    CreateRitualDialogComponent,
+    EditRitualDialogComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    MatFormFieldModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
     MatDialogModule,
     MatButtonModule,
     MatInputModule,
     MatSelectModule,
+    MatCheckboxModule,
     MatExpansionModule,
     MatIconModule,
     MatProgressBarModule,
