@@ -11,6 +11,7 @@ export interface ICharacter {
     name: string;
     age?: number;
     gender?: string;
+    class?:string;
     nex?: number;
     rank?: string;
     origin?: string;
@@ -20,7 +21,7 @@ export interface ICharacter {
     maxSanity?:number;
     stressPoints?:number;
     maxStressPoints?:number;
-    proficiences:string;
+    proficiences?:string;
     skills?:ISkill[];
     attributes?:IAttribute[];
     abilities?:IAbility[];

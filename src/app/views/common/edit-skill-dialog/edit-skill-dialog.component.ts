@@ -27,9 +27,7 @@ export class EditSkillDialogComponent implements OnInit {
   editSkill(name: string, description: string,): void {
     
     this.gameSettingsService.editSkill(name,description,this.skill.id);
-      this.close();
-    this.skill.id;
-    
+    this.close();
   }
 
   ngOnDestroy(): void {

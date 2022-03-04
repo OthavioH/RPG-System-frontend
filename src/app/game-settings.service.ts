@@ -71,6 +71,11 @@ export class GameSettingsService {
     await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes, this.gameSettings.abilities);
   }
 
+  async removeAbility(abilityId:string) {
+    this.gameSettings.abilities = this.gameSettings.abilities.filter(element => element.id != abilityId);
+    await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes, this.gameSettings.abilities);
+  }
+
   async createNewSkill(skillName: string, skillDescription:string) {
     if (skillName.length > 0 && skillDescription.length > 0) {
       const newSkill: ISkill = {
@@ -89,6 +94,26 @@ export class GameSettingsService {
       await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes, this.gameSettings.abilities);
     }
   }
+
+  async createNewAbility(abilityName: string, abilityDescription:string) {
+    if (abilityName.length > 0 && abilityDescription.length > 0) {
+      const newability: IAbility = {
+        id:this.generateRandomId(),
+        name: abilityName,
+        description: abilityDescription
+      };
+  
+      if (this.gameSettings.abilities != null) {
+        this.gameSettings.abilities.push(newability); 
+      }
+      else {
+        this.gameSettings.abilities = [newability];
+      }
+  
+      await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes, this.gameSettings.abilities);
+    }
+  }
+
   async createNewAttribute(attributeName: string, abbreviation:string){
     if (attributeName.length > 0 && abbreviation.length > 0) {
       
@@ -115,6 +140,19 @@ export class GameSettingsService {
         if (skill.id == skillId) {
           skill.name = skillName;
           skill.description = skillDescription;
+        }
+      });
+  
+      await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes, this.gameSettings.abilities);
+    }
+  }
+
+  async editAbility(abilityName: string, abilityDescription:string, abilityId: string) {
+    if (abilityName.length > 0 && abilityDescription.length > 0) {
+      this.gameSettings.abilities.map((ability)=>{
+        if (ability.id == abilityId) {
+          ability.name = abilityName;
+          ability.description = abilityDescription;
         }
       });
   

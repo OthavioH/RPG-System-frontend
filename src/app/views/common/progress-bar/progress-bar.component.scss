@@ -9,6 +9,9 @@
  .progress-bar-container.red {
     background-color: #4d0321;
  }
+ .progress-bar-container.yellow {
+   background-color: #d19e05;
+}
 
 .progress-bar {    
     height: 25px;
@@ -19,7 +22,7 @@
     background-color: green;
  }
  .progress-bar.yellow {
-    background-color: yellow;
+    background-color: #ffc107;
  }
  .progress-bar.red {
     background-color: #E80A67;

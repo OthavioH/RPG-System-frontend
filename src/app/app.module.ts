@@ -32,6 +32,9 @@ import { CreateEquipmentDialogComponent } from './views/common/create-equipment-
 import { CreateWeaponDialogComponent } from './views/common/create-weapon-dialog/create-weapon-dialog.component';
 import { CharacterCardComponent } from './views/common/character-card/character-card.component';
 import { EditSkillDialogComponent } from './views/common/edit-skill-dialog/edit-skill-dialog.component';
+import { ShowAbilityDetailsDialogComponent } from './views/common/show-ability-details-dialog/show-ability-details-dialog.component';
+import { EditAbilityDialogComponent } from './views/common/edit-ability-dialog/edit-ability-dialog.component';
+import { ChooseAbilitiesDialogComponent } from './views/common/choose-abilities-dialog/choose-abilities-dialog.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,9 @@ import { EditSkillDialogComponent } from './views/common/edit-skill-dialog/edit-
     CreateWeaponDialogComponent,
     CharacterCardComponent,
     EditSkillDialogComponent,
+    ShowAbilityDetailsDialogComponent,
+    EditAbilityDialogComponent,
+    ChooseAbilitiesDialogComponent,
   ],
   imports: [
     BrowserModule,

@@ -28,8 +28,7 @@ export class EditAttributeDialogComponent implements OnInit {
   editAttribute(name: string, abbreviation: string,): void {
     
     this.gameSettingsService.editAttribute(name,abbreviation,this.attribute.id);
-      this.close();
-    this.attribute.id;
+    this.close();
     
   }
 

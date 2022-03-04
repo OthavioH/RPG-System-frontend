@@ -3,7 +3,7 @@
     <div class="d-flex flex-row flex-wrap row">
         <div class="d-flex col-md-6 mt-3">
             <div class="container rounded-3  pb-2 pt-4 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
-                <p class="text-start fs-3 fw-bold text-warning w-25 mb-4">CARACTERÍSTICAS</p>
+                <p class="text-center fs-3 fw-bold text-warning w-100 mb-4">CARACTERÍSTICAS</p>
                 <div class="input-group justify-content-between">
                     <mat-form-field color="accent" class="w-auto min-width-250">
                         <mat-label>Nome do Jogador(a)</mat-label>
@@ -24,6 +24,26 @@
                         <input matInput #inputGender type="text" class="w-auto text-light" [(ngModel)]="character.gender" aria-label="nome-personagem"/>
                     </mat-form-field>
                 </div>
+                <div class="input-group justify-content-between">
+                    <mat-form-field color="accent" class="w-auto min-width-250">
+                        <mat-label>Origem</mat-label>
+                        <input matInput #inputPlayerName type="text" class="text-light" [(ngModel)]="character.origin" aria-label="nome-jogador"/>
+                    </mat-form-field>
+                    <mat-form-field color="accent" class="w-auto min-width-250">
+                        <mat-label>Classe</mat-label>
+                        <input matInput #inputName type="text" class="text-light" [(ngModel)]="character.class" aria-label="nome-personagem"/>
+                    </mat-form-field>
+                </div>
+                <div class="input-group mb-3 justify-content-between">
+                    <mat-form-field color="accent" class="w-auto min-width-250">
+                        <mat-label>NEX</mat-label>
+                        <input matInput #inputNex type="string" class="w-auto text-light" [(ngModel)]="character.nex" aria-label="nome-jogador"/>
+                    </mat-form-field>
+                    <mat-form-field color="accent" class="w-auto min-width-250">
+                        <mat-label>Patente</mat-label>
+                        <input matInput #inputRank type="text" class="text-light" [(ngModel)]="character.rank" aria-label="nome-personagem"/>
+                    </mat-form-field>
+                </div>
                 <button class="btn btn-outline-warning float-end shadow-none" type="button" (click)="saveCharacter()" role="button">Salvar</button>
             </div>
         </div>
@@ -31,13 +51,18 @@
             <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
                 <p class="row mb-2 text-light fs-5">VIDA</p>
                 <div class="row d-flex mb-3">
-                    <app-progress-bar [total]="character.maxHp" [value]="character.hp" (click)="openEditHPDialog()" role="button" [color]="'red'" class=" col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
+                    <app-progress-bar [total]="character.maxHp" [value]="character.hp" (click)="openEditProgressBarValueDialog('hp')" role="button" [color]="'red'" class=" col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
                     <p class="text-light fs-5 col">{{character.hp}}/{{character.maxHp}}</p>
                 </div>
                 <p class="row mb-2 text-light fs-5">Sanidade</p>
                 <div class="row d-flex mb-3">
-                    <app-progress-bar [total]="character.maxSanity" [value]="character.sanity" (click)="openEditSanityDialog()" role="button" [color]="'blue'" class="col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
+                    <app-progress-bar [total]="character.maxSanity" [value]="character.sanity" (click)="openEditProgressBarValueDialog('sanity')" role="button" [color]="'blue'" class="col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
                     <p class="text-light fs-5 col">{{character.sanity}}/{{character.maxSanity}}</p>
+                </div>
+                <p class="row mb-2 text-light fs-5">Pontos de esforço</p>
+                <div class="row d-flex mb-3">
+                    <app-progress-bar [total]="character.maxStressPoints" [value]="character.stressPoints" (click)="openEditProgressBarValueDialog('stressPoints')" role="button" [color]="'yellow'" class="col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
+                    <p class="text-light fs-5 col">{{character.stressPoints}}/{{character.maxStressPoints}}</p>
                 </div>
                 <app-roll-dice-dialog></app-roll-dice-dialog>
             </div>
@@ -50,18 +75,18 @@
         <div class="d-flex col-md-6 mt-3">
             <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
                 <div class="row d-flex justify-content-between col-md-12">
-                    <p class="text-start fs-3 fw-bold text-warning w-25 col">ATRIBUTOS</p>
+                    <p class="text-center fs-3 fw-bold text-warning w-25 col">ATRIBUTOS</p>
                     <button class="btn btn-outline-warning w-auto" (click)="openChooseAttributes()">
                         <i class="bi bi-plus-lg text-light"></i>
                     </button>
                 </div>
                 <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto" style="min-height: 150px;">
                     <div class="d-flex col justify-content-between mb-2 me-5 w-auto" *ngFor="let attribute of character.attributes">
-                        <div class="col">
-                            <div class="card align-items-center bg-warning border-2 border-warning" style="width:fit-content;height:fit-content">
+                        <div class="col" (contextmenu)="deleteAttribute(attribute.id)">
+                            <div class="card align-items-center bg-warning border-2 border-warning" role="button" style="width:fit-content;height:fit-content">
                                 <div class="card-header bg-warning row pt-3 px-0 mx-0" style="width:115px;height:fit-content;">
-                                    <p class="text-light text-center text-uppercase fs-3 fw-bold" style="text-shadow: 1px 1px 2px black;">{{attribute.abbreviation}}</p>
-                                    <p class="text-light text-center fs-6 text-break fw-bold" style="text-shadow: 1px 1px 2px black;">{{attribute.name}}</p>
+                                    <p class="text-light text-center text-uppercase fs-3 fw-bold user-select-none" style="text-shadow: 1px 1px 4px black;">{{attribute.abbreviation}}</p>
+                                    <p class="text-light text-center fs-6 text-break fw-bold user-select-none" style="text-shadow: 1px 1px 4px black;">{{attribute.name}}</p>
                                 </div>
                                 <div class="card-body py-0 my-0 bg-dark rounded-bottom row align-items-center px-0 mx-0" style="width:115px;height:50px;">
                                     <input #attributeValue type="text" class="col form-control text-center border-0 shadow-none bg-transparent fw-bold text-light w-100" [value]="attribute.value ?? 0" (change)="onChangedAttributeValue(attribute.id,+attributeValue.value)" style="width:50px;">
@@ -76,7 +101,7 @@
         <div class="d-flex col-md-6 mt-3">
             <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
                 <div class="row d-flex justify-content-between col-md-12">
-                    <p class="text-start fs-3 fw-bold text-warning w-25 col">PERÍCIAS</p>
+                    <p class="text-center fs-3 fw-bold text-warning w-25 col">PERÍCIAS</p>
                     <button class="btn btn-outline-warning w-auto" (click)="openChooseSkills()">
                         <i class="bi bi-plus-lg text-light"></i>
                     </button>
@@ -87,9 +112,96 @@
                             <i class="bi bi-trash3 text-light"></i>
                         </button>
                         <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto" (click)="openSkillDialog(skill)">{{skill.name}}</p>
-                        <input #skillValue type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light" [value]="skill.value ?? 0" (change)="onChangedSkillValue(skill.id,+skillValue.value)" style="min-width:70px;max-width: 150px; height:fit-content">
+                        <input #skillValue type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light" [value]="skill.value ?? 0" (change)="onChangedSkillValue(skill.id,+skillValue.value)" style="width:70px; height:fit-content">
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container w-75 px-0 w-auto">
+    <div class="d-flex flex-row flex-wrap row">
+        <div class="d-flex col-md-6 mt-3">
+            <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+                <div class="row d-flex justify-content-between col-md-12">
+                    <p class="text-center fs-3 fw-bold text-warning w-25 col">HABILIDADES</p>
+                    <button class="btn btn-outline-warning w-auto" (click)="openChooseAbilities()">
+                        <i class="bi bi-plus-lg text-light"></i>
+                    </button>
+                </div>
+                <div class="d-flex flex-wrap justify-content-between row row-cols-2 ps-1 pe-4 mt-3 py-2 overflow-auto">
+                    <div class="col d-flex justify-content-between mb-2 me-5 w-auto" *ngFor="let ability of character.abilities">
+                        <button class="btn btn-outline-danger w-auto me-2 col" (click)="deleteAbility(ability.id)" style="height:fit-content;max-width: 40px;font-size: 14px;">
+                            <i class="bi bi-trash3 text-light"></i>
+                        </button>
+                        <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto" (click)="openShowAbilityDetailsDialog(ability)">{{ability.name}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex col-md-6 mt-3">
+            <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+                <div class="row d-flex justify-content-between col-md-12">
+                    <p class="text-center fs-3 fw-bold text-warning w-25 col">PROFICIÊNCIAS</p>
+                </div>
+                <div class="d-flex flex-wrap justify-content-between row row-cols-2 ps-1 pe-4 mt-3 py-2 overflow-auto">
+                    <textarea class="form-control w-100 bg-dark text-light border-warning" id="notes-text-area" style="height: 300px;max-height: 300px;" [(ngModel)]="character.proficiences" ></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container w-75 px-0 w-auto">
+    <div class="d-flex col mt-3">
+        <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300 overflow-hidden" >
+            <div class="row d-flex justify-content-between col-md-12">
+                <p class="text-center fs-3 fw-bold text-warning col">INVENTÁRIO</p>
+            </div>
+            <div class="row d-flex justify-content-between col-md-12">
+                <p class="text-center fs-6 fw-bold text-light col">PESO: {{+character.inventory.weight}}/{{+character.inventory.maxWeight}}</p>
+            </div>
+            <div class="row d-flex justify-content-between col-md-12">
+                <div class="form-group">
+                    <button class="btn btn-outline-warning float-end" (click)="openCreateInventoryItemDialog()">
+                        <i class="bi bi-plus-lg text-light"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="overflow-auto" style="max-height: 300px;">
+                <table class="table text-light">
+                    <thead>
+                      <tr >
+                        <th scope="col"></th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Detalhes</th>
+                        <th scope="col">Qtd.</th>
+                        <th scope="col">Prestígio</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of character.inventory.items">
+                        <th scope="row">
+                            <button class="btn btn-outline-danger w-auto me-2 col" style="height:fit-content;font-size: 14px;" (click)="deleteInventoryItem(item.id)">
+                                <i class="bi bi-trash3 text-light text-center"></i>
+                            </button>
+                        </th>
+                        <td>
+                            <input #itemName type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto"  [value]="item.name ?? ''" [(ngModel)]="item.name" style="max-width:90px;height:fit-content;font-size:12px;">
+                        </td>
+                        <td>
+                            <textarea #itemDetails type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [value]="item.details ?? ''" [(ngModel)]="item.details" style="max-width:500px;height:20px; font-size:12px;"></textarea>
+                        </td>
+                        <td>
+                            <input #itemQuantity type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [value]="item.quantity ?? 0" [(ngModel)]="item.quantity" style="max-width:90px;height:fit-content;font-size:12px;">
+                        </td>
+                        <td>
+                            <input #itemPrestigy type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [value]="item.prestige ?? ''" [(ngModel)]="item.prestige" style="max-width:90px;height:fit-content;font-size:12px;">
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -156,60 +268,6 @@
                         </td>
                         <td>
                             <input #weaponSpecial type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [value]="weapon.special ?? ''" [(ngModel)]="weapon.special" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
-                        </td>
-                      </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="container w-75 px-0 w-auto">
-    <div class="d-flex col mt-3 overflow-hidden">
-        <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300 overflow-hidden" >
-            <div class="row d-flex justify-content-between col-md-12">
-                <p class="text-center fs-3 fw-bold text-warning col">INVENTÁRIO</p>
-            </div>
-            <div class="row d-flex justify-content-between col-md-12">
-                <p class="text-center fs-6 fw-bold text-light col">PESO: {{+character.inventory.weight}}/{{+character.inventory.maxWeight}}</p>
-            </div>
-            <div class="row d-flex justify-content-between col-md-12">
-                <div class="form-group">
-                    <button class="btn btn-outline-warning float-end" (click)="openCreateInventoryItemDialog()">
-                        <i class="bi bi-plus-lg text-light"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="overflow-auto" style="max-height: 300px;">
-                <table class="table text-light">
-                    <thead>
-                      <tr >
-                        <th scope="col"></th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Detalhes</th>
-                        <th scope="col">Qtd.</th>
-                        <th scope="col">Prestígio</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let item of character.inventory.items">
-                        <th scope="row">
-                            <button class="btn btn-outline-danger w-auto me-2 col" style="height:fit-content;font-size: 14px;" (click)="deleteInventoryItem(item.id)">
-                                <i class="bi bi-trash3 text-light text-center"></i>
-                            </button>
-                        </th>
-                        <td>
-                            <input #itemName type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto"  [value]="item.name ?? ''" [(ngModel)]="item.name" style="max-width:90px;height:fit-content;font-size:12px;">
-                        </td>
-                        <td>
-                            <textarea #itemDetails type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [value]="item.details ?? ''" [(ngModel)]="item.details" style="max-width:500px;height:fit-content; font-size:12px;"></textarea>
-                        </td>
-                        <td>
-                            <input #itemQuantity type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [value]="item.quantity ?? 0" [(ngModel)]="item.quantity" style="max-width:90px;height:fit-content;font-size:12px;">
-                        </td>
-                        <td>
-                            <input #itemPrestigy type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [value]="item.prestige ?? ''" [(ngModel)]="item.prestige" style="max-width:90px;height:fit-content;font-size:12px;">
                         </td>
                       </tr>
                     </tbody>

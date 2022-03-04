@@ -15,6 +15,9 @@ import { ISkill } from 'src/models/Skill';
 import { CreateCharacterDialogComponent } from '../common/create-character-dialog/create-character-dialog.component';
 import { GameSettingsService } from 'src/app/game-settings.service';
 import { IGameSettings } from 'src/models/GameSettings';
+import { IAbility } from "src/models/Ability";
+import { ShowAbilityDetailsDialogComponent } from "../common/show-ability-details-dialog/show-ability-details-dialog.component";
+import { EditAbilityDialogComponent } from "../common/edit-ability-dialog/edit-ability-dialog.component";
 
 @Component({
   selector: 'app-characters',
@@ -94,6 +97,11 @@ export class CharactersComponent implements OnInit {
     this.close();
   }
 
+  createNewAbility(abilityName: string, abilityDescription:string): void {
+    this.gameSettingsService.createNewAbility(abilityName, abilityDescription);
+    this.close();
+  }
+
   createNewAttribute(attributeName: string, attributeDescription:string): void {
     this.gameSettingsService.createNewAttribute(attributeName, attributeDescription);
     this.close();
@@ -105,6 +113,10 @@ export class CharactersComponent implements OnInit {
 
   deleteSkill(skillId: string): void {
     this.gameSettingsService.removeSkill(skillId);
+  }
+
+  deleteAbility(abilityId: string): void {
+    this.gameSettingsService.removeAbility(abilityId);
   }
 
   openModal(content): void {
@@ -119,8 +131,16 @@ export class CharactersComponent implements OnInit {
     this.modalService.open(EditSkillDialogComponent,{data:skill})
   }
 
+  openEditAbilityDialog(ability: IAbility): void {
+    this.modalService.open(EditAbilityDialogComponent,{data:ability})
+  }
+
   openSkillDialog(skill: ISkill): void {
     this.modalService.open(SkillsDialogComponent, {data: skill});
+  }
+
+  openAbilityDialog(ability: ISkill): void {
+    this.modalService.open(ShowAbilityDetailsDialogComponent, {data: ability});
   }
 
   openAttributeDialog(attribute: IAttribute): void {
