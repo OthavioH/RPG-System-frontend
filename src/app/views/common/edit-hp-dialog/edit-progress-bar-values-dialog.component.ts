@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ICharacter } from 'src/models/Character';
+import { CharacterStats } from 'src/models/CharacterStats';
 import { CharactersService } from '../../characters/shared/services/characters.service';
 
 @Component({
@@ -15,16 +16,20 @@ export class EditProgressBarValuesDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<EditProgressBarValuesDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter, isHP:boolean},
+    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter, characterStats:CharacterStats},
     private charactersService: CharactersService,
     ) {
-      if (this.data.isHP) {
+      if (this.data.characterStats == CharacterStats.hp) {
         this.value = this.data.character.hp;
         this.maxLimit = this.data.character.maxHp;
       }
-      else {
+      else if(this.data.characterStats == CharacterStats.sanity){
         this.value = this.data.character.sanity;
         this.maxLimit = this.data.character.maxSanity;
+      }
+      else {
+        this.value = this.data.character.stressPoints;
+        this.maxLimit = this.data.character.maxStressPoints;
       }
     }
 
@@ -35,12 +40,19 @@ export class EditProgressBarValuesDialogComponent implements OnInit {
     currentValue = +currentValue;
     limit = +limit;
 
-    if (this.data.isHP) {
-      this.charactersService.updateHp(currentValue, limit, this.data.character);
+    if (this.data.characterStats == CharacterStats.hp) {
+      this.data.character.hp = currentValue;
+      this.data.character.maxHp = limit;
+    }
+    else if(this.data.characterStats == CharacterStats.sanity){
+      this.data.character.sanity = currentValue;
+      this.data.character.maxSanity = limit;
     }
     else {
-      this.charactersService.updateSanity(currentValue, limit, this.data.character);
+      this.data.character.stressPoints = currentValue;
+      this.data.character.maxStressPoints = limit;
     }
+    this.charactersService.updateCharacterStats(this.data.character);
     this.dialogRef.close();
   }
 

@@ -19,24 +19,16 @@ export class CreateWeaponDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async onConfirmClicked(weaponName: string, damage:string, criticalDamage:string, type:string) {
+  async onConfirmClicked(weaponName: string) {
     this.dialogRef.close();
     if (weaponName.length > 0) {
-      this.data.character.weapons.push(
-        {
-          id:generateRandomId(), 
-          name:weaponName, 
-          damage:damage, 
-          criticalDamage:criticalDamage, 
-          type:type,
-          currentAmmo:0,
-          maxAmmo:0,
-          attacksQuantity:0,
-          malfunction:0,
-          range:0,
-          rangeInArea:0,
-        }
-      );
+      const newWeapon = {id:generateRandomId(), name:weaponName, damage:'',criticalDamage:'', type:'',currentAmmo:0, maxAmmo:'', attack:'', range:'', special:''}
+      if (this.data.character.weapons != null) {
+        this.data.character.weapons.push(newWeapon);        
+      } else {
+        this.data.character.weapons = [];
+      }
+      
       await this.charactersService.updateCharacter(this.data.character);
     }
     

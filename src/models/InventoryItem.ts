@@ -2,5 +2,6 @@ export interface InventoryItem {
     id: string;
     name: string;
     quantity: number;
-    weight:number;
+    details:string;
+    prestige: string;
 }
