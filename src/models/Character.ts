@@ -2,6 +2,7 @@ import { IAbility } from "./Ability";
 import { IAttribute } from "./Attribute";
 import { Inventory } from "./Inventory";
 import { InventoryItem } from "./InventoryItem";
+import { IRitual } from "./Ritual";
 import { ISkill } from "./Skill";
 import { IWeapon } from "./Weapon";
 
@@ -25,6 +26,7 @@ export interface ICharacter {
     skills?:ISkill[];
     attributes?:IAttribute[];
     abilities?:IAbility[];
+    rituals?:IRitual[];
     weapons?:IWeapon[];
     inventory?:Inventory;
     passiveDefense?:number,

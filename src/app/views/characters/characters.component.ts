@@ -18,6 +18,9 @@ import { IGameSettings } from 'src/models/GameSettings';
 import { IAbility } from "src/models/Ability";
 import { ShowAbilityDetailsDialogComponent } from "../common/show-ability-details-dialog/show-ability-details-dialog.component";
 import { EditAbilityDialogComponent } from "../common/edit-ability-dialog/edit-ability-dialog.component";
+import { CreateRitualDialogComponent } from "../common/create-ritual-dialog/create-ritual-dialog.component";
+import { IRitual } from "src/models/Ritual";
+import { EditRitualDialogComponent } from "../common/edit-ritual-dialog/edit-ritual-dialog.component";
 
 @Component({
   selector: 'app-characters',
@@ -119,6 +122,10 @@ export class CharactersComponent implements OnInit {
     this.gameSettingsService.removeAbility(abilityId);
   }
 
+  deleteRitual(ritualId: string): void {
+    this.gameSettingsService.removeRitual(ritualId);
+  }
+
   openModal(content): void {
     this.modalService.open(content);
   }
@@ -135,8 +142,16 @@ export class CharactersComponent implements OnInit {
     this.modalService.open(EditAbilityDialogComponent,{data:ability})
   }
 
+  openEditRitualDialog(ritual: IRitual): void {
+    this.modalService.open(EditRitualDialogComponent,{data:ritual})
+  }
+
   openSkillDialog(skill: ISkill): void {
     this.modalService.open(SkillsDialogComponent, {data: skill});
+  }
+  
+  openCreateRitualDialog(){
+    this.modalService.open(CreateRitualDialogComponent);
   }
 
   openAbilityDialog(ability: ISkill): void {
