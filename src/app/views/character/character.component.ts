@@ -20,6 +20,9 @@ import { CharacterStats } from 'src/models/CharacterStats';
 import { ShowAbilityDetailsDialogComponent } from '../common/show-ability-details-dialog/show-ability-details-dialog.component';
 import { IAbility } from 'src/models/Ability';
 import { ChooseAbilitiesDialogComponent } from '../common/choose-abilities-dialog/choose-abilities-dialog.component';
+import { ChooseRitualsDialogComponent } from '../common/choose-rituals-dialog/choose-rituals-dialog.component';
+import { IRitual } from 'src/models/Ritual';
+import { ShowRitualDialogComponent } from '../common/show-ritual-dialog/show-ritual-dialog.component';
 
 @Component({
   selector: 'app-character',
@@ -63,6 +66,10 @@ export class CharacterComponent implements OnInit {
     this.modalService.open(ShowAbilityDetailsDialogComponent, {data: ability});
   }
 
+  openShowRitualDetailsDialog(ritual: IRitual): void {
+    this.modalService.open(ShowRitualDialogComponent, {data: ritual});
+  }
+
   openCreateInventoryItemDialog(): void {
     this.modalService.open(CreateEquipmentDialogComponent, {data:{character: this.character}});
   }
@@ -103,6 +110,10 @@ export class CharacterComponent implements OnInit {
     this.modalService.open(ChooseAbilitiesDialogComponent, {data:{character:this.character}});
   }
 
+  openChooseRituals(): void {
+    this.modalService.open(ChooseRitualsDialogComponent, {data:{character:this.character}});
+  }
+
   openChooseAttributes(): void {
     this.modalService.open(OpenChooseAttributesDialogComponent, {data:{character:this.character}});
   }
@@ -134,6 +145,11 @@ export class CharacterComponent implements OnInit {
 
   deleteAbility(abilityId: string): void {
     this.character.abilities = this.character.abilities.filter(abilities => abilities.id != abilityId);
+    this.saveCharacter();
+  }
+
+  deleteRitual(ritualId: string): void {
+    this.character.rituals = this.character.rituals.filter(ritual => ritual.id != ritualId);
     this.saveCharacter();
   }
 

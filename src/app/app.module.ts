@@ -38,6 +38,8 @@ import { EditAbilityDialogComponent } from './views/common/edit-ability-dialog/e
 import { ChooseAbilitiesDialogComponent } from './views/common/choose-abilities-dialog/choose-abilities-dialog.component';
 import { CreateRitualDialogComponent } from './views/common/create-ritual-dialog/create-ritual-dialog.component';
 import { EditRitualDialogComponent } from './views/common/edit-ritual-dialog/edit-ritual-dialog.component';
+import { ChooseRitualsDialogComponent } from './views/common/choose-rituals-dialog/choose-rituals-dialog.component';
+import { ShowRitualDialogComponent } from './views/common/show-ritual-dialog/show-ritual-dialog.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { EditRitualDialogComponent } from './views/common/edit-ritual-dialog/edi
     ChooseAbilitiesDialogComponent,
     CreateRitualDialogComponent,
     EditRitualDialogComponent,
+    ChooseRitualsDialogComponent,
+    ShowRitualDialogComponent,
   ],
   imports: [
     BrowserModule,

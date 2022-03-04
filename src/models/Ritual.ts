@@ -16,5 +16,5 @@ export enum RitualElement {
     knowledge = 'conhecimento',
     fear = 'medo',
     blood = 'sangue',
-    unknown = 'desconhecido'
+    unknown = '?'
 }
