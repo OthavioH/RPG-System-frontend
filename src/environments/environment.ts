@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://firexter-rpg-system.herokuapp.com'
+  apiUrl: 'https://rpg-system-backend-dev.herokuapp.com'
 };
 
 /*

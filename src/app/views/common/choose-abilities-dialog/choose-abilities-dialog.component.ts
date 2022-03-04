@@ -1,23 +1,23 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GameSettingsService } from 'src/app/game-settings.service';
+import { IAbility } from 'src/models/Ability';
 import { ICharacter } from 'src/models/Character';
-import { ISkill } from 'src/models/Skill';
 import { CharactersService } from '../../characters/shared/services/characters.service';
 
 @Component({
-  selector: 'app-open-choose-skills-dialog',
-  templateUrl: './open-choose-skills-dialog.component.html',
-  styleUrls: ['./open-choose-skills-dialog.component.scss']
+  selector: 'app-choose-abilities-dialog',
+  templateUrl: './choose-abilities-dialog.component.html',
+  styleUrls: ['./choose-abilities-dialog.component.scss']
 })
-export class OpenChooseSkillsDialogComponent implements OnInit {
+export class ChooseAbilitiesDialogComponent implements OnInit {
 
-  chooseSkillList:ISkill[] = [];
-  selectedSkillList: ISkill[] = [];
-  gameSettingsSkillList:ISkill[] = [];
+  chooseAbilityList:IAbility[] = [];
+  selectedAbilityList: IAbility[] = [];
+  gameSettingsAbilityList:IAbility[] = [];
 
   constructor(
-    public dialogRef: MatDialogRef<OpenChooseSkillsDialogComponent>,
+    public dialogRef: MatDialogRef<ChooseAbilitiesDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter},
     public gameSettingsService: GameSettingsService,
     public charactersService: CharactersService,
@@ -31,12 +31,12 @@ export class OpenChooseSkillsDialogComponent implements OnInit {
   }
 
   async initLists() {
-    this.gameSettingsSkillList = (await this.gameSettingsService.getGameSettings()).skills;
+    this.gameSettingsAbilityList = (await this.gameSettingsService.getGameSettings()).abilities;
 
-    this.chooseSkillList = await this.concatSkillList(this.gameSettingsSkillList, this.data.character.skills);
+    this.chooseAbilityList = await this.concatAbilityList(this.gameSettingsAbilityList, this.data.character.abilities);
   }
 
-  async concatSkillList<T>(firstList, secondList): Promise<T[]> {
+  async concatAbilityList<T>(firstList, secondList): Promise<T[]> {
     let newList = new Array<T>();
     if (secondList != null) {
       for (let i = 0; i < firstList.length; i++) {
@@ -57,18 +57,18 @@ export class OpenChooseSkillsDialogComponent implements OnInit {
     return newList;
   }
 
-  async onSelectSkill(selectedSkill: ISkill){
-    if (this.selectedSkillList.includes(selectedSkill)) {
-      this.selectedSkillList = this.selectedSkillList.filter(skill => skill.id != selectedSkill.id);
+  async onSelectAbility(selectedAbility: IAbility){
+    if (this.selectedAbilityList.includes(selectedAbility)) {
+      this.selectedAbilityList = this.selectedAbilityList.filter(ability => ability.id != selectedAbility.id);
     }
     else {
-      this.selectedSkillList.push(selectedSkill);
+      this.selectedAbilityList.push(selectedAbility);
     }
   }
 
-  async saveNewSkillList(){
-    if (this.selectedSkillList.length > 0) {
-      this.data.character.skills = [ ...this.selectedSkillList, ...this.data.character.skills ?? []]
+  async saveNewAbilityList(){
+    if (this.selectedAbilityList.length > 0) {
+      this.data.character.abilities = [ ...this.selectedAbilityList, ...this.data.character.abilities ?? []]
       this.charactersService.updateCharacter(this.data.character);
     }
     this.dialogRef.close();

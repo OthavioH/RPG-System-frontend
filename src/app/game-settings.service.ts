@@ -3,6 +3,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { IAbility } from 'src/models/Ability';
 import { IAttribute } from 'src/models/Attribute';
 import { IGameSettings } from 'src/models/GameSettings';
 import { ISkill } from 'src/models/Skill';
@@ -42,29 +43,37 @@ export class GameSettingsService {
   }
 
   // SKILLS AND PROPERTIES
-  async setGameProperties(skillList : ISkill[], attributeList: IAttribute[]) {
+  async setGameProperties(skillList : ISkill[], attributeList: IAttribute[], abilitiesList: IAbility[]) {
     skillList = skillList != null ? skillList.sort((a,b) => a.id > b.id ? 1 : -1) : [];
     attributeList = attributeList != null ? attributeList.sort((a,b) => a.id > b.id ? 1 : -1) : [];
-    const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/save/properties`,{
+    abilitiesList = abilitiesList != null ? abilitiesList.sort((a,b) => a.id > b.id ? 1 : -1) : [];
+    const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/properties/save/`,{
       skills: skillList,
       attributes: attributeList,
+      abilities:abilitiesList,
     }).toPromise();
     this.gameSettings = response;
     this.gameSettings.skills = response.skills;
     this.gameSettings.attributes = response.attributes;
+    this.gameSettings.abilities = response.abilities;
 
     this.updateGameSettingsEvent$.next(this.gameSettings);
   }
 
   async removeAttribute(attributeId:string) {
     this.gameSettings.attributes = this.gameSettings.attributes.filter(element => element.id != attributeId);
-    await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes);
+    await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes, this.gameSettings.abilities);
   }
 
   async removeSkill(skillId:string) {
     
     this.gameSettings.skills = this.gameSettings.skills.filter(element => element.id != skillId);
-    await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes);
+    await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes, this.gameSettings.abilities);
+  }
+
+  async removeAbility(abilityId:string) {
+    this.gameSettings.abilities = this.gameSettings.abilities.filter(element => element.id != abilityId);
+    await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes, this.gameSettings.abilities);
   }
 
   async createNewSkill(skillName: string, skillDescription:string) {
@@ -82,16 +91,36 @@ export class GameSettingsService {
         this.gameSettings.skills = [newSkill];
       }
   
-      await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes);
+      await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes, this.gameSettings.abilities);
     }
   }
-  async createNewAttribute(attributeName: string, attributeDescription:string){
-    if (attributeName.length > 0 && attributeDescription.length > 0) {
+
+  async createNewAbility(abilityName: string, abilityDescription:string) {
+    if (abilityName.length > 0 && abilityDescription.length > 0) {
+      const newability: IAbility = {
+        id:this.generateRandomId(),
+        name: abilityName,
+        description: abilityDescription
+      };
+  
+      if (this.gameSettings.abilities != null) {
+        this.gameSettings.abilities.push(newability); 
+      }
+      else {
+        this.gameSettings.abilities = [newability];
+      }
+  
+      await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes, this.gameSettings.abilities);
+    }
+  }
+
+  async createNewAttribute(attributeName: string, abbreviation:string){
+    if (attributeName.length > 0 && abbreviation.length > 0) {
       
       const newAttribute: IAttribute = {
         id:this.generateRandomId(),
         name: attributeName,
-        description: attributeDescription
+        abbreviation:abbreviation,
       };
 
       if (this.gameSettings.attributes != null) {
@@ -101,7 +130,7 @@ export class GameSettingsService {
         this.gameSettings.attributes = [newAttribute];
       }
   
-      await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes);
+      await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes, this.gameSettings.abilities);
     }
   }
 
@@ -114,20 +143,33 @@ export class GameSettingsService {
         }
       });
   
-      await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes);
+      await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes, this.gameSettings.abilities);
     }
   }
 
-  async editAttribute(attributeName: string, attributeDescription:string, attributeId: string) {
-    if (attributeName.length > 0 && attributeDescription.length > 0) {
-      this.gameSettings.attributes.map((attribute)=>{
-        if (attribute.id == attributeId) {
-          attribute.name = attributeName;
-          attribute.description = attributeDescription;
+  async editAbility(abilityName: string, abilityDescription:string, abilityId: string) {
+    if (abilityName.length > 0 && abilityDescription.length > 0) {
+      this.gameSettings.abilities.map((ability)=>{
+        if (ability.id == abilityId) {
+          ability.name = abilityName;
+          ability.description = abilityDescription;
         }
       });
   
-      await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes);
+      await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes, this.gameSettings.abilities);
+    }
+  }
+
+  async editAttribute(attributeName: string, attributeAbbreviation:string, attributeId: string) {
+    if (attributeName.length > 0 && attributeAbbreviation.length > 0) {
+      this.gameSettings.attributes.map((attribute)=>{
+        if (attribute.id == attributeId) {
+          attribute.name = attributeName;
+          attribute.abbreviation = attributeAbbreviation;
+        }
+      });
+  
+      await this.setGameProperties(this.gameSettings.skills, this.gameSettings.attributes, this.gameSettings.abilities);
     }
   }
 

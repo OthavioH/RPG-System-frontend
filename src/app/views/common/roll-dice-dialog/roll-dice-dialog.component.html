@@ -21,7 +21,7 @@
 </div>
 
 <div class="input-group mb-3 justify-content-around">
-    <button class="btn btn-outline-warning" type="button"  role="button" (click)="rollDice(diceFaces.value, diceQuantity.value)">Rolar dado</button>
+    <button class="btn btn-outline-warning" type="button"  role="button" (click)="rollDice(+diceFaces.value, +diceQuantity.value)">Rolar dado</button>
 </div>
 
 <div *ngIf="diceResult.length > 0" >

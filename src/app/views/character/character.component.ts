@@ -16,6 +16,10 @@ import { InventoryItem } from 'src/models/InventoryItem';
 import { CreateEquipmentDialogComponent } from '../common/create-equipment-dialog/create-equipment-dialog.component';
 import { CreateWeaponDialogComponent } from '../common/create-weapon-dialog/create-weapon-dialog.component';
 import { Title } from '@angular/platform-browser';
+import { CharacterStats } from 'src/models/CharacterStats';
+import { ShowAbilityDetailsDialogComponent } from '../common/show-ability-details-dialog/show-ability-details-dialog.component';
+import { IAbility } from 'src/models/Ability';
+import { ChooseAbilitiesDialogComponent } from '../common/choose-abilities-dialog/choose-abilities-dialog.component';
 
 @Component({
   selector: 'app-character',
@@ -55,6 +59,10 @@ export class CharacterComponent implements OnInit {
     this.modalService.open(SkillsDialogComponent, {data: skill});
   }
 
+  openShowAbilityDetailsDialog(ability: IAbility): void {
+    this.modalService.open(ShowAbilityDetailsDialogComponent, {data: ability});
+  }
+
   openCreateInventoryItemDialog(): void {
     this.modalService.open(CreateEquipmentDialogComponent, {data:{character: this.character}});
   }
@@ -91,6 +99,10 @@ export class CharacterComponent implements OnInit {
     this.modalService.open(OpenChooseSkillsDialogComponent, {data:{character:this.character}});
   }
 
+  openChooseAbilities(): void {
+    this.modalService.open(ChooseAbilitiesDialogComponent, {data:{character:this.character}});
+  }
+
   openChooseAttributes(): void {
     this.modalService.open(OpenChooseAttributesDialogComponent, {data:{character:this.character}});
   }
@@ -100,11 +112,19 @@ export class CharacterComponent implements OnInit {
   }
 
   openEditHPDialog(): void {
-    this.modalService.open(EditProgressBarValuesDialogComponent,{data:{character: this.character, isHP:true}});
+    this.modalService.open(EditProgressBarValuesDialogComponent,{data:{character: this.character, characterStats:CharacterStats.hp}});
   }
 
   openEditSanityDialog(): void {
-    this.modalService.open(EditProgressBarValuesDialogComponent,{data:{character: this.character, isHP:false}});
+    this.modalService.open(EditProgressBarValuesDialogComponent,{data:{character: this.character, characterStats:CharacterStats.sanity}});
+  }
+
+  openEditProgressBarValueDialog(stats:string): void {
+    this.modalService.open(EditProgressBarValuesDialogComponent,{
+      data:{
+        character: this.character, characterStats:stats
+      }
+    },);
   }
 
   deleteSkill(skillId: string): void {
@@ -112,8 +132,12 @@ export class CharacterComponent implements OnInit {
     this.saveCharacter();
   }
 
-  deleteInventoryItem(itemId: string,weight:number): void {
-    this.character.inventory.weight -= weight;
+  deleteAbility(abilityId: string): void {
+    this.character.abilities = this.character.abilities.filter(abilities => abilities.id != abilityId);
+    this.saveCharacter();
+  }
+
+  deleteInventoryItem(itemId: string,): void {
     this.character.inventory.items = this.character.inventory.items.filter(item => item.id != itemId);
     this.saveCharacter();
   }

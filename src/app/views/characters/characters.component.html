@@ -1,22 +1,14 @@
 <ng-container *ngIf="!loading">
-    <section class="container pb-2 pt-4 bg-dark rounded-3">
+    <section class="container pb-2 pt-4 rounded-3 bg-dark">
         <p class="text-center fs-1 text-light fw-bolder mb-4">Dashboard</p>
         <p class="text-center text-warning fs-3 fw-bold mb-4">FICHAS E PERSONAGENS</p>
         <div class="container d-flex flex-row flex-wrap justify-content-around">
-            <div class="card mb-2 btn align-items-center min-height-300" role="button" (click)="openCreateCharacterDialog()" style="width: 18rem;">
+            <div class="card mb-2 btn align-items-center min-height-300" role="button" (click)="openCreateCharacterDialog()" style="width: 230px;">
                 <div class="card-body justify-content-center my-auto row align-items-center" >
                     <i class="bi bi-plus-square-fill text-dark h1"></i>
                 </div>
             </div>
-            <a class="card mb-2 btn" style="width: 18rem;" *ngFor="let character of charactersList" [routerLink]="['/personagens', character.id]" (dragstart)="openDeleteCharacterDialog(character.id)">
-                <div class="card-img-top align-items-center pt-2" >
-                    <img class="img-card mt-2 " src="../../assets/unknown_character.png" alt="">
-                    <h3 class="text-center">{{ character.name }}</h3>
-                </div>
-                <div class="card-body">
-                  <h6 class="card-title">Jogador: {{ character.playerName }}</h6>
-                </div>
-            </a>
+            <app-character-card *ngFor="let character of charactersList" [character]="character"></app-character-card>
         </div>
     </section>
     
@@ -35,7 +27,7 @@
                             <button class="btn btn-outline-danger w-auto me-2 col-md-2" style="height:fit-content" (click)="deleteAttribute(attribute.id)">
                                 <i class="bi bi-trash3 text-light"></i>
                             </button>
-                            <button class="btn btn-outline-warning w-auto me-2 col-md-2" style="height:fit-content" (click)="openEditDialog(attribute, false)">
+                            <button class="btn btn-outline-warning w-auto me-2 col-md-2" style="height:fit-content" (click)="openEditAttributeDialog(attribute)">
                                 <i class="bi bi-pencil text-light"></i>
                             </button>
                             <input class="form-control w-75 text-light btn-outline-secondary bg-transparent shadow-none" id="disabledInput" type="text" [value]="attribute.name" (click)="openAttributeDialog(attribute)" readonly>
@@ -47,7 +39,7 @@
             <div class="d-flex col-md-6 mt-3">
                 <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
                     <div class="row d-flex justify-content-between col-md-12">
-                        <p class="text-start fs-3 fw-bold text-warning w-25">HABILIDADES</p>
+                        <p class="text-start fs-3 fw-bold text-warning w-25">PERÍCIAS</p>
                         <button class="btn btn-outline-warning w-auto" (click)="openModal(skillsModal)">
                             <i class="bi bi-plus-lg text-light"></i>
                         </button>
@@ -57,10 +49,31 @@
                             <button class="btn btn-outline-danger w-auto me-2 col-md-2" (click)="deleteSkill(skill.id)">
                                 <i class="bi bi-trash3 text-light"></i>
                             </button>
-                            <button class="btn btn-outline-warning w-auto me-2 col-md-2" (click)="openEditDialog(skill, true)">
+                            <button class="btn btn-outline-warning w-auto me-2 col-md-2" (click)="openEditSkillDialog(skill)">
                                 <i class="bi bi-pencil text-light"></i>
                             </button>
                             <input class="form-control w-75 text-light btn-outline-secondary bg-transparent shadow-none" id="disabledInput" type="text" [value]="skill.name" readonly (click)="openSkillDialog(skill)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex col-md-6 mt-3">
+                <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+                    <div class="row d-flex justify-content-between col-md-12">
+                        <p class="text-start fs-3 fw-bold text-warning w-25">Habilidades</p>
+                        <button class="btn btn-outline-warning w-auto" (click)="openModal(abilitiesModal)">
+                            <i class="bi bi-plus-lg text-light"></i>
+                        </button>
+                    </div>
+                    <div class="row d-flex justify-content-between col-md-12 px-4 py-2 mt-3 overflow-auto" style="max-height: 400px;">
+                        <div class="row d-flex justify-content-between mb-2" *ngFor="let ability of gameSettings.abilities">
+                            <button class="btn btn-outline-danger w-auto me-2 col-md-2" (click)="deleteAbility(ability.id)">
+                                <i class="bi bi-trash3 text-light"></i>
+                            </button>
+                            <button class="btn btn-outline-warning w-auto me-2 col-md-2" (click)="openEditAbilityDialog(ability)">
+                                <i class="bi bi-pencil text-light"></i>
+                            </button>
+                            <input class="form-control w-75 text-light btn-outline-secondary bg-transparent shadow-none" id="disabledInput" type="text" [value]="ability.name" readonly (click)="openAbilityDialog(ability)">
                         </div>
                     </div>
                 </div>
@@ -71,7 +84,7 @@
         <p class="text-center fs-2 fw-bold text-warning">CONFIGURAÇÕES</p>
         <div class="mt-2 row w-75">
             <label for="diceScreenTime" class="text-start fs-5 col-5 text-light w-auto">Tempo de dado na tela:</label>
-            <input #diceScreenTime type="number" name="diceScreenTime" id="diceScreenTime" class="input-group-text col-1" [(ngModel)]="gameSettings.diceScreenTime" (change)="onChangeDiceScreenTime(diceScreenTime.value)" min="1" step="1" max="20" style="min-width:50px">
+            <input #diceScreenTime type="number" name="diceScreenTime" id="diceScreenTime" class="input-group-text col-1" [(ngModel)]="gameSettings.diceScreenTime" (change)="onChangeDiceScreenTime(+diceScreenTime.value)" min="1" step="1" max="20" style="min-width:50px">
         </div>
         <div class="mt-2 row w-75">
             <label for="diceCooldown" class="text-start fs-5 col-5 text-light w-auto">Cooldown do dado:</label>
@@ -89,10 +102,10 @@
 
 <ng-template #skillsModal let-c="close" let-d="dismiss" class="col justify-content-between rounded-2 bg-dark p-4">
     <div class="col justify-content-between rounded-2 bg-dark p-4" style="min-height:270px;min-width: 200px;">
-        <p class="text-white fs-4 w-100 text-center d-flex col">Criar nova habilidade</p>
+        <p class="text-white fs-4 w-100 text-center d-flex col">Criar nova perícia</p>
         <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
-            <mat-label>Nome da habilidade</mat-label>
-            <input #newSkillName matInput type="text" class="text-light" aria-label="nome-habilidade"/>
+            <mat-label>Nome da perícia</mat-label>
+            <input #newSkillName matInput type="text" class="text-light" aria-label="nome-pericia"/>
         </mat-form-field>
         <mat-form-field color="accent" class="w-100 d-flex col " style="min-width: 150px;">
             <mat-label>Descrição</mat-label>
@@ -100,7 +113,21 @@
         </mat-form-field>
         <button mat-button class="float-end" (click)="createNewSkill(newSkillName.value, newSkillDescription.value)">OK</button>
     </div>
-    
+</ng-template>
+
+<ng-template #abilitiesModal let-c="close" let-d="dismiss" class="col justify-content-between rounded-2 bg-dark p-4">
+    <div class="col justify-content-between rounded-2 bg-dark p-4" style="min-height:270px;min-width: 200px;">
+        <p class="text-white fs-4 w-100 text-center d-flex col">Criar nova habilidade</p>
+        <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
+            <mat-label>Nome da habilidade</mat-label>
+            <input #newAbilityName matInput type="text" class="text-light" aria-label="nome-habilidade"/>
+        </mat-form-field>
+        <mat-form-field color="accent" class="w-100 d-flex col " style="min-width: 150px;">
+            <mat-label>Descrição</mat-label>
+            <textarea #newAbilityDescription matInput class="text-light" type="text" placeholder="Descrição"></textarea>
+        </mat-form-field>
+        <button mat-button class="float-end" (click)="createNewAbility(newAbilityName.value, newAbilityDescription.value)">OK</button>
+    </div>
 </ng-template>
 
 <ng-template #attributeModal let-c="close" let-d="dismiss" class="col justify-content-between rounded-2 bg-dark p-4">
@@ -111,9 +138,9 @@
             <input #attributeName matInput type="text" class="text-light" aria-label="nome-atributo"/>
         </mat-form-field>
         <mat-form-field color="accent" class="w-100 d-flex col " style="min-width: 150px;">
-            <mat-label>Descrição</mat-label>
-            <textarea #attributeDescription matInput class="text-light" type="text" placeholder="Descrição"></textarea>
+            <mat-label>Abreviação</mat-label>
+            <input #attributeAbbr matInput type="text" class="text-light" aria-label="abbr-atributo"/>
         </mat-form-field>
-        <button mat-button class="float-end" (click)="createNewAttribute(attributeName.value, attributeDescription.value)">OK</button>
+        <button mat-button class="float-end" (click)="createNewAttribute(attributeName.value, attributeAbbr.value)">OK</button>
     </div>
 </ng-template>
