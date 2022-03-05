@@ -21,6 +21,7 @@ import { EditAbilityDialogComponent } from "../common/edit-ability-dialog/edit-a
 import { CreateRitualDialogComponent } from "../common/create-ritual-dialog/create-ritual-dialog.component";
 import { IRitual } from "src/models/Ritual";
 import { EditRitualDialogComponent } from "../common/edit-ritual-dialog/edit-ritual-dialog.component";
+import { findCharacterIndex } from "../common/view_utils";
 
 @Component({
   selector: 'app-characters',
@@ -31,7 +32,6 @@ export class CharactersComponent implements OnInit {
 
   subscribe: Subscription;
   gameSettingsSubscription: Subscription;
-  charactersSubscription: Subscription;
   charactersList: ICharacter[] = [];
   attributeList: IAttribute[] = [];
   gameSettings: IGameSettings;
@@ -43,7 +43,8 @@ export class CharactersComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private gameSettingsService: GameSettingsService,
-    private titleService: Title, private modalService:MatDialog) { 
+    private titleService: Title, private modalService:MatDialog) {
+     
     this.router.events.subscribe((event: RouterEvent) =>{
       if (event instanceof NavigationStart || event instanceof NavigationError) {
         this.loading = true;
@@ -52,31 +53,40 @@ export class CharactersComponent implements OnInit {
         this.loading = false;
       }
     });
+    
+    this.titleService.setTitle("Dashboard | RPG System");
+  }
 
+  ngOnInit(): void {
+    this.subscribeObservables();
+    this.charactersService.getCharacters();
+  }
+
+  subscribeObservables(){
     this.gameSettingsSubscription = this.gameSettingsService.updateGameSettingsEvent$.subscribe(newGameSettings => {
       this.gameSettings = newGameSettings;
       this.attributeList = this.gameSettings.attributes != null ? this.gameSettings.attributes.sort((a,b) => a.name.localeCompare(b.name)) : [];
       this.skillList = this.gameSettings.skills != null ? this.gameSettings.skills.sort((a,b) => a.name.localeCompare(b.name)) : [];
     });
 
-    this.charactersService.getCharacters();
-
-    this.charactersSubscription = this.charactersService.onCharacterListChanged.subscribe((newCharactersList:ICharacter[]) =>{
-      this.charactersList = newCharactersList;
+    this.charactersService.onCharacterListChanged$.subscribe((characterList) =>{
+      this.charactersList = characterList;
     });
-    
-    this.titleService.setTitle("Dashboard | RPG System");
-  }
 
-  ngOnChanges(changes: SimpleChanges): void {
-  }
+    this.charactersService.onCharacterChanged$.subscribe((changedCharacter) =>{
+      if (this.charactersList != null) {
+        if (changedCharacter != null) {
+          const index = findCharacterIndex(this.charactersList,changedCharacter);
+          this.charactersList[index] = changedCharacter;
+        }
+      }
+    });
 
-  ngOnInit(): void {
     this.subscribe = this.activatedRoute.data.subscribe((info: {gameSettings: IGameSettings}) => {
       this.gameSettings = info.gameSettings;
     });
     this.attributeList = this.gameSettings.attributes != null ? this.gameSettings.attributes.sort((a,b) => a.name.localeCompare(b.name)) : [];
-      this.skillList = this.gameSettings.skills != null ? this.gameSettings.skills.sort((a,b) => a.name.localeCompare(b.name)) : [];
+    this.skillList = this.gameSettings.skills != null ? this.gameSettings.skills.sort((a,b) => a.name.localeCompare(b.name)) : [];
   }
 
   ngOnDestroy(): void {

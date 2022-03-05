@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, } from '@angular/core';
+import io from 'socket.io-client';
+import { BehaviorSubject, Observable, ReplaySubject,} from 'rxjs';
 import { GameSettingsService } from 'src/app/game-settings.service';
 import { generateRandomId } from 'src/app/views/common/view_utils';
 import { environment } from 'src/environments/environment';
@@ -16,8 +17,10 @@ import { ICharacter } from '../../../../../models/Character';
 })
 export class CharactersService {
 
-  onCharacterChanged :BehaviorSubject<ICharacter> = new BehaviorSubject(null);
-  onCharacterListChanged: BehaviorSubject<ICharacter[]> = new BehaviorSubject(null);
+  private onCharacterChanged:BehaviorSubject<ICharacter> = new BehaviorSubject<ICharacter>(null);
+  private onCharacterListChanged: BehaviorSubject<ICharacter[]> = new BehaviorSubject<ICharacter[]>(null);
+  onCharacterChanged$ = this.onCharacterChanged.asObservable();
+  onCharacterListChanged$ = this.onCharacterListChanged.asObservable();
   equipmentList : InventoryItem[] = [];
   weaponList : IWeapon[] = [];
 
@@ -26,17 +29,29 @@ export class CharactersService {
 
   private characters: ICharacter[] = [];
 
-  constructor(private http:HttpClient,private gameSettingsService: GameSettingsService) {
-    
+  private socket:any;
+
+  constructor(
+    private http:HttpClient,
+    private gameSettingsService: GameSettingsService,
+  ) {
+    this.initSettings();
+  }
+
+  async initSettings() {
+    await this.gameSettingsService.getGameSettings();
+    this.socket = io(`${environment.apiUrl}`);
+    this.socket.on('characterChanged',(character)=>{
+      this.onCharacterChanged.next(character);
+    });
   }
 
   async getCharacterById(characterId: number): Promise<ICharacter> {
     const response: any = await this.http.get(`${environment.apiUrl}/sheets/${characterId}`).toPromise();
     const character:ICharacter = response.sheet;
-
-    this.onCharacterChanged.next(character);
     return character;
   }
+
 
   async getCharacters(){
     const response: any = await this.http.get(`${environment.apiUrl}/sheets`).toPromise();
@@ -60,7 +75,7 @@ export class CharactersService {
   }
 
   async updateCharacterStats(character: ICharacter) {
-    await this.http.put(`${environment.apiUrl}/sheets/${character.id}/status/update`,{character: character}).toPromise();
+    await this.http.put(`${environment.apiUrl}/sheets/${character.id}/update`,{character: character}).toPromise();
     this.getCharacterById(character.id);
   }
 

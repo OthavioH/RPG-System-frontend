@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://rpg-system-backend-dev.herokuapp.com'
+  apiUrl: 'https://rpg-system-backend-dev.herokuapp.com',
+  frontendUrl:'http://localhost',
 };
 
 /*
