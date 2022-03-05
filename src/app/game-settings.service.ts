@@ -16,6 +16,8 @@ export class GameSettingsService {
 
   private gameSettings : IGameSettings;
 
+  port:number;
+
   updateGameSettingsEvent$ :BehaviorSubject<IGameSettings>;
 
   constructor(private http:HttpClient, private route: Router) {

@@ -6,13 +6,11 @@ import { CharactersService } from '../characters/shared/services/characters.serv
 import { ICharacter } from 'src/models/Character';
 import { EditProgressBarValuesDialogComponent } from '../common/edit-hp-dialog/edit-progress-bar-values-dialog.component';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, } from '@angular/router';
 import { OpenChooseAttributesDialogComponent } from '../common/open-choose-attributes-dialog/open-choose-attributes-dialog.component';
 import { OpenChooseSkillsDialogComponent } from '../common/open-choose-skills-dialog/open-choose-skills-dialog.component';
 import { AttributeDialogComponent } from '../common/attribute-dialog/attribute-dialog.component';
 import { IAttribute } from 'src/models/Attribute';
-import { IWeapon } from 'src/models/Weapon';
-import { InventoryItem } from 'src/models/InventoryItem';
 import { CreateEquipmentDialogComponent } from '../common/create-equipment-dialog/create-equipment-dialog.component';
 import { CreateWeaponDialogComponent } from '../common/create-weapon-dialog/create-weapon-dialog.component';
 import { Title } from '@angular/platform-browser';
@@ -42,19 +40,12 @@ export class CharacterComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
     ) {
-    this.onCharacterChanged = this.charactersService.onCharacterChanged.subscribe((character: ICharacter) => {
-      this.character = character;
-      this.character.attributes = character.attributes != null ? character.attributes.sort((a,b) => a.name.localeCompare(b.name)) : [];
-      this.character.skills = character.skills != null ? character.skills.sort((a,b) => a.name.localeCompare(b.name)) : [];
-      this.character.inventory = character.inventory ?? {weight:0, maxWeight:0,items:[]};
-      this.character.weapons = character.weapons ?? [];
-    });
-    this.titleService.setTitle(`Personagem | ${this.character.name}`);
   }
 
   ngOnInit() {
     this.routeSubscription = this.activatedRoute.data.subscribe((info: {character: ICharacter}) => {
       this.character = info.character;
+      this.titleService.setTitle(`Personagem | ${this.character.name}`);
     });
   }
 
