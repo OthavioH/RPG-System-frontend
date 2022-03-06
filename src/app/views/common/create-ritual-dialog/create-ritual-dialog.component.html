@@ -6,7 +6,7 @@
     </mat-form-field>
     <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
         <mat-label>Circulo</mat-label>
-        <input #newRitualCircle matInput type="text" class="text-light" aria-label="nome-habilidade"/>
+        <input #newRitualCircle matInput type="number" min="1" value="1" aria-label="nome-habilidade"/>
     </mat-form-field>
     <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
         <mat-label>Execução</mat-label>
@@ -23,6 +23,10 @@
     <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
         <mat-label>Duração</mat-label>
         <input #newRitualDuration matInput type="text" class="text-light" aria-label="nome-habilidade"/>
+    </mat-form-field>
+    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
+        <mat-label>Resistência</mat-label>
+        <input #newRitualResistance matInput type="text" class="text-light" aria-label="nome-habilidade"/>
     </mat-form-field>
     <div class="w-100">
         <p class="fs-4 text-warning">Elementos</p>
@@ -51,5 +55,5 @@
         <mat-label>Descrição</mat-label>
         <textarea #newRitualDescription matInput class="text-light" type="text" placeholder="Descrição"></textarea>
     </mat-form-field>
-    <button mat-button class="float-end" (click)="createNewRitual(newRitualName.value,newRitualCircle.value,newRitualExecution.value,newRitualRange.value,newRitualTarget.value,newRitualDuration.value, newRitualDescription.value)">OK</button>
+    <button mat-button class="float-end" (click)="createNewRitual(newRitualName.value,+newRitualCircle.value,newRitualExecution.value,newRitualRange.value,newRitualTarget.value,newRitualDuration.value,newRitualResistance.value, newRitualDescription.value)">OK</button>
 </div>

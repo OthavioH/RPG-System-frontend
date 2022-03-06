@@ -22,6 +22,7 @@ import { CreateRitualDialogComponent } from "../common/create-ritual-dialog/crea
 import { IRitual } from "src/models/Ritual";
 import { EditRitualDialogComponent } from "../common/edit-ritual-dialog/edit-ritual-dialog.component";
 import { findCharacterIndex } from "../common/view_utils";
+import { ShowRitualDialogComponent } from "../common/show-ritual-dialog/show-ritual-dialog.component";
 
 @Component({
   selector: 'app-characters',
@@ -67,6 +68,7 @@ export class CharactersComponent implements OnInit {
       this.gameSettings = newGameSettings;
       this.attributeList = this.gameSettings.attributes != null ? this.gameSettings.attributes.sort((a,b) => a.name.localeCompare(b.name)) : [];
       this.skillList = this.gameSettings.skills != null ? this.gameSettings.skills.sort((a,b) => a.name.localeCompare(b.name)) : [];
+      this.gameSettings.rituals = this.gameSettings.rituals != null ? this.gameSettings.rituals.sort((a,b) => a.name.localeCompare(b.name)) : [];
     });
 
     this.charactersService.onCharacterListChanged$.subscribe((characterList) =>{
@@ -87,6 +89,7 @@ export class CharactersComponent implements OnInit {
     });
     this.attributeList = this.gameSettings.attributes != null ? this.gameSettings.attributes.sort((a,b) => a.name.localeCompare(b.name)) : [];
     this.skillList = this.gameSettings.skills != null ? this.gameSettings.skills.sort((a,b) => a.name.localeCompare(b.name)) : [];
+    this.gameSettings.rituals = this.gameSettings.rituals != null ? this.gameSettings.rituals.sort((a,b) => a.name.localeCompare(b.name)) : [];
   }
 
   ngOnDestroy(): void {
@@ -164,8 +167,12 @@ export class CharactersComponent implements OnInit {
     this.modalService.open(CreateRitualDialogComponent);
   }
 
-  openAbilityDialog(ability: ISkill): void {
+  openAbilityDialog(ability: IAbility): void {
     this.modalService.open(ShowAbilityDetailsDialogComponent, {data: ability});
+  }
+
+  openRitualDialog(ritual: IRitual): void {
+    this.modalService.open(ShowRitualDialogComponent, {data: ritual});
   }
 
   openAttributeDialog(attribute: IAttribute): void {

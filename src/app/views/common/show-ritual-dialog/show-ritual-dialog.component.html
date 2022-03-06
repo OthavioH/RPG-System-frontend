@@ -5,6 +5,27 @@
             {{element | titlecase}}
         </div>
     </div>
+    <p class="text-white fs-4 w-100 text-start d-flex col mb-3">{{ritual.circle}}° Círculo</p>
+    <div class="text-white fs-6 w-100 text-start d-flex col mb-3" *ngIf="ritual.execution != null || ritual.execution != ''">
+        <span class="fw-bold me-1 text-warning">Execução:</span>
+        <span>{{ritual.execution}}</span>
+    </div>
+    <div class="text-white fs-6 w-100 text-start d-flex col mb-3" *ngIf="ritual.target != null || ritual.target != ''">
+        <span class="fw-bold me-1 text-warning">Alvo:</span>
+        <span>{{ritual.target}}</span>
+    </div>
+    <div class="text-white fs-6 w-100 text-start d-flex col mb-3" *ngIf="ritual.range != null || ritual.range != ''">
+        <span class="fw-bold me-1 text-warning">Alcance:</span>
+        <span>{{ritual.range}}</span>
+    </div>
+    <div class="text-white fs-6 w-100 text-start d-flex col mb-3" *ngIf="ritual.duration != null || ritual.duration != ''">
+        <span class="fw-bold me-1 text-warning">Duração:</span>
+        <span>{{ritual.duration}}</span>
+    </div>
+    <div class="text-white fs-6 w-100 text-start d-flex col mb-3" *ngIf="ritual.resistance != null || ritual.resistance != ''">
+        <span class="fw-bold me-1 text-warning">Resistência:</span>
+        <span>{{ritual.resistance}}</span>
+    </div>
     <p class="text-white b-3 d-flex col text-break w-100" id="disabledInput" type="text" placeholder="Descrição">{{ritual.description}}</p>
     <button mat-button class="float-end" (click)="closeDialog()">OK</button>
 </div>

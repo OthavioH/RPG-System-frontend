@@ -102,7 +102,7 @@ export class GameSettingsService {
     }
   }
 
-  async createNewRitual(name: string,circle: string,execution: string,range: string,target: string,duration: string,description: string,elements:RitualElement[]) {
+  async createNewRitual(name: string,circle: number,execution: string,range: string,target: string,duration: string,description: string,resistance: string,elements:RitualElement[]) {
     if (name.length > 0 && description.length > 0) {
       const newRitual: IRitual = {
         id:this.generateRandomId(),
@@ -114,6 +114,7 @@ export class GameSettingsService {
         duration:duration,
         description:description,
         elements:elements,
+        resistance:resistance,
       };
   
       if (this.gameSettings.rituals != null) {
@@ -180,13 +181,12 @@ export class GameSettingsService {
   }
 
   async editRitual(editedRitual: IRitual) {
-    this.gameSettings.rituals.map((ritual)=>{
-      if (ritual.id == editedRitual.id) {
-        ritual = editedRitual;
-      }
-    });
+    const foundRitualIndex = this.gameSettings.rituals.findIndex((value,index,obj)=>value.id == editedRitual.id)
 
-    await this.setGameProperties();
+    if (foundRitualIndex != -1) {
+      this.gameSettings.rituals[foundRitualIndex] = editedRitual;
+      await this.setGameProperties();
+    }
   }
 
   async editAbility(abilityName: string, abilityDescription:string, abilityId: string) {
