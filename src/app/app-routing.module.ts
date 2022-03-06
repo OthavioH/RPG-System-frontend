@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TestDiceComponent } from './test-dice/test-dice.component';
 
 import { CharacterComponent } from './views/character/character.component';
 import { CharacterResolver } from './views/character/guards/character.resolver';
@@ -9,6 +10,7 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
 
 const routes: Routes = [
   { path: 'dashboard', component: CharactersComponent, resolve:{gameSettings:CharactersResolver}},
+  { path: 'dice',component: TestDiceComponent,},
   { path: 'personagens', children: [
     { path:':id', component: CharacterComponent, resolve: {character:CharacterResolver}},
   ]},
