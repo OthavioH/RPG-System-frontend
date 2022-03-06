@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { Socket } from 'src/models/SocketClass';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { io } from 'socket.io-client';
 import { environment } from 'src/environments/environment';
 import { IAbility } from 'src/models/Ability';
 import { IAttribute } from 'src/models/Attribute';
@@ -9,6 +11,7 @@ import { IGameSettings } from 'src/models/GameSettings';
 import { IRitual, RitualElement } from 'src/models/Ritual';
 import { ISkill } from 'src/models/Skill';
 import { SkillExperienceLevel } from 'src/models/SkillExperienceLevel';
+import { IDiceRoll } from 'src/models/DiceRoll';
 
 @Injectable({
   providedIn: 'root'
@@ -16,17 +19,25 @@ import { SkillExperienceLevel } from 'src/models/SkillExperienceLevel';
 export class GameSettingsService {
 
   private gameSettings : IGameSettings;
+  private onRollsListChanged:Subject<IDiceRoll[]> = new Subject<IDiceRoll[]>();
+  onRollsListChanged$ = this.onRollsListChanged.asObservable();
 
   port:number;
 
   updateGameSettingsEvent$ :BehaviorSubject<IGameSettings>;
 
   constructor(private http:HttpClient, private route: Router) {
+    Socket.socket = io(`${environment.apiUrl}`);
     this.initSettings();
   }
 
   async initSettings(){
     this.updateGameSettingsEvent$ = new BehaviorSubject<IGameSettings>(await this.getGameSettings());
+    Socket.socket.on('lastRollListChanged',(newRollList:any[])=>{
+      console.log(newRollList);
+      this.onRollsListChanged.next(newRollList);
+      this.gameSettings.lastRolls = newRollList;
+    });
   }
 
   async getGameSettings(): Promise<IGameSettings> {
@@ -61,6 +72,13 @@ export class GameSettingsService {
     this.gameSettings = response;
 
     this.updateGameSettingsEvent$.next(this.gameSettings);
+  }
+
+  async addNewRoll(roll: IDiceRoll) {
+    await this.http.post(`${environment.apiUrl}/gamesettings/roll/save`,{
+      roll: roll,
+      oldRollList: this.gameSettings.lastRolls ?? [],
+    }).toPromise();
   }
 
   async removeAttribute(attributeId:string) {

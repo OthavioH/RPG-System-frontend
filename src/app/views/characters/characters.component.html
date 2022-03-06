@@ -1,4 +1,15 @@
 <ng-container *ngIf="!loading">
+    <section class="container pb-2 pt-4 align-center">
+        <div class="d-flex flex-nowrap row overflow-auto aaa pb-2">
+            <div class="bg-dark py-3 rounded-3 me-4" *ngFor="let roll of gameSettings.lastRolls" style="width:fit-content;">
+                <ul class="px-2">
+                    <li class="d-flex text-light fs-4 mb-1">{{roll.characterName | titlecase}}</li>
+                    <li class="d-flex text-light fs-6 mb-1">🎲d{{roll.diceFaces}}</li>
+                    <li class="d-flex text-light fs-6 mb-1">🎲Resultado: {{roll.diceResult}}</li>
+                </ul>
+            </div>
+        </div>
+    </section>
     <section class="container pb-2 pt-4 rounded-3 bg-dark">
         <p class="text-center fs-1 text-light fw-bolder mb-4">Dashboard</p>
         <p class="text-center text-warning fs-3 fw-bold mb-4">FICHAS E PERSONAGENS</p>
