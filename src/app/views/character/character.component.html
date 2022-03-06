@@ -64,7 +64,7 @@
                     <app-progress-bar [total]="character.maxStressPoints" [value]="character.stressPoints" (click)="openEditProgressBarValueDialog('stressPoints')" role="button" [color]="'yellow'" class="col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
                     <p class="text-light fs-5 col">{{character.stressPoints}}/{{character.maxStressPoints}}</p>
                 </div>
-                <app-roll-dice-dialog></app-roll-dice-dialog>
+                <app-roll-dice-dialog [characterName]="character.name"></app-roll-dice-dialog>
             </div>
         </div>
     </div>

@@ -41,6 +41,7 @@ import { EditRitualDialogComponent } from './views/common/edit-ritual-dialog/edi
 import { ChooseRitualsDialogComponent } from './views/common/choose-rituals-dialog/choose-rituals-dialog.component';
 import { ShowRitualDialogComponent } from './views/common/show-ritual-dialog/show-ritual-dialog.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
+import { TestDiceComponent } from './test-dice/test-dice.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
     ChooseRitualsDialogComponent,
     ShowRitualDialogComponent,
     PageNotFoundComponent,
+    TestDiceComponent,
   ],
   imports: [
     BrowserModule,

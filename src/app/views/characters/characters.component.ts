@@ -33,8 +33,10 @@ export class CharactersComponent implements OnInit {
 
   subscribe: Subscription;
   gameSettingsSubscription: Subscription;
+
   charactersList: ICharacter[] = [];
   attributeList: IAttribute[] = [];
+
   gameSettings: IGameSettings;
   skillList: ISkill[] = [];
   loading: boolean = true;
@@ -53,6 +55,10 @@ export class CharactersComponent implements OnInit {
       if (event instanceof NavigationEnd || event instanceof NavigationCancel ) {
         this.loading = false;
       }
+    });
+
+    this.gameSettingsService.onRollsListChanged$.subscribe((newRollList)=>{
+      this.gameSettings.lastRolls = newRollList;
     });
     
     this.titleService.setTitle("Dashboard | RPG System");

@@ -12,6 +12,7 @@ import { IWeapon } from 'src/models/Weapon';
 
 import { ICharacter } from '../../../../../models/Character';
 import { Router } from '@angular/router';
+import { Socket } from 'src/models/SocketClass';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +31,6 @@ export class CharactersService {
 
   private characters: ICharacter[] = [];
 
-  private socket:any;
-
   constructor(
     private http:HttpClient,
     private gameSettingsService: GameSettingsService,
@@ -42,8 +41,7 @@ export class CharactersService {
 
   async initSettings() {
     await this.gameSettingsService.getGameSettings();
-    this.socket = io(`${environment.apiUrl}`);
-    this.socket.on('characterChanged',(character)=>{
+    Socket.socket.on('characterChanged',(character)=>{
       this.onCharacterChanged.next(character);
     });
   }
