@@ -45,7 +45,8 @@ export class CharacterComponent implements OnInit {
   ngOnInit() {
     this.routeSubscription = this.activatedRoute.data.subscribe((info: {character: ICharacter}) => {
       this.character = info.character;
-        this.titleService.setTitle(`Personagem | ${this.character.name}`); 
+      this.titleService.setTitle(`Personagem | ${this.character.name}`); 
+      console.log(this.character.skills);
     });
   }
 
@@ -85,6 +86,14 @@ export class CharacterComponent implements OnInit {
     for (const skill of this.character.skills) {
       if (skill.id == skillId) {
         skill.value = newSkillValue;
+      }
+    }
+  }
+
+  onSelectSkillExperienceLevel(newExperienceLevel:any, newSkill:ISkill):void {
+    for (const skill of this.character.skills) {
+      if (skill.id == newSkill.id) {
+        skill.experienceLevel = newExperienceLevel;
       }
     }
   }

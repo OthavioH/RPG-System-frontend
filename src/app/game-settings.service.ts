@@ -8,6 +8,7 @@ import { IAttribute } from 'src/models/Attribute';
 import { IGameSettings } from 'src/models/GameSettings';
 import { IRitual, RitualElement } from 'src/models/Ritual';
 import { ISkill } from 'src/models/Skill';
+import { SkillExperienceLevel } from 'src/models/SkillExperienceLevel';
 
 @Injectable({
   providedIn: 'root'
@@ -88,7 +89,9 @@ export class GameSettingsService {
       const newSkill: ISkill = {
         id:this.generateRandomId(),
         name: skillName,
-        description: skillDescription
+        description: skillDescription,
+        value:0,
+        experienceLevel:SkillExperienceLevel.untrained,
       };
   
       if (this.gameSettings.skills != null) {
