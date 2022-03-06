@@ -18,3 +18,27 @@
   background:none;
   border: none; 
 }
+
+.shield {
+    position: relative;
+    width: 10em;
+    height: 10em;
+}
+.shield:before, .shield:after {
+    content:"";
+    border-radius: 0;
+    border-top-right-radius: 100% 100%;
+    border-bottom-right-radius: 125% 100%;
+    width: 6.275em;
+    height: 6em;
+    transform-origin: bottom left;
+    transform: scale(1,1) translateX(5em) rotate(-20deg);
+    position:absolute;
+    bottom:-42.5%;
+}
+.shield:after {transform: scale(-1,1) translateX(-5em) rotate(-20deg);}
+.shield, .shield:before, .shield:after {background: grey;}
+.shield.test, .shield.test:before, .shield.test:after {background: rgba(0, 127, 0, 0.5);}
+.red, .red:before, .red:after {background:red;}
+.green, .green:before, .green:after {background:green;}
+.blue, .blue:before, .blue:after {background:blue;}

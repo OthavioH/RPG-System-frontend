@@ -44,8 +44,8 @@ export class CreateRitualDialogComponent implements OnInit {
     }
   }
 
-  createNewRitual(name: string,circle: string,execution: string,range: string,target: string,duration: string,description: string): void {
-    this.gameSettingsService.createNewRitual(name,circle,execution,range,target,duration,description,this.selectedElements);
+  createNewRitual(name: string,circle: number,execution: string,range: string,target: string,duration: string, resistance:string,description: string,): void {
+    this.gameSettingsService.createNewRitual(name,circle,execution,range,target,duration,description,resistance,this.selectedElements);
     this.close();
   }
 
