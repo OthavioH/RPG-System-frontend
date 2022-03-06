@@ -11,6 +11,7 @@ import { ISkill } from 'src/models/Skill';
 import { IWeapon } from 'src/models/Weapon';
 
 import { ICharacter } from '../../../../../models/Character';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,7 @@ export class CharactersService {
   constructor(
     private http:HttpClient,
     private gameSettingsService: GameSettingsService,
+    private router:Router,
   ) {
     this.initSettings();
   }
@@ -48,8 +50,12 @@ export class CharactersService {
 
   async getCharacterById(characterId: number): Promise<ICharacter> {
     const response: any = await this.http.get(`${environment.apiUrl}/sheets/${characterId}`).toPromise();
-    const character:ICharacter = response.sheet;
-    return character;
+    if (response.sheet !=null) {
+      const character:ICharacter = response.sheet;
+      return character;  
+    }
+
+    this.router.navigate(["**"])
   }
 
 

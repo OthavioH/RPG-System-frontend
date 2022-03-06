@@ -45,7 +45,7 @@ export class CharacterComponent implements OnInit {
   ngOnInit() {
     this.routeSubscription = this.activatedRoute.data.subscribe((info: {character: ICharacter}) => {
       this.character = info.character;
-      this.titleService.setTitle(`Personagem | ${this.character.name}`);
+        this.titleService.setTitle(`Personagem | ${this.character.name}`); 
     });
   }
 

@@ -17,7 +17,6 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { CharactersComponent } from './views/characters/characters.component';
 import { CharacterComponent } from './views/character/character.component';
 import { SkillsDialogComponent } from './views/common/skills-dialog/skills-dialog.component';
@@ -41,11 +40,11 @@ import { CreateRitualDialogComponent } from './views/common/create-ritual-dialog
 import { EditRitualDialogComponent } from './views/common/edit-ritual-dialog/edit-ritual-dialog.component';
 import { ChooseRitualsDialogComponent } from './views/common/choose-rituals-dialog/choose-rituals-dialog.component';
 import { ShowRitualDialogComponent } from './views/common/show-ritual-dialog/show-ritual-dialog.component';
+import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     CharactersComponent,
     CharacterComponent,
     SkillsDialogComponent,
@@ -69,6 +68,7 @@ import { ShowRitualDialogComponent } from './views/common/show-ritual-dialog/sho
     EditRitualDialogComponent,
     ChooseRitualsDialogComponent,
     ShowRitualDialogComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
