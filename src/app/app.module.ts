@@ -44,6 +44,7 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
 import { TestDiceComponent } from './test-dice/test-dice.component';
 import { ChangeCharacterImageDialogComponent } from './views/common/change-character-image-dialog/change-character-image-dialog.component';
 import { DiceRollAnimationComponent } from './views/common/dice-roll-animation/dice-roll-animation.component';
+import { DiceAnimationComponent } from './views/common/dice-animation/dice-animation.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { DiceRollAnimationComponent } from './views/common/dice-roll-animation/d
     TestDiceComponent,
     ChangeCharacterImageDialogComponent,
     DiceRollAnimationComponent,
+    DiceAnimationComponent,
   ],
   imports: [
     BrowserModule,

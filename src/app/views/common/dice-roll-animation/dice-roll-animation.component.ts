@@ -9,8 +9,8 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
     trigger('diceResultFadeIn', [
       state('invisible', style({opacity: 0})),
       state('visible', style({opacity: 1})),
-      transition('invisible => visible', animate('950ms')),
-      transition('visible => invisible', animate('0ms')),
+      transition('invisible => visible', animate('800ms')),
+      transition('visible => invisible', animate('300ms')),
     ])
   ]
 })

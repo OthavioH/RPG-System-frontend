@@ -161,12 +161,12 @@
                         <i class="bi bi-plus-lg text-light"></i>
                     </button>
                 </div>
-                <div class="d-flex flex-wrap justify-content-between row row-cols-2 ps-1 pe-4 mt-3 py-2 overflow-auto">
-                    <div class="col d-flex justify-content-between mb-2 me-5 w-auto" *ngFor="let ability of character.abilities">
+                <div class="d-flex flex-wrap justify-content-between col-md-12 ps-1 pe-4 mt-3 py-2">
+                    <div class="d-flex col-md-12 flex-nowrap justify-content-between mb-2 me-5 w-auto" *ngFor="let ability of character.abilities">
                         <button class="btn btn-outline-danger w-auto me-2 col" (click)="deleteAbility(ability.id)" style="height:fit-content;max-width: 40px;font-size: 14px;">
                             <i class="bi bi-trash3 text-light"></i>
                         </button>
-                        <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto" (click)="openShowAbilityDetailsDialog(ability)">{{ability.name}}</p>
+                        <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto" style="min-width: 100px;" (click)="openShowAbilityDetailsDialog(ability)">{{ability.name}}</p>
                     </div>
                 </div>
             </div>
@@ -226,17 +226,17 @@
         <div class="d-flex col-md-6 mt-3 shadow">
             <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
                 <div class="row d-flex justify-content-between col-md-12">
-                    <p class="text-center fw-bold text-warning w-25 col fs-2 paranormal-text">Rituais</p>
+                    <p class="text-center fs-2 paranormal-text fw-bold text-warning w-25 col">Rituais</p>
                     <button class="btn btn-outline-warning w-auto" (click)="openChooseRituals()">
                         <i class="bi bi-plus-lg text-light"></i>
                     </button>
                 </div>
-                <div class="d-flex flex-wrap justify-content-between row row-cols-2 ps-1 pe-4 mt-3 py-2 overflow-auto">
-                    <div class="col d-flex justify-content-between mb-2 me-5 w-auto" *ngFor="let ritual of character.rituals">
+                <div class="d-flex flex-wrap justify-content-between col-md-12 ps-1 pe-4 mt-3 py-2">
+                    <div class="d-flex col-md-6 flex-nowrap justify-content-between mb-2 me-5 w-auto" *ngFor="let ritual of character.rituals">
                         <button class="btn btn-outline-danger w-auto me-2 col" (click)="deleteRitual(ritual.id)" style="height:fit-content;max-width: 40px;font-size: 14px;">
                             <i class="bi bi-trash3 text-light"></i>
                         </button>
-                        <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto paranormal-text" (click)="openShowRitualDetailsDialog(ritual)">{{ritual.name}}</p>
+                        <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto" style="min-width: 100px;" (click)="openShowRitualDetailsDialog(ritual)">{{ritual.name}}</p>
                     </div>
                 </div>
             </div>
