@@ -90,22 +90,22 @@
     background:black;
   }
 
-  .aaa::-webkit-scrollbar {
+  .scrollbar-thin::-webkit-scrollbar {
     height: 10px;
     border-radius:10px;
   }
   
-  .aaa::-webkit-scrollbar-track {
+  .scrollbar-thin::-webkit-scrollbar-track {
     background: #7a7a7a; 
     border-radius:10px;
   }
    
-  .aaa::-webkit-scrollbar-thumb {
+  .scrollbar-thin::-webkit-scrollbar-thumb {
     background: #212529; 
     border-radius:10px;
   }
   
-  .aaa::-webkit-scrollbar-thumb:hover {
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
     background: #ffc107; 
     border-radius:10px;
   }
