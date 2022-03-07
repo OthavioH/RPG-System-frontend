@@ -14,7 +14,7 @@
         <p class="text-center fs-1 text-light fw-bolder mb-4">DASHBOARD</p>
         <p class="text-center text-warning fs-3 fw-bold mb-4">FICHAS E PERSONAGENS</p>
         <div class="container d-flex flex-row flex-wrap justify-content-around">
-            <div class="card mb-2 btn align-items-center min-height-300" role="button" (click)="openCreateCharacterDialog()" style="width: 230px;">
+            <div class="card mb-2 btn align-items-center " role="button" (click)="openCreateCharacterDialog()" style="width: 250px;height:515px;border-radius: 10px;">
                 <div class="card-body justify-content-center my-auto row align-items-center" >
                     <i class="bi bi-plus-square-fill text-dark h1"></i>
                 </div>
@@ -112,15 +112,15 @@
             </div>
         </div>
     </section>
-    <section class="container rounded-3 mt-3 pb-4 pt-4 ps-5 bg-dark ">
+    <section class="container rounded-3 mt-3 pb-4 pt-4 px-4 bg-dark">
         <p class="text-center fs-2 fw-bold text-warning">CONFIGURAÇÕES</p>
-        <p class="text-start fs-6 text-danger" style="width:500px;">Tente manter o cooldown do dado maior que o tempo na tela para que não haja nenhum bug com a visualização do dado</p>
-        <div class="mt-2 row w-75">
-            <label for="diceScreenTime" class="text-start fs-5 col-5 text-light w-auto">Tempo de dado na tela:</label>
+        <p class="text-start fs-6 text-danger" style="width:auto;">Tente manter o cooldown do dado maior que o tempo na tela para que não haja nenhum bug com a visualização do dado</p>
+        <div class="mt-2 row w-100">
+            <label for="diceScreenTime" class="text-start fs-6 col-5 text-light w-auto">Tempo de dado na tela:</label>
             <input #diceScreenTime type="number" name="diceScreenTime" id="diceScreenTime" class="input-group-text col-1" [(ngModel)]="gameSettings.diceScreenTime" (change)="onChangeDiceScreenTime(+diceScreenTime.value)" min="1" step="1" max="20" style="min-width:50px">
         </div>
-        <div class="mt-2 row w-75">
-            <label for="diceCooldown" class="text-start fs-5 col-5 text-light w-auto">Cooldown do dado:</label>
+        <div class="mt-2 row w-100">
+            <label for="diceCooldown" class="text-start fs-6 col-5 text-light w-auto">Cooldown do dado:</label>
             <input #diceCooldown type="number" name="diceCooldown" id="diceCooldown" class="input-group-text col-1" [(ngModel)]="gameSettings.diceCooldown" min="1" step="1" max="20" style="min-width:50px">
             <button class="btn btn-outline-warning ms-2 w-auto" (click)="saveGameSettings()">Salvar</button>
         </div>
