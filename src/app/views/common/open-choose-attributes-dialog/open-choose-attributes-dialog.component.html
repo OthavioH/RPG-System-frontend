@@ -3,7 +3,7 @@
         <p class="text-light fs-4 fs-bold text-center">Atributos</p>
     </div>
     <div class="row px-4 d-flex flex-wrap justify-content-between overflow-auto btn-group mb-4" role="group" style="min-height:100px">
-        <div class="col d-flex justify-content-between mb-2" style="max-height: 35px;" *ngFor="let attribute of chooseAttributeList">
+        <div class="col d-flex justify-content-between mb-2 d-flex text-wrap" style="min-height: 35px;height:fit-content;" *ngFor="let attribute of chooseAttributeList">
             <input type="checkbox" class="btn-check" [id]="'checkAttribute'+attribute.name" autocomplete="off" (change)="onSelectAttribute(attribute)">
             <label class="btn btn-outline-warning shadow-none" [for]="'checkAttribute'+attribute.name">{{attribute.name}}</label>
         </div>

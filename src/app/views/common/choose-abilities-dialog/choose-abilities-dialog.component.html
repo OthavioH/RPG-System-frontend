@@ -3,7 +3,7 @@
         <p class="text-light fs-4 fs-bold text-center">Habilidades</p>
     </div>
     <div class="row px-4 d-flex flex-wrap justify-content-between overflow-auto btn-group mb-4" role="group" style="min-height:100px">
-        <div class="col d-flex justify-content-between mb-2" style="max-height: 35px;" *ngFor="let ability of chooseAbilityList">
+        <div class="col d-flex justify-content-between mb-2 d-flex text-wrap" style="min-height: 35px;height:fit-content;" *ngFor="let ability of chooseAbilityList">
             <input type="checkbox" class="btn-check" [id]="'checkSkill'+ability.name" autocomplete="off" (change)="onSelectAbility(ability)">
             <label class="btn btn-outline-warning shadow-none" [for]="'checkSkill'+ability.name">{{ability.name}}</label>
         </div>
