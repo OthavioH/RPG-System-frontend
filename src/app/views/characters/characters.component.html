@@ -114,6 +114,7 @@
     </section>
     <section class="container rounded-3 mt-3 pb-4 pt-4 ps-5 bg-dark ">
         <p class="text-center fs-2 fw-bold text-warning">CONFIGURAÇÕES</p>
+        <p class="text-start fs-6 text-danger" style="width:500px;">Tente manter o cooldown do dado maior que o tempo na tela para que não haja nenhum bug com a visualização do dado</p>
         <div class="mt-2 row w-75">
             <label for="diceScreenTime" class="text-start fs-5 col-5 text-light w-auto">Tempo de dado na tela:</label>
             <input #diceScreenTime type="number" name="diceScreenTime" id="diceScreenTime" class="input-group-text col-1" [(ngModel)]="gameSettings.diceScreenTime" (change)="onChangeDiceScreenTime(+diceScreenTime.value)" min="1" step="1" max="20" style="min-width:50px">
