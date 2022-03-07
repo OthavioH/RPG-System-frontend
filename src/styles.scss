@@ -12,6 +12,11 @@
     src: local("Paranormal"),url('./assets/fonts/AFonteParanormal-Regular.otf') format("opentype");
 }
 
+@font-face {
+  font-family: 'BabyDoll';
+  src: local("BabyDoll"),url('./assets/fonts/BabyDoll.otf') format("opentype");
+}
+
 html, body { height: 100%;}
 body { margin: 0; background-color:rgba(0, 0, 0, 0.781);
     background: url('/../assets/anfitriao.jpg') no-repeat center center fixed;
@@ -26,6 +31,10 @@ body { margin: 0; background-color:rgba(0, 0, 0, 0.781);
 
 .font-spartan {
     font-family: 'League Spartan', sans-serif;
+}
+
+.drawn-font {
+  font-family: 'BabyDoll';
 }
 
 .character-img {
