@@ -61,6 +61,46 @@ body { margin: 0; background-color:rgba(0, 0, 0, 0.781);
   background-size:cover;
 }
 
+.yellow-scrollbar-thin::-webkit-scrollbar {
+  width: 10px;
+  border-radius:10px;
+}
+
+.yellow-scrollbar-thin::-webkit-scrollbar-track {
+  background: #7a7a7a; 
+  border-radius:10px;
+}
+ 
+.yellow-scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #ffc107; 
+  border-radius:10px;
+}
+
+.yellow-scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #212529; 
+  border-radius:10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  height: 10px;
+  border-radius:10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #7a7a7a; 
+  border-radius:10px;
+}
+ 
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #212529; 
+  border-radius:10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #ffc107; 
+  border-radius:10px;
+}
+
 mat-dialog-container {
     background-color: transparent !important;
     padding: 0px 0px 0px 0px !important;

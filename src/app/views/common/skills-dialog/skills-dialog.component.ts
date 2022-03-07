@@ -16,6 +16,10 @@ export class SkillsDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  scrollToTitle(element: HTMLElement): void {
+    element.scrollIntoView();
+  }
+
   closeDialog(): void {
     this.dialogRef.close();
   }
