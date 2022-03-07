@@ -18,7 +18,7 @@ export class DiceRollAnimationComponent implements OnInit {
 
   @Input() imageUrl:string;
   @Input() shouldShow:boolean = false;
-  @Input() diceResult:string;
+  @Input() diceResult:number;
 
   animationState = 'invisible';
 

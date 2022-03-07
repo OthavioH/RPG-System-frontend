@@ -14,18 +14,14 @@
             <option value="100">D100</option>
         </select>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="w-auto">
-        <mat-label class="text-light">Quantidade de dados</mat-label>
-        <input matInput type="number" value="1" min="1" class="text-light" #diceQuantity>
-    </mat-form-field>
 </div>
 
 <app-dice-roll-animation *ngIf="currentState === 'noDice' ? 'runningDice' : 'noDice'" [diceResult]="diceResult" [shouldShow]="currentState === 'noDice' ? false : true" [imageUrl]="'./../../../../assets/dado.gif'"></app-dice-roll-animation>
 
 <div class="input-group mb-3 justify-content-around">
-    <button class="btn btn-outline-warning" type="button"  role="button" (click)="rollDice(+diceFaces.value, +diceQuantity.value, diceDiv)">Rolar dado</button>
+    <button class="btn btn-outline-warning" type="button"  role="button" (click)="rollDice(+diceFaces.value)">Rolar dado</button>
 </div>
 
 <div *ngIf="showCooldownError" >
-    <p class="text-danger text-center fs-6">O dado está em cooldown</p>
+    <p class="text-danger text-center fs-6">O dado está em cooldown ({{diceTimer == diceMaxCooldown -1 ? 0 : diceTimer +1}}s)</p>
 </div>

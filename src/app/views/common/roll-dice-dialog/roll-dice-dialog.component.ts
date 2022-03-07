@@ -18,9 +18,7 @@ export class RollDiceDialogComponent implements OnInit {
   diceMaxCooldown:number;
   diceInScreenTime:number;
 
-  diceDiv:any;
-
-  diceResult:string = '';
+  diceResult:number;
 
   gameSettings:IGameSettings;
 
@@ -32,9 +30,19 @@ export class RollDiceDialogComponent implements OnInit {
 
   async initVariables() {
     this.gameSettings = await this.gameSettingsService.getGameSettings();
+
     this.diceMaxCooldown = this.gameSettings.diceCooldown;
+
     this.diceTimer = this.diceMaxCooldown -1;
     this.diceInScreenTime = this.gameSettings.diceScreenTime -1;
+
+    this.gameSettingsService.onNewTimerEmitted$.subscribe((timer)=>{
+      if (timer >= this.diceMaxCooldown -1) {
+        this.showCooldownError = false;
+      }
+      this.diceTimer = timer;
+      
+    });
   }
 
   ngOnInit(): void {
@@ -45,26 +53,14 @@ export class RollDiceDialogComponent implements OnInit {
     this.currentState = this.currentState === 'noDice' ? 'runningDice' : 'noDice';
   }
 
-  rollDice(diceFaces: number, diceQuantity:number, diceDiv:any): void {
-    this.diceDiv = diceDiv;
+  rollDice(diceFaces: number, ): void {
     if (this.diceTimer == this.diceMaxCooldown -1) {
       this.changeDiceAnimationState();
+
       this.showCooldownError = false;
-      this.diceResult = '';
-      let result:number = 0;
-      let randomNumber = this.getRandom(diceFaces);
-      if (diceQuantity <= 1) {
-        this.diceResult += ` ${randomNumber}`;
-      }
-      else {
-        for (let i = 1; i <= diceQuantity; i++) {
-          this.diceResult += ` ${randomNumber}${i+1 > diceQuantity ? '' : ' +'} `;
-          result += randomNumber;
-          randomNumber = this.getRandom(diceFaces);
-        }
-        this.diceResult += `= ${result}`;
-      }
-      this.gameSettingsService.addNewRoll({id:generateRandomId(),characterName:this.characterName,diceResult:`${this.diceResult}`, diceFaces:diceFaces});
+      this.diceResult = this.getRandom(diceFaces);
+
+      this.gameSettingsService.addNewRoll({id:generateRandomId(),characterName:this.characterName,diceResult:this.diceResult, diceFaces:diceFaces});
       this.timerCount();
     }
     else {
@@ -88,6 +84,7 @@ export class RollDiceDialogComponent implements OnInit {
         this.diceTimer = this.diceMaxCooldown -1;
         clearInterval(diceTimerInterval);
       }
+      this.gameSettingsService.emitTimer(this.diceTimer >= 0 ? this.diceTimer : this.diceMaxCooldown -1);
     },1000);
 
   }
