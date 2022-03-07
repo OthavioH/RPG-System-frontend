@@ -42,7 +42,7 @@ import { ChooseRitualsDialogComponent } from './views/common/choose-rituals-dial
 import { ShowRitualDialogComponent } from './views/common/show-ritual-dialog/show-ritual-dialog.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import { TestDiceComponent } from './test-dice/test-dice.component';
-import { ChangeCharacterImageDialogComponent } from './change-character-image-dialog/change-character-image-dialog.component';
+import { ChangeCharacterImageDialogComponent } from './views/common/change-character-image-dialog/change-character-image-dialog.component';
 import { DiceRollAnimationComponent } from './views/common/dice-roll-animation/dice-roll-animation.component';
 
 @NgModule({

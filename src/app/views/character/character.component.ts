@@ -21,7 +21,7 @@ import { ChooseAbilitiesDialogComponent } from '../common/choose-abilities-dialo
 import { ChooseRitualsDialogComponent } from '../common/choose-rituals-dialog/choose-rituals-dialog.component';
 import { IRitual } from 'src/models/Ritual';
 import { ShowRitualDialogComponent } from '../common/show-ritual-dialog/show-ritual-dialog.component';
-import { ChangeCharacterImageDialogComponent } from 'src/app/change-character-image-dialog/change-character-image-dialog.component';
+import { ChangeCharacterImageDialogComponent } from 'src/app/views/common/change-character-image-dialog/change-character-image-dialog.component';
 
 @Component({
   selector: 'app-character',

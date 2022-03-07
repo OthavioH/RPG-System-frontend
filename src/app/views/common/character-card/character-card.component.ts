@@ -14,6 +14,8 @@ export class CharacterCardComponent implements OnInit {
   @Input()
   character:ICharacter;
 
+  defaultImgUrl = '/../../assets/unknown_character_transparent.png';
+
   constructor(private modalService:MatDialog,private sanitizer:DomSanitizer) {
   }
 
@@ -22,6 +24,10 @@ export class CharacterCardComponent implements OnInit {
 
   openDeleteCharacterDialog(id:number):void{
     this.modalService.open(DeleteCharacterDialogComponent, {data:id})
+  }
+
+  onImageError(event:any):void {
+    event.target.src = this.defaultImgUrl;
   }
 
 }
