@@ -21,6 +21,7 @@ import { ChooseAbilitiesDialogComponent } from '../common/choose-abilities-dialo
 import { ChooseRitualsDialogComponent } from '../common/choose-rituals-dialog/choose-rituals-dialog.component';
 import { IRitual } from 'src/models/Ritual';
 import { ShowRitualDialogComponent } from '../common/show-ritual-dialog/show-ritual-dialog.component';
+import { ChangeCharacterImageDialogComponent } from 'src/app/change-character-image-dialog/change-character-image-dialog.component';
 
 @Component({
   selector: 'app-character',
@@ -34,6 +35,9 @@ export class CharacterComponent implements OnInit {
 
   onCharacterChanged:Subscription;
 
+  imgUrl:string;
+  defaultImgUrl:string = '/../../assets/unknown_character_transparent.png';
+
   constructor(
     private charactersService:CharactersService, 
     private modalService:MatDialog, 
@@ -46,7 +50,12 @@ export class CharacterComponent implements OnInit {
     this.routeSubscription = this.activatedRoute.data.subscribe((info: {character: ICharacter}) => {
       this.character = info.character;
       this.titleService.setTitle(`Personagem | ${this.character.name}`); 
+      this.imgUrl = this.character.profileImageUrl ?? this.defaultImgUrl;
     });
+  }
+
+  onImageError(event) {
+    event.target.src = this.defaultImgUrl;
   }
 
   openSkillDialog(skill: ISkill): void {
@@ -127,6 +136,10 @@ export class CharacterComponent implements OnInit {
 
   openEditSanityDialog(): void {
     this.modalService.open(EditProgressBarValuesDialogComponent,{data:{character: this.character, characterStats:CharacterStats.sanity}});
+  }
+
+  openChangeCharacterImgDialog():void {
+    this.modalService.open(ChangeCharacterImageDialogComponent,{data:this.character});
   }
 
   openEditProgressBarValueDialog(stats:string): void {

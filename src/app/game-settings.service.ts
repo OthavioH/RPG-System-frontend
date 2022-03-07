@@ -34,7 +34,6 @@ export class GameSettingsService {
   async initSettings(){
     this.updateGameSettingsEvent$ = new BehaviorSubject<IGameSettings>(await this.getGameSettings());
     Socket.socket.on('lastRollListChanged',(newRollList:any[])=>{
-      console.log(newRollList);
       this.onRollsListChanged.next(newRollList);
       this.gameSettings.lastRolls = newRollList;
     });
@@ -48,7 +47,7 @@ export class GameSettingsService {
 
   async setGameTimers(diceCooldown : number, diceScreenTime: number) {
     
-    const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/save/timers`,{
+    const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/timers/save`,{
       diceCooldown: diceCooldown,
       diceScreenTime: diceScreenTime,
     }).toPromise();

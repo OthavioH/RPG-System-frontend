@@ -8,5 +8,5 @@
         <mat-label>Abreviação</mat-label>
         <input #newAttributeAbbreviation matInput type="text" class="text-light" [value]="attribute.abbreviation" aria-label="abreviacao-atributo"/>
     </mat-form-field>
-    <button mat-button class="float-end" (click)="editAttribute(newAttributeAbbreviation.value, newAttributeAbbreviation.value)">OK</button>
+    <button mat-button class="float-end" (click)="editAttribute(newAttributeName.value, newAttributeAbbreviation.value)">OK</button>
 </div>

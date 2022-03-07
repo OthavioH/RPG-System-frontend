@@ -20,11 +20,12 @@
     </mat-form-field>
 </div>
 
+<app-dice-roll-animation *ngIf="currentState === 'noDice' ? 'runningDice' : 'noDice'" [diceResult]="diceResult" [shouldShow]="currentState === 'noDice' ? false : true" [imageUrl]="'./../../../../assets/dado.gif'"></app-dice-roll-animation>
+
 <div class="input-group mb-3 justify-content-around">
-    <button class="btn btn-outline-warning" type="button"  role="button" (click)="rollDice(+diceFaces.value, +diceQuantity.value)">Rolar dado</button>
+    <button class="btn btn-outline-warning" type="button"  role="button" (click)="rollDice(+diceFaces.value, +diceQuantity.value, diceDiv)">Rolar dado</button>
 </div>
 
-<div *ngIf="diceResult.length > 0" >
-    <p class="text-warning text-center fs-6">Resultado:{{diceResult}}</p>
+<div *ngIf="showCooldownError" >
+    <p class="text-danger text-center fs-6">O dado está em cooldown</p>
 </div>
-
