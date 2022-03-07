@@ -47,7 +47,6 @@ export class DiceRollAnimationComponent implements OnInit {
       this.animationState = 'visible';
     }
     this.changeDiceAnimationState();
-    console.log(this.animationState, this.shouldShow);
     this.timestamp = Date.now();
   }
 
