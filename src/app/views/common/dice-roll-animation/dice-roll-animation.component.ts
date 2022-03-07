@@ -9,7 +9,7 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
     trigger('diceResultFadeIn', [
       state('invisible', style({opacity: 0})),
       state('visible', style({opacity: 1})),
-      transition('invisible => visible', animate('300ms')),
+      transition('invisible => visible', animate('500ms')),
       transition('visible => invisible', animate('0ms')),
     ])
   ]
@@ -36,7 +36,7 @@ export class DiceRollAnimationComponent implements OnInit {
     const interval = setTimeout(() => {
       this.animationState = this.animationState === 'invisible' ? 'visible' : 'invisible';
       clearInterval(interval);
-    }, 300);
+    }, 400);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
