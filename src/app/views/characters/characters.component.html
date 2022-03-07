@@ -1,6 +1,6 @@
 <ng-container *ngIf="!loading">
     <section class="container pb-2 pt-4 align-center">
-        <div class="d-flex flex-nowrap row overflow-auto aaa pb-2">
+        <div class="d-flex flex-nowrap row overflow-auto scrollbar-thin pb-2">
             <div class="bg-dark py-3 rounded-3 me-4" *ngFor="let roll of gameSettings.lastRolls" style="width:fit-content;">
                 <ul class="px-2">
                     <li class="d-flex text-light fs-4 mb-1">{{roll.characterName | titlecase}}</li>

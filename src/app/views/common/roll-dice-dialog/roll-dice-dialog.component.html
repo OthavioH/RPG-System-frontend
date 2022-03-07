@@ -1,4 +1,7 @@
-<div class="d-flex flex-wrap justify-content-between w-auto">
+<div class="d-flex flex-wrap justify-content-center w-auto">
+    <app-dice-roll-animation *ngIf="currentState === 'noDice' ? 'runningDice' : 'noDice'" [diceResult]="diceResult" [shouldShow]="currentState === 'noDice' ? false : true" [imageUrl]="'./../../../../assets/dado.gif'"></app-dice-roll-animation>
+</div>
+<div class="d-flex flex-wrap justify-content-center w-auto">
     <mat-form-field appearance="fill" class="w-auto">
         <mat-label class="text-light">Número de faces</mat-label>
         <select matNativeControl class="text-light" #diceFaces>
@@ -15,8 +18,6 @@
         </select>
     </mat-form-field>
 </div>
-
-<app-dice-roll-animation *ngIf="currentState === 'noDice' ? 'runningDice' : 'noDice'" [diceResult]="diceResult" [shouldShow]="currentState === 'noDice' ? false : true" [imageUrl]="'./../../../../assets/dado.gif'"></app-dice-roll-animation>
 
 <div class="input-group mb-3 justify-content-around">
     <button class="btn btn-outline-warning" type="button"  role="button" (click)="rollDice(+diceFaces.value)">Rolar dado</button>
