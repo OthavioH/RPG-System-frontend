@@ -28,6 +28,30 @@ body { margin: 0; background-color:rgba(0, 0, 0, 0.781);
     font-family: 'League Spartan', sans-serif;
 }
 
+.character-img {
+    object-fit: cover;
+    width:89px;
+    height:90px;
+    aspect-ratio: initial;
+}
+
+.border-white {
+  border:3px solid #fff;
+}
+
+.border-yellow {
+  border:3px solid #ffc107;
+}
+
+.not-playable-image {
+  background:none;
+}
+
+.playable-dice {
+  background: url('./assets/dado.gif') no-repeat;
+  background-size:cover;
+}
+
 mat-dialog-container {
     background-color: transparent !important;
     padding: 0px 0px 0px 0px !important;

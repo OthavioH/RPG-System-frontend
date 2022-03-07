@@ -4,6 +4,12 @@
         <div class="d-flex col-md-6 mt-3 shadow">
             <div class="container rounded-3  pb-2 pt-4 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
                 <p class="text-center fs-2 paranormal-text fw-bold text-warning w-100 mb-4">Características</p>
+                <div class="d-flex justify-content-center row mb-3">
+                    <div class="mt-2 align-center justify-content-center" style="width:fit-content;height:fit-content;">
+                        <img class="img rounded-circle border-yellow character-img" src="{{character.profileImageUrl}}" (error)="onImageError($event)" alt=""
+                        (click)="openChangeCharacterImgDialog()">
+                    </div>
+                </div>
                 <div class="input-group justify-content-between">
                     <mat-form-field color="accent" class="w-auto min-width-250">
                         <mat-label>Nome do Jogador(a)</mat-label>
@@ -323,7 +329,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let weapon of character.weapons">
+                      <tr *ngFor="let weapon of character.weapons ?? []">
                         <th scope="row"><button class="btn btn-outline-danger w-auto me-2 col" style="height:fit-content;font-size: 14px;" (click)="deleteWeapon(weapon.id)">
                             <i class="bi bi-trash3 text-light text-center"></i>
                         </button></th>

@@ -10,6 +10,7 @@ export interface ICharacter {
     id: number;
     playerName?: string;
     name: string;
+    profileImageUrl?:string;
     age?: number;
     gender?: string;
     class?:string;

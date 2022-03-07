@@ -1,0 +1,4 @@
+<div #diceDiv class="d-flex align-self-center justify-content-center mb-3" *ngIf="shouldShow" style="width: 100%;height: 200px;position: relative;">
+    <div [@diceResultFadeIn]="animationState" class="fs-1 text-white text-center" style="position: absolute;z-index: 10;top:49%;">{{diceResult}}</div>
+    <img [src]="imageUrl+'?timestamp='+timestamp" alt="">
+</div>

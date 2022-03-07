@@ -1,7 +1,7 @@
 <a class="card bg-dark border border-2 border-warning mb-2 btn text-light" style="width: 250px;height:515px;border-radius: 10px;" [routerLink]="['/personagens', character.id]" (dragstart)="openDeleteCharacterDialog(character.id)">
     <div class="d-flex justify-content-center row">
         <div class="mt-2 align-center justify-content-center" style="width:fit-content;height:fit-content;">
-            <img class="img rounded-circle border-white" src="/../../assets/unknown_character.png" style="width:89px;height:90px;aspect-ratio: initial;" alt="">
+            <img class="img rounded-circle border-white character-img" src="{{character.profileImageUrl}}" (error)="onImageError($event)" alt="">
         </div>
     </div>
     <div class="d-flex justify-content-center mt-4 row">

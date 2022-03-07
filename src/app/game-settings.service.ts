@@ -22,6 +22,9 @@ export class GameSettingsService {
   private onRollsListChanged:Subject<IDiceRoll[]> = new Subject<IDiceRoll[]>();
   onRollsListChanged$ = this.onRollsListChanged.asObservable();
 
+  private onNewTimerEmitted: Subject<number> = new Subject<number>();
+  onNewTimerEmitted$ = this.onNewTimerEmitted.asObservable();
+
   port:number;
 
   updateGameSettingsEvent$ :BehaviorSubject<IGameSettings>;
@@ -33,11 +36,19 @@ export class GameSettingsService {
 
   async initSettings(){
     this.updateGameSettingsEvent$ = new BehaviorSubject<IGameSettings>(await this.getGameSettings());
+
     Socket.socket.on('lastRollListChanged',(newRollList:any[])=>{
-      console.log(newRollList);
       this.onRollsListChanged.next(newRollList);
       this.gameSettings.lastRolls = newRollList;
     });
+
+    Socket.socket.on('diceOnCooldown',(timer:number)=>{
+      this.onNewTimerEmitted.next(timer);
+    });
+  }
+
+  emitTimer(timer:number) {
+    Socket.socket.emit('diceRoll',timer);
   }
 
   async getGameSettings(): Promise<IGameSettings> {
@@ -48,7 +59,7 @@ export class GameSettingsService {
 
   async setGameTimers(diceCooldown : number, diceScreenTime: number) {
     
-    const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/save/timers`,{
+    const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/timers/save`,{
       diceCooldown: diceCooldown,
       diceScreenTime: diceScreenTime,
     }).toPromise();

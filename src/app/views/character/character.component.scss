@@ -36,6 +36,7 @@
     position:absolute;
     bottom:-42.5%;
 }
+
 .shield:after {transform: scale(-1,1) translateX(-5em) rotate(-20deg);}
 .shield, .shield:before, .shield:after {background: grey;}
 .shield.test, .shield.test:before, .shield.test:after {background: rgba(0, 127, 0, 0.5);}
