@@ -6,15 +6,15 @@
         </div>
     </div>
     <p class="text-white fs-4 w-100 text-start d-flex col mb-3">{{ritual.circle}}° Círculo</p>
-    <div class="text-white fs-6 w-100 text-start d-flex col mb-3" *ngIf="ritual.execution != null && ritual.duration.length > 0">
+    <div class="text-white fs-6 w-100 text-start d-flex col mb-3" *ngIf="ritual.execution != null && ritual.execution.length > 0">
         <span class="fw-bold me-1 text-warning">Execução:</span>
         <span>{{ritual.execution}}</span>
     </div>
-    <div class="text-white fs-6 w-100 text-start d-flex col mb-3" *ngIf="ritual.target != null && ritual.duration.length > 0">
+    <div class="text-white fs-6 w-100 text-start d-flex col mb-3" *ngIf="ritual.target != null && ritual.target.length > 0">
         <span class="fw-bold me-1 text-warning">Alvo:</span>
         <span>{{ritual.target}}</span>
     </div>
-    <div class="text-white fs-6 w-100 text-start d-flex col mb-3" *ngIf="ritual.range != null && ritual.duration.length > 0">
+    <div class="text-white fs-6 w-100 text-start d-flex col mb-3" *ngIf="ritual.range != null && ritual.range.length > 0">
         <span class="fw-bold me-1 text-warning">Alcance:</span>
         <span>{{ritual.range}}</span>
     </div>
