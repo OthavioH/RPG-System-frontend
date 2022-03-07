@@ -16,6 +16,10 @@ export class ShowRitualDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  scrollToTitle(element: HTMLElement): void {
+    element.scrollIntoView();
+  }
+
   closeDialog(): void {
     this.dialogRef.close();
   }

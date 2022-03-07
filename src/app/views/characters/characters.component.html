@@ -34,14 +34,14 @@
                         </button>
                     </div>
                     <div class="row d-flex justify-content-between col-md-12 px-4 mt-3 py-2 overflow-auto" style="max-height: 400px;" >
-                        <div class="row d-flex justify-content-between mb-2" *ngFor="let attribute of attributeList">
+                        <div class="d-flex col-md-6 flex-nowrap mb-2" *ngFor="let attribute of attributeList">
                             <button class="btn btn-outline-danger w-auto me-2 col-md-2" style="height:fit-content" (click)="deleteAttribute(attribute.id)">
                                 <i class="bi bi-trash3 text-light"></i>
                             </button>
                             <button class="btn btn-outline-warning w-auto me-2 col-md-2" style="height:fit-content" (click)="openEditAttributeDialog(attribute)">
                                 <i class="bi bi-pencil text-light"></i>
                             </button>
-                            <input class="form-control w-75 text-light btn-outline-secondary bg-transparent shadow-none" id="disabledInput" type="text" [value]="attribute.name" (click)="openAttributeDialog(attribute)" readonly>
+                            <input class="form-control w-auto text-light btn-outline-secondary bg-transparent shadow-none" style="min-width: 100px;" id="disabledInput" type="text" [value]="attribute.name" (click)="openAttributeDialog(attribute)" readonly>
                         </div>
                     </div>
                 </div>
@@ -56,14 +56,14 @@
                         </button>
                     </div>
                     <div class="row d-flex justify-content-between col-md-12 px-4 py-2 mt-3 overflow-auto" style="max-height: 400px;">
-                        <div class="row d-flex justify-content-between mb-2" *ngFor="let skill of skillList">
+                        <div class="d-flex col-md-6 flex-nowrap mb-2" *ngFor="let skill of skillList">
                             <button class="btn btn-outline-danger w-auto me-2 col-md-2" (click)="deleteSkill(skill.id)">
                                 <i class="bi bi-trash3 text-light"></i>
                             </button>
                             <button class="btn btn-outline-warning w-auto me-2 col-md-2" (click)="openEditSkillDialog(skill)">
                                 <i class="bi bi-pencil text-light"></i>
                             </button>
-                            <input class="form-control w-75 text-light btn-outline-secondary bg-transparent shadow-none" id="disabledInput" type="text" [value]="skill.name" readonly (click)="openSkillDialog(skill)">
+                            <input class="form-control w-auto text-light btn-outline-secondary bg-transparent shadow-none" style="min-width: 100px;" id="disabledInput" type="text" [value]="skill.name" readonly (click)="openSkillDialog(skill)">
                         </div>
                     </div>
                 </div>
@@ -77,14 +77,14 @@
                         </button>
                     </div>
                     <div class="row d-flex justify-content-between col-md-12 px-4 py-2 mt-3 overflow-auto" style="max-height: 400px;">
-                        <div class="row d-flex justify-content-between mb-2" *ngFor="let ability of gameSettings.abilities">
+                        <div class="d-flex col-md-6 flex-nowrap mb-2" *ngFor="let ability of gameSettings.abilities">
                             <button class="btn btn-outline-danger w-auto me-2 col-md-2" (click)="deleteAbility(ability.id)">
                                 <i class="bi bi-trash3 text-light"></i>
                             </button>
                             <button class="btn btn-outline-warning w-auto me-2 col-md-2" (click)="openEditAbilityDialog(ability)">
                                 <i class="bi bi-pencil text-light"></i>
                             </button>
-                            <input class="form-control w-75 text-light btn-outline-secondary bg-transparent shadow-none" id="disabledInput" type="text" [value]="ability.name" readonly (click)="openAbilityDialog(ability)">
+                            <input class="form-control w-auto text-light btn-outline-secondary bg-transparent shadow-none" style="min-width: 100px;" id="disabledInput" type="text" [value]="ability.name" readonly (click)="openAbilityDialog(ability)">
                         </div>
                     </div>
                 </div>
@@ -98,14 +98,14 @@
                         </button>
                     </div>
                     <div class="row d-flex justify-content-between col-md-12 px-4 py-2 mt-3 overflow-auto" style="max-height: 400px;">
-                        <div class="row d-flex justify-content-between mb-2" *ngFor="let ritual of gameSettings.rituals">
+                        <div class="d-flex col-md-6 flex-nowrap mb-2" *ngFor="let ritual of gameSettings.rituals">
                             <button class="btn btn-outline-danger w-auto me-2 col-md-2" (click)="deleteRitual(ritual.id)">
                                 <i class="bi bi-trash3 text-light"></i>
                             </button>
                             <button class="btn btn-outline-warning w-auto me-2 col-md-2" (click)="openEditRitualDialog(ritual)">
                                 <i class="bi bi-pencil text-light"></i>
                             </button>
-                            <input class="form-control w-75 text-light btn-outline-secondary bg-transparent shadow-none" id="disabledInput" type="text" [value]="ritual.name" readonly (click)="openRitualDialog(ritual)">
+                            <input class="form-control w-auto text-light btn-outline-secondary bg-transparent shadow-none" style="min-width: 100px;" id="disabledInput" type="text" [value]="ritual.name" readonly (click)="openRitualDialog(ritual)">
                         </div>
                     </div>
                 </div>
