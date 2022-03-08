@@ -1,7 +1,7 @@
 import { InventoryItem } from "./InventoryItem";
 
 export interface Inventory {
-    weight:number;
-    maxWeight:number;
+    usedSlots:number;
+    maxSlots:number;
     items:InventoryItem[];
 }

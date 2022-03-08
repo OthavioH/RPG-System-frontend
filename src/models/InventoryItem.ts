@@ -3,5 +3,6 @@ export interface InventoryItem {
     name: string;
     quantity: number;
     details:string;
+    slots:number;
     prestige: string;
 }

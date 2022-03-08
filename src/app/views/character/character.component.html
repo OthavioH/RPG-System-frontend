@@ -251,7 +251,7 @@
                 <p class="text-center fs-2 paranormal-text fw-bold text-warning col">Inventário</p>
             </div>
             <div class="row d-flex justify-content-between col-md-12">
-                <p class="text-center fs-6 fw-bold text-light col">PESO: {{character.inventory != null ? +character.inventory.weight : 0}}/{{character.inventory != null ? +character.inventory.maxWeight : 0}}</p>
+                <p class="text-center fs-6 fw-bold text-light col">SLOTS: {{character.inventory != null ? +character.inventory.usedSlots : 0}}/{{character.inventory != null ? +character.inventory.maxSlots : 0}}</p>
             </div>
             <div class="row d-flex justify-content-between col-md-12">
                 <div class="form-group">

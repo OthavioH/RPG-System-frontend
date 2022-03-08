@@ -22,7 +22,7 @@ export class CreateEquipmentDialogComponent implements OnInit {
   async onConfirmClicked(itemName: string,) {
     this.dialogRef.close();
     if (itemName.length > 0) {
-      const newItem = {id:generateRandomId(), name:itemName, quantity:0,details:'', prestige:''};
+      const newItem = {id:generateRandomId(), name:itemName, quantity:0,details:'', prestige:'',slots:0};
       if (this.data.character.inventory.items != null) {
         this.data.character.inventory.items.push(newItem)
       } else {
