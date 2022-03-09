@@ -45,6 +45,7 @@ import { ChangeCharacterImageDialogComponent } from './views/common/change-chara
 import { DiceRollAnimationComponent } from './views/common/dice-roll-animation/dice-roll-animation.component';
 import { DiceAnimationComponent } from './views/common/dice-animation/dice-animation.component';
 import { MainPageComponent } from './views/main-page/main-page.component';
+import { BannerComponent } from './views/common/banner/banner.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { MainPageComponent } from './views/main-page/main-page.component';
     DiceRollAnimationComponent,
     DiceAnimationComponent,
     MainPageComponent,
+    BannerComponent,
   ],
   imports: [
     BrowserModule,

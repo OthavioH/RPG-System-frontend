@@ -2,7 +2,16 @@ require('dotenv').config();
 
 const fs = require('fs');
 
-const envData = {apiUrl: process.env.apiUrl};
+const envData = {
+    apiUrl: process.env.apiUrl,
+    adsense: {
+        adClient: process.env.adClient, 
+        show: process.env.adShow,
+        adSlot: process.env.adSlot,
+        adFormat:process.env.adFormat,
+        fullWidthRes: process.env.fullWidthResponsive,
+    }
+};
 const envDataJSON = JSON.stringify(envData);
 
 console.log(`${__dirname}/src/environments`);

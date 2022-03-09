@@ -7,6 +7,13 @@ import envVars from './env.json';
 export const environment = {
   production: false,
   apiUrl: envVars.apiUrl,
+  adsense: {
+    adClient: envVars.adsense.adClient,
+    show: envVars.adsense.show,
+    adSlot: envVars.adsense.adSlot,
+    adFormat: envVars.adsense.adFormat,
+    fullWidthResponsive: envVars.adsense.fullWidthResponsive,
+  }
 };
 
 /*
