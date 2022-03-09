@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const fs = require('fs');
+
 const envData = {apiUrl: process.env.apiUrl};
 const envDataJSON = JSON.stringify(envData);
 
