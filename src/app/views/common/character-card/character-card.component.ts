@@ -11,8 +11,8 @@ import { DeleteCharacterDialogComponent } from '../delete-character-dialog/delet
 })
 export class CharacterCardComponent implements OnInit {
 
-  @Input()
-  character:ICharacter;
+  @Input() character:ICharacter;
+  @Input() gameId:string;
 
   defaultImgUrl = '/../../assets/unknown_character_transparent.png';
 
@@ -23,7 +23,7 @@ export class CharacterCardComponent implements OnInit {
   }
 
   openDeleteCharacterDialog(id:number):void{
-    this.modalService.open(DeleteCharacterDialogComponent, {data:id})
+    this.modalService.open(DeleteCharacterDialogComponent, {data:{characterId:id,gameId:this.gameId,}})
   }
 
   onImageError(event:any):void {

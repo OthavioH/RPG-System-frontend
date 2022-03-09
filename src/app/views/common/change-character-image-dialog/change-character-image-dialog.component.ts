@@ -14,11 +14,11 @@ export class ChangeCharacterImageDialogComponent implements OnInit {
   imgUrl:string;
 
   constructor(public dialogRef: MatDialogRef<ChangeCharacterImageDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ICharacter,
+    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter,gameId:string},
     private dashboardService: DashboardService,) { }
 
   ngOnInit(): void {
-    this.imgUrl = this.data.profileImageUrl ?? this.defaultImgUrl;
+    this.imgUrl = this.data.character.profileImageUrl ?? this.defaultImgUrl;
   }
 
   onImageError(event) {
@@ -26,8 +26,8 @@ export class ChangeCharacterImageDialogComponent implements OnInit {
   }
 
   changeImage(newImgUrl:string):void {
-    this.data.profileImageUrl = newImgUrl != '' ? newImgUrl : '';
-    this.dashboardService.updateCharacter(this.data);
+    this.data.character.profileImageUrl = newImgUrl != '' ? newImgUrl : '';
+    this.dashboardService.updateCharacter(this.data.character,this.data.gameId);
     this.close();
   }
 

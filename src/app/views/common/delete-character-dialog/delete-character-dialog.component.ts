@@ -11,7 +11,7 @@ export class DeleteCharacterDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<DeleteCharacterDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public characterId: number,
+    @Inject(MAT_DIALOG_DATA) public data:{characterId:number,gameId:string},
     public dashboardService: DashboardService,
     ) { }
 
@@ -19,7 +19,7 @@ export class DeleteCharacterDialogComponent implements OnInit {
   }
 
   async onConfirmButtonClicked() {
-    await this.dashboardService.deleteById(this.characterId);
+    await this.dashboardService.deleteById(this.data.characterId,this.data.gameId);
     this.closeDialog();
   }
 

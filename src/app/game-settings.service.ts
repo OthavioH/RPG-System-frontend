@@ -1,6 +1,6 @@
 import { HttpClient,} from '@angular/common/http';
 import { Injectable, } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Socket } from 'src/models/SocketClass';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { io } from 'socket.io-client';
@@ -28,9 +28,9 @@ export class GameSettingsService {
 
   port:number;
 
-  updateGameSettingsEvent$ :BehaviorSubject<IGameSettings>;
+  updateGameSettingsEvent$ :Subject<IGameSettings> = new Subject<IGameSettings>();
 
-  constructor(private http:HttpClient, private router: Router,) {
+  constructor(private http:HttpClient, private router: Router,private activatedRoute: ActivatedRoute) {
     Socket.socket = io(`${environment.apiUrl}`);
     this.initSettings();
   }
@@ -51,12 +51,6 @@ export class GameSettingsService {
     });
   }
 
-  async createNewGame():Promise<void> {
-    const id = generateRandomId();
-    const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/create`,{id:id}).toPromise();
-    this.router.navigate([`/dashboard`],{queryParams:{id:response.id}});
-  }
-
   emitTimer(timer:number) {
     Socket.socket.emit('diceRoll',{timer:timer,gameId:this.gameSettings.id});
   }
@@ -67,9 +61,15 @@ export class GameSettingsService {
     return this.gameSettings;
   }
 
-  async setGameTimers(diceCooldown : number, diceScreenTime: number) {
+  async createNewGame():Promise<void> {
+    const id = generateRandomId();
+    const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/create`,{id:id}).toPromise();
+    this.router.navigate([`/dashboard/${response.id}`],);
+  }
+
+  async setGameTimers(diceCooldown : number, diceScreenTime: number,gameId:string) {
     
-    const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/timers/save`,{
+    const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/timers/save?id=${gameId}`,{
       diceCooldown: diceCooldown,
       diceScreenTime: diceScreenTime,
     }).toPromise();
@@ -84,7 +84,7 @@ export class GameSettingsService {
     this.gameSettings.attributes = this.gameSettings.attributes != null ? this.gameSettings.attributes.sort((a,b) => a.id > b.id ? 1 : -1) : [];
     this.gameSettings.abilities = this.gameSettings.abilities != null ? this.gameSettings.abilities.sort((a,b) => a.id > b.id ? 1 : -1) : [];
     this.gameSettings.rituals = this.gameSettings.rituals != null ? this.gameSettings.rituals.sort((a,b) => a.id > b.id ? 1 : -1) : [];
-    const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/properties/save/`,{
+    const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/properties/save?id=${this.gameSettings.id}`,{
       skills: this.gameSettings.skills,
       attributes: this.gameSettings.attributes,
       abilities:this.gameSettings.abilities,
@@ -96,7 +96,7 @@ export class GameSettingsService {
   }
 
   async addNewRoll(roll: IDiceRoll) {
-    await this.http.post(`${environment.apiUrl}/gamesettings/roll/save`,{
+    await this.http.post(`${environment.apiUrl}/gamesettings/roll/save?id=${this.gameSettings.id}`,{
       roll: roll,
       oldRollList: this.gameSettings.lastRolls ?? [],
     }).toPromise();
@@ -126,7 +126,7 @@ export class GameSettingsService {
   async createNewSkill(skillName: string, skillDescription:string) {
     if (skillName.length > 0 && skillDescription.length > 0) {
       const newSkill: ISkill = {
-        id:this.generateRandomId(),
+        id:generateRandomId(),
         name: skillName,
         description: skillDescription,
         value:0,
@@ -147,7 +147,7 @@ export class GameSettingsService {
   async createNewRitual(name: string,circle: number,execution: string,range: string,target: string,duration: string,description: string,resistance: string,elements:RitualElement[]) {
     if (name.length > 0 && description.length > 0) {
       const newRitual: IRitual = {
-        id:this.generateRandomId(),
+        id:generateRandomId(),
         name:name,
         circle:circle,
         execution:execution,
@@ -173,7 +173,7 @@ export class GameSettingsService {
   async createNewAbility(abilityName: string, abilityDescription:string) {
     if (abilityName.length > 0 && abilityDescription.length > 0) {
       const newability: IAbility = {
-        id:this.generateRandomId(),
+        id:generateRandomId(),
         name: abilityName,
         description: abilityDescription
       };
@@ -193,7 +193,7 @@ export class GameSettingsService {
     if (attributeName.length > 0 && abbreviation.length > 0) {
       
       const newAttribute: IAttribute = {
-        id:this.generateRandomId(),
+        id:generateRandomId(),
         name: attributeName,
         abbreviation:abbreviation,
       };
@@ -257,10 +257,4 @@ export class GameSettingsService {
     }
   }
 
-  generateRandomId():string {
-    var S4 = function() {
-       return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
-    };
-    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
-  }
 }

@@ -11,8 +11,9 @@ import { ISkill } from 'src/models/Skill';
 import { IWeapon } from 'src/models/Weapon';
 
 import { ICharacter } from '../../../../../models/Character';
-import { ActivatedRouteSnapshot, Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Socket } from 'src/models/SocketClass';
+import { IGameSettings } from 'src/models/GameSettings';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +22,13 @@ export class DashboardService {
 
   private onCharacterChanged:BehaviorSubject<ICharacter> = new BehaviorSubject<ICharacter>(null);
   private onCharacterListChanged: BehaviorSubject<ICharacter[]> = new BehaviorSubject<ICharacter[]>(null);
+
   onCharacterChanged$ = this.onCharacterChanged.asObservable();
   onCharacterListChanged$ = this.onCharacterListChanged.asObservable();
+
   equipmentList : InventoryItem[] = [];
   weaponList : IWeapon[] = [];
+  gameSettings: IGameSettings;
 
   private attributeList: IAttribute[] = [];
   private skillList: ISkill[] = [];
@@ -35,31 +39,35 @@ export class DashboardService {
     private http:HttpClient,
     private gameSettingsService: GameSettingsService,
     private router:Router,
-    private routerSnapshot:ActivatedRouteSnapshot,
   ) {
     this.initSettings();
   }
 
   async initSettings() {
-    await this.gameSettingsService.getGameSettings(this.routerSnapshot.params.id);
     Socket.socket.on('characterChanged',(response:{character:ICharacter,gameId:string})=>{
-      this.onCharacterChanged.next(response.character);
+      if (response.gameId === this.gameSettings.id) {
+        this.onCharacterChanged.next(response.character);
+      }
     });
   }
 
-  async getCharacterById(characterId: number,gameId?:string): Promise<ICharacter> {
-    const response: any = await this.http.get(`${environment.apiUrl}/sheets/${characterId}`).toPromise();
+  async setGameId(gameId:string){
+    this.gameSettings = await this.gameSettingsService.getGameSettings(gameId);
+  }
+
+  async getCharacterById(characterId: number,gameId:string): Promise<ICharacter> {
+    const response: any = await this.http.get(`${environment.apiUrl}/sheets/${characterId}?gameId=${gameId}`).toPromise();
     if (response.sheet !=null) {
       const character:ICharacter = response.sheet;
-      return character;  
+      return character;
     }
 
-    this.router.navigate(["**"])
+    this.router.navigate(["**"]);
   }
 
 
-  async getCharacters(){
-    const response: any = await this.http.get(`${environment.apiUrl}/sheets`).toPromise();
+  async getCharacters(gameId:string){
+    const response: any = await this.http.get(`${environment.apiUrl}/sheets?gameId=${gameId}`).toPromise();
     this.characters = response.sheetList;
     this.onCharacterListChanged.next(this.characters);
   }
@@ -68,35 +76,35 @@ export class DashboardService {
     return this.skillList;
   }
 
-  async deleteById(id: number): Promise<void> {
-    await this.http.put(`${environment.apiUrl}/sheets/${id}/delete`,{}).toPromise();
+  async deleteById(id: number, gameId:string): Promise<void> {
+    await this.http.put(`${environment.apiUrl}/sheets/${id}/delete?gameId=${gameId}`,{}).toPromise();
     
-    await this.getCharacters();
+    await this.getCharacters(gameId);
   }
 
-  async updateCharacter(character: ICharacter) {
-    await this.http.put(`${environment.apiUrl}/sheets/${character.id}/update`,{character:character}).toPromise();
-    await this.getCharacterById(character.id);
+  async updateCharacter(character: ICharacter,gameId:string) {
+    await this.http.put(`${environment.apiUrl}/sheets/${character.id}/update?gameId=${gameId}`,{character:character}).toPromise();
+    await this.getCharacterById(character.id,gameId);
   }
 
-  async updateCharacterStats(character: ICharacter) {
-    await this.http.put(`${environment.apiUrl}/sheets/${character.id}/update`,{character: character}).toPromise();
-    this.getCharacterById(character.id);
+  async updateCharacterStats(character: ICharacter,gameId:string) {
+    await this.http.put(`${environment.apiUrl}/sheets/${character.id}/update?gameId=${gameId}`,{character: character}).toPromise();
+    this.getCharacterById(character.id,gameId);
   }
 
-  async getDefaultAttributeList(): Promise<IAttribute[]> {
-    this.attributeList = (await this.gameSettingsService.getGameSettings(this.routerSnapshot.params.id)).attributes;
+  getDefaultAttributeList() {
+    this.attributeList = this.gameSettings.attributes;
     return this.attributeList;
   }
 
-  async createNewCharacter(characterName:string) {
-    await this.http.post(`${environment.apiUrl}/sheets/create`,{name:characterName}).toPromise();
-    await this.getCharacters();
+  async createNewCharacter(characterName:string,gameId:string) {
+    const response = await this.http.post(`${environment.apiUrl}/sheets/create?gameId=${gameId}`,{name:characterName}).toPromise();
+    await this.getCharacters(gameId);
   }
 
-  async createNewEquipment(equipmentName: string, quantity:number, characterId:number) {
+  async createNewEquipment(equipmentName: string, quantity:number, characterId:number,gameId:string) {
     await this.http.post(`${environment.apiUrl}/sheets/${characterId}/equipment/create`,{id:generateRandomId(),name:equipmentName, quantity:quantity}).toPromise();
-    this.getCharacterById(characterId);
+    this.getCharacterById(characterId,gameId);
   }
 
   

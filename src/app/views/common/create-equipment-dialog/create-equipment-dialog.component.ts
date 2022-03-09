@@ -13,7 +13,7 @@ export class CreateEquipmentDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<CreateEquipmentDialogComponent>,
     private dashboardService: DashboardService,
-    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter}
+    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter,gameId:string}
     ) { }
 
   ngOnInit(): void {
@@ -28,8 +28,7 @@ export class CreateEquipmentDialogComponent implements OnInit {
       } else {
         this.data.character.inventory.items = [newItem];
       }
-      console.log(this.data.character.inventory);
-      await this.dashboardService.updateCharacter(this.data.character);
+      await this.dashboardService.updateCharacter(this.data.character,this.data.gameId);
     }
   }
   

@@ -69,7 +69,7 @@ export class ChooseAbilitiesDialogComponent implements OnInit {
   async saveNewAbilityList(){
     if (this.selectedAbilityList.length > 0) {
       this.data.character.abilities = [ ...this.selectedAbilityList, ...this.data.character.abilities ?? []]
-      this.dashboardService.updateCharacter(this.data.character);
+      this.dashboardService.updateCharacter(this.data.character,this.data.gameId);
     }
     this.dialogRef.close();
   }

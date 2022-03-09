@@ -69,7 +69,7 @@ export class OpenChooseSkillsDialogComponent implements OnInit {
   async saveNewSkillList(){
     if (this.selectedSkillList.length > 0) {
       this.data.character.skills = [ ...this.selectedSkillList, ...this.data.character.skills ?? []]
-      this.dashboardService.updateCharacter(this.data.character);
+      this.dashboardService.updateCharacter(this.data.character,this.data.gameId);
     }
     this.dialogRef.close();
   }

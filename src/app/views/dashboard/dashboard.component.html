@@ -19,7 +19,7 @@
                     <i class="bi bi-plus-square-fill text-dark h1"></i>
                 </div>
             </div>
-            <app-character-card *ngFor="let character of charactersList" [character]="character"></app-character-card>
+            <app-character-card *ngFor="let character of charactersList" [character]="character" [gameId]="gameSettings.id"></app-character-card>
         </div>
     </section>
     

@@ -66,7 +66,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeObservables();
-    this.dashboardService.getCharacters();
   }
 
   subscribeObservables(){
@@ -92,10 +91,14 @@ export class DashboardComponent implements OnInit {
 
     this.subscribe = this.activatedRoute.data.subscribe((info: {gameSettings: IGameSettings}) => {
       this.gameSettings = info.gameSettings;
+      this.dashboardService.setGameId(this.gameSettings.id);
     });
+
     this.attributeList = this.gameSettings.attributes != null ? this.gameSettings.attributes.sort((a,b) => a.name.localeCompare(b.name)) : [];
     this.skillList = this.gameSettings.skills != null ? this.gameSettings.skills.sort((a,b) => a.name.localeCompare(b.name)) : [];
     this.gameSettings.rituals = this.gameSettings.rituals != null ? this.gameSettings.rituals.sort((a,b) => a.name.localeCompare(b.name)) : [];
+
+    this.dashboardService.getCharacters(this.gameSettings.id);
   }
 
   ngOnDestroy(): void {
@@ -111,7 +114,7 @@ export class DashboardComponent implements OnInit {
   }
 
   saveGameSettings() {
-    this.gameSettingsService.setGameTimers(this.gameSettings.diceCooldown, this.gameSettings.diceScreenTime);
+    this.gameSettingsService.setGameTimers(this.gameSettings.diceCooldown, this.gameSettings.diceScreenTime,this.gameSettings.id);
   }
 
   createNewSkill(skillName: string, skillDescription:string): void {
@@ -186,7 +189,7 @@ export class DashboardComponent implements OnInit {
   }
 
   openCreateCharacterDialog(): void {
-    this.modalService.open(CreateCharacterDialogComponent);
+    this.modalService.open(CreateCharacterDialogComponent, {data:{gameId:this.gameSettings.id}});
   }
 
   close(): void {

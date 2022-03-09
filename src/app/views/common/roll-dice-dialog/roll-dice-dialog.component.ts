@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Input, NgZone, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { GameSettingsService } from 'src/app/game-settings.service';
 import { IGameSettings } from 'src/models/GameSettings';
 import { generateRandomId } from '../view_utils';
@@ -23,10 +24,13 @@ export class RollDiceDialogComponent implements OnInit {
   gameSettings:IGameSettings;
 
   @Input() characterName:string;
-  @Input() gameId:string;
+  gameId:string;
 
-  constructor(private gameSettingsService: GameSettingsService, private ngZone: NgZone) {
+  constructor(private gameSettingsService: GameSettingsService, private ngZone: NgZone,private activatedRoute:ActivatedRoute) {
     this.showCooldownError = false;
+    this.activatedRoute.paramMap.subscribe(paramMap =>{
+      this.gameId = paramMap.get('id');
+    });
   }
 
   async initVariables() {

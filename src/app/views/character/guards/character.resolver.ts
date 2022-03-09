@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, } from '@angular/router';
 import { Observable } from 'rxjs';
 import { GameSettingsService } from 'src/app/game-settings.service';
 import { ICharacter } from 'src/models/Character';
-import { dashboardService } from '../../characters/shared/services/characters.service';
+import { DashboardService } from '../../dashboard/shared/services/dashboard.service';
 
 @Injectable({ providedIn: 'root' })
 export class CharacterResolver implements Resolve<ICharacter> {
 
-    constructor(private dashboardService: dashboardService,private gameSettingsService: GameSettingsService) {}
+    constructor(
+        private dashboardService: DashboardService,
+        private gameSettingsService: GameSettingsService,
+    ) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<ICharacter> | Promise<ICharacter> | ICharacter {
-        const id = route.params["characterId"];
-        const gameId = route.params["id"];
-        return this.dashboardService.getCharacterById(id,gameId);
+        const id = route.paramMap.get("characterId");
+        const gameId = route.paramMap.get("id");
+        this.dashboardService.setGameId(gameId);
+        return this.dashboardService.getCharacterById(+id,gameId);
     }
 }

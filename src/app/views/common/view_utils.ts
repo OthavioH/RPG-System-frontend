@@ -3,7 +3,6 @@ import { v4 as uuid } from 'uuid';
 
 export function generateRandomId():string {
     const id = uuid();
-    console.log(id);
     return uuid();
   }
 

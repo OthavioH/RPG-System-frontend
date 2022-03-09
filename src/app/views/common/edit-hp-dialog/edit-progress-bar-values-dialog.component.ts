@@ -16,7 +16,7 @@ export class EditProgressBarValuesDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<EditProgressBarValuesDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter, characterStats:CharacterStats},
+    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter, characterStats:CharacterStats,gameId:string},
     private dashboardService: DashboardService,
     ) {
       if (this.data.characterStats == CharacterStats.hp) {
@@ -52,7 +52,7 @@ export class EditProgressBarValuesDialogComponent implements OnInit {
       this.data.character.stressPoints = currentValue;
       this.data.character.maxStressPoints = limit;
     }
-    this.dashboardService.updateCharacterStats(this.data.character);
+    this.dashboardService.updateCharacterStats(this.data.character,this.data.gameId);
     this.dialogRef.close();
   }
 

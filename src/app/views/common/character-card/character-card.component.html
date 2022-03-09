@@ -1,4 +1,4 @@
-<a class="card bg-dark border border-2 border-warning mb-2 btn text-light" style="width: 250px;height:515px;border-radius: 10px;" [routerLink]="['/characters', character.id]" (dragstart)="openDeleteCharacterDialog(character.id)">
+<a class="card bg-dark border border-2 border-warning mb-2 btn text-light" style="width: 250px;height:515px;border-radius: 10px;" [routerLink]="['/dashboard',gameId,'characters',character.id]" (dragstart)="openDeleteCharacterDialog(character.id)">
     <div class="d-flex justify-content-center row">
         <div class="mt-2 align-center justify-content-center" style="width:fit-content;height:fit-content;">
             <img class="img rounded-circle border-white character-img" src="{{character.profileImageUrl}}" (error)="onImageError($event)" alt="">

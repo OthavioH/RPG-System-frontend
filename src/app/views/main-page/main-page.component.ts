@@ -18,7 +18,6 @@ export class MainPageComponent implements OnInit {
   }
 
   async createNewGame() {
-    console.log("creating new game");
     await this.gameSettingsService.createNewGame();
   }
 

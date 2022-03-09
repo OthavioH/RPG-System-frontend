@@ -13,7 +13,7 @@ export class CreateWeaponDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<CreateWeaponDialogComponent>,
     private dashboardService: DashboardService,
-    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter}
+    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter,gameId:string}
     ) { }
 
   ngOnInit(): void {
@@ -29,7 +29,7 @@ export class CreateWeaponDialogComponent implements OnInit {
         this.data.character.weapons = [];
       }
       
-      await this.dashboardService.updateCharacter(this.data.character);
+      await this.dashboardService.updateCharacter(this.data.character,this.data.gameId);
     }
     
   }

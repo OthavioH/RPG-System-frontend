@@ -48,7 +48,7 @@ export class OpenChooseAttributesDialogComponent implements OnInit {
   async saveNewAttributeList(){
     if (this.selectedAttributeList.length > 0) {
       this.data.character.attributes = [...this.selectedAttributeList, ...this.data.character.attributes ?? []];
-      this.dashboardService.updateCharacter(this.data.character);
+      this.dashboardService.updateCharacter(this.data.character,this.data.gameId);
     }
     this.dialogRef.close();
   }

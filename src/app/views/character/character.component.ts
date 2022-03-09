@@ -35,6 +35,8 @@ export class CharacterComponent implements OnInit {
 
   onCharacterChanged:Subscription;
 
+  gameId:string;
+
   imgUrl:string;
   defaultImgUrl:string = '/../../assets/unknown_character_transparent.png';
 
@@ -47,6 +49,9 @@ export class CharacterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.gameId = params.get("id");
+    });
     this.routeSubscription = this.activatedRoute.data.subscribe((info: {character: ICharacter}) => {
       this.character = info.character;
       this.titleService.setTitle(`Personagem | ${this.character.name}`); 
@@ -71,11 +76,11 @@ export class CharacterComponent implements OnInit {
   }
 
   openCreateInventoryItemDialog(): void {
-    this.modalService.open(CreateEquipmentDialogComponent, {data:{character: this.character}});
+    this.modalService.open(CreateEquipmentDialogComponent, {data:{character: this.character,gameId:this.gameId}});
   }
 
   openCreateWeaponDialog(): void {
-    this.modalService.open(CreateWeaponDialogComponent, {data:{character: this.character}});
+    this.modalService.open(CreateWeaponDialogComponent, {data:{character: this.character,gameId:this.gameId}});
   }
 
   openAttributeDialog(attribute: IAttribute): void {
@@ -127,27 +132,41 @@ export class CharacterComponent implements OnInit {
   }
 
   async saveCharacter(){
-    await this.dashboardService.updateCharacter(this.character);
+    await this.dashboardService.updateCharacter(this.character,this.gameId);
   }
 
   openEditHPDialog(): void {
-    this.modalService.open(EditProgressBarValuesDialogComponent,{data:{character: this.character, characterStats:CharacterStats.hp}});
+    this.modalService.open(EditProgressBarValuesDialogComponent,{
+      data:{
+        character: this.character, 
+        characterStats:CharacterStats.hp,
+        gameId:this.gameId,
+      }
+    });
   }
 
   openEditSanityDialog(): void {
-    this.modalService.open(EditProgressBarValuesDialogComponent,{data:{character: this.character, characterStats:CharacterStats.sanity}});
+    this.modalService.open(EditProgressBarValuesDialogComponent,{
+      data:{
+        character: this.character, 
+        characterStats:CharacterStats.sanity,
+        gameId:this.gameId,
+      }
+    });
   }
 
   openChangeCharacterImgDialog():void {
-    this.modalService.open(ChangeCharacterImageDialogComponent,{data:this.character});
+    this.modalService.open(ChangeCharacterImageDialogComponent,{data:{character:this.character,gameId:this.gameId}});
   }
 
   openEditProgressBarValueDialog(stats:string): void {
     this.modalService.open(EditProgressBarValuesDialogComponent,{
       data:{
-        character: this.character, characterStats:stats
+        character: this.character, 
+        characterStats:stats,
+        gameId:this.gameId,
       }
-    },);
+    });
   }
 
   deleteSkill(skillId: string): void {
