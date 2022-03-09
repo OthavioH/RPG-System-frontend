@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 
 const fs = require('fs');
 
@@ -6,15 +7,14 @@ const app = express();
 
 const appName = 'rpg-system';
 
-const envData = `{"apiUrl":${process.env.apiUrl}}`;
+const envData = {apiUrl: process.env.apiUrl};
+const envDataJSON = JSON.stringify(envData);
 
-const envDataJSON = JSON.stringify(JSON.parse(envData));
-
-fs.createWriteStream('env.json',envDataJSON,'utf8', (err)=>{
+fs.writeFile('env.json',envDataJSON,'utf8', (err)=>{
     if (err) {
         return console.error(err);
     }
-});
+})
 
 const outputPath = `${__dirname}/dist/${appName}`;
 
