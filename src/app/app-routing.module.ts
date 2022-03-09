@@ -4,18 +4,21 @@ import { TestDiceComponent } from './test-dice/test-dice.component';
 
 import { CharacterComponent } from './views/character/character.component';
 import { CharacterResolver } from './views/character/guards/character.resolver';
-import { CharactersComponent } from './views/characters/characters.component';
-import { CharactersResolver } from './views/characters/guards/characters.resolver';
-import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
+import { DashboardComponent } from './views/characters/dashboard.component';
+import { DashboardResolver } from './views/characters/guards/dashboard.resolver';
+import { MainPageComponent } from './views/main-page/main-page.component';
 
 const routes: Routes = [
-  { path: 'dashboard', component: CharactersComponent, resolve:{gameSettings:CharactersResolver}},
-  { path: 'dice',component: TestDiceComponent,},
-  { path: 'personagens', children: [
-    { path:':id', component: CharacterComponent, resolve: {character:CharacterResolver}},
+  { path: 'dashboard', children:[
+    {path:':id',component: DashboardComponent, resolve:{gameSettings:DashboardResolver},children:[
+      { path: 'characters', children: [
+        { path:':characterId', component: CharacterComponent, resolve: {character:CharacterResolver}},
+      ]},
+    ]}
   ]},
-  { path:'', pathMatch:'full', redirectTo: 'dashboard' },
-  { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
+  { path: 'dice',component: TestDiceComponent,},
+  { path:'', pathMatch:'full', component:MainPageComponent },
+  { path: '**', pathMatch: 'full', redirectTo:'' }
 ];
 
 @NgModule({

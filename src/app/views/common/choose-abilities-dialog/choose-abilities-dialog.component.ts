@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GameSettingsService } from 'src/app/game-settings.service';
 import { IAbility } from 'src/models/Ability';
 import { ICharacter } from 'src/models/Character';
-import { CharactersService } from '../../characters/shared/services/characters.service';
+import { DashboardService } from '../../dashboard/shared/services/dashboard.service';
 
 @Component({
   selector: 'app-choose-abilities-dialog',
@@ -18,9 +18,9 @@ export class ChooseAbilitiesDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ChooseAbilitiesDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter},
+    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter, gameId:string},
     public gameSettingsService: GameSettingsService,
-    public charactersService: CharactersService,
+    public dashboardService: DashboardService,
     ) {
       
     }
@@ -31,7 +31,7 @@ export class ChooseAbilitiesDialogComponent implements OnInit {
   }
 
   async initLists() {
-    this.gameSettingsAbilityList = (await this.gameSettingsService.getGameSettings()).abilities;
+    this.gameSettingsAbilityList = (await this.gameSettingsService.getGameSettings(this.data.gameId)).abilities;
 
     this.chooseAbilityList = await this.concatAbilityList(this.gameSettingsAbilityList, this.data.character.abilities);
   }
@@ -69,7 +69,7 @@ export class ChooseAbilitiesDialogComponent implements OnInit {
   async saveNewAbilityList(){
     if (this.selectedAbilityList.length > 0) {
       this.data.character.abilities = [ ...this.selectedAbilityList, ...this.data.character.abilities ?? []]
-      this.charactersService.updateCharacter(this.data.character);
+      this.dashboardService.updateCharacter(this.data.character);
     }
     this.dialogRef.close();
   }

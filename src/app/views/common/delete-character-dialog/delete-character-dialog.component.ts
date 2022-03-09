@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { ISkill } from 'src/models/Skill';
-import { CharactersService } from '../../characters/shared/services/characters.service';
+import { DashboardService } from '../../dashboard/shared/services/dashboard.service';
 
 @Component({
   selector: 'app-delete-character-dialog',
@@ -13,14 +12,14 @@ export class DeleteCharacterDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DeleteCharacterDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public characterId: number,
-    public charactersService: CharactersService,
+    public dashboardService: DashboardService,
     ) { }
 
   ngOnInit(): void {
   }
 
   async onConfirmButtonClicked() {
-    await this.charactersService.deleteById(this.characterId);
+    await this.dashboardService.deleteById(this.characterId);
     this.closeDialog();
   }
 

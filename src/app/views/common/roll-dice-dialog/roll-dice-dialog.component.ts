@@ -23,13 +23,14 @@ export class RollDiceDialogComponent implements OnInit {
   gameSettings:IGameSettings;
 
   @Input() characterName:string;
+  @Input() gameId:string;
 
   constructor(private gameSettingsService: GameSettingsService, private ngZone: NgZone) {
     this.showCooldownError = false;
   }
 
   async initVariables() {
-    this.gameSettings = await this.gameSettingsService.getGameSettings();
+    this.gameSettings = await this.gameSettingsService.getGameSettings(this.gameId);
 
     this.diceMaxCooldown = this.gameSettings.diceCooldown;
 

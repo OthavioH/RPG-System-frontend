@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GameSettingsService } from 'src/app/game-settings.service';
 import { ICharacter } from 'src/models/Character';
 import { ISkill } from 'src/models/Skill';
-import { CharactersService } from '../../characters/shared/services/characters.service';
+import { DashboardService } from '../../dashboard/shared/services/dashboard.service';
 
 @Component({
   selector: 'app-open-choose-skills-dialog',
@@ -18,9 +18,9 @@ export class OpenChooseSkillsDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<OpenChooseSkillsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter},
+    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter,gameId:string},
     public gameSettingsService: GameSettingsService,
-    public charactersService: CharactersService,
+    public dashboardService: DashboardService,
     ) {
       
     }
@@ -31,7 +31,7 @@ export class OpenChooseSkillsDialogComponent implements OnInit {
   }
 
   async initLists() {
-    this.gameSettingsSkillList = (await this.gameSettingsService.getGameSettings()).skills;
+    this.gameSettingsSkillList = (await this.gameSettingsService.getGameSettings(this.data.gameId)).skills;
 
     this.chooseSkillList = await this.concatSkillList(this.gameSettingsSkillList, this.data.character.skills);
   }
@@ -69,7 +69,7 @@ export class OpenChooseSkillsDialogComponent implements OnInit {
   async saveNewSkillList(){
     if (this.selectedSkillList.length > 0) {
       this.data.character.skills = [ ...this.selectedSkillList, ...this.data.character.skills ?? []]
-      this.charactersService.updateCharacter(this.data.character);
+      this.dashboardService.updateCharacter(this.data.character);
     }
     this.dialogRef.close();
   }

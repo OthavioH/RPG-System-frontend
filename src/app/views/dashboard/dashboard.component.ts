@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
 
-import { CharactersService } from './shared/services/characters.service';
+import { DashboardService } from './shared/services/dashboard.service';
 import { EditAttributeDialogComponent } from '../common/edit-attribute-dialog/edit-attribute-dialog.component';
 import { SkillsDialogComponent } from '../common/skills-dialog/skills-dialog.component';
 import { AttributeDialogComponent } from '../common/attribute-dialog/attribute-dialog.component';
@@ -25,11 +25,11 @@ import { findCharacterIndex } from "../common/view_utils";
 import { ShowRitualDialogComponent } from "../common/show-ritual-dialog/show-ritual-dialog.component";
 
 @Component({
-  selector: 'app-characters',
-  templateUrl: './characters.component.html',
-  styleUrls: ['./characters.component.scss','./../../app.component.scss']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss','./../../app.component.scss']
 })
-export class CharactersComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
   subscribe: Subscription;
   gameSettingsSubscription: Subscription;
@@ -42,7 +42,7 @@ export class CharactersComponent implements OnInit {
   loading: boolean = true;
 
   constructor(
-    private charactersService: CharactersService, 
+    private dashboardService: DashboardService, 
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private gameSettingsService: GameSettingsService,
@@ -66,7 +66,7 @@ export class CharactersComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeObservables();
-    this.charactersService.getCharacters();
+    this.dashboardService.getCharacters();
   }
 
   subscribeObservables(){
@@ -77,11 +77,11 @@ export class CharactersComponent implements OnInit {
       this.gameSettings.rituals = this.gameSettings.rituals != null ? this.gameSettings.rituals.sort((a,b) => a.name.localeCompare(b.name)) : [];
     });
 
-    this.charactersService.onCharacterListChanged$.subscribe((characterList) =>{
+    this.dashboardService.onCharacterListChanged$.subscribe((characterList) =>{
       this.charactersList = characterList;
     });
 
-    this.charactersService.onCharacterChanged$.subscribe((changedCharacter) =>{
+    this.dashboardService.onCharacterChanged$.subscribe((changedCharacter) =>{
       if (this.charactersList != null) {
         if (changedCharacter != null) {
           const index = findCharacterIndex(this.charactersList,changedCharacter);

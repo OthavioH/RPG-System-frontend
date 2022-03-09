@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ISkill } from 'src/models/Skill';
 import { SkillsDialogComponent } from '../common/skills-dialog/skills-dialog.component';
-import { CharactersService } from '../characters/shared/services/characters.service';
+import { DashboardService } from '../dashboard/shared/services/dashboard.service';
 import { ICharacter } from 'src/models/Character';
 import { EditProgressBarValuesDialogComponent } from '../common/edit-hp-dialog/edit-progress-bar-values-dialog.component';
 import { Subscription } from 'rxjs';
@@ -39,7 +39,7 @@ export class CharacterComponent implements OnInit {
   defaultImgUrl:string = '/../../assets/unknown_character_transparent.png';
 
   constructor(
-    private charactersService:CharactersService, 
+    private dashboardService:DashboardService, 
     private modalService:MatDialog, 
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
@@ -127,7 +127,7 @@ export class CharacterComponent implements OnInit {
   }
 
   async saveCharacter(){
-    await this.charactersService.updateCharacter(this.character);
+    await this.dashboardService.updateCharacter(this.character);
   }
 
   openEditHPDialog(): void {

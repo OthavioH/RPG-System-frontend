@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GameSettingsService } from 'src/app/game-settings.service';
 import { IAttribute } from 'src/models/Attribute';
 import { ICharacter } from 'src/models/Character';
-import { CharactersService } from '../../characters/shared/services/characters.service';
+import { DashboardService } from '../../dashboard/shared/services/dashboard.service';
 
 @Component({
   selector: 'app-open-choose-attributes-dialog',
@@ -18,9 +18,9 @@ export class OpenChooseAttributesDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<OpenChooseAttributesDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter},
+    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter, gameId:string},
     public gameSettingsService: GameSettingsService,
-    public charactersService: CharactersService,
+    public dashboardService: DashboardService,
     ) {
       
     }
@@ -31,7 +31,7 @@ export class OpenChooseAttributesDialogComponent implements OnInit {
   }
 
   async initLists() {
-    this.gameSettingsAttributeList = (await this.gameSettingsService.getGameSettings()).attributes;
+    this.gameSettingsAttributeList = (await this.gameSettingsService.getGameSettings(this.data.gameId)).attributes;
 
     this.chooseAttributeList = await this.concatAttributeList(this.gameSettingsAttributeList, this.data.character.attributes);
   }
@@ -48,7 +48,7 @@ export class OpenChooseAttributesDialogComponent implements OnInit {
   async saveNewAttributeList(){
     if (this.selectedAttributeList.length > 0) {
       this.data.character.attributes = [...this.selectedAttributeList, ...this.data.character.attributes ?? []];
-      this.charactersService.updateCharacter(this.data.character);
+      this.dashboardService.updateCharacter(this.data.character);
     }
     this.dialogRef.close();
   }

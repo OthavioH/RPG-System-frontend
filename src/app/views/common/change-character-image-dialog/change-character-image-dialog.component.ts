@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ICharacter } from 'src/models/Character';
-import { CharactersService } from '../../characters/shared/services/characters.service';
+import { DashboardService } from '../../dashboard/shared/services/dashboard.service';
 
 @Component({
   selector: 'app-change-character-image-dialog',
@@ -15,7 +15,7 @@ export class ChangeCharacterImageDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<ChangeCharacterImageDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ICharacter,
-    private charactersService: CharactersService,) { }
+    private dashboardService: DashboardService,) { }
 
   ngOnInit(): void {
     this.imgUrl = this.data.profileImageUrl ?? this.defaultImgUrl;
@@ -27,7 +27,7 @@ export class ChangeCharacterImageDialogComponent implements OnInit {
 
   changeImage(newImgUrl:string):void {
     this.data.profileImageUrl = newImgUrl != '' ? newImgUrl : '';
-    this.charactersService.updateCharacter(this.data);
+    this.dashboardService.updateCharacter(this.data);
     this.close();
   }
 

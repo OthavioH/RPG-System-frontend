@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ICharacter } from 'src/models/Character';
-import { CharactersService } from '../../characters/shared/services/characters.service';
+import { DashboardService } from '../../dashboard/shared/services/dashboard.service';
 import { generateRandomId } from '../view_utils';
 
 @Component({
@@ -12,7 +12,7 @@ import { generateRandomId } from '../view_utils';
 export class CreateEquipmentDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<CreateEquipmentDialogComponent>,
-    private charactersService: CharactersService,
+    private dashboardService: DashboardService,
     @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter}
     ) { }
 
@@ -29,7 +29,7 @@ export class CreateEquipmentDialogComponent implements OnInit {
         this.data.character.inventory.items = [newItem];
       }
       console.log(this.data.character.inventory);
-      await this.charactersService.updateCharacter(this.data.character);
+      await this.dashboardService.updateCharacter(this.data.character);
     }
   }
   

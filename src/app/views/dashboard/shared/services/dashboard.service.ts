@@ -11,13 +11,13 @@ import { ISkill } from 'src/models/Skill';
 import { IWeapon } from 'src/models/Weapon';
 
 import { ICharacter } from '../../../../../models/Character';
-import { Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Socket } from 'src/models/SocketClass';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CharactersService {
+export class DashboardService {
 
   private onCharacterChanged:BehaviorSubject<ICharacter> = new BehaviorSubject<ICharacter>(null);
   private onCharacterListChanged: BehaviorSubject<ICharacter[]> = new BehaviorSubject<ICharacter[]>(null);
@@ -35,18 +35,19 @@ export class CharactersService {
     private http:HttpClient,
     private gameSettingsService: GameSettingsService,
     private router:Router,
+    private routerSnapshot:ActivatedRouteSnapshot,
   ) {
     this.initSettings();
   }
 
   async initSettings() {
-    await this.gameSettingsService.getGameSettings();
-    Socket.socket.on('characterChanged',(character)=>{
-      this.onCharacterChanged.next(character);
+    await this.gameSettingsService.getGameSettings(this.routerSnapshot.params.id);
+    Socket.socket.on('characterChanged',(response:{character:ICharacter,gameId:string})=>{
+      this.onCharacterChanged.next(response.character);
     });
   }
 
-  async getCharacterById(characterId: number): Promise<ICharacter> {
+  async getCharacterById(characterId: number,gameId?:string): Promise<ICharacter> {
     const response: any = await this.http.get(`${environment.apiUrl}/sheets/${characterId}`).toPromise();
     if (response.sheet !=null) {
       const character:ICharacter = response.sheet;
@@ -84,7 +85,7 @@ export class CharactersService {
   }
 
   async getDefaultAttributeList(): Promise<IAttribute[]> {
-    this.attributeList = (await this.gameSettingsService.getGameSettings()).attributes;
+    this.attributeList = (await this.gameSettingsService.getGameSettings(this.routerSnapshot.params.id)).attributes;
     return this.attributeList;
   }
 

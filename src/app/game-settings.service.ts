@@ -1,5 +1,5 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, EventEmitter } from '@angular/core';
+import { HttpClient,} from '@angular/common/http';
+import { Injectable, } from '@angular/core';
 import { Router } from '@angular/router';
 import { Socket } from 'src/models/SocketClass';
 import { BehaviorSubject, Subject } from 'rxjs';
@@ -12,6 +12,7 @@ import { IRitual, RitualElement } from 'src/models/Ritual';
 import { ISkill } from 'src/models/Skill';
 import { SkillExperienceLevel } from 'src/models/SkillExperienceLevel';
 import { IDiceRoll } from 'src/models/DiceRoll';
+import { generateRandomId } from './views/common/view_utils';
 
 @Injectable({
   providedIn: 'root'
@@ -29,30 +30,39 @@ export class GameSettingsService {
 
   updateGameSettingsEvent$ :BehaviorSubject<IGameSettings>;
 
-  constructor(private http:HttpClient, private route: Router) {
+  constructor(private http:HttpClient, private router: Router,) {
     Socket.socket = io(`${environment.apiUrl}`);
     this.initSettings();
   }
 
   async initSettings(){
-    this.updateGameSettingsEvent$ = new BehaviorSubject<IGameSettings>(await this.getGameSettings());
 
-    Socket.socket.on('lastRollListChanged',(newRollList:any[])=>{
-      this.onRollsListChanged.next(newRollList);
-      this.gameSettings.lastRolls = newRollList;
+    Socket.socket.on('lastRollListChanged',(response:{actualRollList:any[],gameId:string})=>{
+      if (this.gameSettings.id == response.gameId) {
+        this.onRollsListChanged.next(response.actualRollList);
+        this.gameSettings.lastRolls = response.actualRollList;
+      }
     });
 
-    Socket.socket.on('diceOnCooldown',(timer:number)=>{
-      this.onNewTimerEmitted.next(timer);
+    Socket.socket.on('diceOnCooldown',(response:{timer:number,gameId:string})=>{
+      if (this.gameSettings.id == response.gameId) {
+        this.onNewTimerEmitted.next(response.timer);
+      }
     });
+  }
+
+  async createNewGame():Promise<void> {
+    const id = generateRandomId();
+    const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/create`,{id:id}).toPromise();
+    this.router.navigate([`/dashboard`],{queryParams:{id:response.id}});
   }
 
   emitTimer(timer:number) {
-    Socket.socket.emit('diceRoll',timer);
+    Socket.socket.emit('diceRoll',{timer:timer,gameId:this.gameSettings.id});
   }
 
-  async getGameSettings(): Promise<IGameSettings> {
-    const response: any = await this.http.get(`${environment.apiUrl}/gamesettings`).toPromise();
+  async getGameSettings(id:string): Promise<IGameSettings> {
+    const response: any = await this.http.get(`${environment.apiUrl}/gamesettings?id=${id}`).toPromise();
     this.gameSettings = response;
     return this.gameSettings;
   }

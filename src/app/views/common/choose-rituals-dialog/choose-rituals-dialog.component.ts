@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GameSettingsService } from 'src/app/game-settings.service';
 import { ICharacter } from 'src/models/Character';
 import { IRitual } from 'src/models/Ritual';
-import { CharactersService } from '../../characters/shared/services/characters.service';
+import { DashboardService } from '../../dashboard/shared/services/dashboard.service';
 
 @Component({
   selector: 'app-choose-rituals-dialog',
@@ -18,9 +18,9 @@ export class ChooseRitualsDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ChooseRitualsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter},
+    @Inject(MAT_DIALOG_DATA) public data: {character:ICharacter, gameId:string},
     public gameSettingsService: GameSettingsService,
-    public charactersService: CharactersService,
+    public dashboardService: DashboardService,
     ) {
       
     }
@@ -31,7 +31,7 @@ export class ChooseRitualsDialogComponent implements OnInit {
   }
 
   async initLists() {
-    this.gameSettingsRitualList = (await this.gameSettingsService.getGameSettings()).rituals;
+    this.gameSettingsRitualList = (await this.gameSettingsService.getGameSettings(this.data.gameId)).rituals;
 
     this.chooseRitualList = await this.concatRitualList(this.gameSettingsRitualList, this.data.character.rituals);
   }
@@ -69,7 +69,7 @@ export class ChooseRitualsDialogComponent implements OnInit {
   async saveNewRitualList(){
     if (this.selectedRitualList.length > 0) {
       this.data.character.rituals = [ ...this.selectedRitualList, ...this.data.character.rituals ?? []]
-      this.charactersService.updateCharacter(this.data.character);
+      this.dashboardService.updateCharacter(this.data.character);
     }
     this.dialogRef.close();
   }

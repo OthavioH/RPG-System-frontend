@@ -11,13 +11,12 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CharactersComponent } from './views/characters/characters.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { CharacterComponent } from './views/character/character.component';
 import { SkillsDialogComponent } from './views/common/skills-dialog/skills-dialog.component';
 import { RollDiceDialogComponent } from './views/common/roll-dice-dialog/roll-dice-dialog.component';
@@ -45,11 +44,12 @@ import { TestDiceComponent } from './test-dice/test-dice.component';
 import { ChangeCharacterImageDialogComponent } from './views/common/change-character-image-dialog/change-character-image-dialog.component';
 import { DiceRollAnimationComponent } from './views/common/dice-roll-animation/dice-roll-animation.component';
 import { DiceAnimationComponent } from './views/common/dice-animation/dice-animation.component';
+import { MainPageComponent } from './views/main-page/main-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CharactersComponent,
+    DashboardComponent,
     CharacterComponent,
     SkillsDialogComponent,
     RollDiceDialogComponent,
@@ -77,6 +77,7 @@ import { DiceAnimationComponent } from './views/common/dice-animation/dice-anima
     ChangeCharacterImageDialogComponent,
     DiceRollAnimationComponent,
     DiceAnimationComponent,
+    MainPageComponent,
   ],
   imports: [
     BrowserModule,

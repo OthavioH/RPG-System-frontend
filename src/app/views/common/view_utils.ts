@@ -1,10 +1,10 @@
 import { ICharacter } from "src/models/Character";
+import { v4 as uuid } from 'uuid';
 
 export function generateRandomId():string {
-    var S4 = function() {
-       return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
-    };
-    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+    const id = uuid();
+    console.log(id);
+    return uuid();
   }
 
 export function findCharacterIndex(characterList:ICharacter[], characterToFind:ICharacter):number {

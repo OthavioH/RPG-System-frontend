@@ -5,6 +5,7 @@ import { IRitual } from "./Ritual";
 import { ISkill } from "./Skill";
 
 export interface IGameSettings {
+    id:string;
     diceScreenTime: number;
     diceCooldown: number;
     skills?: ISkill[];

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CharactersService } from '../../characters/shared/services/characters.service';
+import { MatDialogRef,} from '@angular/material/dialog';
+import { DashboardService } from '../../dashboard/shared/services/dashboard.service';
 
 @Component({
   selector: 'app-create-character-dialog',
@@ -10,7 +10,7 @@ import { CharactersService } from '../../characters/shared/services/characters.s
 export class CreateCharacterDialogComponent implements OnInit {
 
   constructor(
-    public dialogRef: MatDialogRef<CreateCharacterDialogComponent>, private charactersService: CharactersService) { }
+    public dialogRef: MatDialogRef<CreateCharacterDialogComponent>, private dashboardService: DashboardService) { }
 
   ngOnInit(): void {
   }
@@ -18,7 +18,7 @@ export class CreateCharacterDialogComponent implements OnInit {
   async onConfirmClicked(characterName: string) {
     
     if (characterName.length > 0) {
-      this.charactersService.createNewCharacter(characterName);
+      this.dashboardService.createNewCharacter(characterName);
     }
     this.dialogRef.close();
   }
