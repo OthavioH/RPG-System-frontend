@@ -116,19 +116,19 @@ export class CharacterComponent implements OnInit {
   }
 
   openChooseSkills(): void {
-    this.modalService.open(OpenChooseSkillsDialogComponent, {data:{character:this.character}});
+    this.modalService.open(OpenChooseSkillsDialogComponent, {data:{character:this.character, gameId:this.gameId}});
   }
 
   openChooseAbilities(): void {
-    this.modalService.open(ChooseAbilitiesDialogComponent, {data:{character:this.character}});
+    this.modalService.open(ChooseAbilitiesDialogComponent, {data:{character:this.character, gameId:this.gameId}});
   }
 
   openChooseRituals(): void {
-    this.modalService.open(ChooseRitualsDialogComponent, {data:{character:this.character}});
+    this.modalService.open(ChooseRitualsDialogComponent, {data:{character:this.character, gameId:this.gameId}});
   }
 
   openChooseAttributes(): void {
-    this.modalService.open(OpenChooseAttributesDialogComponent, {data:{character:this.character}});
+    this.modalService.open(OpenChooseAttributesDialogComponent, {data:{character:this.character, gameId:this.gameId}});
   }
 
   async saveCharacter(){
