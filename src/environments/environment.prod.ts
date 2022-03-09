@@ -8,6 +8,6 @@ export const environment = {
     show: envVars.adsense.show,
     adSlot: envVars.adsense.adSlot,
     adFormat: envVars.adsense.adFormat,
-    fullWidthRes: envVars.adsense.fullWidthResponsive,
+    fullWidthResponsive: envVars.adsense.fullWidthResponsive,
   }
 };
