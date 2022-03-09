@@ -12,7 +12,7 @@ const envDataJSON = JSON.stringify(envData);
 
 console.log(__dirname);
 
-fs.writeFile(`${__dirname}/dist/src/envionments`,envDataJSON,'utf8', (err)=>{
+fs.writeFile(`${__dirname}/src/envionments`,envDataJSON,'utf8', (err)=>{
     if (err) {
         return console.error(err);
     }
