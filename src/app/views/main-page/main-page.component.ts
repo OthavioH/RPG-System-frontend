@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameSettingsService } from 'src/app/game-settings.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-main-page',
