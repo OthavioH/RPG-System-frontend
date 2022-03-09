@@ -1,4 +1,4 @@
-import envVars from './../../env.json';
+import envVars from './../../../env.json';
 
 export const environment = {
   production: true,
