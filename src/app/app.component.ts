@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Banner } from 'src/models/Banner';
 
 @Component({
   selector: 'app-root',

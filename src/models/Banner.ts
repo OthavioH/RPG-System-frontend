@@ -1,4 +1,4 @@
-class Banner {
+export class Banner {
     constructor(
         public adClient: string,
         public adSlot: number,
