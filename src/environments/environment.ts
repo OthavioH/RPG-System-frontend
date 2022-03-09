@@ -4,6 +4,8 @@
 
 import envVars from './env.json';
 
+console.log(`${__dirname}`)
+
 export const environment = {
   production: false,
   apiUrl: envVars.apiUrl,
