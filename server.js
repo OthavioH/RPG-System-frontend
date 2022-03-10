@@ -4,7 +4,7 @@ const app = express();
 
 const appName = 'rpg-system';
 
-const outputPath = `${__dirname}/dist/${appName}`;
+const outputPath = `${__dirname}/docs/${appName}`;
 
 app.use(express.static(outputPath));
 
