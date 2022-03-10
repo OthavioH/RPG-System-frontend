@@ -29,6 +29,20 @@ body { margin: 0; background-color:rgba(0, 0, 0, 0.781);
     font-family: 'Josefin Sans', sans-serif;
 }
 
+.title {
+  font-size: 5vh;
+  margin-bottom:6vh;
+}
+
+section{
+  height:100vh;
+  position: absolute /*relative and fixed elements also works*/;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .font-spartan {
     font-family: 'League Spartan', sans-serif;
 }

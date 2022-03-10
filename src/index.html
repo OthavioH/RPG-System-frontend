@@ -14,6 +14,32 @@
   </script>
 </head>
 <body class="mat-typography">
-  <app-root></app-root>
+  <div class="main pt-3 pb-3 px-4 min-vh-100" >
+    <div class="d-flex row justify-content-between flex-wrap">
+      <app-banner [isVertical]="true"></app-banner>
+      <div class="d-flex col justify-content-center align-items-center my-2">
+        <app-banner [isVertical]="false"></app-banner>
+        <section class="container my-auto align-items-center text-center mx-auto py-4 px-4">
+          <div class="d-flex row align-items-center justify-content-center text-center" style="top:50vh;height:100%;">
+              <div>
+                  <h1 class="fs-1 fw-bold align-middle text-center text-light w-100">RPG Sheet Creator</h1>
+                  <button  class="btn btn-primary rounded-3 text-white w-25 mt-4" style="min-width: 300px;" (click)="createNewGame()">Criar novo jogo</button>
+              </div>
+              <div>
+                <p class="text-light fs-3" style="line-height: 50px;">
+                  Quer jogar um RPG no sistema de Ordem Paranormal com seus amigos? Sem problema, é só criar um novo jogo, enviar o link para os seus amigos,
+                  configurar do seu jeito e se divertir :)
+                </p>
+                <p class="text-danger fs-3" style="line-height: 50px;">
+                  Lembrando que você deverá guardar esse link para não perder seu jogo, mas logo mais faremos um sistema de login para facilitar.
+                </p>
+              </div>
+          </div>
+        </section>
+        <app-banner [isVertical]="false"></app-banner>
+      </div>
+      <app-banner [isVertical]="true"></app-banner>
+    </div>
+  </div>
 </body>
 </html>
