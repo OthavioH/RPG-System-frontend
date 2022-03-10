@@ -10,7 +10,8 @@ export const environment = {
   adsense: {
     adClient: envVars.adsense.adClient,
     show: envVars.adsense.show,
-    adSlot: envVars.adsense.adSlot,
+    verticalAdSlot: envVars.adsense.verticalAdSlot,
+    horizontalAdSlot: envVars.adsense.horizontalAdSlot,
     adFormat: envVars.adsense.adFormat,
     fullWidthResponsive: envVars.adsense.fullWidthResponsive,
   }

@@ -6,8 +6,9 @@ const envData = {
     apiUrl: process.env.apiUrl,
     adsense: {
         adClient: process.env.adClient, 
-        show: process.env.adShow,
-        adSlot: process.env.adSlot,
+        show:process.env.adShow,
+        horizontalAdSlot:process.env.horizontalAdSlot,
+        verticalAdSlot:process.env.verticalAdSlot,
         adFormat:process.env.adFormat,
         fullWidthRes: process.env.fullWidthResponsive,
     }

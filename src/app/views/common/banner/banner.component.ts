@@ -9,10 +9,18 @@ import { Banner } from 'src/models/Banner';
 })
 export class BannerComponent implements OnInit {
 
-  @Input() banner: Banner;
+  @Input() isVertical: boolean;
+  banner: Banner;
   showAd = environment.adsense.show;
 
-  constructor() { }
+  constructor() {
+    this.banner = {
+      adClient:environment.adsense.adClient,
+      adFormat:environment.adsense.adFormat,
+      adSlot: this.isVertical ? environment.adsense.verticalAdSlot : environment.adsense.horizontalAdSlot,
+      fullWidthResponsive:environment.adsense.fullWidthResponsive,
+    };
+  }
 
   ngOnInit(): void {
   }
