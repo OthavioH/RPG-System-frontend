@@ -9,6 +9,6 @@ export const environment = {
     verticalAdSlot: envVars.adsense.verticalAdSlot,
     horizontalAdSlot: envVars.adsense.horizontalAdSlot,
     adFormat: envVars.adsense.adFormat,
-    fullWidthResponsive: envVars.adsense.fullWidthResponsive,
+    fullWidthResponsive: envVars.adsense.fullWidthRes,
   }
 };

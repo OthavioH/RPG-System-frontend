@@ -46,6 +46,8 @@ import { DiceRollAnimationComponent } from './views/common/dice-roll-animation/d
 import { DiceAnimationComponent } from './views/common/dice-animation/dice-animation.component';
 import { MainPageComponent } from './views/main-page/main-page.component';
 import { BannerComponent } from './views/common/banner/banner.component';
+import { AdsenseModule } from 'ng2-adsense';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -88,6 +90,14 @@ import { BannerComponent } from './views/common/banner/banner.component';
     MatFormFieldModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AdsenseModule.forRoot({
+      adClient:environment.adsense.adClient,
+      adSlot:environment.adsense.verticalAdSlot,
+      fullWidthResponsive:environment.adsense.fullWidthResponsive as boolean,
+      adFormat:environment.adsense.adFormat,
+      width:120,
+      height:300
+    }),
     MatDialogModule,
     MatButtonModule,
     MatInputModule,

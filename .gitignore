@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/docs
 # Only exists if Bazel was run
 /bazel-out
 
@@ -46,3 +47,5 @@ testem.log
 Thumbs.db
 .env
 src/environments/env.json
+docs/3rdpartylicenses.txt
+docs/404.html

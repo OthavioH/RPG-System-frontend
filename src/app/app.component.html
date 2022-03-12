@@ -1,3 +1,12 @@
 <div class="main pt-3 pb-3 px-4 min-vh-100" >
-  <router-outlet></router-outlet>
+  <div class="d-flex row justify-content-between flex-wrap">
+    <div class="d-flex col justify-content-center align-items-center my-2">
+      <ng-adsense [display]="'block'"></ng-adsense>
+      <router-outlet></router-outlet>
+      <ng-adsense [display]="'block'"></ng-adsense>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
 </div>
