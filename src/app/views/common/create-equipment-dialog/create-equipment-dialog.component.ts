@@ -28,7 +28,6 @@ export class CreateEquipmentDialogComponent implements OnInit {
       } else {
         this.data.character.inventory.items = [newItem];
       }
-      console.log(this.data.character.inventory);
       await this.charactersService.updateCharacter(this.data.character);
     }
   }
