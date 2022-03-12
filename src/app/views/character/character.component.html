@@ -251,7 +251,7 @@
                 <p class="text-center fs-2 paranormal-text fw-bold text-warning col">Inventário</p>
             </div>
             <div class="row d-flex justify-content-between col-md-12">
-                <p class="text-center fs-6 fw-bold text-light col">Slots: {{character.inventory != null ? +character.inventory.usedSlots : 0}}/{{character.inventory != null ? +character.inventory.maxSlots : 0}}</p>
+                <span class="text-center fs-6 fw-bold text-light col">Slots: {{character.inventory != null ? +character.inventory.usedSlots : 0}}/{{character.inventory != null ? +character.inventory.maxSlots : 0}}</span>
             </div>
             <div class="row d-flex justify-content-between col-md-12">
                 <div class="form-group">
@@ -267,7 +267,7 @@
                         <th scope="col"></th>
                         <th scope="col">Nome</th>
                         <th scope="col">Detalhes</th>
-                        <th scope="col">Qtd.</th>
+                        <th scope="col">Slots.</th>
                         <th scope="col">Prestígio</th>
                       </tr>
                     </thead>
@@ -285,7 +285,7 @@
                             <textarea #itemDetails type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [value]="item.details ?? ''" [(ngModel)]="item.details" style="max-width:500px;height:20px; font-size:12px;"></textarea>
                         </td>
                         <td>
-                            <input #itemQuantity type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [value]="item.quantity ?? 0" [(ngModel)]="item.quantity" style="max-width:90px;height:fit-content;font-size:12px;">
+                            <input #itemSlot type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [value]="item.slots ?? 0" [ngModel]="item.slots" (ngModelChange)="onChangeItemSlot(item,+itemSlot.value)" style="max-width:90px;height:fit-content;font-size:12px;">
                         </td>
                         <td>
                             <input #itemPrestigy type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [value]="item.prestige ?? ''" [(ngModel)]="item.prestige" style="max-width:90px;height:fit-content;font-size:12px;">

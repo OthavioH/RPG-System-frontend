@@ -22,6 +22,7 @@ import { ChooseRitualsDialogComponent } from '../common/choose-rituals-dialog/ch
 import { IRitual } from 'src/models/Ritual';
 import { ShowRitualDialogComponent } from '../common/show-ritual-dialog/show-ritual-dialog.component';
 import { ChangeCharacterImageDialogComponent } from 'src/app/views/common/change-character-image-dialog/change-character-image-dialog.component';
+import { InventoryItem } from 'src/models/InventoryItem';
 
 @Component({
   selector: 'app-character',
@@ -49,37 +50,39 @@ export class CharacterComponent implements OnInit {
   ngOnInit() {
     this.routeSubscription = this.activatedRoute.data.subscribe((info: {character: ICharacter}) => {
       this.character = info.character;
+      this.initInventoryMaxSlots();
       this.titleService.setTitle(`Personagem | ${this.character.name}`); 
       this.imgUrl = this.character.profileImageUrl ?? this.defaultImgUrl;
     });
+  }
+
+  initInventoryMaxSlots() {
+    var strength = null;
+    for (let index = 0; index < (this.character.attributes != null ? this.character.attributes.length : 0); index++) {
+      const attribute = this.character.attributes[index];
+      if (attribute.name == "Força") {
+        strength = attribute.value;
+      } 
+    }
+    this.character.inventory.maxSlots = 5;
+    
+    if (strength > 0 && strength != null) {
+      this.character.inventory.maxSlots += 5 * strength;  
+    }
   }
 
   onImageError(event) {
     event.target.src = this.defaultImgUrl;
   }
 
-  openSkillDialog(skill: ISkill): void {
-    this.modalService.open(SkillsDialogComponent, {data: skill});
-  }
-
-  openShowAbilityDetailsDialog(ability: IAbility): void {
-    this.modalService.open(ShowAbilityDetailsDialogComponent, {data: ability});
-  }
-
-  openShowRitualDetailsDialog(ritual: IRitual): void {
-    this.modalService.open(ShowRitualDialogComponent, {data: ritual});
-  }
-
-  openCreateInventoryItemDialog(): void {
-    this.modalService.open(CreateEquipmentDialogComponent, {data:{character: this.character}});
-  }
-
-  openCreateWeaponDialog(): void {
-    this.modalService.open(CreateWeaponDialogComponent, {data:{character: this.character}});
-  }
-
-  openAttributeDialog(attribute: IAttribute): void {
-    this.modalService.open(AttributeDialogComponent, {data: attribute});
+  onChangeItemSlot(itemToUpdate:InventoryItem, slots:number) {
+    for (let index = 0; index < this.character.inventory.items.length; index++) {
+      const item = this.character.inventory.items[index];
+      if (item.id == itemToUpdate.id) {
+        item.slots = slots;
+        console.log(this.character.inventory.items[index]);
+      }
+    }
   }
 
   onChangedAttributeValue(attributeId:string, newAttributeValue:number):void{
@@ -110,6 +113,30 @@ export class CharacterComponent implements OnInit {
     this.modalService.closeAll();
   }
 
+  openSkillDialog(skill: ISkill): void {
+    this.modalService.open(SkillsDialogComponent, {data: skill});
+  }
+
+  openShowAbilityDetailsDialog(ability: IAbility): void {
+    this.modalService.open(ShowAbilityDetailsDialogComponent, {data: ability});
+  }
+
+  openShowRitualDetailsDialog(ritual: IRitual): void {
+    this.modalService.open(ShowRitualDialogComponent, {data: ritual});
+  }
+
+  openCreateInventoryItemDialog(): void {
+    this.modalService.open(CreateEquipmentDialogComponent, {data:{character: this.character}});
+  }
+
+  openCreateWeaponDialog(): void {
+    this.modalService.open(CreateWeaponDialogComponent, {data:{character: this.character}});
+  }
+
+  openAttributeDialog(attribute: IAttribute): void {
+    this.modalService.open(AttributeDialogComponent, {data: attribute});
+  }
+
   openChooseSkills(): void {
     this.modalService.open(OpenChooseSkillsDialogComponent, {data:{character:this.character}});
   }
@@ -127,6 +154,11 @@ export class CharacterComponent implements OnInit {
   }
 
   async saveCharacter(){
+    this.character.inventory.usedSlots = 0;
+    for (let index = 0; index < (this.character.inventory.items != null ? this.character.inventory.items.length : 0); index++) {
+      const item = this.character.inventory.items[index];
+      this.character.inventory.usedSlots += item.slots;
+    }
     await this.charactersService.updateCharacter(this.character);
   }
 
