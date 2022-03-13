@@ -93,7 +93,7 @@ import { environment } from 'src/environments/environment';
     AdsenseModule.forRoot({
       adClient:environment.adsense.adClient,
       adSlot:environment.adsense.verticalAdSlot,
-      fullWidthResponsive:environment.adsense.fullWidthResponsive as boolean,
+      fullWidthResponsive:true,
       adFormat:environment.adsense.adFormat,
       display:'display:block',
     }),
