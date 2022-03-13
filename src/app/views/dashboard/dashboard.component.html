@@ -1,5 +1,6 @@
+<ng-adsense [display]="'block'" class="d-flex col container p-auto m-auto w-auto container" style="width: auto;height:120px;display: inline-block;"></ng-adsense>
 <ng-container *ngIf="!loading">
-    <section class="container pb-2 pt-4 align-center">
+    <section class="container pb-2 align-center">
         <div class="d-flex flex-nowrap row overflow-auto scrollbar-thin pb-2">
             <div class="bg-dark py-3 rounded-3 me-4" *ngFor="let roll of gameSettings.lastRolls" style="width:fit-content;">
                 <ul class="px-2">
@@ -126,6 +127,10 @@
         </div>
     </section>
 </ng-container>
+<ng-adsense [display]="'block'" class="d-flex col container p-auto m-auto w-auto container mt-4" style="width: auto;height:120px;display: inline-block;"></ng-adsense>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 <div *ngIf="loading" class="row d-flex h-auto justify-content-center my-auto mx-auto align-items-center text-center">
     <div class="loadingio-spinner-spinner-3aqmknb0glr"><div class="ldio-am16zgcbh7f">

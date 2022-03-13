@@ -95,8 +95,7 @@ import { environment } from 'src/environments/environment';
       adSlot:environment.adsense.verticalAdSlot,
       fullWidthResponsive:environment.adsense.fullWidthResponsive as boolean,
       adFormat:environment.adsense.adFormat,
-      width:120,
-      height:300
+      display:'display:block',
     }),
     MatDialogModule,
     MatButtonModule,
