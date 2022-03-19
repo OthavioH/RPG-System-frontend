@@ -189,25 +189,25 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-check">
-                                            <input class="form-check-input bg-dark" type="radio" name="flexRadioDefault" [ngClass]="{'border-warning': skill.experienceLevel == 'destreinado'}" [checked]="skill.experienceLevel == 'destreinado'" (change)="onSelectSkillExperienceLevel('destreinado', skill)">
+                                            <input class="form-check-input bg-dark" type="radio" [name]="'skillLevelRadio'+skill.name" [ngClass]="{'border-warning': skill.experienceLevel == 'destreinado'}" [checked]="skill.experienceLevel == 'destreinado'" (change)="onSelectSkillExperienceLevel('destreinado', skill)">
                                             <label class="form-check-label" for="flexRadioDefault1">
                                               Destreinado
                                             </label>
                                           </div>
                                         <div class="form-check">
-                                            <input class="form-check-input bg-dark" type="radio" name="flexRadioDefault" [ngClass]="{'border-warning': skill.experienceLevel == 'treinado'}" [checked]="skill.experienceLevel == 'treinado'" (change)="onSelectSkillExperienceLevel('treinado', skill)">
+                                            <input class="form-check-input bg-dark" type="radio" [name]="'skillLevelRadio'+skill.name" [ngClass]="{'border-warning': skill.experienceLevel == 'treinado'}" [checked]="skill.experienceLevel == 'treinado'" (change)="onSelectSkillExperienceLevel('treinado', skill)">
                                             <label class="form-check-label" for="flexRadioDefault2">
                                                 Treinado
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input bg-dark" type="radio" name="flexRadioDefault" [ngClass]="{'border-warning': skill.experienceLevel == 'competente'}" [checked]="skill.experienceLevel == 'competente'" (change)="onSelectSkillExperienceLevel('competente', skill)">
+                                            <input class="form-check-input bg-dark" type="radio" [name]="'skillLevelRadio'+skill.name" [ngClass]="{'border-warning': skill.experienceLevel == 'competente'}" [checked]="skill.experienceLevel == 'competente'" (change)="onSelectSkillExperienceLevel('competente', skill)">
                                             <label class="form-check-label" for="flexRadioDefault2">
                                               Competente
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input bg-dark" type="radio" name="flexRadioDefault" [ngClass]="{'border-warning': skill.experienceLevel == 'expert'}" [checked]="skill.experienceLevel == 'expert'" (change)="onSelectSkillExperienceLevel('expert', skill)">
+                                            <input class="form-check-input bg-dark" type="radio" [name]="'skillLevelRadio'+skill.name" [ngClass]="{'border-warning': skill.experienceLevel == 'expert'}" [checked]="skill.experienceLevel == 'expert'" (change)="onSelectSkillExperienceLevel('expert', skill)">
                                             <label class="form-check-label" for="flexRadioDefault2">
                                               Expert
                                             </label>

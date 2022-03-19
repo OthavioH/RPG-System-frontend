@@ -50,6 +50,18 @@ export class CharacterComponent implements OnInit {
   ngOnInit() {
     this.routeSubscription = this.activatedRoute.data.subscribe((info: {character: ICharacter}) => {
       this.character = info.character;
+      if (this.character.skills != null) {
+        this.character.skills = this.character.skills.sort((a, b) => a.name.localeCompare(b.name));
+      }
+      if (this.character.abilities != null) {
+        this.character.abilities = this.character.abilities.sort((a, b) => a.name.localeCompare(b.name));
+      }
+      if (this.character.rituals != null) {
+        this.character.rituals = this.character.rituals.sort((a, b) => a.name.localeCompare(b.name));
+      }
+      if (this.character.attributes != null) {
+        this.character.attributes = this.character.attributes.sort((a, b) => a.name.localeCompare(b.name));
+      }
       this.initInventoryMaxSlots();
       this.titleService.setTitle(`Personagem | ${this.character.name}`); 
       this.imgUrl = this.character.profileImageUrl ?? this.defaultImgUrl;
