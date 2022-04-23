@@ -161,7 +161,7 @@
                         <i class="bi bi-plus-lg text-light"></i>
                     </button>
                 </div>
-                <div class="d-flex flex-wrap justify-content-between col-md-12 ps-1 pe-4 mt-3 py-2">
+                <div class="d-flex flex-wrap justify-content-between col-md-12 ps-1 pe-4 mt-3 py-2 overflow-auto" style="max-height:500px;">
                     <div class="d-flex col-md-12 flex-nowrap justify-content-between mb-2 me-5 w-auto" *ngFor="let ability of character.abilities">
                         <button class="btn btn-outline-danger w-auto me-2 col" (click)="deleteAbility(ability.id)" style="height:fit-content;max-width: 40px;font-size: 14px;">
                             <i class="bi bi-trash3 text-light"></i>
@@ -179,7 +179,7 @@
                         <i class="bi bi-plus-lg text-light"></i>
                     </button>
                 </div>
-                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto">
+                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto" style="max-height:500px;">
                     <div class="d-flex col justify-content-between mb-2 me-5 w-auto" *ngFor="let skill of character.skills">
                         <div class="col">
                             <div class="card align-items-center bg-warning border-2 border-warning" role="button" style="width:fit-content;height:fit-content" (contextmenu)="deleteSkill(skill.id)">
@@ -189,25 +189,25 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-check">
-                                            <input class="form-check-input bg-dark" type="radio" name="flexRadioDefault" [ngClass]="{'border-warning': skill.experienceLevel == 'destreinado'}" [checked]="skill.experienceLevel == 'destreinado'" (change)="onSelectSkillExperienceLevel('destreinado', skill)">
+                                            <input class="form-check-input bg-dark" type="radio" [name]="'skillLevelRadio'+skill.name" [ngClass]="{'border-warning': skill.experienceLevel == 'destreinado'}" [checked]="skill.experienceLevel == 'destreinado'" (change)="onSelectSkillExperienceLevel('destreinado', skill)">
                                             <label class="form-check-label" for="flexRadioDefault1">
                                               Destreinado
                                             </label>
                                           </div>
                                         <div class="form-check">
-                                            <input class="form-check-input bg-dark" type="radio" name="flexRadioDefault" [ngClass]="{'border-warning': skill.experienceLevel == 'treinado'}" [checked]="skill.experienceLevel == 'treinado'" (change)="onSelectSkillExperienceLevel('treinado', skill)">
+                                            <input class="form-check-input bg-dark" type="radio" [name]="'skillLevelRadio'+skill.name" [ngClass]="{'border-warning': skill.experienceLevel == 'treinado'}" [checked]="skill.experienceLevel == 'treinado'" (change)="onSelectSkillExperienceLevel('treinado', skill)">
                                             <label class="form-check-label" for="flexRadioDefault2">
                                                 Treinado
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input bg-dark" type="radio" name="flexRadioDefault" [ngClass]="{'border-warning': skill.experienceLevel == 'competente'}" [checked]="skill.experienceLevel == 'competente'" (change)="onSelectSkillExperienceLevel('competente', skill)">
+                                            <input class="form-check-input bg-dark" type="radio" [name]="'skillLevelRadio'+skill.name" [ngClass]="{'border-warning': skill.experienceLevel == 'competente'}" [checked]="skill.experienceLevel == 'competente'" (change)="onSelectSkillExperienceLevel('competente', skill)">
                                             <label class="form-check-label" for="flexRadioDefault2">
                                               Competente
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input bg-dark" type="radio" name="flexRadioDefault" [ngClass]="{'border-warning': skill.experienceLevel == 'expert'}" [checked]="skill.experienceLevel == 'expert'" (change)="onSelectSkillExperienceLevel('expert', skill)">
+                                            <input class="form-check-input bg-dark" type="radio" [name]="'skillLevelRadio'+skill.name" [ngClass]="{'border-warning': skill.experienceLevel == 'expert'}" [checked]="skill.experienceLevel == 'expert'" (change)="onSelectSkillExperienceLevel('expert', skill)">
                                             <label class="form-check-label" for="flexRadioDefault2">
                                               Expert
                                             </label>
@@ -231,7 +231,7 @@
                         <i class="bi bi-plus-lg text-light"></i>
                     </button>
                 </div>
-                <div class="d-flex flex-wrap justify-content-between col-md-12 ps-1 pe-4 mt-3 py-2">
+                <div class="d-flex flex-wrap justify-content-between col-md-12 ps-1 pe-4 mt-3 py-2 overflow-auto" style="max-height:500px;">
                     <div class="d-flex col-md-6 flex-nowrap justify-content-between mb-2 me-5 w-auto" *ngFor="let ritual of character.rituals">
                         <button class="btn btn-outline-danger w-auto me-2 col" (click)="deleteRitual(ritual.id)" style="height:fit-content;max-width: 40px;font-size: 14px;">
                             <i class="bi bi-trash3 text-light"></i>
