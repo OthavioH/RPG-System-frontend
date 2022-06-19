@@ -45,6 +45,8 @@ import { TestDiceComponent } from './test-dice/test-dice.component';
 import { ChangeCharacterImageDialogComponent } from './views/common/change-character-image-dialog/change-character-image-dialog.component';
 import { DiceRollAnimationComponent } from './views/common/dice-roll-animation/dice-roll-animation.component';
 import { DiceAnimationComponent } from './views/common/dice-animation/dice-animation.component';
+import { ToRomanNumeralPipe } from './to-roman-numeral.pipe';
+import { EditInventoryDialogComponent } from './views/common/edit-inventory-dialog/edit-inventory-dialog.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,8 @@ import { DiceAnimationComponent } from './views/common/dice-animation/dice-anima
     ChangeCharacterImageDialogComponent,
     DiceRollAnimationComponent,
     DiceAnimationComponent,
+    ToRomanNumeralPipe,
+    EditInventoryDialogComponent,
   ],
   imports: [
     BrowserModule,

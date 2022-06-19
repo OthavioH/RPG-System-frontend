@@ -5,7 +5,7 @@ import { SkillsDialogComponent } from '../common/skills-dialog/skills-dialog.com
 import { CharactersService } from '../characters/shared/services/characters.service';
 import { ICharacter } from 'src/models/Character';
 import { EditProgressBarValuesDialogComponent } from '../common/edit-hp-dialog/edit-progress-bar-values-dialog.component';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, } from '@angular/router';
 import { OpenChooseAttributesDialogComponent } from '../common/open-choose-attributes-dialog/open-choose-attributes-dialog.component';
 import { OpenChooseSkillsDialogComponent } from '../common/open-choose-skills-dialog/open-choose-skills-dialog.component';
@@ -23,6 +23,7 @@ import { IRitual } from 'src/models/Ritual';
 import { ShowRitualDialogComponent } from '../common/show-ritual-dialog/show-ritual-dialog.component';
 import { ChangeCharacterImageDialogComponent } from 'src/app/views/common/change-character-image-dialog/change-character-image-dialog.component';
 import { InventoryItem } from 'src/models/InventoryItem';
+import { EditInventoryDialogComponent } from '../common/edit-inventory-dialog/edit-inventory-dialog.component';
 
 @Component({
   selector: 'app-character',
@@ -33,6 +34,7 @@ export class CharacterComponent implements OnInit {
 
   character: ICharacter;
   routeSubscription: Subscription;
+  removeIntentoryStream:BehaviorSubject<InventoryItem>;
 
   onCharacterChanged:Subscription;
 
@@ -55,6 +57,20 @@ export class CharacterComponent implements OnInit {
       this.titleService.setTitle(`Personagem | ${this.character.name}`); 
       this.imgUrl = this.character.profileImageUrl ?? this.defaultImgUrl;
     });
+    
+    this.removeIntentoryStream.subscribe((item)=>{
+      this.deleteInventoryItem(item.id);
+    });
+  }
+
+  async saveCharacter(){
+    this.sortListsAlphabetically();
+    this.character.inventory.usedSlots = 0;
+    for (let index = 0; index < (this.character.inventory.items != null ? this.character.inventory.items.length : 0); index++) {
+      const item = this.character.inventory.items[index];
+      this.character.inventory.usedSlots += item.slots;
+    }
+    await this.charactersService.updateCharacter(this.character);
   }
 
   sortListsAlphabetically(){
@@ -169,22 +185,16 @@ export class CharacterComponent implements OnInit {
     this.modalService.open(OpenChooseAttributesDialogComponent, {data:{character:this.character}});
   }
 
-  async saveCharacter(){
-    this.sortListsAlphabetically();
-    this.character.inventory.usedSlots = 0;
-    for (let index = 0; index < (this.character.inventory.items != null ? this.character.inventory.items.length : 0); index++) {
-      const item = this.character.inventory.items[index];
-      this.character.inventory.usedSlots += item.slots;
-    }
-    await this.charactersService.updateCharacter(this.character);
-  }
-
   openEditHPDialog(): void {
     this.modalService.open(EditProgressBarValuesDialogComponent,{data:{character: this.character, characterStats:CharacterStats.hp}});
   }
 
   openEditSanityDialog(): void {
     this.modalService.open(EditProgressBarValuesDialogComponent,{data:{character: this.character, characterStats:CharacterStats.sanity}});
+  }
+
+  openEditInventoryDialog(item:InventoryItem) {
+    this.modalService.open(EditInventoryDialogComponent,{data:{item:item,deleteInventoryStream:this.removeIntentoryStream}});
   }
 
   openChangeCharacterImgDialog():void {
