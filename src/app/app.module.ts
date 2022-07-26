@@ -22,10 +22,8 @@ import { CharacterComponent } from './views/character/character.component';
 import { SkillsDialogComponent } from './views/common/skills-dialog/skills-dialog.component';
 import { RollDiceDialogComponent } from './views/common/roll-dice-dialog/roll-dice-dialog.component';
 import { CreateCharacterDialogComponent } from './views/common/create-character-dialog/create-character-dialog.component';
-import { EditAttributeDialogComponent } from './views/common/edit-attribute-dialog/edit-attribute-dialog.component';
 import { ProgressBarComponent } from './views/common/progress-bar/progress-bar.component';
 import { EditProgressBarValuesDialogComponent } from './views/common/edit-hp-dialog/edit-progress-bar-values-dialog.component';
-import { OpenChooseAttributesDialogComponent } from './views/common/open-choose-attributes-dialog/open-choose-attributes-dialog.component';
 import { OpenChooseSkillsDialogComponent } from './views/common/open-choose-skills-dialog/open-choose-skills-dialog.component';
 import { AttributeDialogComponent } from './views/common/attribute-dialog/attribute-dialog.component';
 import { DeleteCharacterDialogComponent } from './views/common/delete-character-dialog/delete-character-dialog.component';
@@ -56,10 +54,8 @@ import { EditInventoryDialogComponent } from './views/common/edit-inventory-dial
     SkillsDialogComponent,
     RollDiceDialogComponent,
     CreateCharacterDialogComponent,
-    EditAttributeDialogComponent,
     ProgressBarComponent,
     EditProgressBarValuesDialogComponent,
-    OpenChooseAttributesDialogComponent,
     OpenChooseSkillsDialogComponent,
     AttributeDialogComponent,
     DeleteCharacterDialogComponent,

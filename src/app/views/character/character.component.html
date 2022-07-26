@@ -67,8 +67,8 @@
                 </div>
                 <p class="row mb-2 text-light fs-5">Pontos de esforço</p>
                 <div class="row d-flex mb-3">
-                    <app-progress-bar [total]="character.maxStressPoints" [value]="character.stressPoints" (click)="openEditProgressBarValueDialog('stressPoints')" role="button" [color]="'yellow'" class="col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
-                    <p class="text-light fs-5 col">{{character.stressPoints}}/{{character.maxStressPoints}}</p>
+                    <app-progress-bar [total]="character.maxEffortPoints" [value]="character.effortPoints" (click)="openEditProgressBarValueDialog('stressPoints')" role="button" [color]="'yellow'" class="col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
+                    <p class="text-light fs-5 col">{{character.effortPoints}}/{{character.maxEffortPoints}}</p>
                 </div>
                 <app-roll-dice-dialog [characterName]="character.name"></app-roll-dice-dialog>
             </div>
@@ -124,23 +124,44 @@
             </div>
         </div>
         <div class="d-flex col-md-6 mt-3 shadow">
-            <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+            <div class="container rounded-3 pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
                 <div class="row d-flex justify-content-between col-md-12">
                     <p class="text-center fs-2 paranormal-text fw-bold text-warning w-25 col">Atributos</p>
-                    <button class="btn btn-outline-warning w-auto" (click)="openChooseAttributes()">
-                        <i class="bi bi-plus-lg text-light"></i>
-                    </button>
                 </div>
-                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto" style="min-height: 150px;">
-                    <div class="d-flex col justify-content-between mb-2 me-5 w-auto" *ngFor="let attribute of character.attributes">
-                        <div class="col" (contextmenu)="deleteAttribute(attribute.id)">
-                            <div class="card align-items-center bg-warning border-2 border-warning" role="button" style="width:fit-content;height:fit-content">
-                                <div class="card-header bg-warning row pt-3 px-0 mx-0" style="width:115px;height:fit-content;">
-                                    <p class="text-light text-center text-uppercase fs-3 fw-bold user-select-none" style="text-shadow: 1px 1px 4px black;">{{attribute.abbreviation}}</p>
-                                    <p class="text-light text-center fs-6 text-break fw-bold user-select-none" style="text-shadow: 1px 1px 4px black;">{{attribute.name}}</p>
+                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 outro-lado-bg overflow-hidden" style="min-height: 150px; min-width:500px;">
+                    <div class="d-flex col justify-content-between mb-2 me-5">   
+                        <div class="col">
+                            <div class="card align-items-center bg-transparent agility-position" role="button" style="width:fit-content;height:fit-content">
+                                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center" style="width:108px;height:50px;">
+                                    <input #agilityValue type="text" class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [value]="character.attributes.agility.value ?? 1" (change)="onChangedAttributeValue(character.attributes.agility.abbreviation,+agilityValue.value)" style="width:108px;height:107px;">
                                 </div>
-                                <div class="card-body py-0 my-0 bg-dark rounded-bottom row align-items-center px-0 mx-0" style="width:115px;height:50px;">
-                                    <input #attributeValue type="text" class="col form-control text-center border-0 shadow-none bg-transparent fw-bold text-light w-100" [value]="attribute.value ?? 0" (change)="onChangedAttributeValue(attribute.id,+attributeValue.value)" style="width:50px;">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card align-items-center bg-transparent int-position" role="button" style="width:fit-content;height:fit-content">
+                                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center" style="width:108px;height:50px;">
+                                    <input #intValue type="text" class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [value]="character.attributes.intelligence.value ?? 1" (change)="onChangedAttributeValue(character.attributes.intelligence.abbreviation,+intValue.value)" style="width:108px;height:107px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card align-items-center bg-transparent for-position" role="button" style="width:fit-content;height:fit-content">
+                                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center" style="width:108px;height:50px;">
+                                    <input #forValue type="text" class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [value]="character.attributes.strength.value ?? 1" (change)="onChangedAttributeValue(character.attributes.strength.abbreviation,+forValue.value)" style="width:108px;height:107px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card align-items-center bg-transparent pre-position" role="button" style="width:fit-content;height:fit-content">
+                                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center" style="width:108px;height:50px;">
+                                    <input #preValue type="text" class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [value]="character.attributes.presence.value ?? 1" (change)="onChangedAttributeValue(character.attributes.presence.abbreviation,+preValue.value)" style="width:108px;height:107px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card align-items-center bg-transparent vig-position rounded-circle" style="width:fit-content;height:fit-content">
+                                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center" style="width:108px;height:50px;">
+                                    <input #vigValue type="text" class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [value]="character.attributes.vigor.value ?? 1" (change)="onChangedAttributeValue(character.attributes.vigor.abbreviation,+vigValue.value)" style="width:108px;height:107px;">
                                 </div>
                             </div>
                         </div>
@@ -267,60 +288,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="container w-75 px-0 w-auto">
-    <div class="d-flex col mt-3 shadow">
-        <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300 overflow-hidden" >
-            <div class="row d-flex justify-content-between col-md-12">
-                <p class="text-center fs-2 paranormal-text fw-bold text-warning col">Inventário</p>
-            </div>
-            <div class="row d-flex justify-content-between col-md-12">
-                <span class="text-center fs-6 fw-bold text-light col">Slots: {{character.inventory != null ? +character.inventory.usedSlots : 0}}/{{character.inventory != null ? +character.inventory.maxSlots : 0}}</span>
-            </div>
-            <div class="row d-flex justify-content-between col-md-12">
-                <div class="form-group">
-                    <button class="btn btn-outline-warning float-end" (click)="openCreateInventoryItemDialog()">
-                        <i class="bi bi-plus-lg text-light"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="overflow-auto" style="max-height: 300px;">
-                <table class="table text-light">
-                    <thead>
-                      <tr >
-                        <th scope="col"></th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Detalhes</th>
-                        <th scope="col">Slots.</th>
-                        <th scope="col">Prestígio</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let item of character.inventory.items">
-                        <th scope="row">
-                            <button class="btn btn-outline-danger w-auto me-2 col" style="height:fit-content;font-size: 14px;" (click)="deleteInventoryItem(item.id)">
-                                <i class="bi bi-trash3 text-light text-center"></i>
-                            </button>
-                        </th>
-                        <td>
-                            <input #itemName type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto"  [value]="item.name ?? ''" [(ngModel)]="item.name" style="max-width:90px;height:fit-content;font-size:12px;">
-                        </td>
-                        <td>
-                            <textarea #itemDetails type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [value]="item.details ?? ''" [(ngModel)]="item.details" style="max-width:500px;height:20px; font-size:12px;"></textarea>
-                        </td>
-                        <td>
-                            <input #itemSlot type="number" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [value]="item.slots ?? 0" [ngModel]="item.slots" (ngModelChange)="onChangeItemSlot(item,+itemSlot.value)" style="max-width:90px;height:fit-content;font-size:12px;">
-                        </td>
-                        <td>
-                            <input #itemPrestigy type="text" class="col form-control text-center btn-light shadow-none bg-transparent text-light w-auto" [value]="item.prestige ?? ''" [(ngModel)]="item.prestige" style="max-width:90px;height:fit-content;font-size:12px;">
-                        </td>
-                      </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

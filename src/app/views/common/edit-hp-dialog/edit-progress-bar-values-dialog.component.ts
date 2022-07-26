@@ -28,8 +28,8 @@ export class EditProgressBarValuesDialogComponent implements OnInit {
         this.maxLimit = this.data.character.maxSanity;
       }
       else {
-        this.value = this.data.character.stressPoints;
-        this.maxLimit = this.data.character.maxStressPoints;
+        this.value = this.data.character.effortPoints;
+        this.maxLimit = this.data.character.maxEffortPoints;
       }
     }
 
@@ -49,8 +49,8 @@ export class EditProgressBarValuesDialogComponent implements OnInit {
       this.data.character.maxSanity = limit;
     }
     else {
-      this.data.character.stressPoints = currentValue;
-      this.data.character.maxStressPoints = limit;
+      this.data.character.effortPoints = currentValue;
+      this.data.character.maxEffortPoints = limit;
     }
     this.charactersService.updateCharacterStats(this.data.character);
     this.dialogRef.close();

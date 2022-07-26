@@ -37,6 +37,48 @@
     bottom:-42.5%;
 }
 
+.outro-lado-bg {
+  width: 624px;
+  height: 500px;
+  background-image: url("./../../../assets/atributos.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.agility-position {
+  top:13%;
+  left:200%;
+}
+
+.int-position {
+  top:33%;
+  left:223%;
+}
+
+.for-position {
+  top:33%;
+  left:-120%;
+}
+
+.pre-position {
+  top:66.5%;
+  left:-180.5%;
+}
+
+.vig-position {
+  top:66.5%;
+  left:-120%;
+}
+
+.rounded-circle {
+  border-radius: 50em;
+}
+
+.bg-full-black {
+  background-color: #000;
+}
+
 .shield:after {transform: scale(-1,1) translateX(-5em) rotate(-20deg);}
 .shield, .shield:before, .shield:after {background: grey;}
 .shield.test, .shield.test:before, .shield.test:after {background: rgba(0, 127, 0, 0.5);}

@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
 
 import { CharactersService } from './shared/services/characters.service';
-import { EditAttributeDialogComponent } from '../common/edit-attribute-dialog/edit-attribute-dialog.component';
 import { SkillsDialogComponent } from '../common/skills-dialog/skills-dialog.component';
 import { AttributeDialogComponent } from '../common/attribute-dialog/attribute-dialog.component';
 import { EditSkillDialogComponent } from 'src/app/views/common/edit-skill-dialog/edit-skill-dialog.component';
@@ -72,7 +71,6 @@ export class CharactersComponent implements OnInit {
   subscribeObservables(){
     this.gameSettingsSubscription = this.gameSettingsService.updateGameSettingsEvent$.subscribe(newGameSettings => {
       this.gameSettings = newGameSettings;
-      this.attributeList = this.gameSettings.attributes != null ? this.gameSettings.attributes.sort((a,b) => a.name.localeCompare(b.name)) : [];
       this.skillList = this.gameSettings.skills != null ? this.gameSettings.skills.sort((a,b) => a.name.localeCompare(b.name)) : [];
       this.gameSettings.rituals = this.gameSettings.rituals != null ? this.gameSettings.rituals.sort((a,b) => a.name.localeCompare(b.name)) : [];
     });
@@ -84,6 +82,7 @@ export class CharactersComponent implements OnInit {
     this.charactersService.onCharacterChanged$.subscribe((changedCharacter) =>{
       if (this.charactersList != null) {
         if (changedCharacter != null) {
+          console.log(changedCharacter);
           const index = findCharacterIndex(this.charactersList,changedCharacter);
           this.charactersList[index] = changedCharacter;
         }
@@ -93,7 +92,6 @@ export class CharactersComponent implements OnInit {
     this.subscribe = this.activatedRoute.data.subscribe((info: {gameSettings: IGameSettings}) => {
       this.gameSettings = info.gameSettings;
     });
-    this.attributeList = this.gameSettings.attributes != null ? this.gameSettings.attributes.sort((a,b) => a.name.localeCompare(b.name)) : [];
     this.skillList = this.gameSettings.skills != null ? this.gameSettings.skills.sort((a,b) => a.name.localeCompare(b.name)) : [];
     this.gameSettings.rituals = this.gameSettings.rituals != null ? this.gameSettings.rituals.sort((a,b) => a.name.localeCompare(b.name)) : [];
   }
@@ -124,15 +122,6 @@ export class CharactersComponent implements OnInit {
     this.close();
   }
 
-  createNewAttribute(attributeName: string, attributeDescription:string): void {
-    this.gameSettingsService.createNewAttribute(attributeName, attributeDescription);
-    this.close();
-  }
-
-  deleteAttribute(attributeId: string): void {
-    this.gameSettingsService.removeAttribute(attributeId);
-  }
-
   deleteSkill(skillId: string): void {
     this.gameSettingsService.removeSkill(skillId);
   }
@@ -147,10 +136,6 @@ export class CharactersComponent implements OnInit {
 
   openModal(content): void {
     this.modalService.open(content);
-  }
-
-  openEditAttributeDialog(attribute: IAttribute): void {
-    this.modalService.open(EditAttributeDialogComponent,{data:attribute})
   }
 
   openEditSkillDialog(skill: ISkill): void {

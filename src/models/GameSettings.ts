@@ -9,7 +9,6 @@ export interface IGameSettings {
     diceCooldown: number;
     skills?: ISkill[];
     lastRolls: IDiceRoll[];
-    attributes?: IAttribute[];
     abilities?: IAbility[];
     rituals?:IRitual[];
 }

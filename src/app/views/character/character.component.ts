@@ -7,7 +7,6 @@ import { ICharacter } from 'src/models/Character';
 import { EditProgressBarValuesDialogComponent } from '../common/edit-hp-dialog/edit-progress-bar-values-dialog.component';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, } from '@angular/router';
-import { OpenChooseAttributesDialogComponent } from '../common/open-choose-attributes-dialog/open-choose-attributes-dialog.component';
 import { OpenChooseSkillsDialogComponent } from '../common/open-choose-skills-dialog/open-choose-skills-dialog.component';
 import { AttributeDialogComponent } from '../common/attribute-dialog/attribute-dialog.component';
 import { IAttribute } from 'src/models/Attribute';
@@ -51,26 +50,18 @@ export class CharacterComponent implements OnInit {
 
   ngOnInit() {
     this.routeSubscription = this.activatedRoute.data.subscribe((info: {character: ICharacter}) => {
-      this.character = info.character;
+      this.character = new ICharacter(this.charactersService, info.character);
+      console.log(this.character);
       this.sortListsAlphabetically();
       this.initInventoryMaxSlots();
       this.titleService.setTitle(`Personagem | ${this.character.name}`); 
       this.imgUrl = this.character.profileImageUrl ?? this.defaultImgUrl;
+      
     });
     
     this.removeIntentoryStream.subscribe((item)=>{
       this.deleteInventoryItem(item.id);
     });
-  }
-
-  async saveCharacter(){
-    this.sortListsAlphabetically();
-    this.character.inventory.usedSlots = 0;
-    for (let index = 0; index < (this.character.inventory.items != null ? this.character.inventory.items.length : 0); index++) {
-      const item = this.character.inventory.items[index];
-      this.character.inventory.usedSlots += item.slots;
-    }
-    await this.charactersService.updateCharacter(this.character);
   }
 
   sortListsAlphabetically(){
@@ -83,24 +74,12 @@ export class CharacterComponent implements OnInit {
     if (this.character.rituals != null) {
       this.character.rituals = this.character.rituals.sort((a, b) => a.name.localeCompare(b.name));
     }
-    if (this.character.attributes != null) {
-      this.character.attributes = this.character.attributes.sort((a, b) => a.name.localeCompare(b.name));
-    }
   }
 
   initInventoryMaxSlots() {
-    var strength = null;
-    for (let index = 0; index < (this.character.attributes != null ? this.character.attributes.length : 0); index++) {
-      const attribute = this.character.attributes[index];
-      if (attribute.name == "Força") {
-        strength = attribute.value;
-      } 
-    }
-    this.character.inventory.maxSlots = 5;
+    const strength = this.character.attributes.strength.value;
     
-    if (strength > 0 && strength != null) {
-      this.character.inventory.maxSlots += 5 * strength;  
-    }
+    this.character.inventory.maxSlots = 5 * strength;
   }
 
   onImageError(event) {
@@ -117,11 +96,29 @@ export class CharacterComponent implements OnInit {
     }
   }
 
-  onChangedAttributeValue(attributeId:string, newAttributeValue:number):void{
-    for (const attribute of this.character.attributes) {
-      if (attribute.id == attributeId) {
-        attribute.value = newAttributeValue;
-      }
+  onChangedAttributeValue(attribute:string, newAttributeValue:number):void{
+    switch (
+      attribute.toLowerCase()
+    ) {
+      case 'for':
+        this.character.attributes.strength.value = newAttributeValue;
+        break;
+      case 'agi':
+        this.character.attributes.agility.value = newAttributeValue;
+        break;
+      case 'int':
+        this.character.attributes.intelligence.value = newAttributeValue;
+        console.log(this.character.attributes.intelligence.value);
+        
+        break;
+      case 'pre':
+        this.character.attributes.presence.value = newAttributeValue;
+        break;
+      case 'vig':
+        this.character.attributes.vigor.value = newAttributeValue;
+        break;
+      default:
+        break;
     }
   }
 
@@ -141,8 +138,8 @@ export class CharacterComponent implements OnInit {
     }
   }
 
-  close(): void {
-    this.modalService.closeAll();
+  async saveCharacter(){
+    await this.character.saveCharacter();
   }
 
   openSkillDialog(skill: ISkill): void {
@@ -181,10 +178,6 @@ export class CharacterComponent implements OnInit {
     this.modalService.open(ChooseRitualsDialogComponent, {data:{character:this.character}});
   }
 
-  openChooseAttributes(): void {
-    this.modalService.open(OpenChooseAttributesDialogComponent, {data:{character:this.character}});
-  }
-
   openEditHPDialog(): void {
     this.modalService.open(EditProgressBarValuesDialogComponent,{data:{character: this.character, characterStats:CharacterStats.hp}});
   }
@@ -211,31 +204,30 @@ export class CharacterComponent implements OnInit {
 
   deleteSkill(skillId: string): void {
     this.character.skills = this.character.skills.filter(skill => skill.id != skillId);
-    this.saveCharacter();
+    this.character.saveCharacter();
   }
 
   deleteAbility(abilityId: string): void {
     this.character.abilities = this.character.abilities.filter(abilities => abilities.id != abilityId);
-    this.saveCharacter();
+    this.character.saveCharacter();
   }
 
   deleteRitual(ritualId: string): void {
     this.character.rituals = this.character.rituals.filter(ritual => ritual.id != ritualId);
-    this.saveCharacter();
+    this.character.saveCharacter();
   }
 
   deleteInventoryItem(itemId: string,): void {
     this.character.inventory.items = this.character.inventory.items.filter(item => item.id != itemId);
-    this.saveCharacter();
+    this.character.saveCharacter();
   }
 
   deleteWeapon(weaponId: string): void {
     this.character.weapons = this.character.weapons.filter(weapon => weapon.id != weaponId);
-    this.saveCharacter();
+    this.character.saveCharacter();
   }
 
-  deleteAttribute(attributeId: string) {
-    this.character.attributes = this.character.attributes.filter(attribute => attribute.id != attributeId);
-    this.saveCharacter();
+  close(): void {
+    this.modalService.closeAll();
   }
 }

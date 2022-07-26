@@ -71,12 +71,10 @@ export class GameSettingsService {
   // SKILLS AND PROPERTIES
   async setGameProperties() {
     this.gameSettings.skills = this.gameSettings.skills != null ? this.gameSettings.skills.sort((a,b) => a.id > b.id ? 1 : -1) : [];
-    this.gameSettings.attributes = this.gameSettings.attributes != null ? this.gameSettings.attributes.sort((a,b) => a.id > b.id ? 1 : -1) : [];
     this.gameSettings.abilities = this.gameSettings.abilities != null ? this.gameSettings.abilities.sort((a,b) => a.id > b.id ? 1 : -1) : [];
     this.gameSettings.rituals = this.gameSettings.rituals != null ? this.gameSettings.rituals.sort((a,b) => a.id > b.id ? 1 : -1) : [];
     const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/properties/save/`,{
       skills: this.gameSettings.skills,
-      attributes: this.gameSettings.attributes,
       abilities:this.gameSettings.abilities,
       rituals:this.gameSettings.rituals,
     }).toPromise();
@@ -90,11 +88,6 @@ export class GameSettingsService {
       roll: roll,
       oldRollList: this.gameSettings.lastRolls ?? [],
     }).toPromise();
-  }
-
-  async removeAttribute(attributeId:string) {
-    this.gameSettings.attributes = this.gameSettings.attributes.filter(element => element.id != attributeId);
-    await this.setGameProperties();
   }
 
   async removeSkill(skillId:string) {
@@ -179,26 +172,6 @@ export class GameSettingsService {
     }
   }
 
-  async createNewAttribute(attributeName: string, abbreviation:string){
-    if (attributeName.length > 0 && abbreviation.length > 0) {
-      
-      const newAttribute: IAttribute = {
-        id:this.generateRandomId(),
-        name: attributeName,
-        abbreviation:abbreviation,
-      };
-
-      if (this.gameSettings.attributes != null) {
-        this.gameSettings.attributes.push(newAttribute); 
-      }
-      else {
-        this.gameSettings.attributes = [newAttribute];
-      }
-  
-      await this.setGameProperties();
-    }
-  }
-
   async editSkill(skillName: string, skillDescription:string, skillId: string) {
     if (skillName.length > 0 && skillDescription.length > 0) {
       this.gameSettings.skills.map((skill)=>{
@@ -227,19 +200,6 @@ export class GameSettingsService {
         if (ability.id == abilityId) {
           ability.name = abilityName;
           ability.description = abilityDescription;
-        }
-      });
-  
-      await this.setGameProperties();
-    }
-  }
-
-  async editAttribute(attributeName: string, attributeAbbreviation:string, attributeId: string) {
-    if (attributeName.length > 0 && attributeAbbreviation.length > 0) {
-      this.gameSettings.attributes.map((attribute)=>{
-        if (attribute.id == attributeId) {
-          attribute.name = attributeName;
-          attribute.abbreviation = attributeAbbreviation;
         }
       });
   

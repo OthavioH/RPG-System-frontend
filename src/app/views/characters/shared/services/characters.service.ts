@@ -83,11 +83,6 @@ export class CharactersService {
     this.getCharacterById(character.id);
   }
 
-  async getDefaultAttributeList(): Promise<IAttribute[]> {
-    this.attributeList = (await this.gameSettingsService.getGameSettings()).attributes;
-    return this.attributeList;
-  }
-
   async createNewCharacter(characterName:string) {
     await this.http.post(`${environment.apiUrl}/sheets/create`,{name:characterName}).toPromise();
     await this.getCharacters();
