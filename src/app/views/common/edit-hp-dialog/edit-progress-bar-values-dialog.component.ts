@@ -52,7 +52,7 @@ export class EditProgressBarValuesDialogComponent implements OnInit {
       this.data.character.effortPoints = currentValue;
       this.data.character.maxEffortPoints = limit;
     }
-    this.charactersService.updateCharacterStats(this.data.character);
+    this.data.character.saveCharacter();
     this.dialogRef.close();
   }
 

@@ -83,55 +83,18 @@ export class ICharacter {
     };
 
     async saveCharacter():Promise<void>{
-        console.log(this);
         
         this.inventory.usedSlots = 0;
         for (let index = 0; index < (this.inventory.items != null ? this.inventory.items.length : 0); index++) {
             const item = this.inventory.items[index];
             this.inventory.usedSlots += item.slots;
         }
-        await this.charactersService.updateCharacter(this);
+        await this.charactersService.updateCharacter(this, this.toJSON());
     }
 
 
     toJSON():string{
-        const jsonString = `{
-            "id":${this.id},
-            "playerName":"${this.playerName}",
-            "profileImageUrl":"${this.profileImageUrl}",
-            "name":"${this.name}",
-            "age":${this.age},
-            "gender":"${this.gender}",
-            "nex":${this.nex},
-            "rank":"${this.rank}",
-            "class":"${this.class}",
-            "origin":"${this.origin}",
-            "hp":"${this.hp}",
-            "maxHp":"${this.maxHp}",
-            "sanity":${this.sanity},
-            "maxSanity":${this.maxSanity},
-            "effortPoints":${this.effortPoints},
-            "maxEffortPoints":${this.maxEffortPoints},
-            "proficiences":"${this.proficiences}",
-            "skills":${JSON.stringify(this.skills)},
-            "attributes":${JSON.stringify(this.attributes)},
-            "abilities":${JSON.stringify(this.abilities)},
-            "rituals":${JSON.stringify(this.rituals)},
-            "weapons":${JSON.stringify(this.weapons)},
-            "inventory":${JSON.stringify(this.inventory)},
-            "passiveDefense":${this.passiveDefense},
-            "blockDefense":${this.blockDefense},
-            "dodgeDefense":${this.dodgeDefense},
-            "physicsResistence":${this.physicsResistence},
-            "ballisticResistence":${this.ballisticResistence},
-            "bloodResistence":${this.bloodResistence},
-            "energyResistence":${this.energyResistence},
-            "deathResistence":${this.deathResistence},
-            "knowledgeResistence":${this.knowledgeResistence},
-            "insanityResistence":${this.insanityResistence},
-            "notes":"${this.notes}"
-        }`;
-        console.log(jsonString);
+        const jsonString = `{"id":${this.id},"playerName":"${this.playerName}","profileImageUrl":"${this.profileImageUrl}","name":"${this.name}","age":${this.age},"gender":"${this.gender}","nex":${this.nex},"rank":"${this.rank}","class":"${this.class}","origin":"${this.origin}","hp":"${this.hp}","maxHp":"${this.maxHp}","sanity":${this.sanity},"maxSanity":${this.maxSanity},"effortPoints":${this.effortPoints},"maxEffortPoints":${this.maxEffortPoints},"proficiences":"${this.proficiences}","skills":${JSON.stringify(this.skills)},"attributes":${JSON.stringify(this.attributes)},"abilities":${JSON.stringify(this.abilities)},"rituals":${JSON.stringify(this.rituals)},"weapons":${JSON.stringify(this.weapons)},"inventory":${JSON.stringify(this.inventory)},"passiveDefense":${this.passiveDefense},"blockDefense":${this.blockDefense},"dodgeDefense":${this.dodgeDefense},"physicsResistence":${this.physicsResistence},"ballisticResistence":${this.ballisticResistence},"bloodResistence":${this.bloodResistence},"energyResistence":${this.energyResistence},"deathResistence":${this.deathResistence},"knowledgeResistence":${this.knowledgeResistence},"insanityResistence":${this.insanityResistence},"notes":"${this.notes}"}`;
         
         return jsonString;
     }

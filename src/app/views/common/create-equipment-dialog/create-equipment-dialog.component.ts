@@ -28,7 +28,7 @@ export class CreateEquipmentDialogComponent implements OnInit {
       } else {
         this.data.character.inventory.items = [newItem];
       }
-      await this.charactersService.updateCharacter(this.data.character);
+      await this.data.character.saveCharacter();
     }
   }
   

@@ -82,7 +82,6 @@ export class CharactersComponent implements OnInit {
     this.charactersService.onCharacterChanged$.subscribe((changedCharacter) =>{
       if (this.charactersList != null) {
         if (changedCharacter != null) {
-          console.log(changedCharacter);
           const index = findCharacterIndex(this.charactersList,changedCharacter);
           this.charactersList[index] = changedCharacter;
         }

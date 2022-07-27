@@ -4,8 +4,9 @@
             {{data.item.name}}
             <b class="text-warning ms-2">{{data.item.prestige | toRomanNumeral}}</b>
         </p>
+        <i class="fs-5 text-danger bi bi-trash-fill w-auto" role="button" (click)="removeItem()"></i>
+        <i class="fs-5 text-success bi bi-file-check-fill w-auto" role="button" (click)="saveItem()"></i>
     </div>
     <p class="text-white fs-6 w-100 text-center d-flex col mb-3">Slots: {{data.item.slots}}</p>
-    <textarea class="form-control text-center border-1 shadow-none bg-dark fw-bold text-light fs-6 w-100 text-center d-flex col mb-3">{{data.item.details}}</textarea>
-    <button role="button" type="button" class="btn btn-outline-danger w-50 self-align-center">Excluir</button>
+    <textarea class="form-control text-center border-1 shadow-none bg-dark fw-bold text-light fs-6 w-100 text-center d-flex col mb-3" [(ngModel)]="data.item.details"></textarea>
 </div>

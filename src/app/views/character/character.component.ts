@@ -51,7 +51,6 @@ export class CharacterComponent implements OnInit {
   ngOnInit() {
     this.routeSubscription = this.activatedRoute.data.subscribe((info: {character: ICharacter}) => {
       this.character = new ICharacter(this.charactersService, info.character);
-      console.log(this.character);
       this.sortListsAlphabetically();
       this.initInventoryMaxSlots();
       this.titleService.setTitle(`Personagem | ${this.character.name}`); 
@@ -91,7 +90,6 @@ export class CharacterComponent implements OnInit {
       const item = this.character.inventory.items[index];
       if (item.id == itemToUpdate.id) {
         item.slots = slots;
-        console.log(this.character.inventory.items[index]);
       }
     }
   }
@@ -108,7 +106,6 @@ export class CharacterComponent implements OnInit {
         break;
       case 'int':
         this.character.attributes.intelligence.value = newAttributeValue;
-        console.log(this.character.attributes.intelligence.value);
         
         break;
       case 'pre':
@@ -187,7 +184,7 @@ export class CharacterComponent implements OnInit {
   }
 
   openEditInventoryDialog(item:InventoryItem) {
-    this.modalService.open(EditInventoryDialogComponent,{data:{item:item,deleteInventoryStream:this.removeIntentoryStream}});
+    this.modalService.open(EditInventoryDialogComponent,{data:{item:item,character:this.character}});
   }
 
   openChangeCharacterImgDialog():void {

@@ -20,7 +20,18 @@ export class EditInventoryDialogComponent implements OnInit {
 
   async removeItem(): Promise<void> {
     this.data.character.inventory.items = this.data.character.inventory.items.filter(item => item.id != this.data.item.id);
-    this.data.character.saveCharacter();
+    await this.data.character.saveCharacter();
+    this.dialogRef.close();
+  }
+
+  async saveItem(): Promise<void> {
+    const foundItem = this.data.character.inventory.items.find(item => item.id == this.data.item.id);
+    if (foundItem) {
+      foundItem.details = this.data.item.details;
+
+      await this.data.character.saveCharacter();
+      this.dialogRef.close();
+    }
   }
 
   closeDialog(): void {

@@ -13,6 +13,11 @@
 }
 
 @font-face {
+  font-family: 'EnigmaSans';
+  src: local("EnigmaSans"),url('./assets/fonts/veterantypewriter.ttf');
+}
+
+@font-face {
   font-family: 'BabyDoll';
   src: local("BabyDoll"),url('./assets/fonts/BabyDoll.otf') format("opentype");
 }

@@ -73,13 +73,13 @@ export class CharactersService {
     await this.getCharacters();
   }
 
-  async updateCharacter(character: ICharacter) {
-    await this.http.put(`${environment.apiUrl}/sheets/${character.id}/update`,{character:character}).toPromise();
+  async updateCharacter(character: ICharacter, characterJSON: string) {
+    await this.http.put(`${environment.apiUrl}/sheets/${character.id}/update`,{character: JSON.parse(characterJSON)}).toPromise();
     await this.getCharacterById(character.id);
   }
 
-  async updateCharacterStats(character: ICharacter) {
-    await this.http.put(`${environment.apiUrl}/sheets/${character.id}/update`,{character: character}).toPromise();
+  async updateCharacterStats(character: ICharacter, characterJSON: string) {
+    await this.http.put(`${environment.apiUrl}/sheets/${character.id}/update`,{character: JSON.parse(characterJSON)}).toPromise();
     this.getCharacterById(character.id);
   }
 

@@ -46,6 +46,15 @@
   background-position: 50% 50%;
 }
 
+.paranormal-text {
+  font-family: 'Paranormal',Arial, Helvetica, sans-serif;
+}
+
+.enigma-font {
+  font-family: 'EnigmaSans';
+  letter-spacing: 5px;
+}
+
 .agility-position {
   top:13%;
   left:200%;
@@ -77,6 +86,10 @@
 
 .bg-full-black {
   background-color: #000;
+}
+
+.ls-5 {
+  letter-spacing: 5px;
 }
 
 .shield:after {transform: scale(-1,1) translateX(-5em) rotate(-20deg);}
