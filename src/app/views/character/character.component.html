@@ -171,44 +171,44 @@
             </div>
         </div>
         <div class="d-flex col-md-6 mt-3 shadow">
-            <div class="container rounded-3 pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+            <div class="container rounded-3 pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300" style="min-width:500px;">
                 <div class="row d-flex justify-content-between col-md-12">
                     <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Atributos </p>
                 </div>
-                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 outro-lado-bg overflow-hidden" style="min-height: 150px; min-width:500px;">
+                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 outro-lado-bg overflow-hidden" style="min-height: 150px;min-width:500px;">
                     <div class="d-flex col justify-content-between mb-2 me-5">   
                         <div class="col">
-                            <div class="card align-items-center bg-transparent agility-position" role="button" style="width:fit-content;height:fit-content">
+                            <div class="card align-items-center bg-transparent agility-position" role="button" style="width:fit-content;height:fit-content" (dblclick)="onDoubleClickAttribute(character.attributes.agility)">
                                 <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center" style="width:108px;height:50px;">
-                                    <input #agilityValue type="text" class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [value]="character.attributes.agility.value ?? 1" (change)="onChangedAttributeValue(character.attributes.agility.abbreviation,+agilityValue.value)" style="width:108px;height:107px;">
+                                    <input #agilityValue type="text" class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [(ngModel)]="character.attributes.agility.value" style="width:108px;height:107px;">
                                 </div>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="card align-items-center bg-transparent int-position" role="button" style="width:fit-content;height:fit-content">
+                            <div class="card align-items-center bg-transparent int-position" role="button" style="width:fit-content;height:fit-content" (dblclick)="onDoubleClickAttribute(character.attributes.intelligence)">
                                 <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center" style="width:108px;height:50px;">
-                                    <input #intValue type="text" class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [value]="character.attributes.intelligence.value ?? 1" (change)="onChangedAttributeValue(character.attributes.intelligence.abbreviation,+intValue.value)" style="width:108px;height:107px;">
+                                    <input #intValue type="text" class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [(ngModel)]="character.attributes.intelligence.value" style="width:108px;height:107px;">
                                 </div>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="card align-items-center bg-transparent for-position" role="button" style="width:fit-content;height:fit-content">
+                            <div class="card align-items-center bg-transparent for-position" role="button" style="width:fit-content;height:fit-content" (dblclick)="onDoubleClickAttribute(character.attributes.strength)">
                                 <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center" style="width:108px;height:50px;">
-                                    <input #forValue type="text" class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [value]="character.attributes.strength.value ?? 1" (change)="onChangedAttributeValue(character.attributes.strength.abbreviation,+forValue.value)" style="width:108px;height:107px;">
+                                    <input #forValue type="text" class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [(ngModel)]="character.attributes.strength.value" (change)="onStrengthAttributeChanged()" style="width:108px;height:107px;">
                                 </div>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="card align-items-center bg-transparent pre-position" role="button" style="width:fit-content;height:fit-content">
+                            <div class="card align-items-center bg-transparent pre-position" role="button" (dblclick)="onDoubleClickAttribute(character.attributes.presence)" style="width:fit-content;height:fit-content">
                                 <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center" style="width:108px;height:50px;">
-                                    <input #preValue type="text" class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [value]="character.attributes.presence.value ?? 1" (change)="onChangedAttributeValue(character.attributes.presence.abbreviation,+preValue.value)" style="width:108px;height:107px;">
+                                    <input #preValue type="text" class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [(ngModel)]="character.attributes.presence.value" style="width:108px;height:107px;">
                                 </div>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="card align-items-center bg-transparent vig-position rounded-circle" style="width:fit-content;height:fit-content">
+                            <div class="card align-items-center bg-transparent vig-position rounded-circle user-select-none" style="width:fit-content;height:fit-content" (dblclick)="onDoubleClickAttribute(character.attributes.vigor)">
                                 <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center" style="width:108px;height:50px;">
-                                    <input #vigValue type="text" class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [value]="character.attributes.vigor.value ?? 1" (change)="onChangedAttributeValue(character.attributes.vigor.abbreviation,+vigValue.value)" style="width:108px;height:107px;">
+                                    <input #vigValue type="text" class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [(ngModel)]="character.attributes.vigor.value" style="width:108px;height:107px;">
                                 </div>
                             </div>
                         </div>
@@ -247,45 +247,11 @@
                         <i class="bi bi-plus-lg text-light"></i>
                     </button>
                 </div>
-                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto" style="max-height:500px;">
-                    <div class="d-flex col justify-content-between mb-2 me-5 w-auto" *ngFor="let skill of character.skills">
-                        <div class="col">
-                            <div class="card align-items-center bg-warning border-2 border-warning" role="button" style="width:fit-content;height:fit-content" (contextmenu)="deleteSkill(skill.id)">
-                                <div class="card-header bg-warning row pt-3 px-0 mx-0" style="width:115px;height:fit-content;" (click)="openSkillDialog(skill)">
-                                    <p class="text-light text-center fs-5 text-break fw-bold user-select-none" style="text-shadow: 1px 1px 4px black;">{{skill.name}}</p>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input bg-dark" type="radio" [name]="'skillLevelRadio'+skill.name" [ngClass]="{'border-warning': skill.experienceLevel == 'destreinado'}" [checked]="skill.experienceLevel == 'destreinado'" (change)="onSelectSkillExperienceLevel('destreinado', skill)">
-                                            <label class="form-check-label" for="flexRadioDefault1">
-                                              Destreinado
-                                            </label>
-                                          </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input bg-dark" type="radio" [name]="'skillLevelRadio'+skill.name" [ngClass]="{'border-warning': skill.experienceLevel == 'treinado'}" [checked]="skill.experienceLevel == 'treinado'" (change)="onSelectSkillExperienceLevel('treinado', skill)">
-                                            <label class="form-check-label" for="flexRadioDefault2">
-                                                Treinado
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input bg-dark" type="radio" [name]="'skillLevelRadio'+skill.name" [ngClass]="{'border-warning': skill.experienceLevel == 'competente'}" [checked]="skill.experienceLevel == 'competente'" (change)="onSelectSkillExperienceLevel('competente', skill)">
-                                            <label class="form-check-label" for="flexRadioDefault2">
-                                              Competente
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input bg-dark" type="radio" [name]="'skillLevelRadio'+skill.name" [ngClass]="{'border-warning': skill.experienceLevel == 'expert'}" [checked]="skill.experienceLevel == 'expert'" (change)="onSelectSkillExperienceLevel('expert', skill)">
-                                            <label class="form-check-label" for="flexRadioDefault2">
-                                              Expert
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body py-0 my-0 bg-dark rounded-bottom row align-items-center px-0 mx-0" style="width:115px;height:50px;">
-                                    <input #attributeValue type="text" class="col form-control text-center border-0 shadow-none bg-transparent fw-bold text-light w-100" [(ngModel)]="skill.value" style="width:50px;">
-                                </div>
-                            </div>
+                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto" style="min-height: 150px;">
+                    <div class="d-flex col mb-2 w-auto" *ngFor="let skill of character.skills">
+                        <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto" style="height:50px;text-shadow: 1px 1px 4px black;">{{skill.name}}</div>
+                            <input #attributeValue type="text" class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light" style="width:40px;height:50px;" [(ngModel)]="skill.value">
                         </div>
                     </div>
                 </div>
@@ -304,7 +270,7 @@
                         <button class="btn btn-outline-danger w-auto me-2 col" (click)="deleteRitual(ritual.id)" style="height:fit-content;max-width: 40px;font-size: 14px;">
                             <i class="bi bi-trash3 text-light"></i>
                         </button>
-                        <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto" style="min-width: 100px;" (click)="openShowRitualDetailsDialog(ritual)">{{ritual.name}}</p>
+                        <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto text-shadow-hover" style="min-width: 100px;" (click)="openShowRitualDetailsDialog(ritual)">{{ritual.name}}</p>
                     </div>
                 </div>
             </div>
@@ -365,8 +331,6 @@
                         <th scope="col">Alcance</th>
                         <th scope="col">Dano</th>
                         <th scope="col">Crítico</th>
-                        <th scope="col">Mun. Atual</th>
-                        <th scope="col">Mun. Máxima</th>
                         <th scope="col">Especial</th>
                       </tr>
                     </thead>
@@ -392,12 +356,6 @@
                         </td>
                         <td>
                             <input #weaponCriticalDamageInput type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light w-auto"   [value]="weapon.criticalDamage ?? ''" [(ngModel)]="weapon.criticalDamage" style="max-width:90px;height:fit-content; font-size:12px;">
-                        </td>
-                        <td>
-                            <input #weaponCurrentAmmo type="number" class="col form-control text-center btn-warning shadow-none bg-transparent text-light "   [value]="weapon.currentAmmo ?? ''" [(ngModel)]="weapon.currentAmmo" style="width: 70px; height:fit-content;font-size:12px;">
-                        </td>
-                        <td>
-                            <input #weaponMaxAmmo type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light "   [value]="weapon.maxAmmo ?? ''" [(ngModel)]="weapon.maxAmmo" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
                         </td>
                         <td>
                             <input #weaponSpecial type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [value]="weapon.special ?? ''" [(ngModel)]="weapon.special" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">

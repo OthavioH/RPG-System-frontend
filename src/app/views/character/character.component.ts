@@ -23,6 +23,7 @@ import { ShowRitualDialogComponent } from '../common/show-ritual-dialog/show-rit
 import { ChangeCharacterImageDialogComponent } from 'src/app/views/common/change-character-image-dialog/change-character-image-dialog.component';
 import { InventoryItem } from 'src/models/InventoryItem';
 import { EditInventoryDialogComponent } from '../common/edit-inventory-dialog/edit-inventory-dialog.component';
+import { RollAttributeDialogComponent } from '../common/roll-attribute-dialog/roll-attribute-dialog.component';
 
 @Component({
   selector: 'app-character',
@@ -33,7 +34,6 @@ export class CharacterComponent implements OnInit {
 
   character: ICharacter;
   routeSubscription: Subscription;
-  removeIntentoryStream:BehaviorSubject<InventoryItem>;
 
   onCharacterChanged:Subscription;
 
@@ -52,15 +52,11 @@ export class CharacterComponent implements OnInit {
     this.routeSubscription = this.activatedRoute.data.subscribe((info: {character: ICharacter}) => {
       this.character = new ICharacter(this.charactersService, info.character);
       this.sortListsAlphabetically();
-      this.initInventoryMaxSlots();
       this.titleService.setTitle(`Personagem | ${this.character.name}`); 
       this.imgUrl = this.character.profileImageUrl ?? this.defaultImgUrl;
       
     });
     
-    this.removeIntentoryStream.subscribe((item)=>{
-      this.deleteInventoryItem(item.id);
-    });
   }
 
   sortListsAlphabetically(){
@@ -73,12 +69,6 @@ export class CharacterComponent implements OnInit {
     if (this.character.rituals != null) {
       this.character.rituals = this.character.rituals.sort((a, b) => a.name.localeCompare(b.name));
     }
-  }
-
-  initInventoryMaxSlots() {
-    const strength = this.character.attributes.strength.value;
-    
-    this.character.inventory.maxSlots = 5 * strength;
   }
 
   onImageError(event) {
@@ -94,29 +84,27 @@ export class CharacterComponent implements OnInit {
     }
   }
 
-  onChangedAttributeValue(attribute:string, newAttributeValue:number):void{
-    switch (
-      attribute.toLowerCase()
-    ) {
-      case 'for':
-        this.character.attributes.strength.value = newAttributeValue;
-        break;
-      case 'agi':
-        this.character.attributes.agility.value = newAttributeValue;
-        break;
-      case 'int':
-        this.character.attributes.intelligence.value = newAttributeValue;
-        
-        break;
-      case 'pre':
-        this.character.attributes.presence.value = newAttributeValue;
-        break;
-      case 'vig':
-        this.character.attributes.vigor.value = newAttributeValue;
-        break;
-      default:
-        break;
+  onStrengthAttributeChanged():void{
+    this.character.inventory.maxSlots = 5 * this.character.attributes.strength.value;
+  }
+
+  onDoubleClickAttribute(attribute:IAttribute):void{
+    const attributeValue = attribute.value <= 0 ? 2 : attribute.value;
+    const diceResults = this.getDicesResults(attributeValue);
+    this.modalService.open(RollAttributeDialogComponent, {data: diceResults});
+  }
+
+  getDicesResults(diceQuantity:number): number[] {
+    var diceResultList:number[] = [];
+    for (let i = 0; i < diceQuantity; i++) {
+      const result = this.getRandom(20);
+      diceResultList.push(result);
     }
+    return diceResultList;
+  }
+
+  getRandom(max: number): number {
+    return Math.floor( Math.random() * max + 1);
   }
 
   onChangedSkillValue(skillId:string, newSkillValue:number):void{

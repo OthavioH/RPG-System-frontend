@@ -1,8 +1,7 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Input, NgZone, OnInit } from '@angular/core';
 import { GameSettingsService } from 'src/app/game-settings.service';
 import { IGameSettings } from 'src/models/GameSettings';
-import { generateRandomId } from '../view_utils';
+import { generateRandomId } from '../../view_utils';
 
 @Component({
   selector: 'app-roll-dice-dialog',
