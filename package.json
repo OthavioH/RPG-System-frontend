@@ -1,6 +1,10 @@
 {
   "name": "rpg-system",
   "version": "0.0.0",
+  "engines": {
+    "npm": ">=8.15.1",
+    "node": ">=16.14.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
