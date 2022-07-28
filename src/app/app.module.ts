@@ -18,7 +18,7 @@ import { AppComponent } from './app.component';
 import { CharactersComponent } from './views/characters/characters.component';
 import { CharacterComponent } from './views/character/character.component';
 import { SkillsDialogComponent } from './views/common/skills-dialog/skills-dialog.component';
-import { RollDiceDialogComponent } from './views/common/roll-dice-dialog/roll-dice-dialog.component';
+import { RollDiceDialogComponent } from './views/common/dice-rolling/roll-dice-dialog/roll-dice-dialog.component';
 import { CreateCharacterDialogComponent } from './views/common/create-character-dialog/create-character-dialog.component';
 import { ProgressBarComponent } from './views/common/progress-bar/progress-bar.component';
 import { EditProgressBarValuesDialogComponent } from './views/common/edit-hp-dialog/edit-progress-bar-values-dialog.component';
@@ -39,11 +39,12 @@ import { ShowRitualDialogComponent } from './views/common/show-ritual-dialog/sho
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import { TestDiceComponent } from './test-dice/test-dice.component';
 import { ChangeCharacterImageDialogComponent } from './views/common/change-character-image-dialog/change-character-image-dialog.component';
-import { DiceRollAnimationComponent } from './views/common/dice-roll-animation/dice-roll-animation.component';
-import { DiceAnimationComponent } from './views/common/dice-animation/dice-animation.component';
+import { DiceRollAnimationComponent } from './views/common/dice-rolling/dice-roll-animation/dice-roll-animation.component';
+import { DiceAnimationComponent } from './views/common/dice-rolling/dice-animation/dice-animation.component';
 import { ToRomanNumeralPipe } from './to-roman-numeral.pipe';
 import { EditInventoryDialogComponent } from './views/common/edit-inventory-dialog/edit-inventory-dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { RollAttributeDialogComponent } from './views/common/roll-attribute-dialog/roll-attribute-dialog.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     DiceAnimationComponent,
     ToRomanNumeralPipe,
     EditInventoryDialogComponent,
+    RollAttributeDialogComponent,
   ],
   imports: [
     BrowserModule,

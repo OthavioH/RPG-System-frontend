@@ -23,6 +23,7 @@ import { ShowRitualDialogComponent } from '../common/show-ritual-dialog/show-rit
 import { ChangeCharacterImageDialogComponent } from 'src/app/views/common/change-character-image-dialog/change-character-image-dialog.component';
 import { InventoryItem } from 'src/models/InventoryItem';
 import { EditInventoryDialogComponent } from '../common/edit-inventory-dialog/edit-inventory-dialog.component';
+import { RollAttributeDialogComponent } from '../common/roll-attribute-dialog/roll-attribute-dialog.component';
 
 @Component({
   selector: 'app-character',
@@ -88,7 +89,22 @@ export class CharacterComponent implements OnInit {
   }
 
   onDoubleClickAttribute(attribute:IAttribute):void{
-    console.log(attribute.value);
+    const attributeValue = attribute.value <= 0 ? 2 : attribute.value;
+    const diceResults = this.getDicesResults(attributeValue);
+    this.modalService.open(RollAttributeDialogComponent, {data: diceResults});
+  }
+
+  getDicesResults(diceQuantity:number): number[] {
+    var diceResultList:number[] = [];
+    for (let i = 0; i < diceQuantity; i++) {
+      const result = this.getRandom(20);
+      diceResultList.push(result);
+    }
+    return diceResultList;
+  }
+
+  getRandom(max: number): number {
+    return Math.floor( Math.random() * max + 1);
   }
 
   onChangedSkillValue(skillId:string, newSkillValue:number):void{
