@@ -2,7 +2,6 @@
   "name": "rpg-system",
   "version": "0.0.0",
   "engines": {
-    "npm": ">=8.11.0",
     "node": ">=16.16.0"
   },
   "scripts": {
