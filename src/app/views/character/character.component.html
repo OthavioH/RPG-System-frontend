@@ -171,44 +171,44 @@
             </div>
         </div>
         <div class="d-flex col-md-6 mt-3 shadow">
-            <div class="container rounded-3 pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+            <div class="container rounded-3 pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300" style="min-width:500px;">
                 <div class="row d-flex justify-content-between col-md-12">
                     <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Atributos </p>
                 </div>
-                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 outro-lado-bg overflow-hidden" style="min-height: 150px; min-width:500px;">
+                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 outro-lado-bg overflow-hidden" style="min-height: 150px;min-width:500px;">
                     <div class="d-flex col justify-content-between mb-2 me-5">   
                         <div class="col">
                             <div class="card align-items-center bg-transparent agility-position" role="button" style="width:fit-content;height:fit-content">
                                 <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center" style="width:108px;height:50px;">
-                                    <input #agilityValue type="text" class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [value]="character.attributes.agility.value ?? 1" (change)="onChangedAttributeValue(character.attributes.agility.abbreviation,+agilityValue.value)" style="width:108px;height:107px;">
+                                    <input #agilityValue type="text" class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [(ngModel)]="character.attributes.agility.value" style="width:108px;height:107px;">
                                 </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="card align-items-center bg-transparent int-position" role="button" style="width:fit-content;height:fit-content">
                                 <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center" style="width:108px;height:50px;">
-                                    <input #intValue type="text" class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [value]="character.attributes.intelligence.value ?? 1" (change)="onChangedAttributeValue(character.attributes.intelligence.abbreviation,+intValue.value)" style="width:108px;height:107px;">
+                                    <input #intValue type="text" class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [(ngModel)]="character.attributes.intelligence.value" style="width:108px;height:107px;">
                                 </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="card align-items-center bg-transparent for-position" role="button" style="width:fit-content;height:fit-content">
                                 <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center" style="width:108px;height:50px;">
-                                    <input #forValue type="text" class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [value]="character.attributes.strength.value ?? 1" (change)="onChangedAttributeValue(character.attributes.strength.abbreviation,+forValue.value)" style="width:108px;height:107px;">
+                                    <input #forValue type="text" class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [(ngModel)]="character.attributes.strength.value" (change)="onStrengthAttributeChanged()" style="width:108px;height:107px;">
                                 </div>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="card align-items-center bg-transparent pre-position" role="button" style="width:fit-content;height:fit-content">
+                            <div class="card align-items-center bg-transparent pre-position" role="button" (dblclick)="onDoubleClickAttribute(character.attributes.presence)" style="width:fit-content;height:fit-content">
                                 <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center" style="width:108px;height:50px;">
-                                    <input #preValue type="text" class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [value]="character.attributes.presence.value ?? 1" (change)="onChangedAttributeValue(character.attributes.presence.abbreviation,+preValue.value)" style="width:108px;height:107px;">
+                                    <input #preValue type="text" class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [(ngModel)]="character.attributes.presence.value" style="width:108px;height:107px;">
                                 </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="card align-items-center bg-transparent vig-position rounded-circle" style="width:fit-content;height:fit-content">
                                 <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center" style="width:108px;height:50px;">
-                                    <input #vigValue type="text" class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [value]="character.attributes.vigor.value ?? 1" (change)="onChangedAttributeValue(character.attributes.vigor.abbreviation,+vigValue.value)" style="width:108px;height:107px;">
+                                    <input #vigValue type="text" class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle" [(ngModel)]="character.attributes.vigor.value" style="width:108px;height:107px;">
                                 </div>
                             </div>
                         </div>
@@ -365,8 +365,6 @@
                         <th scope="col">Alcance</th>
                         <th scope="col">Dano</th>
                         <th scope="col">Crítico</th>
-                        <th scope="col">Mun. Atual</th>
-                        <th scope="col">Mun. Máxima</th>
                         <th scope="col">Especial</th>
                       </tr>
                     </thead>
@@ -392,12 +390,6 @@
                         </td>
                         <td>
                             <input #weaponCriticalDamageInput type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light w-auto"   [value]="weapon.criticalDamage ?? ''" [(ngModel)]="weapon.criticalDamage" style="max-width:90px;height:fit-content; font-size:12px;">
-                        </td>
-                        <td>
-                            <input #weaponCurrentAmmo type="number" class="col form-control text-center btn-warning shadow-none bg-transparent text-light "   [value]="weapon.currentAmmo ?? ''" [(ngModel)]="weapon.currentAmmo" style="width: 70px; height:fit-content;font-size:12px;">
-                        </td>
-                        <td>
-                            <input #weaponMaxAmmo type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light "   [value]="weapon.maxAmmo ?? ''" [(ngModel)]="weapon.maxAmmo" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">
                         </td>
                         <td>
                             <input #weaponSpecial type="text" class="col form-control text-center btn-warning shadow-none bg-transparent text-light " [value]="weapon.special ?? ''" [(ngModel)]="weapon.special" style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;">

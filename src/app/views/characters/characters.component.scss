@@ -5,6 +5,10 @@
     width: 40%;
 }
 
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
 @keyframes ldio-am16zgcbh7f {
     0% { opacity: 1 }
     100% { opacity: 0 }

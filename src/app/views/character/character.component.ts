@@ -33,7 +33,6 @@ export class CharacterComponent implements OnInit {
 
   character: ICharacter;
   routeSubscription: Subscription;
-  removeIntentoryStream:BehaviorSubject<InventoryItem>;
 
   onCharacterChanged:Subscription;
 
@@ -52,15 +51,11 @@ export class CharacterComponent implements OnInit {
     this.routeSubscription = this.activatedRoute.data.subscribe((info: {character: ICharacter}) => {
       this.character = new ICharacter(this.charactersService, info.character);
       this.sortListsAlphabetically();
-      this.initInventoryMaxSlots();
       this.titleService.setTitle(`Personagem | ${this.character.name}`); 
       this.imgUrl = this.character.profileImageUrl ?? this.defaultImgUrl;
       
     });
     
-    this.removeIntentoryStream.subscribe((item)=>{
-      this.deleteInventoryItem(item.id);
-    });
   }
 
   sortListsAlphabetically(){
@@ -73,12 +68,6 @@ export class CharacterComponent implements OnInit {
     if (this.character.rituals != null) {
       this.character.rituals = this.character.rituals.sort((a, b) => a.name.localeCompare(b.name));
     }
-  }
-
-  initInventoryMaxSlots() {
-    const strength = this.character.attributes.strength.value;
-    
-    this.character.inventory.maxSlots = 5 * strength;
   }
 
   onImageError(event) {
@@ -94,29 +83,12 @@ export class CharacterComponent implements OnInit {
     }
   }
 
-  onChangedAttributeValue(attribute:string, newAttributeValue:number):void{
-    switch (
-      attribute.toLowerCase()
-    ) {
-      case 'for':
-        this.character.attributes.strength.value = newAttributeValue;
-        break;
-      case 'agi':
-        this.character.attributes.agility.value = newAttributeValue;
-        break;
-      case 'int':
-        this.character.attributes.intelligence.value = newAttributeValue;
-        
-        break;
-      case 'pre':
-        this.character.attributes.presence.value = newAttributeValue;
-        break;
-      case 'vig':
-        this.character.attributes.vigor.value = newAttributeValue;
-        break;
-      default:
-        break;
-    }
+  onStrengthAttributeChanged():void{
+    this.character.inventory.maxSlots = 5 * this.character.attributes.strength.value;
+  }
+
+  onDoubleClickAttribute(attribute:IAttribute):void{
+    console.log(attribute.value);
   }
 
   onChangedSkillValue(skillId:string, newSkillValue:number):void{

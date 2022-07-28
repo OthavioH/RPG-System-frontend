@@ -6,7 +6,5 @@ export interface IWeapon {
     range:string;
     damage: string;
     criticalDamage: string;
-    currentAmmo:number;
-    maxAmmo:string;
     special:string;
 }
