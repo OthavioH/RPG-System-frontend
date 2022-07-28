@@ -121,6 +121,53 @@
                         </div>
                     </div>
                 </div>
+                <div class="row d-flex justify-content-between col-md-12">
+                    <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Resistências</p>
+                </div>
+                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto" style="min-height: 150px;">
+                    <div class="d-flex col mb-2 w-auto">
+                        <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto" style="height:50px;text-shadow: 1px 1px 4px black;">Física</div>
+                            <input #attributeValue type="text" class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light" style="width:40px;height:50px;" [(ngModel)]="character.physicsResistence">
+                        </div>
+                    </div>
+                    <div class="d-flex col mb-2 w-auto">
+                        <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto" style="height:50px;text-shadow: 1px 1px 4px black;">Balística</div>
+                            <input #attributeValue type="text" class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light" style="width:40px;height:50px;" [(ngModel)]="character.ballisticResistence">
+                        </div>
+                    </div>
+                    <div class="d-flex col mb-2 w-auto">
+                        <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto" style="height:50px;text-shadow: 1px 1px 4px black;">Mental</div>
+                            <input #attributeValue type="text" class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light" style="width:40px;height:50px;" [(ngModel)]="character.insanityResistence">
+                        </div>
+                    </div>
+                    <div class="d-flex col mb-2 w-auto">
+                        <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto" style="height:50px;text-shadow: 1px 1px 4px black;">Sangue</div>
+                            <input #attributeValue type="text" class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light" style="width:40px;height:50px;" [(ngModel)]="character.bloodResistence">
+                        </div>
+                    </div>
+                    <div class="d-flex col mb-2 w-auto">
+                        <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto" style="height:50px;text-shadow: 1px 1px 4px black;">Energia</div>
+                            <input #attributeValue type="text" class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light" style="width:40px;height:50px;" [(ngModel)]="character.energyResistence">
+                        </div>
+                    </div>
+                    <div class="d-flex col mb-2 w-auto">
+                        <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto" style="height:50px;text-shadow: 1px 1px 4px black;">Morte</div>
+                            <input #attributeValue type="text" class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light" style="width:40px;height:50px;" [(ngModel)]="character.deathResistence">
+                        </div>
+                    </div>
+                    <div class="d-flex col mb-2 w-auto">
+                        <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto" style="height:50px;text-shadow: 1px 1px 4px black;">Conhecimento</div>
+                            <input #attributeValue type="text" class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light" style="width:40px;height:50px;" [(ngModel)]="character.knowledgeResistence">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="d-flex col-md-6 mt-3 shadow">

@@ -92,6 +92,24 @@
   letter-spacing: 5px;
 }
 
+.rtb-border-light {
+  border-right: 2px solid #e0ac10;
+  border-top: 2px solid #e0ac10;
+  border-bottom: 2px solid #e0ac10;
+  border-left: none;
+}
+
+.rounded-right {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
 .shield:after {transform: scale(-1,1) translateX(-5em) rotate(-20deg);}
 .shield, .shield:before, .shield:after {background: grey;}
 .shield.test, .shield.test:before, .shield.test:after {background: rgba(0, 127, 0, 0.5);}
