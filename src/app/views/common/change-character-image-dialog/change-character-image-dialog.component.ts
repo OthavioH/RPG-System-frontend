@@ -27,7 +27,7 @@ export class ChangeCharacterImageDialogComponent implements OnInit {
 
   changeImage(newImgUrl:string):void {
     this.data.profileImageUrl = newImgUrl != '' ? newImgUrl : '';
-    this.charactersService.updateCharacter(this.data);
+    this.data.saveCharacter();
     this.close();
   }
 

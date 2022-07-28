@@ -69,7 +69,7 @@ export class ChooseRitualsDialogComponent implements OnInit {
   async saveNewRitualList(){
     if (this.selectedRitualList.length > 0) {
       this.data.character.rituals = [ ...this.selectedRitualList, ...this.data.character.rituals ?? []]
-      this.charactersService.updateCharacter(this.data.character);
+      this.data.character.saveCharacter();
     }
     this.dialogRef.close();
   }

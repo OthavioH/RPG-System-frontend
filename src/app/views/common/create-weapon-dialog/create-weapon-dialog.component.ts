@@ -29,7 +29,7 @@ export class CreateWeaponDialogComponent implements OnInit {
         this.data.character.weapons = [];
       }
       
-      await this.charactersService.updateCharacter(this.data.character);
+      await this.data.character.saveCharacter();
     }
     
   }

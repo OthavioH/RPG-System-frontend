@@ -1,0 +1,12 @@
+<div class="col justify-content-between rounded-2 bg-dark p-4 w-auto h-auto overflow-hidden" style="max-height:500px;max-width: 500px;min-width:300px;">
+    <div class="row">
+        <p class="text-white fs-3 b-3 d-flex col text-break w-100" id="disabledInput" type="text">
+            {{data.item.name}}
+            <b class="text-warning ms-2">{{data.item.prestige | toRomanNumeral}}</b>
+        </p>
+        <i class="fs-5 text-danger bi bi-trash-fill w-auto" role="button" (click)="removeItem()"></i>
+        <i class="fs-5 text-success bi bi-file-check-fill w-auto" role="button" (click)="saveItem()"></i>
+    </div>
+    <p class="text-white fs-6 w-100 text-center d-flex col mb-3">Slots: {{data.item.slots}}</p>
+    <textarea class="form-control text-center border-1 shadow-none bg-dark fw-bold text-light fs-6 w-100 text-center d-flex col mb-3" [(ngModel)]="data.item.details"></textarea>
+</div>
