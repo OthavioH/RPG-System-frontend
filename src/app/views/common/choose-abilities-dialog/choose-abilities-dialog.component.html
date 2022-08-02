@@ -1,14 +1,18 @@
-<div class="col justify-content-between rounded-2 bg-dark py-4 pb-2" style="min-height:250px;max-width: 500px;min-width:300px;">
-    <div class="row mb-2 px-4">
-        <p class="text-light fs-4 fs-bold text-center">Habilidades</p>
+<div class="col justify-content-between rounded-2 bg-dark py-4 pb-2 pe-2" style="min-height:250px;min-width:300px;">
+  <div class="row mb-2 px-4">
+    <p class="text-light fs-4 fs-bold text-center">Habilidades</p>
+  </div>
+  <div class="px-4 d-flex flex-wrap justify-content-between overflow-auto yellow-scrollbar-thin btn-group mb-4"
+    role="group" style="min-height:100px;max-height:400px; width:600px;">
+    <div class="d-flex flex-wrap justify-content-between mb-2 d-flex text-wrap"
+      style="min-height: 35px;height:fit-content;" *ngFor="let ability of chooseAbilityList">
+      <input type="checkbox" class="btn-check" [id]="'checkAbility'+ability.name" autocomplete="off"
+        (change)="onSelectAbility(ability)">
+      <label class="btn btn-outline-warning shadow-none" [for]="'checkAbility'+ability.name">{{ability.name}}</label>
     </div>
-    <div class="row px-4 d-flex flex-wrap justify-content-between overflow-auto btn-group mb-4" role="group" style="min-height:100px">
-        <div class="col d-flex justify-content-between mb-2 d-flex text-wrap" style="min-height: 35px;height:fit-content;" *ngFor="let ability of chooseAbilityList">
-            <input type="checkbox" class="btn-check" [id]="'checkSkill'+ability.name" autocomplete="off" (change)="onSelectAbility(ability)">
-            <label class="btn btn-outline-warning shadow-none" [for]="'checkSkill'+ability.name">{{ability.name}}</label>
-        </div>
-    </div>
-    <div class="d-flex row px-4 align-bottom justify-content-center">
-        <button role="button" type="button" class="btn btn-outline-light w-50" (click)="saveNewAbilityList()">Adicionar</button>
-    </div>
+  </div>
+  <div class="row px-4 align-bottom justify-content-center">
+    <button role="button" type="button" class="btn btn-outline-light w-50"
+      (click)="saveNewAbilityList()">Adicionar</button>
+  </div>
 </div>
