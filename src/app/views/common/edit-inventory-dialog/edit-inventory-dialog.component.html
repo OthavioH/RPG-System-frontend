@@ -2,11 +2,14 @@
     <div class="row">
         <p class="text-white fs-3 b-3 d-flex col text-break w-100" id="disabledInput" type="text">
             {{data.item.name}}
-            <b class="text-warning ms-2">{{data.item.prestige | toRomanNumeral}}</b>
         </p>
         <i class="fs-5 text-danger bi bi-trash-fill w-auto" role="button" (click)="removeItem()"></i>
         <i class="fs-5 text-success bi bi-file-check-fill w-auto" role="button" (click)="saveItem()"></i>
     </div>
     <p class="text-white fs-6 w-100 text-center d-flex col mb-3">Slots: {{data.item.slots}}</p>
+    <div class="d-flex row mb-3" style="width: fit-content;">
+        <b class="text-light col">Categoria: </b>
+        <input type="number" min="0" max="4" class="form-control form-control-sm text-center border-1 shadow-none bg-dark fw-bold text-light fs-6 d-flex col" style="width: 50px;" [(ngModel)]="data.item.prestige">
+    </div>
     <textarea class="form-control text-center border-1 shadow-none bg-dark fw-bold text-light fs-6 w-100 text-center d-flex col mb-3" [(ngModel)]="data.item.details"></textarea>
 </div>

@@ -41,12 +41,12 @@ export class CharactersComponent implements OnInit {
   loading: boolean = true;
 
   constructor(
-    private charactersService: CharactersService, 
+    private charactersService: CharactersService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private gameSettingsService: GameSettingsService,
     private titleService: Title, private modalService:MatDialog) {
-     
+
     this.router.events.subscribe((event: RouterEvent) =>{
       if (event instanceof NavigationStart || event instanceof NavigationError) {
         this.loading = true;
@@ -59,7 +59,7 @@ export class CharactersComponent implements OnInit {
     this.gameSettingsService.onRollsListChanged$.subscribe((newRollList)=>{
       this.gameSettings.lastRolls = newRollList;
     });
-    
+
     this.titleService.setTitle("Dashboard | RPG System");
   }
 
@@ -92,7 +92,6 @@ export class CharactersComponent implements OnInit {
       this.gameSettings = info.gameSettings;
     });
     this.skillList = this.gameSettings.skills != null ? this.gameSettings.skills.sort((a,b) => a.name.localeCompare(b.name)) : [];
-    this.gameSettings.rituals = this.gameSettings.rituals != null ? this.gameSettings.rituals.sort((a,b) => a.name.localeCompare(b.name)) : [];
   }
 
   ngOnDestroy(): void {
@@ -152,7 +151,7 @@ export class CharactersComponent implements OnInit {
   openSkillDialog(skill: ISkill): void {
     this.modalService.open(SkillsDialogComponent, {data: skill});
   }
-  
+
   openCreateRitualDialog(){
     this.modalService.open(CreateRitualDialogComponent);
   }
