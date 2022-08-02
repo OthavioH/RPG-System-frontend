@@ -1,0 +1,44 @@
+<div class="col justify-content-between rounded-2 bg-dark p-4 w-auto h-auto overflow-hidden"
+    style="max-height:500px;max-width: 500px;min-width:300px;">
+    <div class="row">
+        <p class="text-white fs-3 b-3 d-flex col text-break w-100" id="disabledInput" type="text">Editar Arma</p>
+        <i class="fs-5 text-danger bi bi-trash-fill w-auto" role="button" (click)="deleteWeapon()"></i>
+        <i class="fs-5 text-success bi bi-file-check-fill w-auto" role="button" (click)="saveChanges()"></i>
+    </div>
+    <div class="d-flex row mb-3" style="width: fit-content;display: inline-block;">
+        <label class="text-light col pt-2">Nome: </label>
+        <input type="text"
+            class="form-control text-center border-1 shadow-none bg-dark fw-bold text-light fs-6 d-flex col w-100"
+            [(ngModel)]="weapon.name">
+    </div>
+    <div class="d-flex row mb-3" style="width: fit-content;">
+        <b class="text-light col pt-2">Tipo: </b>
+        <input type="text"
+            class="form-control text-center border-1 shadow-none bg-dark fw-bold text-light fs-6 d-flex col"
+            style="width: 120px;" [(ngModel)]="weapon.type">
+    </div>
+    <div class="d-flex row mb-3" style="width: fit-content;">
+        <b class="text-light col pt-2">Ataque: </b>
+        <input type="text"
+            class="form-control text-center border-1 shadow-none bg-dark fw-bold text-light fs-6 d-flex col"
+            style="width: 120px;" [(ngModel)]="weapon.attack">
+    </div>
+    <div class="d-flex row mb-3" style="width: fit-content;">
+        <b class="text-light col pt-2">Alcance: </b>
+        <input type="text"
+            class="form-control text-center border-1 shadow-none bg-dark fw-bold text-light fs-6 d-flex col"
+            style="width: 120px;" [(ngModel)]="weapon.range">
+    </div>
+    <div class="d-flex row mb-3" style="width: fit-content;">
+        <b class="text-light col pt-2">Dano: </b>
+        <input type="text"
+            class="form-control text-center border-1 shadow-none bg-dark fw-bold text-light fs-6 d-flex col"
+            style="width: 120px;" [(ngModel)]="weapon.damage">
+    </div>
+    <div class="d-flex row mb-3" style="width: fit-content;">
+        <b class="text-light col pt-2">Dano crítico: </b>
+        <input type="text"
+            class="form-control text-center border-1 shadow-none bg-dark fw-bold text-light fs-6 d-flex col"
+            style="width: 120px;" [(ngModel)]="weapon.criticalDamage">
+    </div>
+</div>

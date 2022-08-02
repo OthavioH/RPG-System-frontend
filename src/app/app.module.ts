@@ -45,6 +45,7 @@ import { ToRomanNumeralPipe } from './to-roman-numeral.pipe';
 import { EditInventoryDialogComponent } from './views/common/edit-inventory-dialog/edit-inventory-dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { RollAttributeDialogComponent } from './views/common/roll-attribute-dialog/roll-attribute-dialog.component';
+import { EditWeaponDialogComponent } from './views/common/edit-weapon-dialog/edit-weapon-dialog.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { RollAttributeDialogComponent } from './views/common/roll-attribute-dial
     ToRomanNumeralPipe,
     EditInventoryDialogComponent,
     RollAttributeDialogComponent,
+    EditWeaponDialogComponent,
   ],
   imports: [
     BrowserModule,
