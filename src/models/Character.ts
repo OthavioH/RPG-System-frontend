@@ -83,11 +83,11 @@ export class ICharacter {
     };
 
     async saveCharacter():Promise<void>{
-        
         this.inventory.usedSlots = 0;
         for (let index = 0; index < (this.inventory.items != null ? this.inventory.items.length : 0); index++) {
             const item = this.inventory.items[index];
-            this.inventory.usedSlots += item.slots;
+            
+            this.inventory.usedSlots = +this.inventory.usedSlots + +item.slots;
         }
         await this.charactersService.updateCharacter(this, this.toJSON());
     }
