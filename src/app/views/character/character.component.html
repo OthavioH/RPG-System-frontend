@@ -291,13 +291,13 @@
                     </div>
                 </div>
                 <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto" style="min-height: 150px;">
-                    <div class="d-flex col justify-content-between mb-2 me-5 w-auto" *ngFor="let item of character.inventory.items">
-                        <div class="col">
-                            <div class="card align-items-center bg-warning border-2 border-warning pt-3" role="button" style="width:fit-content;height:fit-content;max-width:150px;">
-                                <p class="text-light text-center fs-5 text-break fw-bold user-select-none" style="text-shadow: 1px 1px 4px black;" (click)="openEditInventoryDialog(item)">{{item.name}}</p>
-                                <p class="text-dark text-end fs-5 text-break fw-bold user-select-none" style="text-shadow: 1px 1px 4px black;">{{item.prestige | toRomanNumeral}}</p>
-                                <input #attributeValue type="text" class="col form-control text-center border-0 shadow-none bg-dark fw-bold text-light w-100" [(ngModel)]="item.slots" style="width:50px;">
+                    <div class="d-flex col mb-2 w-auto" *ngFor="let item of character.inventory.items">
+                        <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto row" style="height:50px;text-shadow: 1px 1px 4px black;" (click)="openEditInventoryDialog(item)">
+                                <div class="col pe-0">{{item.name}}</div>
+                                <div class="col text-dark fs-5 fw-bold user-select-none" style="text-shadow: 1px 1px 4px black;">{{item.prestige | toRomanNumeral}}</div>
                             </div>
+                            <input #attributeValue type="text" class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light" style="width:40px;height:50px;" [(ngModel)]="item.slots" (change)="saveCharacter()">
                         </div>
                     </div>
                 </div>

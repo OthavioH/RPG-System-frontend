@@ -5,15 +5,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ToRomanNumeralPipe implements PipeTransform {
 
-  transform(value: string, ...args: string[]): string {
+  transform(value: number, ...args: number[]): string {
     switch (value) {
-      case '1':
+      case 1:
         return 'I';
-      case '2':
+      case 2:
         return 'II';
-      case '3':
+      case 3:
         return 'III';
-      case '4':
+      case 4:
         return 'IV';
       default:
         return '';
