@@ -3,6 +3,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GameSettingsService } from 'src/app/game-settings.service';
 import { IGameSettings } from 'src/models/GameSettings';
+import { generateRandomId } from '../view_utils';
 
 @Component({
   selector: 'app-roll-attribute-dialog',
@@ -17,14 +18,16 @@ export class RollAttributeDialogComponent implements OnInit {
   gameSettings: IGameSettings;
 
   constructor(public dialogRef: MatDialogRef<RollAttributeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public diceResultList: number[], private gameSettingsService: GameSettingsService,
+    @Inject(MAT_DIALOG_DATA) public diceResultList:number[],
+    private gameSettingsService: GameSettingsService,
   ) { }
 
   ngOnInit(): void {
-    
+
     this.initVariables();
+
   }
-  
+
   getRandom(max: number): number {
     return Math.floor( Math.random() * max + 1);
   }

@@ -27,6 +27,8 @@ import { RollAttributeDialogComponent } from '../common/roll-attribute-dialog/ro
 import { IWeapon } from 'src/models/Weapon';
 import { EditWeaponDialogComponent } from '../common/edit-weapon-dialog/edit-weapon-dialog.component';
 import { EditWeapon, DeleteWeapon, EditWeaponDialogAction } from '../../../models/EditWeaponDialogAction';
+import { generateRandomId } from '../common/view_utils';
+import { GameSettingsService } from '../../game-settings.service';
 
 @Component({
   selector: 'app-character',
@@ -48,6 +50,7 @@ export class CharacterComponent implements OnInit {
     private modalService: MatDialog,
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
+    private gameSettingsService: GameSettingsService,
   ) {
   }
 
@@ -91,10 +94,14 @@ export class CharacterComponent implements OnInit {
     this.character.inventory.maxSlots = 5 * this.character.attributes.strength.value;
   }
 
-  onDoubleClickAttribute(attribute: IAttribute): void {
+  async onDoubleClickAttribute(attribute: IAttribute): Promise<void> {
     const attributeValue = attribute.value <= 0 ? 2 : attribute.value;
     const diceResults = this.getDicesResults(attributeValue);
     this.modalService.open(RollAttributeDialogComponent, { data: diceResults });
+    for (let i = 0; i < diceResults.length; i++) {
+      const diceValue = diceResults[i];
+      await this.gameSettingsService.addNewRoll({id:generateRandomId(),characterName:this.character.name,diceResult:diceValue, diceFaces:20});
+    }
   }
 
   getDicesResults(diceQuantity: number): number[] {
