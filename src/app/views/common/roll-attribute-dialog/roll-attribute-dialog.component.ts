@@ -18,7 +18,7 @@ export class RollAttributeDialogComponent implements OnInit {
   gameSettings: IGameSettings;
 
   constructor(public dialogRef: MatDialogRef<RollAttributeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData: {diceResultList:number[], characterName: string},
+    @Inject(MAT_DIALOG_DATA) public diceResultList:number[],
     private gameSettingsService: GameSettingsService,
   ) { }
 
@@ -26,10 +26,6 @@ export class RollAttributeDialogComponent implements OnInit {
 
     this.initVariables();
 
-    for (let i = 0; i < this.dialogData.diceResultList.length; i++) {
-      const diceValue = this.dialogData.diceResultList[i];
-      this.gameSettingsService.addNewRoll({id:generateRandomId(),characterName:this.dialogData.characterName,diceResult:diceValue, diceFaces:20});
-    }
   }
 
   getRandom(max: number): number {
