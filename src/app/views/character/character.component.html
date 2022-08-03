@@ -1,492 +1,474 @@
 <section class="container w-75 px-0 w-auto">
-    <div class="d-flex flex-row flex-wrap row">
-        <div class="d-flex col-md-6 mt-3 shadow">
-            <div class="container rounded-3  pb-2 pt-4 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
-                <p class="text-center fs-2 enigma-font fw-bold text-light w-100 mb-4">Detalhes</p>
-                <div class="d-flex justify-content-center row mb-3">
-                    <div class="mt-2 align-center justify-content-center" style="width:fit-content;height:fit-content;">
-                        <img class="img rounded-circle border-yellow character-img" src="{{character.profileImageUrl}}"
-                            (error)="onImageError($event)" alt="" (click)="openChangeCharacterImgDialog()">
-                    </div>
-                </div>
-                <div class="input-group justify-content-between">
-                    <mat-form-field color="accent" class="w-auto min-width-250">
-                        <mat-label>Nome do Jogador(a)</mat-label>
-                        <input matInput #inputPlayerName type="text" class="text-light drawn-font fw-bold"
-                            [(ngModel)]="character.playerName" aria-label="nome-jogador" />
-                    </mat-form-field>
-                    <mat-form-field color="accent" class="w-auto min-width-250">
-                        <mat-label>Nome do personagem</mat-label>
-                        <input matInput #inputName type="text" class="text-light drawn-font fw-bold"
-                            [(ngModel)]="character.name" aria-label="nome-personagem" />
-                    </mat-form-field>
-                </div>
-                <div class="input-group mb-3 justify-content-between">
-                    <mat-form-field color="accent" class="w-auto min-width-250">
-                        <mat-label>Idade</mat-label>
-                        <input matInput #inputAge type="number" class="w-auto drawn-font text-light"
-                            [(ngModel)]="character.age" aria-label="nome-jogador" />
-                    </mat-form-field>
-                    <mat-form-field color="accent" class="w-auto min-width-250">
-                        <mat-label>Gênero</mat-label>
-                        <input matInput #inputGender type="text" class="w-auto drawn-font text-light"
-                            [(ngModel)]="character.gender" aria-label="nome-personagem" />
-                    </mat-form-field>
-                </div>
-                <div class="input-group justify-content-between">
-                    <mat-form-field color="accent" class="w-auto min-width-250">
-                        <mat-label>Origem</mat-label>
-                        <input matInput #inputPlayerName type="text" class="drawn-font text-light"
-                            [(ngModel)]="character.origin" aria-label="nome-jogador" />
-                    </mat-form-field>
-                    <mat-form-field color="accent" class="w-auto min-width-250">
-                        <mat-label>Classe</mat-label>
-                        <input matInput #inputName type="text" class="drawn-font text-light"
-                            [(ngModel)]="character.class" aria-label="nome-personagem" />
-                    </mat-form-field>
-                </div>
-                <div class="input-group mb-3 justify-content-between">
-                    <mat-form-field color="accent" class="w-auto min-width-250">
-                        <mat-label>NEX</mat-label>
-                        <input matInput #inputNex type="string" class="w-auto drawn-font text-light"
-                            [(ngModel)]="character.nex" aria-label="nome-jogador" />
-                    </mat-form-field>
-                    <mat-form-field color="accent" class="w-auto min-width-250">
-                        <mat-label>Patente</mat-label>
-                        <input matInput #inputRank type="text" class="drawn-font text-light"
-                            [(ngModel)]="character.rank" aria-label="nome-personagem" />
-                    </mat-form-field>
-                </div>
-                <button class="btn btn-outline-warning float-end shadow-none" type="button" (click)="saveCharacter()"
-                    role="button">Salvar</button>
-            </div>
+  <div class="d-flex flex-row flex-wrap row">
+    <div class="d-flex col-md-6 mt-3 shadow">
+      <div class="container rounded-3  pb-2 pt-4 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+        <p class="text-center fs-2 enigma-font fw-bold text-light w-100 mb-4">Detalhes</p>
+        <div class="d-flex justify-content-center row mb-3">
+          <div class="mt-2 align-center justify-content-center" style="width:fit-content;height:fit-content;">
+            <img class="img rounded-circle border-yellow character-img" src="{{character.profileImageUrl}}"
+              (error)="onImageError($event)" alt="" (click)="openChangeCharacterImgDialog()">
+          </div>
         </div>
-        <div class="d-flex col-md-6 mt-3 shadow">
-            <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
-                <p class="row mb-2 drawn-font fw-bold text-light fs-5">Vida</p>
-                <div class="row d-flex mb-3">
-                    <app-progress-bar [total]="character.maxHp" [value]="character.hp"
-                        (click)="openEditProgressBarValueDialog('hp')" role="button" [color]="'red'"
-                        class=" col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
-                    <p class="text-light drawn-font fs-2 col">{{character.hp}}/{{character.maxHp}}</p>
-                </div>
-                <p class="row mb-2 drawn-font fw-bold text-light fs-5">Sanidade</p>
-                <div class="row d-flex mb-3">
-                    <app-progress-bar [total]="character.maxSanity" [value]="character.sanity"
-                        (click)="openEditProgressBarValueDialog('sanity')" role="button" [color]="'blue'"
-                        class="col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
-                    <p class="text-light drawn-font fs-2 col">{{character.sanity}}/{{character.maxSanity}}</p>
-                </div>
-                <p class="row mb-2 drawn-font fw-bold text-light fs-5">Pontos de esforço</p>
-                <div class="row d-flex mb-3">
-                    <app-progress-bar [total]="character.maxEffortPoints" [value]="character.effortPoints"
-                        (click)="openEditProgressBarValueDialog('stressPoints')" role="button" [color]="'yellow'"
-                        class="col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
-                    <p class="text-light drawn-font fs-2 col">{{character.effortPoints}}/{{character.maxEffortPoints}}
-                    </p>
-                </div>
-                <app-roll-dice-dialog [characterName]="character.name"></app-roll-dice-dialog>
-            </div>
+        <div class="input-group justify-content-between">
+          <mat-form-field color="accent" class="w-auto min-width-250">
+            <mat-label>Nome do Jogador(a)</mat-label>
+            <input matInput #inputPlayerName type="text" class="text-light drawn-font fw-bold"
+              [(ngModel)]="character.playerName" aria-label="nome-jogador" />
+          </mat-form-field>
+          <mat-form-field color="accent" class="w-auto min-width-250">
+            <mat-label>Nome do personagem</mat-label>
+            <input matInput #inputName type="text" class="text-light drawn-font fw-bold" [(ngModel)]="character.name"
+              aria-label="nome-personagem" />
+          </mat-form-field>
         </div>
+        <div class="input-group mb-3 justify-content-between">
+          <mat-form-field color="accent" class="w-auto min-width-250">
+            <mat-label>Idade</mat-label>
+            <input matInput #inputAge type="number" class="w-auto drawn-font text-light" [(ngModel)]="character.age"
+              aria-label="nome-jogador" />
+          </mat-form-field>
+          <mat-form-field color="accent" class="w-auto min-width-250">
+            <mat-label>Gênero</mat-label>
+            <input matInput #inputGender type="text" class="w-auto drawn-font text-light" [(ngModel)]="character.gender"
+              aria-label="nome-personagem" />
+          </mat-form-field>
+        </div>
+        <div class="input-group justify-content-between">
+          <mat-form-field color="accent" class="w-auto min-width-250">
+            <mat-label>Origem</mat-label>
+            <input matInput #inputPlayerName type="text" class="drawn-font text-light" [(ngModel)]="character.origin"
+              aria-label="nome-jogador" />
+          </mat-form-field>
+          <mat-form-field color="accent" class="w-auto min-width-250">
+            <mat-label>Classe</mat-label>
+            <input matInput #inputName type="text" class="drawn-font text-light" [(ngModel)]="character.class"
+              aria-label="nome-personagem" />
+          </mat-form-field>
+        </div>
+        <div class="input-group mb-3 justify-content-between">
+          <mat-form-field color="accent" class="w-auto min-width-250">
+            <mat-label>NEX</mat-label>
+            <input matInput #inputNex type="string" class="w-auto drawn-font text-light" [(ngModel)]="character.nex"
+              aria-label="nome-jogador" />
+          </mat-form-field>
+          <mat-form-field color="accent" class="w-auto min-width-250">
+            <mat-label>Patente</mat-label>
+            <input matInput #inputRank type="text" class="drawn-font text-light" [(ngModel)]="character.rank"
+              aria-label="nome-personagem" />
+          </mat-form-field>
+        </div>
+        <button class="btn btn-outline-warning float-end shadow-none" type="button"
+          (click)="saveCharacter()">Salvar</button>
+      </div>
     </div>
+    <div class="d-flex col-md-6 mt-3 shadow">
+      <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+        <p class="row mb-2 drawn-font fw-bold text-light fs-5">Vida</p>
+        <div class="row d-flex mb-3">
+          <app-progress-bar [total]="character.maxHp" [value]="character.hp"
+            (click)="openEditProgressBarValueDialog('hp')" role="button" [color]="'red'" class=" col-md-12 w-75"
+            style="max-width: 465px;"></app-progress-bar>
+          <p class="text-light drawn-font fs-2 col">{{character.hp}}/{{character.maxHp}}</p>
+        </div>
+        <p class="row mb-2 drawn-font fw-bold text-light fs-5">Sanidade</p>
+        <div class="row d-flex mb-3">
+          <app-progress-bar [total]="character.maxSanity" [value]="character.sanity"
+            (click)="openEditProgressBarValueDialog('sanity')" role="button" [color]="'blue'" class="col-md-12 w-75"
+            style="max-width: 465px;"></app-progress-bar>
+          <p class="text-light drawn-font fs-2 col">{{character.sanity}}/{{character.maxSanity}}</p>
+        </div>
+        <p class="row mb-2 drawn-font fw-bold text-light fs-5">Pontos de esforço</p>
+        <div class="row d-flex mb-3">
+          <app-progress-bar [total]="character.maxEffortPoints" [value]="character.effortPoints"
+            (click)="openEditProgressBarValueDialog('stressPoints')" role="button" [color]="'yellow'"
+            class="col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
+          <p class="text-light drawn-font fs-2 col">{{character.effortPoints}}/{{character.maxEffortPoints}}
+          </p>
+        </div>
+        <app-roll-dice-dialog [characterName]="character.name"></app-roll-dice-dialog>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="container w-75 px-0 w-auto">
-    <div class="d-flex flex-row flex-wrap row">
-        <div class="d-flex col-md-6 mt-3 shadow">
-            <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
-                <div class="row d-flex justify-content-between col-md-12">
-                    <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Defesas</p>
-                </div>
-                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto"
-                    style="min-height: 150px;">
-                    <div class="d-flex col justify-content-between mb-2 me-5 w-auto">
-                        <div class="col">
-                            <div class="card align-items-center bg-warning border-2 border-warning" role="button"
-                                style="width:fit-content;height:fit-content">
-                                <div class="card-header bg-warning row pt-3 px-0 mx-0"
-                                    style="width:115px;height:fit-content;">
-                                    <p class="text-light text-center fs-5 text-break fw-bold user-select-none"
-                                        style="text-shadow: 1px 1px 4px black;">Passiva</p>
-                                </div>
-                                <div class="card-body py-0 my-0 bg-dark rounded-bottom row align-items-center px-0 mx-0"
-                                    style="width:115px;height:50px;">
-                                    <input #attributeValue type="text"
-                                        class="col form-control text-center border-0 shadow-none bg-transparent fw-bold text-light w-100"
-                                        [(ngModel)]="character.passiveDefense" style="width:50px;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex col justify-content-between mb-2 me-5 w-auto">
-                        <div class="col">
-                            <div class="card align-items-center bg-warning border-2 border-warning" role="button"
-                                style="width:fit-content;height:fit-content">
-                                <div class="card-header bg-warning row pt-3 px-0 mx-0"
-                                    style="width:115px;height:fit-content;">
-                                    <p class="text-light text-center fs-5 text-break fw-bold user-select-none"
-                                        style="text-shadow: 1px 1px 4px black;">Esquiva</p>
-                                </div>
-                                <div class="card-body py-0 my-0 bg-dark rounded-bottom row align-items-center px-0 mx-0"
-                                    style="width:115px;height:50px;">
-                                    <input #attributeValue type="text"
-                                        class="col form-control text-center border-0 shadow-none bg-transparent fw-bold text-light w-100"
-                                        [(ngModel)]="character.dodgeDefense" style="width:50px;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row d-flex justify-content-between col-md-12">
-                    <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Resistências</p>
-                </div>
-                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto"
-                    style="min-height: 150px;">
-                    <div class="d-flex col mb-2 w-auto">
-                        <div class="bg-transparent row" role="button"
-                            style="min-width:100px;width:fit-content;height:50px;">
-                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                                style="height:50px;text-shadow: 1px 1px 4px black;">Física</div>
-                            <input #attributeValue type="text"
-                                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                                style="width:40px;height:50px;" [(ngModel)]="character.physicsResistence">
-                        </div>
-                    </div>
-                    <div class="d-flex col mb-2 w-auto">
-                        <div class="bg-transparent row" role="button"
-                            style="min-width:100px;width:fit-content;height:50px;">
-                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                                style="height:50px;text-shadow: 1px 1px 4px black;">Balística</div>
-                            <input #attributeValue type="text"
-                                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                                style="width:40px;height:50px;" [(ngModel)]="character.ballisticResistence">
-                        </div>
-                    </div>
-                    <div class="d-flex col mb-2 w-auto">
-                        <div class="bg-transparent row" role="button"
-                            style="min-width:100px;width:fit-content;height:50px;">
-                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                                style="height:50px;text-shadow: 1px 1px 4px black;">Mental</div>
-                            <input #attributeValue type="text"
-                                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                                style="width:40px;height:50px;" [(ngModel)]="character.insanityResistence">
-                        </div>
-                    </div>
-                    <div class="d-flex col mb-2 w-auto">
-                        <div class="bg-transparent row" role="button"
-                            style="min-width:100px;width:fit-content;height:50px;">
-                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                                style="height:50px;text-shadow: 1px 1px 4px black;">Sangue</div>
-                            <input #attributeValue type="text"
-                                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                                style="width:40px;height:50px;" [(ngModel)]="character.bloodResistence">
-                        </div>
-                    </div>
-                    <div class="d-flex col mb-2 w-auto">
-                        <div class="bg-transparent row" role="button"
-                            style="min-width:100px;width:fit-content;height:50px;">
-                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                                style="height:50px;text-shadow: 1px 1px 4px black;">Energia</div>
-                            <input #attributeValue type="text"
-                                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                                style="width:40px;height:50px;" [(ngModel)]="character.energyResistence">
-                        </div>
-                    </div>
-                    <div class="d-flex col mb-2 w-auto">
-                        <div class="bg-transparent row" role="button"
-                            style="min-width:100px;width:fit-content;height:50px;">
-                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                                style="height:50px;text-shadow: 1px 1px 4px black;">Morte</div>
-                            <input #attributeValue type="text"
-                                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                                style="width:40px;height:50px;" [(ngModel)]="character.deathResistence">
-                        </div>
-                    </div>
-                    <div class="d-flex col mb-2 w-auto">
-                        <div class="bg-transparent row" role="button"
-                            style="min-width:100px;width:fit-content;height:50px;">
-                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                                style="height:50px;text-shadow: 1px 1px 4px black;">Conhecimento</div>
-                            <input #attributeValue type="text"
-                                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                                style="width:40px;height:50px;" [(ngModel)]="character.knowledgeResistence">
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="d-flex flex-row flex-wrap row">
+    <div class="d-flex col-md-6 mt-3 shadow">
+      <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+        <div class="row d-flex justify-content-between col-md-12">
+          <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Defesas</p>
         </div>
-        <div class="d-flex col-md-6 mt-3 shadow">
-            <div class="container rounded-3 pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300"
-                style="min-width:500px;">
-                <div class="row d-flex justify-content-between col-md-12">
-                    <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Atributos </p>
+        <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto"
+          style="min-height: 150px;">
+          <div class="d-flex col justify-content-between mb-2 me-5 w-auto">
+            <div class="col">
+              <div class="card align-items-center bg-warning border-2 border-warning" role="button"
+                style="width:fit-content;height:fit-content">
+                <div class="card-header bg-warning row pt-3 px-0 mx-0" style="width:115px;height:fit-content;">
+                  <p class="text-light text-center fs-5 text-break fw-bold user-select-none"
+                    style="text-shadow: 1px 1px 4px black;">Passiva</p>
                 </div>
-                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 outro-lado-bg overflow-hidden"
-                    style="min-height: 150px;min-width:500px;">
-                    <div class="d-flex col justify-content-between mb-2 me-5">
-                        <div class="col">
-                            <div class="card align-items-center bg-transparent agility-position" role="button"
-                                style="width:fit-content;height:fit-content"
-                                (dblclick)="onDoubleClickAttribute(character.attributes.agility)">
-                                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center"
-                                    style="width:108px;height:50px;">
-                                    <input #agilityValue type="text"
-                                        class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle"
-                                        [(ngModel)]="character.attributes.agility.value"
-                                        style="width:108px;height:107px;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card align-items-center bg-transparent int-position" role="button"
-                                style="width:fit-content;height:fit-content"
-                                (dblclick)="onDoubleClickAttribute(character.attributes.intelligence)">
-                                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center"
-                                    style="width:108px;height:50px;">
-                                    <input #intValue type="text"
-                                        class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle"
-                                        [(ngModel)]="character.attributes.intelligence.value"
-                                        style="width:108px;height:107px;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card align-items-center bg-transparent for-position" role="button"
-                                style="width:fit-content;height:fit-content"
-                                (dblclick)="onDoubleClickAttribute(character.attributes.strength)">
-                                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center"
-                                    style="width:108px;height:50px;">
-                                    <input #forValue type="text"
-                                        class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle"
-                                        [(ngModel)]="character.attributes.strength.value"
-                                        (change)="onStrengthAttributeChanged()" style="width:108px;height:107px;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card align-items-center bg-transparent pre-position" role="button"
-                                (dblclick)="onDoubleClickAttribute(character.attributes.presence)"
-                                style="width:fit-content;height:fit-content">
-                                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center"
-                                    style="width:108px;height:50px;">
-                                    <input #preValue type="text"
-                                        class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle"
-                                        [(ngModel)]="character.attributes.presence.value"
-                                        style="width:108px;height:107px;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card align-items-center bg-transparent vig-position rounded-circle user-select-none"
-                                style="width:fit-content;height:fit-content"
-                                (dblclick)="onDoubleClickAttribute(character.attributes.vigor)">
-                                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center"
-                                    style="width:108px;height:50px;">
-                                    <input #vigValue type="text"
-                                        class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle"
-                                        [(ngModel)]="character.attributes.vigor.value"
-                                        style="width:108px;height:107px;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card-body py-0 my-0 bg-dark rounded-bottom row align-items-center px-0 mx-0"
+                  style="width:115px;height:50px;">
+                  <input #attributeValue type="text"
+                    class="col form-control text-center border-0 shadow-none bg-transparent fw-bold text-light w-100"
+                    [(ngModel)]="character.passiveDefense" style="width:50px;">
                 </div>
+              </div>
             </div>
+          </div>
+          <div class="d-flex col justify-content-between mb-2 me-5 w-auto">
+            <div class="col">
+              <div class="card align-items-center bg-warning border-2 border-warning" role="button"
+                style="width:fit-content;height:fit-content">
+                <div class="card-header bg-warning row pt-3 px-0 mx-0" style="width:115px;height:fit-content;">
+                  <p class="text-light text-center fs-5 text-break fw-bold user-select-none"
+                    style="text-shadow: 1px 1px 4px black;">Esquiva</p>
+                </div>
+                <div class="card-body py-0 my-0 bg-dark rounded-bottom row align-items-center px-0 mx-0"
+                  style="width:115px;height:50px;">
+                  <input #attributeValue type="text"
+                    class="col form-control text-center border-0 shadow-none bg-transparent fw-bold text-light w-100"
+                    [(ngModel)]="character.dodgeDefense" style="width:50px;">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="row d-flex justify-content-between col-md-12">
+          <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Resistências</p>
+        </div>
+        <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto"
+          style="min-height: 150px;">
+          <div class="d-flex col mb-2 w-auto">
+            <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
+                style="height:50px;text-shadow: 1px 1px 4px black;">Física</div>
+              <input #attributeValue type="text"
+                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
+                style="width:40px;height:50px;" [(ngModel)]="character.physicsResistence">
+            </div>
+          </div>
+          <div class="d-flex col mb-2 w-auto">
+            <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
+                style="height:50px;text-shadow: 1px 1px 4px black;">Balística</div>
+              <input #attributeValue type="text"
+                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
+                style="width:40px;height:50px;" [(ngModel)]="character.ballisticResistence">
+            </div>
+          </div>
+          <div class="d-flex col mb-2 w-auto">
+            <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
+                style="height:50px;text-shadow: 1px 1px 4px black;">Mental</div>
+              <input #attributeValue type="text"
+                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
+                style="width:40px;height:50px;" [(ngModel)]="character.insanityResistence">
+            </div>
+          </div>
+          <div class="d-flex col mb-2 w-auto">
+            <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
+                style="height:50px;text-shadow: 1px 1px 4px black;">Sangue</div>
+              <input #attributeValue type="text"
+                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
+                style="width:40px;height:50px;" [(ngModel)]="character.bloodResistence">
+            </div>
+          </div>
+          <div class="d-flex col mb-2 w-auto">
+            <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
+                style="height:50px;text-shadow: 1px 1px 4px black;">Energia</div>
+              <input #attributeValue type="text"
+                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
+                style="width:40px;height:50px;" [(ngModel)]="character.energyResistence">
+            </div>
+          </div>
+          <div class="d-flex col mb-2 w-auto">
+            <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
+                style="height:50px;text-shadow: 1px 1px 4px black;">Morte</div>
+              <input #attributeValue type="text"
+                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
+                style="width:40px;height:50px;" [(ngModel)]="character.deathResistence">
+            </div>
+          </div>
+          <div class="d-flex col mb-2 w-auto">
+            <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
+                style="height:50px;text-shadow: 1px 1px 4px black;">Conhecimento</div>
+              <input #attributeValue type="text"
+                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
+                style="width:40px;height:50px;" [(ngModel)]="character.knowledgeResistence">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
-
-<section class="container w-75 px-0 w-auto">
-    <div class="d-flex flex-row flex-wrap row">
-        <div class="d-flex col-md-6 mt-3 shadow">
-            <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
-                <div class="row d-flex justify-content-between col-md-12">
-                    <p class="text-center fs-2  fw-bold enigma-font text-light w-25 col">Habilidades</p>
-                    <button class="btn btn-outline-warning w-auto" (click)="openChooseAbilities()">
-                        <i class="bi bi-plus-lg text-light"></i>
-                    </button>
-                </div>
-                <div class="d-flex flex-wrap justify-content-between col-md-12 ps-1 pe-4 mt-3 py-2 overflow-auto"
-                    style="max-height:500px;">
-                    <div class="d-flex col-md-12 flex-nowrap justify-content-between mb-2 me-5 w-auto"
-                        *ngFor="let ability of character.abilities">
-                        <button class="btn btn-outline-danger w-auto me-2 col" (click)="deleteAbility(ability.id)"
-                            style="height:fit-content;max-width: 40px;font-size: 14px;">
-                            <i class="bi bi-trash3 text-light"></i>
-                        </button>
-                        <p role="button"
-                            class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto"
-                            style="min-width: 100px;" (click)="openShowAbilityDetailsDialog(ability)">{{ability.name}}
-                        </p>
-                    </div>
-                </div>
-            </div>
+    <div class="d-flex col-md-6 mt-3 shadow">
+      <div class="container rounded-3 pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300" style="min-width:500px;">
+        <div class="row d-flex justify-content-between col-md-12">
+          <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Atributos </p>
         </div>
-        <div class="d-flex col-md-6 mt-3 shadow">
-            <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
-                <div class="row d-flex justify-content-between col-md-12">
-                    <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Perícias</p>
-                    <button class="btn btn-outline-warning w-auto" (click)="openChooseSkills()">
-                        <i class="bi bi-plus-lg text-light"></i>
-                    </button>
-                </div>
-                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto"
-                    style="min-height: 150px;">
-                    <div class="d-flex col mb-2 w-auto" *ngFor="let skill of character.skills">
-                        <div class="bg-transparent row" role="button"
-                            style="min-width:100px;width:fit-content;height:50px;">
-                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                                style="height:50px;text-shadow: 1px 1px 4px black;">{{skill.name}}</div>
-                            <input #attributeValue type="text"
-                                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                                style="width:40px;height:50px;" [(ngModel)]="skill.value">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="d-flex col-md-6 mt-3 shadow">
-            <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
-                <div class="row d-flex justify-content-between col-md-12">
-                    <p class="text-center fs-2 fw-bold enigma-font text-light w-25 col">Rituais</p>
-                    <button class="btn btn-outline-warning w-auto" (click)="openChooseRituals()">
-                        <i class="bi bi-plus-lg text-light"></i>
-                    </button>
-                </div>
-                <div class="d-flex flex-wrap justify-content-between col-md-12 ps-1 pe-4 mt-3 py-2 overflow-auto"
-                    style="max-height:500px;">
-                    <div class="d-flex col-md-6 flex-nowrap justify-content-between mb-2 me-5 w-auto"
-                        *ngFor="let ritual of character.rituals">
-                        <button class="btn btn-outline-danger w-auto me-2 col" (click)="deleteRitual(ritual.id)"
-                            style="height:fit-content;max-width: 40px;font-size: 14px;">
-                            <i class="bi bi-trash3 text-light"></i>
-                        </button>
-                        <p role="button"
-                            class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto text-shadow-hover"
-                            style="min-width: 100px;" (click)="openShowRitualDetailsDialog(ritual)">{{ritual.name}}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="d-flex col-md-6 mt-3 shadow">
-            <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
-                <div class="row d-flex justify-content-between col-md-12">
-                    <p class="text-center fs-2 fw-bold enigma-font text-light col">Inventário</p>
-                </div>
-                <div class="row d-flex justify-content-between col-md-12">
-                    <span class="text-center fs-5 drawn-font fw-bold text-light col">Slots: {{character.inventory !=
-                        null ? +character.inventory.usedSlots : 0}}/{{character.inventory != null ?
-                        +character.inventory.maxSlots : 0}}</span>
-                </div>
-                <div class="row d-flex justify-content-between col-md-12">
-                    <div class="form-group">
-                        <button class="btn btn-outline-warning float-end" (click)="openCreateInventoryItemDialog()">
-                            <i class="bi bi-plus-lg fw-bold drawn-font text-light"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto"
-                    style="min-height: 150px;">
-                    <div class="d-flex col mb-2 w-auto" *ngFor="let item of character.inventory.items">
-                        <div class="bg-transparent row" role="button"
-                            style="min-width:100px;width:fit-content;height: fit-content;min-height:50px;">
-                            <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto row"
-                                style="height:50px;text-shadow: 1px 1px 4px black;"
-                                (click)="openEditInventoryDialog(item)">
-                                <div class="col pe-0 text-nowrap">{{item.name}}</div>
-                                <div class="col text-dark fs-4 fw-bold user-select-none"
-                                    style="text-shadow: 1px 1px 4px black;">{{item.prestige | toRomanNumeral}}</div>
-                            </div>
-                            <input #attributeValue type="text"
-                                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                                style="width:40px;height:50px;" [(ngModel)]="item.slots" (change)="saveCharacter()">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="container w-75 px-0 w-auto">
-    <div class="d-flex col mt-3 overflow-hidden shadow">
         <div
-            class="container rounded-3 pb-2 pt-5 px-4 bg-dark shadow-lg col-md-12 min-height-300 min-width-300 overflow-hidden">
-            <div class="row d-flex justify-content-between col-md-12">
-                <p class="text-center fs-2 fw-bold enigma-font text-light col">Armas</p>
-
-            </div>
-            <div class="row d-flex justify-content-between col-md-12">
-                <div class="form-group">
-                    <button class="btn btn-outline-warning w-auto float-end" (click)="openCreateWeaponDialog()">
-                        <i class="bi bi-plus-lg text-light"></i>
-                    </button>
+          class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 outro-lado-bg overflow-hidden"
+          style="min-height: 150px;min-width:500px;">
+          <div class="d-flex col justify-content-between mb-2 me-5">
+            <div class="col">
+              <div class="card align-items-center bg-transparent agility-position" role="button"
+                style="width:fit-content;height:fit-content"
+                (dblclick)="onDoubleClickAttribute(character.attributes.agility)">
+                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center"
+                  style="width:108px;height:50px;">
+                  <input #agilityValue type="text"
+                    class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle"
+                    [(ngModel)]="character.attributes.agility.value" style="width:108px;height:107px;">
                 </div>
+              </div>
             </div>
-            <div class="overflow-auto drawn-font" style="max-height: 300px;">
-                <table class="table text-light">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Ataque</th>
-                            <th scope="col">Dano</th>
-                            <th scope="col">Crítico</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let weapon of character.weapons ?? []">
-                            <th scope="row"><button class="btn btn-outline-warning w-auto me-2 col"
-                                    style="height:fit-content;font-size: 14px;" (click)="openEditWeaponDialog(weapon)">
-                                    <i class="bi bi-pencil text-light text-center"></i>
-                                </button></th>
-                            <td>
-                                <p class="text-light w-auto fs-6">{{weapon.name}}</p>
-                            </td>
-                            <td>
-                                <input #weaponAttack type="text"
-                                    class="col form-control text-center btn-warning shadow-none bg-transparent text-light "
-                                    [value]="weapon.attack ?? ''" [(ngModel)]="weapon.attack"
-                                    style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;"
-                                    (change)="saveCharacter()">
-                            </td>
-                            <td>
-                                <input #weaponDamageValue type="text"
-                                    class="col form-control text-center btn-warning shadow-none bg-transparent text-light w-auto"
-                                    [value]="weapon.damage ?? ''" [(ngModel)]="weapon.damage"
-                                    style="max-width:120px;height:fit-content;font-size:12px;"
-                                    (change)="saveCharacter()">
-                            </td>
-                            <td>
-                                <input #weaponCriticalDamageInput type="text"
-                                    class="col form-control text-center btn-warning shadow-none bg-transparent text-light w-auto"
-                                    [value]="weapon.criticalDamage ?? ''" [(ngModel)]="weapon.criticalDamage"
-                                    style="max-width:90px;height:fit-content; font-size:12px;"
-                                    (change)="saveCharacter()">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col">
+              <div class="card align-items-center bg-transparent int-position" role="button"
+                style="width:fit-content;height:fit-content"
+                (dblclick)="onDoubleClickAttribute(character.attributes.intelligence)">
+                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center"
+                  style="width:108px;height:50px;">
+                  <input #intValue type="text"
+                    class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle"
+                    [(ngModel)]="character.attributes.intelligence.value" style="width:108px;height:107px;">
+                </div>
+              </div>
             </div>
+            <div class="col">
+              <div class="card align-items-center bg-transparent for-position" role="button"
+                style="width:fit-content;height:fit-content"
+                (dblclick)="onDoubleClickAttribute(character.attributes.strength)">
+                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center"
+                  style="width:108px;height:50px;">
+                  <input #forValue type="text"
+                    class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle"
+                    [(ngModel)]="character.attributes.strength.value" (change)="onStrengthAttributeChanged()"
+                    style="width:108px;height:107px;">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card align-items-center bg-transparent pre-position" role="button"
+                (dblclick)="onDoubleClickAttribute(character.attributes.presence)"
+                style="width:fit-content;height:fit-content">
+                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center"
+                  style="width:108px;height:50px;">
+                  <input #preValue type="text"
+                    class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle"
+                    [(ngModel)]="character.attributes.presence.value" style="width:108px;height:107px;">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card align-items-center bg-transparent vig-position rounded-circle user-select-none"
+                style="width:fit-content;height:fit-content"
+                (dblclick)="onDoubleClickAttribute(character.attributes.vigor)">
+                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center"
+                  style="width:108px;height:50px;">
+                  <input #vigValue type="text"
+                    class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle"
+                    [(ngModel)]="character.attributes.vigor.value" style="width:108px;height:107px;">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
 <section class="container w-75 px-0 w-auto">
-    <div class="d-flex flex-row flex-wrap row">
-        <div class="d-flex col-md-6 mt-3" style="max-height: 400px;">
-            <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark shadow-lg col-md-12 min-width-300">
-                <p class="text-center fs-2 fw-bold enigma-font text-light w-100 col">Anotações</p>
-                <textarea class="form-control w-100 bg-dark text-light border-warning" id="notes-text-area"
-                    style="height: 300px;max-height: 300px;" [(ngModel)]="character.notes"></textarea>
-            </div>
+  <div class="d-flex flex-row flex-wrap row">
+    <div class="d-flex col-md-6 mt-3 shadow">
+      <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+        <div class="row d-flex justify-content-between col-md-12">
+          <p class="text-center fs-2  fw-bold enigma-font text-light w-25 col">Habilidades</p>
+          <button class="btn btn-outline-warning w-auto" (click)="openChooseAbilities()">
+            <i class="bi bi-plus-lg text-light"></i>
+          </button>
         </div>
-        <div class="d-flex col-md-6 mt-3" style="max-height: 400px;">
-            <div class="container rounded-3 shadow-lg pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-width-300">
-                <p class="text-center fs-2 fw-bold enigma-font text-light w-100 col">Proficiências</p>
-                <textarea class="form-control w-100 bg-dark text-light border-warning" id="notes-text-area"
-                    style="height: 300px;max-height: 300px;" [(ngModel)]="character.proficiences"></textarea>
-            </div>
+        <div class="d-flex flex-wrap justify-content-between col-md-12 ps-1 pe-4 mt-3 py-2 overflow-auto"
+          style="max-height:500px;">
+          <div class="d-flex col-md-12 flex-nowrap justify-content-between mb-2 me-5 w-auto"
+            *ngFor="let ability of character.abilities">
+            <button class="btn btn-outline-danger w-auto me-2 col" (click)="deleteAbility(ability.id)"
+              style="height:fit-content;max-width: 40px;font-size: 14px;">
+              <i class="bi bi-trash3 text-light"></i>
+            </button>
+            <p role="button" class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto"
+              style="min-width: 100px;" (click)="openShowAbilityDetailsDialog(ability)">{{ability.name}}
+            </p>
+          </div>
         </div>
+      </div>
     </div>
+    <div class="d-flex col-md-6 mt-3 shadow">
+      <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+        <div class="row d-flex justify-content-between col-md-12">
+          <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Perícias</p>
+          <button class="btn btn-outline-warning w-auto" (click)="openChooseSkills()">
+            <i class="bi bi-plus-lg text-light"></i>
+          </button>
+        </div>
+        <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto"
+          style="min-height: 150px;">
+          <div class="d-flex col mb-2 w-auto" *ngFor="let skill of character.skills">
+            <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
+              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
+                style="height:50px;text-shadow: 1px 1px 4px black;">{{skill.name}}</div>
+              <input #attributeValue type="text"
+                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
+                style="width:40px;height:50px;" [(ngModel)]="skill.value">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex col-md-6 mt-3 shadow">
+      <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+        <div class="row d-flex justify-content-between col-md-12">
+          <p class="text-center fs-2 fw-bold enigma-font text-light w-25 col">Rituais</p>
+          <button class="btn btn-outline-warning w-auto" (click)="openChooseRituals()">
+            <i class="bi bi-plus-lg text-light"></i>
+          </button>
+        </div>
+        <div class="d-flex flex-wrap justify-content-between col-md-12 ps-1 pe-4 mt-3 py-2 overflow-auto"
+          style="max-height:500px;">
+          <div class="d-flex col-md-6 flex-nowrap justify-content-between mb-2 me-5 w-auto"
+            *ngFor="let ritual of character.rituals">
+            <button class="btn btn-outline-danger w-auto me-2 col" (click)="deleteRitual(ritual.id)"
+              style="height:fit-content;max-width: 40px;font-size: 14px;">
+              <i class="bi bi-trash3 text-light"></i>
+            </button>
+            <p role="button"
+              class="btn btn-outline-warning text-light col me-3 text-nowrap text-center w-auto text-shadow-hover"
+              style="min-width: 100px;" (click)="openShowRitualDetailsDialog(ritual)">{{ritual.name}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex col-md-6 mt-3 shadow">
+      <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+        <div class="row d-flex justify-content-between col-md-12">
+          <p class="text-center fs-2 fw-bold enigma-font text-light col">Inventário</p>
+        </div>
+        <div class="row d-flex justify-content-between col-md-12">
+          <span class="text-center fs-5 drawn-font fw-bold text-light col">Slots: {{character.inventory !=
+            null ? +character.inventory.usedSlots : 0}}/{{character.inventory != null ?
+            +character.inventory.maxSlots : 0}}</span>
+        </div>
+        <div class="row d-flex justify-content-between col-md-12">
+          <div class="form-group">
+            <button class="btn btn-outline-warning float-end" (click)="openCreateInventoryItemDialog()">
+              <i class="bi bi-plus-lg fw-bold drawn-font text-light"></i>
+            </button>
+          </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto"
+          style="min-height: 150px;">
+          <div class="d-flex col mb-2 w-auto" *ngFor="let item of character.inventory.items">
+            <div class="bg-transparent row" role="button"
+              style="min-width:100px;width:fit-content;height: fit-content;min-height:50px;">
+              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto row"
+                style="height:50px;text-shadow: 1px 1px 4px black;" (click)="openEditInventoryDialog(item)">
+                <div class="col pe-0 text-nowrap">{{item.name}}</div>
+                <div class="col text-dark fs-4 fw-bold user-select-none" style="text-shadow: 1px 1px 4px black;">
+                  {{item.prestige | toRomanNumeral}}</div>
+              </div>
+              <input #attributeValue type="text"
+                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
+                style="width:40px;height:50px;" [(ngModel)]="item.slots" (change)="saveCharacter()">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container w-75 px-0 w-auto">
+  <div class="d-flex col mt-3 overflow-hidden shadow">
+    <div
+      class="container rounded-3 pb-2 pt-5 px-4 bg-dark shadow-lg col-md-12 min-height-300 min-width-300 overflow-hidden">
+      <div class="row d-flex justify-content-between col-md-12">
+        <p class="text-center fs-2 fw-bold enigma-font text-light col">Armas</p>
+
+      </div>
+      <div class="row d-flex justify-content-between col-md-12">
+        <div class="form-group">
+          <button class="btn btn-outline-warning w-auto float-end" (click)="openCreateWeaponDialog()">
+            <i class="bi bi-plus-lg text-light"></i>
+          </button>
+        </div>
+      </div>
+      <div class="overflow-auto drawn-font" style="max-height: 300px;">
+        <table class="table text-light">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Nome</th>
+              <th scope="col">Ataque</th>
+              <th scope="col">Dano</th>
+              <th scope="col">Crítico</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let weapon of character.weapons ?? []">
+              <th scope="row"><button class="btn btn-outline-warning w-auto me-2 col"
+                  style="height:fit-content;font-size: 14px;" (click)="openEditWeaponDialog(weapon)">
+                  <i class="bi bi-pencil text-light text-center"></i>
+                </button></th>
+              <td>
+                <p class="text-light w-auto fs-6">{{weapon.name}}</p>
+              </td>
+              <td>
+                <input #weaponAttack type="text"
+                  class="col form-control text-center btn-warning shadow-none bg-transparent text-light "
+                  [value]="weapon.attack ?? ''" [(ngModel)]="weapon.attack"
+                  style="min-width:100px;max-width:120px; height:fit-content;font-size:12px;"
+                  (change)="saveCharacter()">
+              </td>
+              <td>
+                <input #weaponDamageValue type="text"
+                  class="col form-control text-center btn-warning shadow-none bg-transparent text-light w-auto"
+                  [value]="weapon.damage ?? ''" [(ngModel)]="weapon.damage"
+                  style="max-width:120px;height:fit-content;font-size:12px;" (change)="saveCharacter()">
+              </td>
+              <td>
+                <input #weaponCriticalDamageInput type="text"
+                  class="col form-control text-center btn-warning shadow-none bg-transparent text-light w-auto"
+                  [value]="weapon.criticalDamage ?? ''" [(ngModel)]="weapon.criticalDamage"
+                  style="max-width:90px;height:fit-content; font-size:12px;" (change)="saveCharacter()">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container w-75 px-0 w-auto">
+  <div class="d-flex flex-row flex-wrap row">
+    <div class="d-flex col-md-6 mt-3" style="max-height: 400px;">
+      <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark shadow-lg col-md-12 min-width-300">
+        <p class="text-center fs-2 fw-bold enigma-font text-light w-100 col">Anotações</p>
+        <textarea class="form-control w-100 bg-dark text-light border-warning" id="notes-text-area"
+          style="height: 300px;max-height: 300px;" [(ngModel)]="character.notes"></textarea>
+      </div>
+    </div>
+    <div class="d-flex col-md-6 mt-3" style="max-height: 400px;">
+      <div class="container rounded-3 shadow-lg pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-width-300">
+        <p class="text-center fs-2 fw-bold enigma-font text-light w-100 col">Proficiências</p>
+        <textarea class="form-control w-100 bg-dark text-light border-warning" id="notes-text-area"
+          style="height: 300px;max-height: 300px;" [(ngModel)]="character.proficiences"></textarea>
+      </div>
+    </div>
+  </div>
 </section>

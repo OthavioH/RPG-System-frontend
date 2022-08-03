@@ -9,6 +9,23 @@
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+.text-light-dark-hover{
+  color: #fff;
+}
+
+.text-light-dark-hover:hover{
+  color: #000;
+  font-weight: bolder;
+}
+
+text-light-dark-hover:focus{
+  border: none;
+  outline: none;
+  color:#000;
+  background-color: none;
+  background: none;
+}
+
 @keyframes ldio-am16zgcbh7f {
     0% { opacity: 1 }
     100% { opacity: 0 }
