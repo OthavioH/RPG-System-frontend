@@ -23,7 +23,7 @@ export class ICharacter {
     maxSanity?: number;
     effortPoints?: number;
     maxEffortPoints?: number;
-    proficiences?: string;
+    proficiences: string;
     skills?: ISkill[];
     attributes: CharacterAttributes;
     abilities?: IAbility[];

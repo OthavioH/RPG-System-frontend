@@ -50,7 +50,7 @@ export class CharactersService {
     const response: any = await this.http.get(`${environment.apiUrl}/sheets/${characterId}`).toPromise();
     if (response.sheet !=null) {
       const character:ICharacter = response.sheet;
-      return character;  
+      return character;
     }
 
     this.router.navigate(["**"])
@@ -69,7 +69,6 @@ export class CharactersService {
 
   async deleteById(id: number): Promise<void> {
     await this.http.put(`${environment.apiUrl}/sheets/${id}/delete`,{}).toPromise();
-    
     await this.getCharacters();
   }
 
@@ -93,5 +92,4 @@ export class CharactersService {
     this.getCharacterById(characterId);
   }
 
-  
 }

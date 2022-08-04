@@ -1,0 +1,23 @@
+<div class="d-flex border border-2 rounded border-warning bg-dark flex-wrap justify-content-center me-5 p-2 pb-3"
+  style=" width:fit-content;">
+  <li class="mb-2 p-0">
+    <div class="mt-2 align-center justify-content-center" style="width:fit-content;height:fit-content;">
+      <img class="img rounded-circle border-white border-3px character-img" src="{{character.profileImageUrl}}"
+        (error)="onImageError($event)" alt="">
+    </div>
+  </li>
+  <li class="w-100 m-0 p-0">
+    <p class="drawn-font fs-3 text-center text-light" style="height: 5px;">{{character.name}}</p>
+  </li>
+  <li class="w-50 m-0 p-0">
+    <p class="drawn-font fs-3 text-center text-danger" style="height: 5px;">{{character.hp}}/{{character.maxHp}}</p>
+  </li>
+  <li class="w-50 m-0 p-0">
+    <p class="drawn-font fs-3 text-center text-primary" style="height: 5px;">
+      {{character.sanity}}/{{character.maxSanity}}</p>
+  </li>
+  <li class="w-50 m-0 p-0">
+    <p class="drawn-font fs-3 text-center text-success" style="height: 5px;">
+      {{character.effortPoints}}/{{character.maxEffortPoints}}</p>
+  </li>
+</div>

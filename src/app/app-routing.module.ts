@@ -7,10 +7,11 @@ import { CharacterResolver } from './views/character/guards/character.resolver';
 import { CharactersComponent } from './views/characters/characters.component';
 import { CharactersResolver } from './views/characters/guards/characters.resolver';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
+import { PortraitPageComponent } from './views/portrait-page/portrait-page.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: CharactersComponent, resolve:{gameSettings:CharactersResolver}},
-  { path: 'dice',component: TestDiceComponent,},
+  { path: 'portraits',component: PortraitPageComponent,},
   { path: 'personagens', children: [
     { path:':id', component: CharacterComponent, resolve: {character:CharacterResolver}},
   ]},
