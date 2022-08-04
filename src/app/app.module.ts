@@ -46,6 +46,8 @@ import { EditInventoryDialogComponent } from './views/common/edit-inventory-dial
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { RollAttributeDialogComponent } from './views/common/roll-attribute-dialog/roll-attribute-dialog.component';
 import { EditWeaponDialogComponent } from './views/common/edit-weapon-dialog/edit-weapon-dialog.component';
+import { PortraitPageComponent } from './views/portrait-page/portrait-page.component';
+import { PortraitCardComponent } from './views/portrait-page/portrait-card/portrait-card.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +82,8 @@ import { EditWeaponDialogComponent } from './views/common/edit-weapon-dialog/edi
     EditInventoryDialogComponent,
     RollAttributeDialogComponent,
     EditWeaponDialogComponent,
+    PortraitPageComponent,
+    PortraitCardComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,5 @@
+<div class="d-flex row">
+  <div class="d-flex col" *ngIf="charactersList.length > 0">
+    <app-portrait-card *ngFor="let character of charactersList" [character]="character"></app-portrait-card>
+  </div>
+</div>
