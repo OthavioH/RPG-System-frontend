@@ -15,6 +15,7 @@ export class PortraitCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
   onImageError(event:any):void {

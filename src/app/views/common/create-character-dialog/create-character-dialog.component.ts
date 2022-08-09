@@ -16,7 +16,7 @@ export class CreateCharacterDialogComponent implements OnInit {
   }
 
   async onConfirmClicked(characterName: string) {
-    
+
     if (characterName.length > 0) {
       this.charactersService.createNewCharacter(characterName);
     }

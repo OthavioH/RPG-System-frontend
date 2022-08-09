@@ -16,7 +16,7 @@
 
 .elevated-container {
   background:none;
-  border: none; 
+  border: none;
 }
 
 .shield {
@@ -44,6 +44,114 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+}
+
+.outro-lado {
+  min-height: 150px;
+  min-width:500px;
+}
+
+.attributes-size {
+  width:108px;
+  height:108px;
+}
+
+@media screen and (max-width: 1400px) {
+  .outro-lado {
+    max-height: 400px;
+    max-width: 50px;
+  }
+  .outro-lado-bg {
+    max-height: 400px;
+    max-width: 50px;
+    background-image: url("./../../../assets/atributos.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  .agility-position {
+    margin-left: -1.3px;
+  }
+  .for-position {
+    margin-right: 3px;
+  }
+  .pre-position {
+    margin-right: 4px;
+  }
+  .vig-position {
+    margin-right: 7px;
+  }
+  .attributes-size {
+    width:85px;
+    height:85px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .outro-lado {
+    max-height: 400px;
+    max-width: 50px;
+  }
+  .outro-lado-bg {
+    max-height: 400px;
+    max-width: 50px;
+    background-image: url("./../../../assets/atributos.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  .agility-position {
+    margin-left: -1.3px;
+  }
+  .for-position {
+    margin-right: 3px;
+  }
+  .pre-position {
+    margin-right: 4px;
+  }
+  .vig-position {
+    margin-right: 7px;
+  }
+  .attributes-size {
+    width:85px;
+    height:85px;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .outro-lado {
+    max-height: 200px;
+    max-width: 150px;
+  }
+  .outro-lado-bg {
+    max-height: 300px;
+    max-width: 150px;
+    background-image: url("./../../../assets/atributos.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 10% 10%;
+  }
+  .agility-position {
+    margin-left: -15.3px;
+  }
+  .for-position {
+    margin-right: 20px;
+  }
+  .int-position {
+    margin-left: -8.5px;
+  }
+  .pre-position {
+    margin-top: 3px;
+    margin-right: 24px;
+  }
+  .vig-position {
+    margin-top: 3px;
+    margin-right: 54px;
+  }
+  .attributes-size {
+    width:62px;
+    height:62px;
+  }
 }
 
 .paranormal-text {

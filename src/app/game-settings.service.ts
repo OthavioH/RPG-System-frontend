@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { Socket } from 'src/models/SocketClass';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { io } from 'socket.io-client';
 import { environment } from 'src/environments/environment';
@@ -12,6 +11,7 @@ import { IRitual, RitualElement } from 'src/models/Ritual';
 import { ISkill } from 'src/models/Skill';
 import { SkillExperienceLevel } from 'src/models/SkillExperienceLevel';
 import { IDiceRoll } from 'src/models/DiceRoll';
+import { WebSocketService } from './views/shared/web-socket.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,26 +29,25 @@ export class GameSettingsService {
 
   updateGameSettingsEvent$ :BehaviorSubject<IGameSettings>;
 
-  constructor(private http:HttpClient, private route: Router) {
-    Socket.socket = io(`${environment.apiUrl}`);
+  constructor(private http:HttpClient, private route: Router, private socketService:WebSocketService) {
     this.initSettings();
   }
 
   async initSettings(){
     this.updateGameSettingsEvent$ = new BehaviorSubject<IGameSettings>(await this.getGameSettings());
 
-    Socket.socket.on('lastRollListChanged',(newRollList:any[])=>{
+    this.socketService.listen('lastRollListChanged').subscribe((newRollList:any[])=>{
       this.onRollsListChanged.next(newRollList);
       this.gameSettings.lastRolls = newRollList;
     });
 
-    Socket.socket.on('diceOnCooldown',(timer:number)=>{
+    this.socketService.listen('diceOnCooldown').subscribe((timer:number)=>{
       this.onNewTimerEmitted.next(timer);
     });
   }
 
   emitTimer(timer:number) {
-    Socket.socket.emit('diceRoll',timer);
+    this.socketService.emit('diceRoll',timer);
   }
 
   async getGameSettings(): Promise<IGameSettings> {
@@ -58,12 +57,16 @@ export class GameSettingsService {
   }
 
   async setGameTimers(diceCooldown : number, diceScreenTime: number) {
-    
+
     const response: any = await this.http.post(`${environment.apiUrl}/gamesettings/timers/save`,{
       diceCooldown: diceCooldown,
       diceScreenTime: diceScreenTime,
     }).toPromise();
     this.gameSettings = response;
+    this.gameSettings.rituals = JSON.parse(JSON.stringify(response.rituals));
+    this.gameSettings.abilities = JSON.parse(JSON.stringify(response.abilities));
+    this.gameSettings.skills = JSON.parse(JSON.stringify(response.skills));
+    this.gameSettings.lastRolls = JSON.parse(JSON.stringify(response.lastRolls));
 
     this.updateGameSettingsEvent$.next(this.gameSettings);
   }
@@ -91,7 +94,7 @@ export class GameSettingsService {
   }
 
   async removeSkill(skillId:string) {
-    
+
     this.gameSettings.skills = this.gameSettings.skills.filter(element => element.id != skillId);
     await this.setGameProperties();
   }
@@ -115,14 +118,14 @@ export class GameSettingsService {
         value:0,
         experienceLevel:SkillExperienceLevel.untrained,
       };
-  
+
       if (this.gameSettings.skills != null) {
-        this.gameSettings.skills.push(newSkill); 
+        this.gameSettings.skills.push(newSkill);
       }
       else {
         this.gameSettings.skills = [newSkill];
       }
-  
+
       await this.setGameProperties();
     }
   }
@@ -141,14 +144,14 @@ export class GameSettingsService {
         elements:elements,
         resistance:resistance,
       };
-  
+
       if (this.gameSettings.rituals != null) {
-        this.gameSettings.rituals.push(newRitual); 
+        this.gameSettings.rituals.push(newRitual);
       }
       else {
         this.gameSettings.rituals = [newRitual];
       }
-  
+
       await this.setGameProperties();
     }
   }
@@ -160,14 +163,14 @@ export class GameSettingsService {
         name: abilityName,
         description: abilityDescription
       };
-  
+
       if (this.gameSettings.abilities != null) {
-        this.gameSettings.abilities.push(newability); 
+        this.gameSettings.abilities.push(newability);
       }
       else {
         this.gameSettings.abilities = [newability];
       }
-  
+
       await this.setGameProperties();
     }
   }
@@ -180,7 +183,7 @@ export class GameSettingsService {
           skill.description = skillDescription;
         }
       });
-  
+
       await this.setGameProperties();
     }
   }
@@ -202,7 +205,7 @@ export class GameSettingsService {
           ability.description = abilityDescription;
         }
       });
-  
+
       await this.setGameProperties();
     }
   }

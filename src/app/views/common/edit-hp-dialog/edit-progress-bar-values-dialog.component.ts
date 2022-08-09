@@ -36,7 +36,7 @@ export class EditProgressBarValuesDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  updateValues(currentValue: number, limit: number){
+  async updateValues(currentValue: number, limit: number){
     currentValue = +currentValue;
     limit = +limit;
 
@@ -52,7 +52,7 @@ export class EditProgressBarValuesDialogComponent implements OnInit {
       this.data.character.effortPoints = currentValue;
       this.data.character.maxEffortPoints = limit;
     }
-    this.data.character.saveCharacter();
+    await this.data.character.saveCharacter();
     this.dialogRef.close();
   }
 
