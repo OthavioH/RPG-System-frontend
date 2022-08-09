@@ -25,7 +25,6 @@ export class PortraitPageComponent implements OnInit {
   async subscribeCharacterList() {
     this.charactersList = await this.charactersService.getCharacters();
     this.socketService.listen('characterChanged').subscribe((character) =>{
-      console.log(character);
 
       if (character != null) {
         const index = findCharacterIndex(this.charactersList, character);

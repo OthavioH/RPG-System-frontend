@@ -16,7 +16,6 @@ export class EditWeaponDialogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.weapon);
 
   }
 

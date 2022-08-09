@@ -35,9 +35,6 @@ export class CharactersService {
 
   async initSettings() {
     await this.gameSettingsService.getGameSettings();
-    this.socketService.listen('characterChanged').subscribe((character)=>{
-      console.log(character);
-    });
   }
 
   async getCharacterById(characterId: number): Promise<ICharacter> {
