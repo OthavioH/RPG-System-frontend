@@ -22,6 +22,7 @@ import { IRitual } from "src/models/Ritual";
 import { EditRitualDialogComponent } from "../common/edit-ritual-dialog/edit-ritual-dialog.component";
 import { findCharacterIndex } from "../common/view_utils";
 import { ShowRitualDialogComponent } from "../common/show-ritual-dialog/show-ritual-dialog.component";
+import { WebSocketService } from "../shared/web-socket.service";
 
 @Component({
   selector: 'app-characters',
@@ -45,7 +46,9 @@ export class CharactersComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private gameSettingsService: GameSettingsService,
-    private titleService: Title, private modalService:MatDialog) {
+    private titleService: Title, private modalService:MatDialog,
+    private socketService:WebSocketService,
+    ) {
 
     this.router.events.subscribe((event: RouterEvent) =>{
       if (event instanceof NavigationStart || event instanceof NavigationError) {
@@ -68,18 +71,31 @@ export class CharactersComponent implements OnInit {
     this.charactersService.getCharacters();
   }
 
-  subscribeObservables(){
+  async subscribeObservables(){
     this.gameSettingsSubscription = this.gameSettingsService.updateGameSettingsEvent$.subscribe(newGameSettings => {
       this.gameSettings = newGameSettings;
       this.skillList = this.gameSettings.skills != null ? this.gameSettings.skills.sort((a,b) => a.name.localeCompare(b.name)) : [];
       this.gameSettings.rituals = this.gameSettings.rituals != null ? this.gameSettings.rituals.sort((a,b) => a.name.localeCompare(b.name)) : [];
     });
 
-    this.charactersService.onCharacterListChanged$.subscribe((characterList) =>{
-      this.charactersList = characterList;
+    this.socketService.listen('editedCharacterList').subscribe((data:{character:ICharacter, operation:string}) =>{
+      if (data != null) {
+        switch (data.operation) {
+          case 'delete':
+            this.charactersList.slice(findCharacterIndex(this.charactersList, data.character), 1);
+            break;
+
+          case 'create':
+            this.charactersList.push(data.character);
+            break;
+
+          default:
+            break;
+        }
+      }
     });
 
-    this.charactersService.onCharacterChanged$.subscribe((changedCharacter) =>{
+    this.socketService.listen('characterChanged').subscribe((changedCharacter) =>{
       if (this.charactersList != null) {
         if (changedCharacter != null) {
           const index = findCharacterIndex(this.charactersList,changedCharacter);
@@ -87,6 +103,8 @@ export class CharactersComponent implements OnInit {
         }
       }
     });
+
+    this.charactersList = await this.charactersService.getCharacters();
 
     this.subscribe = this.activatedRoute.data.subscribe((info: {gameSettings: IGameSettings}) => {
       this.gameSettings = info.gameSettings;

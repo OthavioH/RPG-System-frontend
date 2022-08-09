@@ -13,7 +13,7 @@
    background-color: #0b5502;
 }
 
-.progress-bar {    
+.progress-bar {
     height: 25px;
     border-radius: 4px;
     width: 0;
@@ -31,3 +31,7 @@
  .progress-bar.blue {
     background-color: rgb(17, 117, 231);
  }
+  .progress-bar-content-text {
+    height: 100%;
+    margin-top: 5px;
+  }

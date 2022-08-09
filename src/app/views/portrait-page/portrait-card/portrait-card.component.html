@@ -1,23 +1,23 @@
-<div class="d-flex border border-2 rounded border-warning bg-dark flex-wrap justify-content-center me-5 p-2 pb-3"
-  style=" width:fit-content;">
-  <li class="mb-2 p-0">
-    <div class="mt-2 align-center justify-content-center" style="width:fit-content;height:fit-content;">
-      <img class="img rounded-circle border-white border-3px character-img" src="{{character.profileImageUrl}}"
-        (error)="onImageError($event)" alt="">
+<div class="d-flex col flex-wrap bg-dark-transparent rounded justify-content-center me-5 pt-2 pb-3 ps-4"
+  style="max-width: 280px;width: fit-content;">
+  <p class="d-flex row p-0 w-100 drawn-font fs-3 text-start text-light">{{character.name}}</p>
+  <div class="d-flex row">
+    <div class="mt-2 align-center justify-content-center m-0 p-0" style="width:fit-content;height:fit-content;">
+      <img class="d-flex col img rounded-circle border-white border-3px character-img"
+        src="{{character.profileImageUrl}}" (error)="onImageError($event)" alt="" style="height: 90px;">
     </div>
-  </li>
-  <li class="w-100 m-0 p-0">
-    <p class="drawn-font fs-3 text-center text-light" style="height: 5px;">{{character.name}}</p>
-  </li>
-  <li class="w-50 m-0 p-0">
-    <p class="drawn-font fs-3 text-center text-danger" style="height: 5px;">{{character.hp}}/{{character.maxHp}}</p>
-  </li>
-  <li class="w-50 m-0 p-0">
-    <p class="drawn-font fs-3 text-center text-primary" style="height: 5px;">
-      {{character.sanity}}/{{character.maxSanity}}</p>
-  </li>
-  <li class="w-50 m-0 p-0">
-    <p class="drawn-font fs-3 text-center text-success" style="height: 5px;">
-      {{character.effortPoints}}/{{character.maxEffortPoints}}</p>
-  </li>
+    <div class="d-flex col m-0 pt-2">
+      <div class="d-flex row">
+        <p class="drawn-font fs-3 text-start text-danger" style="height: 5px;">
+          {{character.hp}}/{{character.maxHp}}
+        </p>
+        <p class="drawn-font fs-3 text-start text-primary" style="height: 5px;">
+          {{character.sanity}}/{{character.maxSanity}}
+        </p>
+        <p class="drawn-font fs-3 text-start text-success" style="height: 5px;">
+          {{character.effortPoints}}/{{character.maxEffortPoints}}
+        </p>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,32 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, } from '@angular/core';
-import io from 'socket.io-client';
-import { BehaviorSubject, Observable, ReplaySubject,} from 'rxjs';
+import { Subject,} from 'rxjs';
 import { GameSettingsService } from 'src/app/game-settings.service';
 import { generateRandomId } from 'src/app/views/common/view_utils';
 import { environment } from 'src/environments/environment';
-import { IAttribute } from 'src/models/Attribute';
 import { InventoryItem } from 'src/models/InventoryItem';
 import { ISkill } from 'src/models/Skill';
 import { IWeapon } from 'src/models/Weapon';
 
 import { ICharacter } from '../../../../../models/Character';
 import { Router } from '@angular/router';
-import { Socket } from 'src/models/SocketClass';
+import { WebSocketService } from 'src/app/views/shared/web-socket.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharactersService {
 
-  private onCharacterChanged:BehaviorSubject<ICharacter> = new BehaviorSubject<ICharacter>(null);
-  private onCharacterListChanged: BehaviorSubject<ICharacter[]> = new BehaviorSubject<ICharacter[]>(null);
-  onCharacterChanged$ = this.onCharacterChanged.asObservable();
-  onCharacterListChanged$ = this.onCharacterListChanged.asObservable();
   equipmentList : InventoryItem[] = [];
   weaponList : IWeapon[] = [];
 
-  private attributeList: IAttribute[] = [];
   private skillList: ISkill[] = [];
 
   private characters: ICharacter[] = [];
@@ -34,6 +27,7 @@ export class CharactersService {
   constructor(
     private http:HttpClient,
     private gameSettingsService: GameSettingsService,
+    private socketService: WebSocketService,
     private router:Router,
   ) {
     this.initSettings();
@@ -41,15 +35,16 @@ export class CharactersService {
 
   async initSettings() {
     await this.gameSettingsService.getGameSettings();
-    Socket.socket.on('characterChanged',(character)=>{
-      this.onCharacterChanged.next(character);
+    this.socketService.listen('characterChanged').subscribe((character)=>{
+      console.log(character);
     });
   }
 
   async getCharacterById(characterId: number): Promise<ICharacter> {
     const response: any = await this.http.get(`${environment.apiUrl}/sheets/${characterId}`).toPromise();
-    if (response.sheet !=null) {
-      const character:ICharacter = response.sheet;
+    if (response !=null) {
+      const character:ICharacter = response;
+
       return character;
     }
 
@@ -59,8 +54,8 @@ export class CharactersService {
 
   async getCharacters(){
     const response: any = await this.http.get(`${environment.apiUrl}/sheets`).toPromise();
-    this.characters = response.sheetList;
-    this.onCharacterListChanged.next(this.characters);
+
+    return this.characters = response;
   }
 
   getSkillList(): ISkill[] {
@@ -69,10 +64,10 @@ export class CharactersService {
 
   async deleteById(id: number): Promise<void> {
     await this.http.put(`${environment.apiUrl}/sheets/${id}/delete`,{}).toPromise();
-    await this.getCharacters();
   }
 
   async updateCharacter(character: ICharacter, characterJSON: string) {
+
     await this.http.put(`${environment.apiUrl}/sheets/${character.id}/update`,{character: JSON.parse(characterJSON)}).toPromise();
     await this.getCharacterById(character.id);
   }
@@ -83,8 +78,7 @@ export class CharactersService {
   }
 
   async createNewCharacter(characterName:string) {
-    await this.http.post(`${environment.apiUrl}/sheets/create`,{name:characterName}).toPromise();
-    await this.getCharacters();
+    await this.http.post(`${environment.apiUrl}/sheets/create`,{name:characterName}).toPromise() as ICharacter;
   }
 
   async createNewEquipment(equipmentName: string, quantity:number, characterId:number) {

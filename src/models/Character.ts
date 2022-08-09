@@ -33,13 +33,13 @@ export class ICharacter {
     passiveDefense?: number;
     blockDefense?: number;
     dodgeDefense?: number;
-    physicsResistence?: number;
-    ballisticResistence?: number;
-    bloodResistence?: number;
-    energyResistence?: number;
-    deathResistence?: number;
-    knowledgeResistence?: number;
-    insanityResistence?: number;
+    physicsResistance?: number;
+    ballisticResistance?: number;
+    bloodResistance?: number;
+    energyResistance?: number;
+    deathResistance?: number;
+    knowledgeResistance?: number;
+    insanityResistance?: number;
     notes: string;
 
     constructor(
@@ -72,13 +72,13 @@ export class ICharacter {
         this.passiveDefense = characterToChange.passiveDefense;
         this.blockDefense = characterToChange.blockDefense;
         this.dodgeDefense = characterToChange.dodgeDefense;
-        this.physicsResistence = characterToChange.physicsResistence;
-        this.ballisticResistence = characterToChange.ballisticResistence;
-        this.bloodResistence = characterToChange.bloodResistence;
-        this.energyResistence = characterToChange.energyResistence;
-        this.deathResistence = characterToChange.deathResistence;
-        this.knowledgeResistence = characterToChange.knowledgeResistence;
-        this.insanityResistence = characterToChange.insanityResistence;
+        this.physicsResistance = characterToChange.physicsResistance;
+        this.ballisticResistance = characterToChange.ballisticResistance;
+        this.bloodResistance = characterToChange.bloodResistance;
+        this.energyResistance = characterToChange.energyResistance;
+        this.deathResistance = characterToChange.deathResistance;
+        this.knowledgeResistance = characterToChange.knowledgeResistance;
+        this.insanityResistance = characterToChange.insanityResistance;
         this.notes = characterToChange.notes;
     };
 
@@ -105,7 +105,7 @@ export class ICharacter {
     }
 
     toJSON(): string {
-        const jsonString = `{"id":${this.id},"playerName":"${this.playerName}","profileImageUrl":"${this.profileImageUrl}","name":"${this.name}","age":${this.age},"gender":"${this.gender}","nex":${this.nex},"rank":"${this.rank}","class":"${this.class}","origin":"${this.origin}","hp":"${this.hp}","maxHp":"${this.maxHp}","sanity":${this.sanity},"maxSanity":${this.maxSanity},"effortPoints":${this.effortPoints},"maxEffortPoints":${this.maxEffortPoints},"proficiences":"${this.proficiences}","skills":${JSON.stringify(this.skills)},"attributes":${JSON.stringify(this.attributes)},"abilities":${JSON.stringify(this.abilities)},"rituals":${JSON.stringify(this.rituals)},"weapons":${JSON.stringify(this.weapons)},"inventory":${JSON.stringify(this.inventory)},"passiveDefense":${this.passiveDefense},"blockDefense":${this.blockDefense},"dodgeDefense":${this.dodgeDefense},"physicsResistence":${this.physicsResistence},"ballisticResistence":${this.ballisticResistence},"bloodResistence":${this.bloodResistence},"energyResistence":${this.energyResistence},"deathResistence":${this.deathResistence},"knowledgeResistence":${this.knowledgeResistence},"insanityResistence":${this.insanityResistence},"notes":"${this.notes}"}`;
+        const jsonString = `{"id":${this.id},"playerName":"${this.playerName}","profileImageUrl":"${this.profileImageUrl}","name":"${this.name}","age":${this.age},"gender":"${this.gender}","nex":${this.nex},"rank":"${this.rank}","class":"${this.class}","origin":"${this.origin}","hp":"${this.hp}","maxHp":"${this.maxHp}","sanity":${this.sanity},"maxSanity":${this.maxSanity},"effortPoints":${this.effortPoints},"maxEffortPoints":${this.maxEffortPoints},"proficiences":"${this.proficiences}","skills":${JSON.stringify(this.skills)},"attributes":${JSON.stringify(this.attributes)},"abilities":${JSON.stringify(this.abilities)},"rituals":${JSON.stringify(this.rituals)},"weapons":${JSON.stringify(this.weapons)},"inventory":${JSON.stringify(this.inventory)},"passiveDefense":${this.passiveDefense},"blockDefense":${this.blockDefense},"dodgeDefense":${this.dodgeDefense},"physicsResistance":${this.physicsResistance},"ballisticResistance":${this.ballisticResistance},"bloodResistance":${this.bloodResistance},"energyResistance":${this.energyResistance},"deathResistance":${this.deathResistance},"knowledgeResistance":${this.knowledgeResistance},"insanityResistance":${this.insanityResistance},"notes":"${this.notes}"}`;
 
         return jsonString;
     }

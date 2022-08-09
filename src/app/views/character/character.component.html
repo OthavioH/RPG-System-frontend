@@ -110,7 +110,7 @@
                 </div>
                 <div class="card-body py-0 my-0 bg-dark rounded-bottom row align-items-center px-0 mx-0"
                   style="width:115px;height:50px;">
-                  <input #attributeValue type="text"
+                  <input type="text"
                     class="col form-control text-center border-0 shadow-none bg-transparent fw-bold text-light w-100"
                     [(ngModel)]="character.passiveDefense" style="width:50px;">
                 </div>
@@ -127,7 +127,7 @@
                 </div>
                 <div class="card-body py-0 my-0 bg-dark rounded-bottom row align-items-center px-0 mx-0"
                   style="width:115px;height:50px;">
-                  <input #attributeValue type="text"
+                  <input type="text"
                     class="col form-control text-center border-0 shadow-none bg-transparent fw-bold text-light w-100"
                     [(ngModel)]="character.dodgeDefense" style="width:50px;">
                 </div>
@@ -144,86 +144,83 @@
             <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
               <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
                 style="height:50px;text-shadow: 1px 1px 4px black;">Física</div>
-              <input #attributeValue type="text"
+              <input type="text"
                 class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                style="width:40px;height:50px;" [(ngModel)]="character.physicsResistence">
+                style="width:40px;height:50px;" [(ngModel)]="character.physicsResistance">
             </div>
           </div>
           <div class="d-flex col mb-2 w-auto">
             <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
               <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
                 style="height:50px;text-shadow: 1px 1px 4px black;">Balística</div>
-              <input #attributeValue type="text"
+              <input type="text"
                 class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                style="width:40px;height:50px;" [(ngModel)]="character.ballisticResistence">
+                style="width:40px;height:50px;" [(ngModel)]="character.ballisticResistance">
             </div>
           </div>
           <div class="d-flex col mb-2 w-auto">
             <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
               <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
                 style="height:50px;text-shadow: 1px 1px 4px black;">Mental</div>
-              <input #attributeValue type="text"
+              <input type="text"
                 class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                style="width:40px;height:50px;" [(ngModel)]="character.insanityResistence">
+                style="width:40px;height:50px;" [(ngModel)]="character.insanityResistance">
             </div>
           </div>
           <div class="d-flex col mb-2 w-auto">
             <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
               <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
                 style="height:50px;text-shadow: 1px 1px 4px black;">Sangue</div>
-              <input #attributeValue type="text"
+              <input type="text"
                 class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                style="width:40px;height:50px;" [(ngModel)]="character.bloodResistence">
+                style="width:40px;height:50px;" [(ngModel)]="character.bloodResistance">
             </div>
           </div>
           <div class="d-flex col mb-2 w-auto">
             <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
               <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
                 style="height:50px;text-shadow: 1px 1px 4px black;">Energia</div>
-              <input #attributeValue type="text"
+              <input type="text"
                 class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                style="width:40px;height:50px;" [(ngModel)]="character.energyResistence">
+                style="width:40px;height:50px;" [(ngModel)]="character.energyResistance">
             </div>
           </div>
           <div class="d-flex col mb-2 w-auto">
             <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
               <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
                 style="height:50px;text-shadow: 1px 1px 4px black;">Morte</div>
-              <input #attributeValue type="text"
+              <input type="text"
                 class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                style="width:40px;height:50px;" [(ngModel)]="character.deathResistence">
+                style="width:40px;height:50px;" [(ngModel)]="character.deathResistance">
             </div>
           </div>
           <div class="d-flex col mb-2 w-auto">
             <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
               <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
                 style="height:50px;text-shadow: 1px 1px 4px black;">Conhecimento</div>
-              <input #attributeValue type="text"
+              <input type="text"
                 class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                style="width:40px;height:50px;" [(ngModel)]="character.knowledgeResistence">
+                style="width:40px;height:50px;" [(ngModel)]="character.knowledgeResistance">
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="d-flex col-md-6 mt-3 shadow">
-      <div class="container rounded-3 pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300" style="min-width:500px;">
+      <div class="container rounded-3 pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
         <div class="row d-flex justify-content-between col-md-12">
           <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Atributos </p>
         </div>
         <div
-          class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 outro-lado-bg overflow-hidden"
-          style="min-height: 150px;min-width:500px;">
+          class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 outro-lado-bg outro-lado overflow-hidden">
           <div class="d-flex col justify-content-between mb-2 me-5">
             <div class="col">
               <div class="card align-items-center bg-transparent agility-position" role="button"
-                style="width:fit-content;height:fit-content"
                 (dblclick)="onDoubleClickAttribute(character.attributes.agility)">
-                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center"
-                  style="width:108px;height:50px;">
+                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center attributes-size">
                   <input #agilityValue type="text"
-                    class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle"
-                    [(ngModel)]="character.attributes.agility.value" style="width:108px;height:107px;">
+                    class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle attributes-size"
+                    [(ngModel)]="character.attributes.agility.value">
                 </div>
               </div>
             </div>
@@ -231,11 +228,10 @@
               <div class="card align-items-center bg-transparent int-position" role="button"
                 style="width:fit-content;height:fit-content"
                 (dblclick)="onDoubleClickAttribute(character.attributes.intelligence)">
-                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center"
-                  style="width:108px;height:50px;">
+                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center attributes-size">
                   <input #intValue type="text"
-                    class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle"
-                    [(ngModel)]="character.attributes.intelligence.value" style="width:108px;height:107px;">
+                    class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle attributes-size"
+                    [(ngModel)]="character.attributes.intelligence.value">
                 </div>
               </div>
             </div>
@@ -243,12 +239,10 @@
               <div class="card align-items-center bg-transparent for-position" role="button"
                 style="width:fit-content;height:fit-content"
                 (dblclick)="onDoubleClickAttribute(character.attributes.strength)">
-                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center"
-                  style="width:108px;height:50px;">
+                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center attributes-size">
                   <input #forValue type="text"
-                    class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle"
-                    [(ngModel)]="character.attributes.strength.value" (change)="onStrengthAttributeChanged()"
-                    style="width:108px;height:107px;">
+                    class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle attributes-size"
+                    [(ngModel)]="character.attributes.strength.value" (change)="onStrengthAttributeChanged()">
                 </div>
               </div>
             </div>
@@ -256,11 +250,10 @@
               <div class="card align-items-center bg-transparent pre-position" role="button"
                 (dblclick)="onDoubleClickAttribute(character.attributes.presence)"
                 style="width:fit-content;height:fit-content">
-                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center"
-                  style="width:108px;height:50px;">
+                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center attributes-size">
                   <input #preValue type="text"
-                    class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle"
-                    [(ngModel)]="character.attributes.presence.value" style="width:108px;height:107px;">
+                    class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle attributes-size"
+                    [(ngModel)]="character.attributes.presence.value">
                 </div>
               </div>
             </div>
@@ -268,11 +261,10 @@
               <div class="card align-items-center bg-transparent vig-position rounded-circle user-select-none"
                 style="width:fit-content;height:fit-content"
                 (dblclick)="onDoubleClickAttribute(character.attributes.vigor)">
-                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center"
-                  style="width:108px;height:50px;">
+                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center attributes-size">
                   <input #vigValue type="text"
-                    class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle"
-                    [(ngModel)]="character.attributes.vigor.value" style="width:108px;height:107px;">
+                    class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle attributes-size"
+                    [(ngModel)]="character.attributes.vigor.value">
                 </div>
               </div>
             </div>

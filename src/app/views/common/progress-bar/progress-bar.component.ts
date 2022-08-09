@@ -10,6 +10,7 @@ export class ProgressBarComponent implements OnInit {
   @Input() color: string;
   @Input() value: number;
   @Input() total: number;
+  @Input() hasOverlapedText: boolean = false;
   currentValue:number;
 
   constructor() { }
@@ -34,9 +35,9 @@ export class ProgressBarComponent implements OnInit {
       this.currentValue = 100;
       this.total = 100;
     }
-    
+
     this.currentValue = (this.currentValue / this.total) * 100;
-    
-  } 
+
+  }
 
 }

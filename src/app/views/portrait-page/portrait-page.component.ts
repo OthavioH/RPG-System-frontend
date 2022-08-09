@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CharactersService } from '../characters/shared/services/characters.service';
 import { ICharacter } from '../../../models/Character';
 import { findCharacterIndex } from '../common/view_utils';
+import { WebSocketService } from '../shared/web-socket.service';
 
 @Component({
   selector: 'app-portrait-page',
@@ -14,28 +15,30 @@ export class PortraitPageComponent implements OnInit {
 
   constructor(
     private charactersService:CharactersService,
+    private socketService: WebSocketService,
   ) {}
 
   ngOnInit(): void {
     this.subscribeCharacterList();
-    this.charactersService.getCharacters();
   }
 
-  subscribeCharacterList() {
-    this.charactersService.onCharacterListChanged$.subscribe((characterList) =>{
-      console.log(characterList);
+  async subscribeCharacterList() {
+    this.charactersList = await this.charactersService.getCharacters();
+    this.socketService.listen('characterChanged').subscribe((character) =>{
+      console.log(character);
 
-      if (characterList != null) {
-        this.charactersList = characterList;
+      if (character != null) {
+        const index = findCharacterIndex(this.charactersList, character);
+        if (index > -1) {
+
+          this.charactersList[index] = character;
+        }
       }
     });
 
-    this.charactersService.onCharacterChanged$.subscribe((changedCharacter) =>{
-      if (this.charactersList != null) {
-        if (changedCharacter != null) {
-          const index = findCharacterIndex(this.charactersList,changedCharacter);
-          this.charactersList[index] = changedCharacter;
-        }
+    this.socketService.listen('newCharacterList').subscribe((characterList) =>{
+      if (characterList != null) {
+        this.charactersList = characterList;
       }
     });
   }
