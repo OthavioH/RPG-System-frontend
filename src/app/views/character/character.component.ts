@@ -5,7 +5,7 @@ import { SkillsDialogComponent } from '../common/skills-dialog/skills-dialog.com
 import { CharactersService } from '../characters/shared/services/characters.service';
 import { ICharacter } from 'src/models/Character';
 import { EditProgressBarValuesDialogComponent } from '../common/edit-hp-dialog/edit-progress-bar-values-dialog.component';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ActivatedRoute, } from '@angular/router';
 import { OpenChooseSkillsDialogComponent } from '../common/open-choose-skills-dialog/open-choose-skills-dialog.component';
 import { AttributeDialogComponent } from '../common/attribute-dialog/attribute-dialog.component';
@@ -171,8 +171,8 @@ export class CharacterComponent implements OnInit {
     this.modalService.open(CreateWeaponDialogComponent, { data: { character: this.character } });
   }
 
-  openAttributeDialog(attribute: IAttribute): void {
-    this.modalService.open(AttributeDialogComponent, { data: attribute });
+  openAttributeDialog(): void {
+    this.modalService.open(AttributeDialogComponent, { data: this.character });
   }
 
   openChooseSkills(): void {

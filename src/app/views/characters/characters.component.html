@@ -1,7 +1,8 @@
 <ng-container *ngIf="!loading">
   <section class="container pb-2 pt-4 align-center">
     <div class="d-flex flex-nowrap row overflow-auto scrollbar-thin pb-2">
-      <div class="bg-dark py-3 rounded-3 me-4" *ngFor="let roll of gameSettings.lastRolls" style="width:fit-content;">
+      <div class="bg-full-black border border-warning py-3 rounded-3 me-4" *ngFor="let roll of gameSettings.lastRolls"
+        style="width:fit-content;">
         <ul class="px-2">
           <li class="d-flex text-light fs-4 mb-1">{{roll.characterName | titlecase}}</li>
           <li class="d-flex text-light fs-6 mb-1">🎲d{{roll.diceFaces}}</li>
@@ -10,9 +11,9 @@
       </div>
     </div>
   </section>
-  <section class="container pb-2 pt-4 rounded-3 bg-dark">
-    <p class="text-center fs-1 text-light fw-bolder mb-4">DASHBOARD</p>
-    <p class="text-center text-warning fs-3 fw-bold mb-4">FICHAS E PERSONAGENS</p>
+  <section class="container pb-2 pt-4 rounded-3 bg-full-black border border-secondary">
+    <p class="text-center fs-1 text-light enigma-font fw-bolder mb-4">Dashboard</p>
+    <p class="text-center text-warning fs-3 text-white enigma-font fw-bold mb-4">Personagens</p>
     <div class="container d-flex flex-row flex-wrap justify-content-around">
       <div class="card mb-2 align-items-center" role="button" (click)="openCreateCharacterDialog()"
         style="width: 250px;height:515px;border-radius: 10px;">
@@ -22,15 +23,19 @@
       </div>
       <app-character-card *ngFor="let character of charactersList" [character]="character"></app-character-card>
     </div>
+    <div class="container d-flex flex-row flex-wrap justify-content-around my-4">
+      <app-initiative-list></app-initiative-list>
+    </div>
   </section>
 
   <section class="container w-100 px-0">
     <div class="d-flex flex-row flex-wrap row">
 
       <div class="d-flex col-md-6 mt-3">
-        <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+        <div
+          class="container rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300">
           <div class="row d-flex justify-content-between col-md-12">
-            <p class="text-start fs-3 fw-bold text-warning w-25">PERÍCIAS</p>
+            <p class="text-start fs-3 fw-bold text-white enigma-font w-25">Perícias</p>
             <button class="btn btn-outline-warning w-auto text-light-dark-hover" (click)="openModal(skillsModal)">
               <i class="bi bi-plus-lg"></i>
             </button>
@@ -52,9 +57,10 @@
         </div>
       </div>
       <div class="d-flex col-md-6 mt-3">
-        <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+        <div
+          class="container rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300">
           <div class="row d-flex justify-content-between col-md-12">
-            <p class="text-start fs-3 fw-bold text-warning w-25">HABILIDADES</p>
+            <p class="text-start fs-3 fw-bold text-white enigma-font w-25">Habilidades</p>
             <button class="btn btn-outline-warning w-auto text-light-dark-hover" (click)="openModal(abilitiesModal)">
               <i class="bi bi-plus-lg"></i>
             </button>
@@ -76,9 +82,10 @@
         </div>
       </div>
       <div class="d-flex col-md-6 mt-3">
-        <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+        <div
+          class="container rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300">
           <div class="row d-flex justify-content-between col-md-12">
-            <p class="text-start fs-3 fw-bold text-warning w-25">RITUAIS</p>
+            <p class="text-start fs-3 fw-bold text-white enigma-font w-25">Rituais</p>
             <button class="btn btn-outline-warning w-auto text-light-dark-hover" (click)="openCreateRitualDialog()">
               <i class="bi bi-plus-lg"></i>
             </button>
@@ -100,8 +107,9 @@
         </div>
       </div>
       <div class="d-flex col-md-6 mt-3">
-        <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
-          <p class="text-center fs-3 fw-bold text-warning w-100">CONFIGURAÇÕES</p>
+        <div
+          class="container rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300">
+          <p class="text-center fs-3 fw-bold text-white enigma-font w-100">Configurações</p>
           <p class="text-start fs-6 text-danger" style="width:auto;">Tente manter o cooldown do dado maior que o tempo
             na tela para que não haja nenhum bug com a visualização do dado</p>
           <div class="mt-2 row w-100">

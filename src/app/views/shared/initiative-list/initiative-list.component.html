@@ -1,0 +1,81 @@
+<div class="w-100 justify-content-center" *ngIf="!battleStarted">
+  <button class="btn btn-outline-warning float-end shadow-none" type="button" (click)="startInitiatives()">Criar
+    Iniciativa</button>
+</div>
+
+<div class="w-100 drawn-font">
+  <p *ngIf="battleStarted" class="text-center text-warning fs-3 text-white enigma-font fw-bold mb-4 lts-5">Iniciativas
+  </p>
+  <table *ngIf="battleStarted" class="table table-sm table-black text-light table-hover enigma-font">
+    <thead>
+      <tr>
+        <td scope=" col">
+          <button class="btn btn-outline-warning w-auto me-2 col" style="height:fit-content;font-size: 14px;"
+            (click)="addNewInitiative()">
+            <i class="bi bi-plus-lg"></i>
+          </button>
+        </td>
+        <td scope="col">#</td>
+        <td scope="col" class="enigma-font">Nome</td>
+        <td scope="col" class="enigma-font">Iniciativa</td>
+        <td scope="col" class="enigma-font">Dano</td>
+        <td scope="col">
+          <button class="btn btn-outline-light w-auto me-2 col" style="height:fit-content;font-size: 14px;"
+            (click)="rebootIniciative()">
+            <i class="bi bi-bootstrap-reboot"></i>
+          </button>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let initiative of initiativeList">
+        <td scope="row mt-2">
+          <button class="btn btn-outline-light w-auto me-2 col" style="height:fit-content;font-size: 14px;"
+            (click)="moveInitiativeUp(initiative)">
+            <i class="bi bi-arrow-up"></i>
+          </button>
+        </td>
+        <td>
+          <p class="text-light w-auto fs-6">{{initiative.place}}</p>
+        </td>
+        <td>
+          <div (dblclick)="changeReadOnly(initiative)">
+            <div class="input-group input-group-sm">
+              <input class="bg-dark text-white form-control form-control-sm border-0" type="text"
+                [(ngModel)]="initiative.name" readonly="true" (dblclick)="changeReadOnly($event)"
+                style="width:70px;height: auto;">
+            </div>
+          </div>
+        </td>
+        <td>
+          <div (dblclick)="changeReadOnly(initiative)">
+            <div class="input-group input-group-sm">
+              <input class="bg-dark text-white form-control form-control-sm border-0" type="number"
+                [(ngModel)]="initiative.value" readonly="true" (dblclick)="changeReadOnly($event)"
+                style="width:70px;height: auto;">
+            </div>
+          </div>
+        </td>
+        <td>
+          <div (dblclick)="changeReadOnly(initiative)">
+            <div class="input-group input-group-sm">
+              <input class="bg-dark text-white form-control form-control-sm border-0" type="number"
+                [(ngModel)]="initiative.damage" readonly="true" (dblclick)="changeReadOnly($event)"
+                style="width:70px;height: auto;">
+            </div>
+          </div>
+        </td>
+        <td>
+          <button class="btn btn-outline-light w-auto me-2 col" style="height:fit-content;font-size: 14px;"
+            (click)="moveInitiativeDown(initiative)">
+            <i class="bi bi-arrow-down"></i>
+          </button>
+          <button class="btn btn-outline-danger w-auto me-2 col" style="height:fit-content;font-size: 14px;"
+            (click)="removeInitiative(initiative)">
+            <i class="bi bi-trash3"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
