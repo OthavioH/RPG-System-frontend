@@ -48,6 +48,7 @@ import { RollAttributeDialogComponent } from './views/common/roll-attribute-dial
 import { EditWeaponDialogComponent } from './views/common/edit-weapon-dialog/edit-weapon-dialog.component';
 import { PortraitPageComponent } from './views/portrait-page/portrait-page.component';
 import { PortraitCardComponent } from './views/portrait-page/portrait-card/portrait-card.component';
+import { InitiativeListComponent } from './views/shared/initiative-list/initiative-list.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { PortraitCardComponent } from './views/portrait-page/portrait-card/portr
     EditWeaponDialogComponent,
     PortraitPageComponent,
     PortraitCardComponent,
+    InitiativeListComponent,
   ],
   imports: [
     BrowserModule,

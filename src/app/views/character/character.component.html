@@ -1,7 +1,8 @@
 <section class="container w-75 px-0 w-auto">
   <div class="d-flex flex-row flex-wrap row">
     <div class="d-flex col-md-6 mt-3 shadow">
-      <div class="container rounded-3  pb-2 pt-4 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+      <div
+        class="container rounded-3  pb-2 pt-4 pb-4 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300">
         <p class="text-center fs-2 enigma-font fw-bold text-light w-100 mb-4">Detalhes</p>
         <div class="d-flex justify-content-center row mb-3">
           <div class="mt-2 align-center justify-content-center" style="width:fit-content;height:fit-content;">
@@ -62,7 +63,8 @@
       </div>
     </div>
     <div class="d-flex col-md-6 mt-3 shadow">
-      <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+      <div
+        class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300">
         <p class="row mb-2 drawn-font fw-bold text-light fs-5">Vida</p>
         <div class="row d-flex mb-3">
           <app-progress-bar [total]="character.maxHp" [value]="character.hp"
@@ -94,7 +96,8 @@
 <section class="container w-75 px-0 w-auto">
   <div class="d-flex flex-row flex-wrap row">
     <div class="d-flex col-md-6 mt-3 shadow">
-      <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+      <div
+        class="container rounded-3 pb-2 pt-5 pb-4 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300">
         <div class="row d-flex justify-content-between col-md-12">
           <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Defesas</p>
         </div>
@@ -207,63 +210,63 @@
       </div>
     </div>
     <div class="d-flex col-md-6 mt-3 shadow">
-      <div class="container rounded-3 pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+      <div
+        class="container rounded-3 pb-2 pt-5 pb-4 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300">
         <div class="row d-flex justify-content-between col-md-12">
-          <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Atributos </p>
+          <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Atributos</p>
+          <button class="btn btn-outline-warning w-auto" (click)="openAttributeDialog()">
+            <i class="bi bi-pencil-fill text-light"></i>
+          </button>
         </div>
         <div
           class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 outro-lado-bg outro-lado overflow-hidden">
           <div class="d-flex col justify-content-between mb-2 me-5">
             <div class="col">
-              <div class="card align-items-center bg-transparent agility-position" role="button"
-                (dblclick)="onDoubleClickAttribute(character.attributes.agility)">
-                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center attributes-size">
+              <div class="card align-items-center bg-transparent border-transparent agility-position">
+                <div class="card-body p-0 m-0 bg-transparent row align-items-center attributes-size">
                   <input #agilityValue type="text"
-                    class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle attributes-size"
+                    class="col form-control text-center fs-1 border-0 shadow-none bg-full-black user-select-none fw-bold w-100 border-transparent attributes-size"
+                    (click)="onDoubleClickAttribute(character.attributes.agility)" role="button" readonly="true"
                     [(ngModel)]="character.attributes.agility.value">
                 </div>
               </div>
             </div>
             <div class="col">
-              <div class="card align-items-center bg-transparent int-position" role="button"
-                style="width:fit-content;height:fit-content"
-                (dblclick)="onDoubleClickAttribute(character.attributes.intelligence)">
-                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center attributes-size">
+              <div class="card align-items-center bg-transparent border-transparent int-position">
+                <div class="card-body p-0 m-0 bg-transparent row align-items-center attributes-size">
                   <input #intValue type="text"
-                    class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle attributes-size"
+                    class="col form-control text-center fs-1 border-0 shadow-none bg-full-black user-select-none fw-bold w-100 border-transparent attributes-size"
+                    (click)="onDoubleClickAttribute(character.attributes.intelligence)" role="button" readonly="true"
                     [(ngModel)]="character.attributes.intelligence.value">
                 </div>
               </div>
             </div>
             <div class="col">
-              <div class="card align-items-center bg-transparent for-position" role="button"
-                style="width:fit-content;height:fit-content"
-                (dblclick)="onDoubleClickAttribute(character.attributes.strength)">
-                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center attributes-size">
+              <div class="card align-items-center bg-transparent border-transparent for-position">
+                <div class="card-body p-0 m-0 bg-transparent row align-items-center attributes-size">
                   <input #forValue type="text"
-                    class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle attributes-size"
-                    [(ngModel)]="character.attributes.strength.value" (change)="onStrengthAttributeChanged()">
+                    class="col form-control text-center fs-1 border-0 shadow-none bg-full-black user-select-none fw-bold w-100 border-transparent attributes-size"
+                    (click)="onDoubleClickAttribute(character.attributes.strength)" role="button" readonly="true"
+                    [(ngModel)]="character.attributes.strength.value">
                 </div>
               </div>
             </div>
             <div class="col">
-              <div class="card align-items-center bg-transparent pre-position" role="button"
-                (dblclick)="onDoubleClickAttribute(character.attributes.presence)"
-                style="width:fit-content;height:fit-content">
-                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center attributes-size">
+              <div class="card align-items-center bg-transparent border-transparent pre-position">
+                <div class="card-body p-0 m-0 bg-transparent row align-items-center attributes-size">
                   <input #preValue type="text"
-                    class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold text-light w-100 rounded-circle attributes-size"
+                    class="col form-control text-center fs-1 border-0 shadow-none bg-full-black user-select-none fw-bold w-100 border-transparent attributes-size"
+                    (click)="onDoubleClickAttribute(character.attributes.presence)" role="button" readonly="true"
                     [(ngModel)]="character.attributes.presence.value">
                 </div>
               </div>
             </div>
             <div class="col">
-              <div class="card align-items-center bg-transparent vig-position rounded-circle user-select-none"
-                style="width:fit-content;height:fit-content"
-                (dblclick)="onDoubleClickAttribute(character.attributes.vigor)">
-                <div class="card-body p-0 m-0 bg-transparent rounded-bottom row align-items-center attributes-size">
+              <div class="card align-items-center bg-transparent border-transparent vig-position">
+                <div class="card-body p-0 m-0 bg-transparent row align-items-center attributes-size">
                   <input #vigValue type="text"
-                    class="col form-control text-center fs-3 border-2 border-light shadow-none bg-full-black fw-bold text-light w-100 rounded-circle attributes-size"
+                    class="col form-control text-center fs-1 border-0 shadow-none bg-full-black user-select-none fw-bold w-100 border-transparent attributes-size"
+                    (click)="onDoubleClickAttribute(character.attributes.vigor)" role="button" readonly="true"
                     [(ngModel)]="character.attributes.vigor.value">
                 </div>
               </div>
@@ -278,7 +281,8 @@
 <section class="container w-75 px-0 w-auto">
   <div class="d-flex flex-row flex-wrap row">
     <div class="d-flex col-md-6 mt-3 shadow">
-      <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+      <div
+        class="container rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300">
         <div class="row d-flex justify-content-between col-md-12">
           <p class="text-center fs-2  fw-bold enigma-font text-light w-25 col">Habilidades</p>
           <button class="btn btn-outline-warning w-auto" (click)="openChooseAbilities()">
@@ -301,7 +305,8 @@
       </div>
     </div>
     <div class="d-flex col-md-6 mt-3 shadow">
-      <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+      <div
+        class="container rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300">
         <div class="row d-flex justify-content-between col-md-12">
           <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Perícias</p>
           <button class="btn btn-outline-warning w-auto" (click)="openChooseSkills()">
@@ -323,7 +328,8 @@
       </div>
     </div>
     <div class="d-flex col-md-6 mt-3 shadow">
-      <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+      <div
+        class="container rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300">
         <div class="row d-flex justify-content-between col-md-12">
           <p class="text-center fs-2 fw-bold enigma-font text-light w-25 col">Rituais</p>
           <button class="btn btn-outline-warning w-auto" (click)="openChooseRituals()">
@@ -346,7 +352,8 @@
       </div>
     </div>
     <div class="d-flex col-md-6 mt-3 shadow">
-      <div class="container rounded-3 pb-2 pt-5 px-4 bg-dark col-md-12 min-height-300 min-width-300">
+      <div
+        class="container rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300">
         <div class="row d-flex justify-content-between col-md-12">
           <p class="text-center fs-2 fw-bold enigma-font text-light col">Inventário</p>
         </div>
@@ -387,7 +394,7 @@
 <section class="container w-75 px-0 w-auto">
   <div class="d-flex col mt-3 overflow-hidden shadow">
     <div
-      class="container rounded-3 pb-2 pt-5 px-4 bg-dark shadow-lg col-md-12 min-height-300 min-width-300 overflow-hidden">
+      class="container rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary shadow-lg col-md-12 min-height-300 min-width-300 overflow-hidden">
       <div class="row d-flex justify-content-between col-md-12">
         <p class="text-center fs-2 fw-bold enigma-font text-light col">Armas</p>
 
@@ -449,16 +456,18 @@
 <section class="container w-75 px-0 w-auto">
   <div class="d-flex flex-row flex-wrap row">
     <div class="d-flex col-md-6 mt-3" style="max-height: 400px;">
-      <div class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-dark shadow-lg col-md-12 min-width-300">
+      <div
+        class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-full-black border border-secondary shadow-lg col-md-12 min-width-300">
         <p class="text-center fs-2 fw-bold enigma-font text-light w-100 col">Anotações</p>
-        <textarea class="form-control w-100 bg-dark text-light border-warning" id="notes-text-area"
+        <textarea class="form-control w-100 bg-full-black text-light border border-light" id="notes-text-area"
           style="height: 300px;max-height: 300px;" [(ngModel)]="character.notes"></textarea>
       </div>
     </div>
     <div class="d-flex col-md-6 mt-3" style="max-height: 400px;">
-      <div class="container rounded-3 shadow-lg pb-2 pt-5 pb-4 px-4 bg-dark col-md-12 min-width-300">
+      <div
+        class="container rounded-3 shadow-lg pb-2 pt-5 pb-4 px-4 bg-full-black border border-secondary col-md-12 min-width-300">
         <p class="text-center fs-2 fw-bold enigma-font text-light w-100 col">Proficiências</p>
-        <textarea class="form-control w-100 bg-dark text-light border-warning" id="notes-text-area"
+        <textarea class="form-control w-100 bg-full-black text-light border border-light" id="notes-text-area"
           style="height: 300px;max-height: 300px;" [(ngModel)]="character.proficiences"></textarea>
       </div>
     </div>

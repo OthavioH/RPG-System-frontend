@@ -14,6 +14,7 @@ export class RollAttributeDialogComponent implements OnInit {
 
   timestamp:number;
   diceInScreenTime:number;
+  strResult: string = "Resultado: ";
 
   gameSettings: IGameSettings;
 
@@ -34,6 +35,16 @@ export class RollAttributeDialogComponent implements OnInit {
 
   async initVariables() {
     this.gameSettings = await this.gameSettingsService.getGameSettings();
+
+    if (this.diceResultList.length < 1) {
+      this.strResult += `${Math.min(...this.diceResultList)}.`;
+    }
+    else if (this.diceResultList.length == 1){
+      this.strResult += `${this.diceResultList[0]}.`;
+    }
+    else {
+      this.strResult += `${Math.max(...this.diceResultList)}.`;
+    }
 
     this.diceInScreenTime = this.gameSettings.diceScreenTime -1;
   }

@@ -24,7 +24,7 @@
 
 html, body { height: 100%;}
 body { margin: 0; background-color:rgba(0, 0, 0, 0.781);
-    background: url('/../assets/anfitriao.jpg') no-repeat center center fixed;
+    background: url('/../assets/calamidade.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -72,17 +72,17 @@ body { margin: 0; background-color:rgba(0, 0, 0, 0.781);
 }
 
 .yellow-scrollbar-thin::-webkit-scrollbar-track {
-  background: #7a7a7a; 
+  background: #7a7a7a;
   border-radius:10px;
 }
- 
+
 .yellow-scrollbar-thin::-webkit-scrollbar-thumb {
-  background: #ffc107; 
+  background: #ffc107;
   border-radius:10px;
 }
 
 .yellow-scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: #212529; 
+  background: #212529;
   border-radius:10px;
 }
 
@@ -92,17 +92,17 @@ body { margin: 0; background-color:rgba(0, 0, 0, 0.781);
 }
 
 .scrollbar-thin::-webkit-scrollbar-track {
-  background: #7a7a7a; 
+  background: #7a7a7a;
   border-radius:10px;
 }
- 
+
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: #212529; 
+  background: #212529;
   border-radius:10px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: #ffc107; 
+  background: #ffc107;
   border-radius:10px;
 }
 
@@ -112,4 +112,20 @@ mat-dialog-container {
     overflow: hidden !important;
     width: auto;
     height: auto;
+}
+
+.bg-full-black {
+  background-color: #000;
+}
+
+.bg-full-black:active {
+  background-color: #000;
+}
+
+.bg-full-black:focus {
+  background-color: #000;
+}
+
+.bg-full-black:after {
+  background-color: #000;
 }

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IAttribute } from 'src/models/Attribute';
+import { ICharacter } from 'src/models/Character';
 
 @Component({
   selector: 'app-attribute-dialog',
@@ -11,7 +11,7 @@ export class AttributeDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AttributeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public attribute: IAttribute,) { }
+    @Inject(MAT_DIALOG_DATA) public character: ICharacter,) { }
 
   ngOnInit(): void {
   }
