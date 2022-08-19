@@ -317,11 +317,13 @@
           style="min-height: 150px;">
           <div class="d-flex col mb-2 w-auto" *ngFor="let skill of character.skills">
             <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
-              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                style="height:50px;text-shadow: 1px 1px 4px black;">{{skill.name}}</div>
+              <div
+                class="border border-warning bg-full-black properties-yellow-hover rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
+                style="height:50px;text-shadow: 1px 1px 4px black;" (click)="openSkillDialog(skill)">{{skill.name}}
+              </div>
               <input #attributeValue type="text"
-                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                style="width:40px;height:50px;" [(ngModel)]="skill.value">
+                class="form-control text-center rounded-right bg-warning fw-bold text-light rtb-border-light"
+                style="width:40px;height:50px;text-shadow: 1px 1px 4px black;" [(ngModel)]="skill.value">
             </div>
           </div>
         </div>
