@@ -1,12 +1,30 @@
-<div class="col justify-content-between rounded-2 bg-dark p-4" style="min-height:270px;min-width: 200px;">
-    <p class="text-white fs-4 w-100 text-center d-flex col">{{skill.name}}</p>
-    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
-        <mat-label>Nome da perícia</mat-label>
-        <input #newSkillName matInput type="text" class="text-light" [value]="skill.name" aria-label="nome-skill"/>
-    </mat-form-field>
-    <mat-form-field color="accent" class="w-100 d-flex col " style="min-width: 150px;">
-        <mat-label>Descrição</mat-label>
-        <textarea #newSkillDescription matInput class="text-light" type="text" [value]="skill.description" placeholder="Descrição"></textarea>
-    </mat-form-field>
-    <button mat-button class="float-end" (click)="editSkill(newSkillName.value, newSkillDescription.value)">OK</button>
+<div class="col justify-content-between rounded-2 bg-dark p-4 overflow-auto" style="min-height:270px;min-width: 500px;">
+  <p class="text-white fs-4 w-100 text-center d-flex col">{{skill.name}}</p>
+  <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
+    <mat-label>Nome da perícia</mat-label>
+    <input #newSkillName matInput type="text" class="text-light" [value]="skill.name" aria-label="nome-skill" />
+  </mat-form-field>
+  <p>Descrição</p>
+  <editor [(ngModel)]="skill.description" [init]="{
+    base_url: '/tinymce',
+    suffix: '.min',
+    language_url: 'languages/pt_BR.js',
+    selector: 'textarea',
+    height: 500,
+    width: '100%',
+    menubar: false,
+    plugins: [
+    ],
+    codesample_languages: [
+      {text: 'TypeScript', value: 'typescript'},
+      {text: 'JavaScript', value: 'javascript'},
+      {text: 'HTML/XML', value: 'markup'},
+      {text: 'CSS', value: 'css'},
+    ],
+    toolbar:
+      'undo redo | bold italic'
+   }"></editor>
+  <div class="mb-2"></div>
+  <button class="btn btn-outline-warning float-end"
+    (click)="editSkill(newSkillName.value, skill.description)">Salvar</button>
 </div>

@@ -17,7 +17,7 @@ export class EditSkillDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: ISkill,
     private gameSettingsService: GameSettingsService,
     ) {
-      
+
     }
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class EditSkillDialogComponent implements OnInit {
   }
 
   editSkill(name: string, description: string,): void {
-    
+
     this.gameSettingsService.editSkill(name,description,this.skill.id);
     this.close();
   }

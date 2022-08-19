@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -91,6 +92,7 @@ import { InitiativeListComponent } from './views/shared/initiative-list/initiati
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    EditorModule,
     MatFormFieldModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -104,7 +106,9 @@ import { InitiativeListComponent } from './views/shared/initiative-list/initiati
     MatProgressBarModule,
     MatTableModule,
   ],
-  providers: [],
+  providers: [
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+  ],
   exports: [
     AppRoutingModule,
   ],
