@@ -8,7 +8,9 @@
       *ngFor="let _ of [].constructor(diceResultList.length);let i = index;">
       <div class="fs-3 text-white text-center drawn-font text-shadow-4" style="position: absolute;z-index: 10;top:43%;">
         {{diceResultList[i]}}</div>
-      <app-dice-animation [diceImageUrl]="'./../../../../assets/dado.gif'+'?'+timestamp"></app-dice-animation>
+      <app-dice-animation
+        [diceImageUrl]="'./../../../../assets/dado.gif'+'?timestamp='+timestamp+'&diceScreen='+gameSettings.diceScreenTime+'&diceCoolDown='+gameSettings.diceCooldown+gameSettings+'&rollsQtd='+gameSettings.lastRolls">
+      </app-dice-animation>
     </div>
   </div>
   <p class="d-flex text-white fs-6 text-center enigma-font row fw-bold w-100 col mb-3">{{this.strResult}}</p>

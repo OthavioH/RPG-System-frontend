@@ -1,4 +1,4 @@
-import { Component, Input, NgZone, OnInit } from '@angular/core';
+import { Component, Input, NgZone, OnInit, SimpleChanges } from '@angular/core';
 import { GameSettingsService } from 'src/app/game-settings.service';
 import { IGameSettings } from 'src/models/GameSettings';
 import { generateRandomId } from '../../view_utils';
@@ -12,10 +12,11 @@ export class RollDiceDialogComponent implements OnInit {
 
   showCooldownError:boolean;
   currentState = 'noDice';
-  
+
   diceTimer:number;
   diceMaxCooldown:number;
   diceInScreenTime:number;
+  timestamp:number;
 
   diceResult:number;
 
@@ -40,12 +41,16 @@ export class RollDiceDialogComponent implements OnInit {
         this.showCooldownError = false;
       }
       this.diceTimer = timer;
-      
+
     });
   }
 
   ngOnInit(): void {
     this.initVariables();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.timestamp = Date.now();
   }
 
   changeDiceAnimationState(): void {
