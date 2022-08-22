@@ -319,7 +319,8 @@
             <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
               <div
                 class="border border-warning bg-full-black properties-yellow-hover rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                style="height:50px;text-shadow: 1px 1px 4px black;" (click)="openSkillDialog(skill)">{{skill.name}}
+                style="height:50px;text-shadow: 1px 1px 4px black;" (click)="openSkillDialog(skill)"
+                (contextmenu)="deleteSkill(skill.id)">{{skill.name}}
               </div>
               <input #attributeValue type="text"
                 class="form-control text-center rounded-right bg-warning fw-bold text-light rtb-border-light"
