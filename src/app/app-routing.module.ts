@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TestDiceComponent } from './test-dice/test-dice.component';
+import { ThreatsDashboardComponent } from './views/threats-dashboard/threats-dashboard.component';
 
 import { CharacterComponent } from './views/character/character.component';
 import { CharacterResolver } from './views/character/guards/character.resolver';
@@ -10,17 +11,32 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
 import { PortraitPageComponent } from './views/portrait-page/portrait-page.component';
 
 const routes: Routes = [
-  { path: 'dashboard', component: CharactersComponent, resolve:{gameSettings:CharactersResolver}},
-  { path: 'portraits',component: PortraitPageComponent,},
-  { path: 'personagens', children: [
-    { path:':id', component: CharacterComponent, resolve: {character:CharacterResolver}},
-  ]},
-  { path:'', pathMatch:'full', redirectTo: 'dashboard' },
-  { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
+  {
+    path: 'dashboard',
+    component: CharactersComponent,
+    resolve: { gameSettings: CharactersResolver },
+  },
+  {
+    path: 'threats',
+    component: ThreatsDashboardComponent,
+  },
+  { path: 'portraits', component: PortraitPageComponent },
+  {
+    path: 'characters',
+    children: [
+      {
+        path: ':id',
+        component: CharacterComponent,
+        resolve: { character: CharacterResolver },
+      },
+    ],
+  },
+  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+  { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

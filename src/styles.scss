@@ -88,6 +88,7 @@ body { margin: 0; background-color:rgba(0, 0, 0, 0.781);
 
 .scrollbar-thin::-webkit-scrollbar {
   height: 10px;
+  width: 13px;
   border-radius:10px;
 }
 
@@ -104,6 +105,18 @@ body { margin: 0; background-color:rgba(0, 0, 0, 0.781);
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background: #ffc107;
   border-radius:10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-button {
+  display: none;
+}
+
+.scrollbar-thin::-webkit-resizer {
+  display: none;
+}
+
+.scrollbar-thin::-webkit-scrollbar-corner {
+  display: none;
 }
 
 mat-dialog-container {
