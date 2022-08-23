@@ -9,6 +9,7 @@ import { CharactersComponent } from './views/characters/characters.component';
 import { CharactersResolver } from './views/characters/guards/characters.resolver';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import { PortraitPageComponent } from './views/portrait-page/portrait-page.component';
+import { ThreatPageComponent } from './views/threat-page/threat-page.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,16 @@ const routes: Routes = [
   },
   {
     path: 'threats',
-    component: ThreatsDashboardComponent,
+    children: [
+      {
+        path: 'dashboard',
+        component: ThreatsDashboardComponent,
+      },
+    ],
+  },
+  {
+    path: 'threats',
+    children: [{ path: ':id', component: ThreatPageComponent }],
   },
   { path: 'portraits', component: PortraitPageComponent },
   {

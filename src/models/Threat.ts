@@ -109,4 +109,5 @@ export enum ThreatElement {
   ENERGY = 'Energia',
   KNOWLEDGE = 'Conhecimento',
   FEAR = 'Medo',
+  UNKNOWN = 'Unknown',
 }

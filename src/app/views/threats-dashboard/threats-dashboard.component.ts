@@ -1,17 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { Threat } from '../../../models/Threat';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Threat, ThreatElement } from '../../../models/Threat';
+import { CreateThreatDialogComponent } from '../common/create-threat-dialog/create-threat-dialog.component';
+import { ThreatService } from '../common/create-threat-dialog/threat.service';
 
 @Component({
   selector: 'app-threats-dashboard',
   templateUrl: './threats-dashboard.component.html',
   styleUrls: ['./threats-dashboard.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ThreatsDashboardComponent implements OnInit {
   threatList: Threat[] = [];
 
-  constructor() {
-    this.threatList.push({ id: '1', name: 'threat 1' });
+  constructor(
+    private modalService: MatDialog,
+    private threatService: ThreatService
+  ) {}
+
+  ngOnInit(): void {
+    this.initThreatList();
   }
 
-  ngOnInit(): void {}
+  async initThreatList() {
+    this.threatList = await this.threatService.getThreats();
+    console.log(this.threatList);
+  }
+
+  async deleteThreat(threatId: string) {
+    await this.threatService.deleteThreat(threatId);
+    this.threatList = await this.threatService.getThreats();
+  }
+
+  openCreateThreatDialog() {
+    this.modalService.open(CreateThreatDialogComponent, {
+      minWidth: '400px',
+      minHeight: '400px',
+      maxWidth: '600px',
+      maxHeight: '600px',
+      hasBackdrop: true,
+      data: this.threatList,
+    });
+  }
 }

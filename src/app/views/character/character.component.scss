@@ -41,6 +41,22 @@
     bottom:-42.5%;
 }
 
+.no-arrows {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .outro-lado-bg {
   width: 624px;
   height: 500px;

@@ -52,6 +52,9 @@ import { PortraitCardComponent } from './views/portrait-page/portrait-card/portr
 import { InitiativeListComponent } from './views/shared/initiative-list/initiative-list.component';
 import { ThreatsDashboardComponent } from './views/threats-dashboard/threats-dashboard.component';
 import { ThreatsCardComponent } from './views/common/threats-card/threats-card.component';
+import { CreateThreatDialogComponent } from './views/common/create-threat-dialog/create-threat-dialog.component';
+import { ThreatPageComponent } from './views/threat-page/threat-page.component';
+import { DeleteThreatDialogComponent } from './views/common/delete-threat-dialog/delete-threat-dialog.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +94,9 @@ import { ThreatsCardComponent } from './views/common/threats-card/threats-card.c
     InitiativeListComponent,
     ThreatsDashboardComponent,
     ThreatsCardComponent,
+    CreateThreatDialogComponent,
+    ThreatPageComponent,
+    DeleteThreatDialogComponent,
   ],
   imports: [
     BrowserModule,
