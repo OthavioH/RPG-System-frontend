@@ -1,0 +1,14 @@
+<a [className]="'card bg-dark mb-2 btn text-light border-'+threat.element.toLowerCase()"
+  style="width: 250px;height:fit-content;min-height:250px;border-radius: 10px;" [routerLink]="['/threats', threat.id]"
+  (dragstart)="openDeleteThreatDialog(threat.id)">
+  <div class="d-flex justify-content-center row">
+    <img class="img threat-img" src="{{threat.imageUrl}}" (error)="onImageError($event)" alt="">
+  </div>
+  <div class="d-flex justify-content-center mt-4 row">
+    <p [className]="'d-flex justify-content-center fs-5 drawn-font text-center text-'+threat.element.toLowerCase()">{{
+      threat.name | titlecase }}</p>
+    <div class="d-flex row" style="width:fit-content;height:fit-content;">
+      <p class="fs-4 drawn-font text-center">VD {{threat.vd ?? 0}}</p>
+    </div>
+  </div>
+</a>

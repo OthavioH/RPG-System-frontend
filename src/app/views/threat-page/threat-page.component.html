@@ -1,0 +1,62 @@
+<section class="container w-100 px-0 w-auto">
+  <div class="d-flex col-md-12 mt-3 shadow">
+    <div
+      class="container rounded-3 pb-2 pt-5 pb-4 px-4 bg-black-transparency border border-secondary col-md-12 min-height-300 min-width-300">
+      <div class="d-flex col-md-12 justify-content-center align-items-center mb-3 w-100">
+        <input #threatName type="text" [readonly]="true"
+          class="no-background enigma-font fw-bold text-light text-center fs-1 w-100" [(ngModel)]="threat.name"
+          (dblclick)="changeTextToTextField(threatName)" (focusout)="onNameLostFocus(threatName)">
+      </div>
+      <div class="d-flex row col-md-12 justify-content-start mb-3">
+        <div class="d-flex col-md-6">
+          <div class="pb-3 d-flex col-md-3 align-center justify-content-center d-inline-block"
+            style="width:120px;height:fit-content;">
+            <img [class]="'img rounded-circle character-img ' + 'border-'+threat.element.toLowerCase()"
+              src="{{threat.imageUrl}}" (click)="changeThreatImage()" (error)="onImageError($event)" alt="">
+          </div>
+          <div class="d-flex col-md-3 justify-content-center d-inline-block" style="width: 98px;">
+            <div class="d-flex row">
+              <div class="d-flex row">
+                <p class="fs-2 enigma-font text-light text-center fw-bold ps-3" style="width: 98px;">VD</p>
+              </div>
+              <div class="d-flex row">
+                <input matInput #inputVD id="inputVD" type="number" step="5" min="0"
+                  class="no-arrows skribler text-light text-center fw-bold fs-1" [(ngModel)]="threat.vd"
+                  aria-label="nome-jogador" style="width:120px;" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex col-md-6">
+          <div class="w-auto border-start border-light">
+            <p class="text-dark fs-6 bg-light ps-1 pe-2 py-2 sava-black-font fw-bold" style="height: fit-content;">
+              PRESENÇA PERTURBADORA</p>
+            <div class="text-light">
+              NEX <input #inputVD class="no-arrows sava-black-font no-background fs-6 text-light" type="number"
+                [value]="threat.disturbingPresence != null ? threat.disturbingPresence ?? 0 : 0" style="width: 50px;"
+                readonly>
+            </div>
+            <!-- <p class="text-light fs-6 ps-2 sava-black-font">NEX {{threat.disturbingPresence != null ?
+              threat.disturbingPresence.nex : 0
+              }}% -
+              DT {{threat.disturbingPresence != null ? threat.disturbingPresence.dt : 0}} -
+              {{threat.disturbingPresence != null ? threat.disturbingPresence.damage : '1d3 mental'}}</p> -->
+          </div>
+        </div>
+      </div>
+      <div class="d-flex row col-md-6">
+        <p class="row mb-2 enigma-font fw-bold text-light fs-5">Vida</p>
+        <div class="row d-flex mb-3">
+          <app-progress-bar [total]="threat.healthPoints.max ?? 0" [value]="threat.healthPoints.current ?? 0"
+            role="button" [color]="'red'" class=" col-md-12 w-50" style="max-width: 465px;" (click)="changeThreatHp()">
+          </app-progress-bar>
+          <p class="text-light enigma-font lttr-spacing-2 fw-bold fs-3 col">
+            {{threat.healthPoints.current}}/{{threat.healthPoints.max}}</p>
+        </div>
+        <button
+          [class]="'btn float-end shadow-none'+ ' border-'+threat.element.toLowerCase() + ' text-'+threat.element.toLowerCase()"
+          style="width: 75px;" type="button" (click)="saveThreat()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</section>

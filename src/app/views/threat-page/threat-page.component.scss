@@ -1,0 +1,118 @@
+html, body { height: 100%;}
+body { margin: 0; background-color:rgba(0, 0, 0, 0.781);
+    background: url('./../../../assets/calamidade.jpg') no-repeat center center fixed !important;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+    background-size: cover !important;
+}
+
+.sava-black-font {
+  font-family: 'SavaBlack';
+}
+
+.skribler {
+  font-family: 'Skribler';
+}
+
+.bg-black-transparency {
+  background-color: rgba(0, 0, 0, 0.904);
+}
+
+.border-sangue {
+  border:3px solid #ff0000;
+}
+
+.border-conhecimento {
+  border:3px solid #ffdf00;
+}
+
+.border-energia {
+  border:3px solid #a200d4;
+}
+
+.border-medo {
+  border:3px solid #0592ca;
+}
+
+.border-morte {
+  border:3px solid #9e9e9e;
+}
+
+.no-arrows {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.enigma-font {
+  font-family: 'EnigmaSans';
+  letter-spacing: 5px;
+}
+
+.lttr-spacing-2{
+  letter-spacing: 2px !important;
+}
+
+#inputVD {
+  width: 110px;
+  border: none;
+  background-color: transparent;
+  color: black;
+  font-size: 20px;
+  font-family: 'EnigmaSans';
+  letter-spacing: 5px;
+}
+
+#inputVD:focus {
+  outline: none;
+}
+
+.no-background {
+  border: none;
+  background-color: transparent;
+  color: black;
+  font-size: 20px;
+  font-family: 'EnigmaSans';
+  letter-spacing: 5px;
+}
+
+.no-background:read-write:focus {
+  outline-color: gray;
+  outline-style: double;
+  outline-width: 2px;
+}
+
+.no-background:read-only:focus {
+  outline: none;
+}
+
+.text-sangue {
+  color: #ff0000;
+}
+
+.text-conhecimento {
+  color: #ffdf00;
+}
+
+.text-energia {
+  color: #a200d4;
+}
+
+.text-medo {
+  color: #0592ca;
+}
+
+.text-morte {
+  color: #9e9e9e;
+}

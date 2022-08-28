@@ -1,0 +1,14 @@
+<section class="container pb-2 pt-4 rounded-3 bg-black-transparency border border-danger">
+  <p class="text-center fs-1 text-light drawn-font fw-bolder mb-4">Dashboard</p>
+  <p class="text-center text-warning fs-3 text-white drawn-font fw-bold mb-4">Ameaças</p>
+  <div class="container d-flex flex-row flex-wrap justify-content-around">
+    <app-threats-card *ngFor="let threat of threatList" [threat]="threat" [threatList]="threatList"
+      (deleteThreat)="deleteThreat($event)"></app-threats-card>
+    <div class="card mb-2 align-items-center" role="button" style="width: 200px;height:250px;border-radius: 10px;">
+      <div class="card-body justify-content-center my-auto row align-items-center" role="button"
+        (click)="openCreateThreatDialog()">
+        <i class="bi bi-plus-square-fill text-dark h1"></i>
+      </div>
+    </div>
+  </div>
+</section>

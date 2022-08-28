@@ -1,4 +1,4 @@
-import { NgModule, } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,11 +6,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
@@ -50,6 +50,11 @@ import { EditWeaponDialogComponent } from './views/common/edit-weapon-dialog/edi
 import { PortraitPageComponent } from './views/portrait-page/portrait-page.component';
 import { PortraitCardComponent } from './views/portrait-page/portrait-card/portrait-card.component';
 import { InitiativeListComponent } from './views/shared/initiative-list/initiative-list.component';
+import { ThreatsDashboardComponent } from './views/threats-dashboard/threats-dashboard.component';
+import { ThreatsCardComponent } from './views/common/threats-card/threats-card.component';
+import { CreateThreatDialogComponent } from './views/common/create-threat-dialog/create-threat-dialog.component';
+import { ThreatPageComponent } from './views/threat-page/threat-page.component';
+import { DeleteThreatDialogComponent } from './views/common/delete-threat-dialog/delete-threat-dialog.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +92,11 @@ import { InitiativeListComponent } from './views/shared/initiative-list/initiati
     PortraitPageComponent,
     PortraitCardComponent,
     InitiativeListComponent,
+    ThreatsDashboardComponent,
+    ThreatsCardComponent,
+    CreateThreatDialogComponent,
+    ThreatPageComponent,
+    DeleteThreatDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -107,11 +117,9 @@ import { InitiativeListComponent } from './views/shared/initiative-list/initiati
     MatTableModule,
   ],
   providers: [
-    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' },
   ],
-  exports: [
-    AppRoutingModule,
-  ],
-  bootstrap: [AppComponent]
+  exports: [AppRoutingModule],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

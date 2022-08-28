@@ -4,12 +4,6 @@
       <div
         class="container rounded-3  pb-2 pt-4 pb-4 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300">
         <p class="text-center fs-2 enigma-font fw-bold text-light w-100 mb-4">Detalhes</p>
-        <div class="d-flex justify-content-center row mb-3">
-          <div class="mt-2 align-center justify-content-center" style="width:fit-content;height:fit-content;">
-            <img class="img rounded-circle border-yellow character-img" src="{{character.profileImageUrl}}"
-              (error)="onImageError($event)" alt="" (click)="openChangeCharacterImgDialog()">
-          </div>
-        </div>
         <div class="input-group justify-content-between">
           <mat-form-field color="accent" class="w-auto min-width-250">
             <mat-label>Nome do Jogador(a)</mat-label>
@@ -46,18 +40,11 @@
               aria-label="nome-personagem" />
           </mat-form-field>
         </div>
-        <div class="input-group mb-3 justify-content-between">
-          <mat-form-field color="accent" class="w-auto min-width-250">
-            <mat-label>NEX</mat-label>
-            <input matInput #inputNex type="string" class="w-auto drawn-font text-light" [(ngModel)]="character.nex"
-              aria-label="nome-jogador" />
-          </mat-form-field>
-          <mat-form-field color="accent" class="w-auto min-width-250">
-            <mat-label>Patente</mat-label>
-            <input matInput #inputRank type="text" class="drawn-font text-light" [(ngModel)]="character.rank"
-              aria-label="nome-personagem" />
-          </mat-form-field>
-        </div>
+        <mat-form-field color="accent" class="w-auto min-width-250">
+          <mat-label>Patente</mat-label>
+          <input matInput #inputRank type="text" class="drawn-font text-light" [(ngModel)]="character.rank"
+            aria-label="nome-personagem" />
+        </mat-form-field>
         <button class="btn btn-outline-warning float-end shadow-none" type="button"
           (click)="saveCharacter()">Salvar</button>
       </div>
@@ -65,29 +52,49 @@
     <div class="d-flex col-md-6 mt-3 shadow">
       <div
         class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300">
-        <p class="row mb-2 drawn-font fw-bold text-light fs-5">Vida</p>
+        <div class="d-flex row justify-content-center mb-3">
+          <div class="d-flex col justify-content-center d-inline-block">
+            <div class="d-flex row">
+              <div class="d-flex row">
+                <p class="fs-2 enigma-font text-light text-center w-auto">NEX</p>
+              </div>
+              <div class="d-flex row">
+                <input matInput #inputNex type="number" step="5" min="0"
+                  class="no-arrows enigma-font text-light text-center fw-bold fs-1" [(ngModel)]="character.nex"
+                  aria-label="nome-jogador" style="width:95px;" />
+              </div>
+            </div>
+          </div>
+          <div class="mt-2 d-flex col align-center justify-content-center d-inline-block"
+            style="width:fit-content;height:fit-content;">
+            <img class="img rounded-circle border-white character-img" src="{{character.profileImageUrl}}"
+              (error)="onImageError($event)" alt="" (click)="openChangeCharacterImgDialog()">
+          </div>
+
+        </div>
+        <p class="row mb-2 enigma-font fw-bold text-light fs-5">Vida</p>
         <div class="row d-flex mb-3">
           <app-progress-bar [total]="character.maxHp" [value]="character.hp"
             (click)="openEditProgressBarValueDialog('hp')" role="button" [color]="'red'" class=" col-md-12 w-75"
             style="max-width: 465px;"></app-progress-bar>
-          <p class="text-light drawn-font fs-2 col">{{character.hp}}/{{character.maxHp}}</p>
+          <p class="text-light enigma-font fs-3 col">{{character.hp}}/{{character.maxHp}}</p>
         </div>
-        <p class="row mb-2 drawn-font fw-bold text-light fs-5">Sanidade</p>
+        <p class="row mb-2 enigma-font fw-bold text-light fs-5">Sanidade</p>
         <div class="row d-flex mb-3">
           <app-progress-bar [total]="character.maxSanity" [value]="character.sanity"
             (click)="openEditProgressBarValueDialog('sanity')" role="button" [color]="'blue'" class="col-md-12 w-75"
             style="max-width: 465px;"></app-progress-bar>
-          <p class="text-light drawn-font fs-2 col">{{character.sanity}}/{{character.maxSanity}}</p>
+          <p class="text-light enigma-font fs-3 col">{{character.sanity}}/{{character.maxSanity}}</p>
         </div>
-        <p class="row mb-2 drawn-font fw-bold text-light fs-5">Pontos de esforço</p>
+        <p class="row mb-2 enigma-font fw-bold text-light fs-5">Pontos de esforço</p>
         <div class="row d-flex mb-3">
           <app-progress-bar [total]="character.maxEffortPoints" [value]="character.effortPoints"
             (click)="openEditProgressBarValueDialog('stressPoints')" role="button" [color]="'yellow'"
             class="col-md-12 w-75" style="max-width: 465px;"></app-progress-bar>
-          <p class="text-light drawn-font fs-2 col">{{character.effortPoints}}/{{character.maxEffortPoints}}
+          <p class="text-light enigma-font fs-3 col">{{character.effortPoints}}/{{character.maxEffortPoints}}
           </p>
         </div>
-        <app-roll-dice-dialog [characterName]="character.name"></app-roll-dice-dialog>
+        <!-- <app-roll-dice-dialog [characterName]="character.name"></app-roll-dice-dialog> -->
       </div>
     </div>
   </div>
@@ -462,16 +469,18 @@
       <div
         class="container rounded-3  pb-2 pt-5 pb-4 px-4 bg-full-black border border-secondary shadow-lg col-md-12 min-width-300">
         <p class="text-center fs-2 fw-bold enigma-font text-light w-100 col">Anotações</p>
-        <textarea class="form-control w-100 bg-full-black text-light border border-light" id="notes-text-area"
-          style="height: 300px;max-height: 300px;" [(ngModel)]="character.notes"></textarea>
+        <textarea
+          class="form-control w-100 bg-full-black text-light drawn-font border-black scrollbar-thin overflow-auto"
+          id="notes-text-area" style="height: 300px;max-height: 300px;" [(ngModel)]="character.notes"></textarea>
       </div>
     </div>
     <div class="d-flex col-md-6 mt-3" style="max-height: 400px;">
       <div
         class="container rounded-3 shadow-lg pb-2 pt-5 pb-4 px-4 bg-full-black border border-secondary col-md-12 min-width-300">
         <p class="text-center fs-2 fw-bold enigma-font text-light w-100 col">Proficiências</p>
-        <textarea class="form-control w-100 bg-full-black text-light border border-light" id="notes-text-area"
-          style="height: 300px;max-height: 300px;" [(ngModel)]="character.proficiences"></textarea>
+        <textarea
+          class="form-control w-100 bg-full-black text-light drawn-font border-black scrollbar-thin overflow-auto"
+          id="notes-text-area" style="height: 300px;max-height: 300px;" [(ngModel)]="character.proficiences"></textarea>
       </div>
     </div>
   </div>

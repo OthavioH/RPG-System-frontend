@@ -1,49 +1,68 @@
-<a class="card bg-dark border border-2 border-warning mb-2 btn text-light" style="width: 250px;height:fit-content;min-height:515px;border-radius: 10px;" [routerLink]="['/personagens', character.id]" (dragstart)="openDeleteCharacterDialog(character.id)">
-    <div class="d-flex justify-content-center row">
-        <div class="mt-2 align-center justify-content-center" style="width:fit-content;height:fit-content;">
-            <img class="img rounded-circle border-white character-img" src="{{character.profileImageUrl}}" (error)="onImageError($event)" alt="">
-        </div>
+<a class="card bg-dark border border-2 border-warning mb-2 btn text-light"
+  style="width: 250px;height:fit-content;min-height:515px;border-radius: 10px;"
+  [routerLink]="['/characters', character.id]" (dragstart)="openDeleteCharacterDialog(character.id)">
+  <div class="d-flex justify-content-center row">
+    <div class="mt-2 align-center justify-content-center" style="width:fit-content;height:fit-content;">
+      <img class="img rounded-circle border-white character-img" src="{{character.profileImageUrl}}"
+        (error)="onImageError($event)" alt="">
     </div>
-    <div class="d-flex justify-content-center mt-4 row">
-        <p class="d-flex justify-content-center fs-5 text-center text-warning">{{ character.name | titlecase }}</p>
-        <div class="d-flex row" style="width:fit-content;height:fit-content;">
-            <div class="d-flex col-6 justify-content-center">
-                <div class="d-flex row" style="height:100px;">
-                    <p class="fs-6 text-center" style="position: relative;top: 24px;">Vida</p>
-                    <p class="text-center text-red " style="position: relative;bottom:0px;font-weight: 900;"><span class="fs-55" style="position: relative;left:5px;">{{character.hp ?? 0}}</span><span class="fs-45" style="position: relative;top: 8px;">/{{character.maxHp ?? 0}}</span></p>
-                </div>
-            </div>
-            <div class="d-flex col-6 justify-content-center">
-                <div class="d-flex row" style="width:fit-content;height:100px;">
-                    <p class="fs-6 text-center" style="position: relative;top: 24px;">Sanidade</p>
-                    <p class="text-center text-blue" style="position: relative;bottom:0px;font-weight: 900;"><span class="fs-55" style="position: relative;left:5px;">{{character.sanity ?? 0}}</span><span class="fs-45" style="position: relative;top: 8px;">/{{ character.maxSanity ?? 0}}</span></p>
-                </div>
-            </div>
+  </div>
+  <div class="d-flex justify-content-center mt-4 row">
+    <p class="d-flex justify-content-center fs-5 text-center text-warning">{{ character.name | titlecase }}</p>
+    <div class="d-flex row" style="width:fit-content;height:fit-content;">
+      <div class="d-flex col-6 justify-content-center">
+        <div class="d-flex row" style="height:100px;">
+          <p class="fs-6 text-center" style="position: relative;top: 24px;">Vida</p>
+          <p class="text-center text-red " style="position: relative;bottom:0px;font-weight: 900;"><span class="fs-55"
+              style="position: relative;left:5px;">{{character.hp ?? 0}}</span><span class="fs-45"
+              style="position: relative;top: 8px;">/{{character.maxHp ?? 0}}</span></p>
         </div>
-        <div class="mb-3 divider align-self-center"></div>
-        <div class="d-flex justify-content-center mb-1" style="width: 220px; height: fit-content;border-radius: 10px;padding-top: 6px;padding-bottom: 6px;">
-            <div class="justify-content-center" style="display: table-column;line-height: 1;">
-                <p class="text-center" style="position: relative;display:table-header-group;">Pontos de Esforço</p>
-                <p class="text-center text-green" style="position: relative;font-weight: 900;display: table-footer-group;"><span class="fs-55" style="position: relative;left:5px;">{{character.effortPoints ?? 0}}</span><span class="fs-45" style="position: relative;top: 8px;">/{{character.maxEffortPoints ?? 0}}</span></p>
-            </div>
+      </div>
+      <div class="d-flex col-6 justify-content-center">
+        <div class="d-flex row" style="width:fit-content;height:100px;">
+          <p class="fs-6 text-center" style="position: relative;top: 24px;">Sanidade</p>
+          <p class="text-center text-blue" style="position: relative;bottom:0px;font-weight: 900;"><span class="fs-55"
+              style="position: relative;left:5px;">{{character.sanity ?? 0}}</span><span class="fs-45"
+              style="position: relative;top: 8px;">/{{ character.maxSanity ?? 0}}</span></p>
         </div>
-        <div class="d-flex justify-content-center mb-1" style="width: 220px; height: fit-content;border-radius: 10px;padding-top: 6px;padding-bottom: 6px;">
-            <div class="justify-content-center" style="display: table-column;line-height: 1;">
-                <p class="text-center" style="position: relative;display:table-header-group;">Inventário</p>
-                <p class="text-center text-light" style="position: relative;font-weight: 900;display: table-footer-group;"><span class="fs-55" style="position: relative;left:5px;">{{character.inventory != null ? character.inventory.usedSlots : 0}}</span><span class="fs-45" style="position: relative;top: 8px;">/{{character.inventory != null ?character.inventory.maxSlots : 0}}</span></p>
-            </div>
-        </div>
-        <div class="d-flex justify-content-center mb-1" style="width: 220px; height: fit-content;border-radius: 10px;padding-top: 6px;padding-bottom: 6px;">
-            <div class="justify-content-center" style="display: table-column;line-height: 1.3;">
-                <p class="text-center" style="position: relative;display:table-header-group;">Defesas</p>
-                <p class="text-center text-warning" style="position: relative;font-weight: 900;display: table-footer-group;"><span class="fs-4">{{character.passiveDefense}} / {{character.blockDefense}} / {{character.dodgeDefense}}</span></p>
-            </div>
-        </div>
-        <!-- <div class="d-flex justify-content-center" style="width: 220px; height: fit-content;border-radius: 10px;padding-top: 6px;padding-bottom: 6px;">
+      </div>
+    </div>
+    <div class="mb-3 divider align-self-center"></div>
+    <div class="d-flex justify-content-center mb-1"
+      style="width: 220px; height: fit-content;border-radius: 10px;padding-top: 6px;padding-bottom: 6px;">
+      <div class="justify-content-center" style="display: table-column;line-height: 1;">
+        <p class="text-center" style="position: relative;display:table-header-group;">Pontos de Esforço</p>
+        <p class="text-center text-green" style="position: relative;font-weight: 900;display: table-footer-group;"><span
+            class="fs-55" style="position: relative;left:5px;">{{character.effortPoints ?? 0}}</span><span class="fs-45"
+            style="position: relative;top: 8px;">/{{character.maxEffortPoints ?? 0}}</span></p>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center mb-1"
+      style="width: 220px; height: fit-content;border-radius: 10px;padding-top: 6px;padding-bottom: 6px;">
+      <div class="justify-content-center" style="display: table-column;line-height: 1;">
+        <p class="text-center" style="position: relative;display:table-header-group;">Inventário</p>
+        <p class="text-center text-light" style="position: relative;font-weight: 900;display: table-footer-group;"><span
+            class="fs-55" style="position: relative;left:5px;">{{character.inventory != null ?
+            character.inventory.usedSlots : 0}}</span><span class="fs-45"
+            style="position: relative;top: 8px;">/{{character.inventory != null ?character.inventory.maxSlots :
+            0}}</span></p>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center mb-1"
+      style="width: 220px; height: fit-content;border-radius: 10px;padding-top: 6px;padding-bottom: 6px;">
+      <div class="justify-content-center" style="display: table-column;line-height: 1.3;">
+        <p class="text-center" style="position: relative;display:table-header-group;">Defesas</p>
+        <p class="text-center text-warning" style="position: relative;font-weight: 900;display: table-footer-group;">
+          <span class="fs-4">{{character.passiveDefense}} / {{character.blockDefense}} /
+            {{character.dodgeDefense}}</span>
+        </p>
+      </div>
+    </div>
+    <!-- <div class="d-flex justify-content-center" style="width: 220px; height: fit-content;border-radius: 10px;padding-top: 6px;padding-bottom: 6px;">
             <div class="justify-content-center" style="display: table-column;line-height: 1;">
                 <p class="text-center fs-12" style="position: relative;display:table-header-group;">Movimento</p>
                 <p class="text-center text-purple" style="position: relative;display: table-footer-group;"><span class="fs-58 font-spartan fw-bold" style="position: relative;">{{9}}</span>
             </div>
         </div> -->
-    </div>
+  </div>
 </a>

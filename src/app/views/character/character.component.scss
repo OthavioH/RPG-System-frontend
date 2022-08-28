@@ -41,6 +41,22 @@
     bottom:-42.5%;
 }
 
+.no-arrows {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .outro-lado-bg {
   width: 624px;
   height: 500px;
@@ -198,6 +214,11 @@
 
 .text-shadow-hover:hover {
   text-shadow: 1px 1px 4px black;
+}
+
+.border-black {
+  border: 1px solid black;
+  border-color: black;
 }
 
 .shield:after {transform: scale(-1,1) translateX(-5em) rotate(-20deg);}
