@@ -22,6 +22,16 @@
   src: local("BabyDoll"),url('./assets/fonts/BabyDoll.otf') format("opentype");
 }
 
+@font-face {
+  font-family: 'SavaBlack';
+  src: local("SavaPro-Black"), url('./assets/fonts/SavaPro-Black.otf') format("opentype");
+}
+
+@font-face {
+  font-family: 'Skribler';
+  src: local("Skribler"), url('./assets/fonts/Skribler.ttf') format("truetype");
+}
+
 html, body { height: 100%;}
 body { margin: 0; background-color:rgba(0, 0, 0, 0.781);
     background: url('/../assets/calamidade.jpg') no-repeat center center fixed;

@@ -1,4 +1,5 @@
-export interface Threat {
+import { ThreatService } from '../app/views/common/create-threat-dialog/threat.service';
+export class Threat {
   id: string;
   vd?: number;
   name: string;
@@ -18,6 +19,32 @@ export interface Threat {
   displacements?: string[];
   actions?: ThreatAction[];
   enigma?: string;
+
+  constructor(private threatService: ThreatService, newThread: Threat) {
+    this.id = newThread.id;
+    this.vd = newThread.vd;
+    this.name = newThread.name;
+    this.description = newThread.description;
+    this.imageUrl = newThread.imageUrl;
+    this.element = newThread.element;
+    this.secondElements = newThread.secondElements;
+    this.skills = newThread.skills;
+    this.size = newThread.size;
+    this.type = newThread.type;
+    this.disturbingPresence = newThread.disturbingPresence;
+    this.senses = newThread.senses;
+    this.defenses = newThread.defenses;
+    this.healthPoints = newThread.healthPoints;
+    this.vulnerabilities = newThread.vulnerabilities;
+    this.attributes = newThread.attributes;
+    this.displacements = newThread.displacements;
+    this.actions = newThread.actions;
+    this.enigma = newThread.enigma;
+  }
+
+  async save() {
+    await this.threatService.updateThreat(this);
+  }
 }
 
 export interface ThreatAction {

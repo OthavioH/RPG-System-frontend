@@ -6,7 +6,7 @@ import { CharactersService } from '../characters/shared/services/characters.serv
 import { ICharacter } from 'src/models/Character';
 import { EditProgressBarValuesDialogComponent } from '../common/edit-hp-dialog/edit-progress-bar-values-dialog.component';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { OpenChooseSkillsDialogComponent } from '../common/open-choose-skills-dialog/open-choose-skills-dialog.component';
 import { AttributeDialogComponent } from '../common/attribute-dialog/attribute-dialog.component';
 import { IAttribute } from 'src/models/Attribute';
@@ -26,17 +26,20 @@ import { EditInventoryDialogComponent } from '../common/edit-inventory-dialog/ed
 import { RollAttributeDialogComponent } from '../common/roll-attribute-dialog/roll-attribute-dialog.component';
 import { IWeapon } from 'src/models/Weapon';
 import { EditWeaponDialogComponent } from '../common/edit-weapon-dialog/edit-weapon-dialog.component';
-import { EditWeapon, DeleteWeapon, EditWeaponDialogAction } from '../../../models/EditWeaponDialogAction';
+import {
+  EditWeapon,
+  DeleteWeapon,
+  EditWeaponDialogAction,
+} from '../../../models/EditWeaponDialogAction';
 import { generateRandomId } from '../common/view_utils';
 import { GameSettingsService } from '../../game-settings.service';
 
 @Component({
   selector: 'app-character',
   templateUrl: './character.component.html',
-  styleUrls: ['./character.component.scss', './../../app.component.scss']
+  styleUrls: ['./character.component.scss', './../../app.component.scss'],
 })
 export class CharacterComponent implements OnInit {
-
   character: ICharacter;
   routeSubscription: Subscription;
 
@@ -50,30 +53,35 @@ export class CharacterComponent implements OnInit {
     private modalService: MatDialog,
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
-    private gameSettingsService: GameSettingsService,
-  ) {
-  }
+    private gameSettingsService: GameSettingsService
+  ) {}
 
   ngOnInit() {
-    this.routeSubscription = this.activatedRoute.data.subscribe((info: { character: ICharacter }) => {
-      this.character = new ICharacter(this.charactersService, info.character);
-      this.sortListsAlphabetically();
-      this.titleService.setTitle(`Personagem | ${this.character.name}`);
-      this.imgUrl = this.character.profileImageUrl ?? this.defaultImgUrl;
-
-    });
-
+    this.routeSubscription = this.activatedRoute.data.subscribe(
+      (info: { character: ICharacter }) => {
+        this.character = new ICharacter(this.charactersService, info.character);
+        this.sortListsAlphabetically();
+        this.titleService.setTitle(`Personagem | ${this.character.name}`);
+        this.imgUrl = this.character.profileImageUrl ?? this.defaultImgUrl;
+      }
+    );
   }
 
   sortListsAlphabetically() {
     if (this.character.skills != null) {
-      this.character.skills = this.character.skills.sort((a, b) => a.name.localeCompare(b.name));
+      this.character.skills = this.character.skills.sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
     }
     if (this.character.abilities != null) {
-      this.character.abilities = this.character.abilities.sort((a, b) => a.name.localeCompare(b.name));
+      this.character.abilities = this.character.abilities.sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
     }
     if (this.character.rituals != null) {
-      this.character.rituals = this.character.rituals.sort((a, b) => a.name.localeCompare(b.name));
+      this.character.rituals = this.character.rituals.sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
     }
   }
 
@@ -82,7 +90,11 @@ export class CharacterComponent implements OnInit {
   }
 
   onChangeItemSlot(itemToUpdate: InventoryItem, slots: number) {
-    for (let index = 0; index < this.character.inventory.items.length; index++) {
+    for (
+      let index = 0;
+      index < this.character.inventory.items.length;
+      index++
+    ) {
       const item = this.character.inventory.items[index];
       if (item.id == itemToUpdate.id) {
         item.slots = slots;
@@ -91,7 +103,8 @@ export class CharacterComponent implements OnInit {
   }
 
   onStrengthAttributeChanged(): void {
-    this.character.inventory.maxSlots = 5 * this.character.attributes.strength.value;
+    this.character.inventory.maxSlots =
+      5 * this.character.attributes.strength.value;
   }
 
   async onDoubleClickAttribute(attribute: IAttribute): Promise<void> {
@@ -100,7 +113,12 @@ export class CharacterComponent implements OnInit {
     this.modalService.open(RollAttributeDialogComponent, { data: diceResults });
     for (let i = 0; i < diceResults.length; i++) {
       const diceValue = diceResults[i];
-      await this.gameSettingsService.addNewRoll({id:generateRandomId(),characterName:this.character.name,diceResult:diceValue, diceFaces:20});
+      await this.gameSettingsService.addNewRoll({
+        id: generateRandomId(),
+        characterName: this.character.name,
+        diceResult: diceValue,
+        diceFaces: 20,
+      });
     }
   }
 
@@ -125,7 +143,10 @@ export class CharacterComponent implements OnInit {
     }
   }
 
-  onSelectSkillExperienceLevel(newExperienceLevel: any, newSkill: ISkill): void {
+  onSelectSkillExperienceLevel(
+    newExperienceLevel: any,
+    newSkill: ISkill
+  ): void {
     for (const skill of this.character.skills) {
       if (skill.id == newSkill.id) {
         skill.experienceLevel = newExperienceLevel;
@@ -138,13 +159,14 @@ export class CharacterComponent implements OnInit {
   }
 
   openEditWeaponDialog(weapon: IWeapon): void {
-    const dialogRef = this.modalService.open(EditWeaponDialogComponent, { data: weapon });
-    dialogRef.afterClosed().subscribe(result => {
+    const dialogRef = this.modalService.open(EditWeaponDialogComponent, {
+      data: weapon,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
       if (result instanceof EditWeaponDialogAction) {
         if (result instanceof EditWeapon) {
           this.character.updateWeapon(result.weapon);
-        }
-        else if (result instanceof DeleteWeapon) {
+        } else if (result instanceof DeleteWeapon) {
           this.character.deleteWeapon(result.weapon);
         }
       }
@@ -156,7 +178,9 @@ export class CharacterComponent implements OnInit {
   }
 
   openShowAbilityDetailsDialog(ability: IAbility): void {
-    this.modalService.open(ShowAbilityDetailsDialogComponent, { data: ability });
+    this.modalService.open(ShowAbilityDetailsDialogComponent, {
+      data: ability,
+    });
   }
 
   openShowRitualDetailsDialog(ritual: IRitual): void {
@@ -164,11 +188,15 @@ export class CharacterComponent implements OnInit {
   }
 
   openCreateInventoryItemDialog(): void {
-    this.modalService.open(CreateEquipmentDialogComponent, { data: { character: this.character } });
+    this.modalService.open(CreateEquipmentDialogComponent, {
+      data: { character: this.character },
+    });
   }
 
   openCreateWeaponDialog(): void {
-    this.modalService.open(CreateWeaponDialogComponent, { data: { character: this.character } });
+    this.modalService.open(CreateWeaponDialogComponent, {
+      data: { character: this.character },
+    });
   }
 
   openAttributeDialog(): void {
@@ -176,58 +204,114 @@ export class CharacterComponent implements OnInit {
   }
 
   openChooseSkills(): void {
-    this.modalService.open(OpenChooseSkillsDialogComponent, { data: { character: this.character } });
+    this.modalService.open(OpenChooseSkillsDialogComponent, {
+      data: { character: this.character },
+    });
   }
 
   openChooseAbilities(): void {
-    this.modalService.open(ChooseAbilitiesDialogComponent, { data: { character: this.character } });
+    this.modalService.open(ChooseAbilitiesDialogComponent, {
+      data: { character: this.character },
+    });
   }
 
   openChooseRituals(): void {
-    this.modalService.open(ChooseRitualsDialogComponent, { data: { character: this.character } });
+    this.modalService.open(ChooseRitualsDialogComponent, {
+      data: { character: this.character },
+    });
   }
 
   openEditHPDialog(): void {
-    this.modalService.open(EditProgressBarValuesDialogComponent, { data: { character: this.character, characterStats: CharacterStats.hp } });
+    this.modalService.open(EditProgressBarValuesDialogComponent, {
+      data: { character: this.character, characterStats: CharacterStats.hp },
+    });
   }
 
   openEditSanityDialog(): void {
-    this.modalService.open(EditProgressBarValuesDialogComponent, { data: { character: this.character, characterStats: CharacterStats.sanity } });
+    this.modalService.open(EditProgressBarValuesDialogComponent, {
+      data: {
+        character: this.character,
+        characterStats: CharacterStats.sanity,
+      },
+    });
   }
 
   openEditInventoryDialog(item: InventoryItem) {
-    this.modalService.open(EditInventoryDialogComponent, { data: { item: item, character: this.character } });
+    this.modalService.open(EditInventoryDialogComponent, {
+      data: { item: item, character: this.character },
+    });
   }
 
   openChangeCharacterImgDialog(): void {
-    this.modalService.open(ChangeCharacterImageDialogComponent, { data: this.character });
+    const dialogResponse = this.modalService.open(
+      ChangeCharacterImageDialogComponent,
+      { data: this.character.profileImageUrl }
+    );
+    dialogResponse.afterClosed().subscribe((newImgUrl) => {
+      if (newImgUrl) {
+        this.character.profileImageUrl = newImgUrl;
+        this.character.saveCharacter();
+      }
+    });
   }
 
   openEditProgressBarValueDialog(stats: string): void {
-    this.modalService.open(EditProgressBarValuesDialogComponent, {
-      data: {
-        character: this.character, characterStats: stats
+    const dialogResponse = this.modalService.open(
+      EditProgressBarValuesDialogComponent,
+      {
+        data: {
+          currentValue: this.character.hp,
+          maxValue: this.character.maxHp,
+        },
       }
-    },);
+    );
+
+    dialogResponse
+      .afterClosed()
+      .subscribe(
+        (dialogResponse: { currentValue: number; maxValue: number }) => {
+          if (dialogResponse != null) {
+            if (stats == 'hp') {
+              this.character.hp = dialogResponse.currentValue;
+              this.character.maxHp = dialogResponse.maxValue;
+            } else if (stats == 'sanity') {
+              this.character.sanity = dialogResponse.currentValue;
+              this.character.maxSanity = dialogResponse.maxValue;
+            } else if (stats == 'stressPoints') {
+              this.character.effortPoints = dialogResponse.currentValue;
+              this.character.maxEffortPoints = dialogResponse.maxValue;
+            }
+            this.character.saveCharacter();
+          }
+        }
+      );
   }
 
   deleteSkill(skillId: string): void {
-    this.character.skills = this.character.skills.filter(skill => skill.id != skillId);
+    this.character.skills = this.character.skills.filter(
+      (skill) => skill.id != skillId
+    );
     this.character.saveCharacter();
   }
 
   deleteAbility(abilityId: string): void {
-    this.character.abilities = this.character.abilities.filter(abilities => abilities.id != abilityId);
+    this.character.abilities = this.character.abilities.filter(
+      (abilities) => abilities.id != abilityId
+    );
     this.character.saveCharacter();
   }
 
   deleteRitual(ritualId: string): void {
-    this.character.rituals = this.character.rituals.filter(ritual => ritual.id != ritualId);
+    this.character.rituals = this.character.rituals.filter(
+      (ritual) => ritual.id != ritualId
+    );
     this.character.saveCharacter();
   }
 
-  deleteInventoryItem(itemId: string,): void {
-    this.character.inventory.items = this.character.inventory.items.filter(item => item.id != itemId);
+  deleteInventoryItem(itemId: string): void {
+    this.character.inventory.items = this.character.inventory.items.filter(
+      (item) => item.id != itemId
+    );
     this.character.saveCharacter();
   }
 

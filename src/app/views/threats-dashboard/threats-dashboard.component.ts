@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Threat, ThreatElement } from '../../../models/Threat';
 import { CreateThreatDialogComponent } from '../common/create-threat-dialog/create-threat-dialog.component';
 import { ThreatService } from '../common/create-threat-dialog/threat.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-threats-dashboard',
@@ -15,8 +16,11 @@ export class ThreatsDashboardComponent implements OnInit {
 
   constructor(
     private modalService: MatDialog,
-    private threatService: ThreatService
-  ) {}
+    private threatService: ThreatService,
+    private title: Title
+  ) {
+    title.setTitle('Threats Dashboard');
+  }
 
   ngOnInit(): void {
     this.initThreatList();

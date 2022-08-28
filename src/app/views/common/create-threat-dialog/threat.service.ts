@@ -32,7 +32,9 @@ export class ThreatService {
 
   async updateThreat(threat: Threat): Promise<Threat> {
     const response = (await this.http
-      .put(`${environment.apiUrl}/threats/:id/update`, { threat: threat })
+      .put(`${environment.apiUrl}/threats/${threat.id}/update`, {
+        threat: threat,
+      })
       .toPromise()) as Threat;
     return response;
   }
