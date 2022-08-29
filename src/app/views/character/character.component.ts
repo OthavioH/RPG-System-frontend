@@ -256,12 +256,28 @@ export class CharacterComponent implements OnInit {
   }
 
   openEditProgressBarValueDialog(stats: string): void {
+    var currentValue = 0;
+    var maxValue = 0;
+    switch (stats) {
+      case CharacterStats.hp:
+        currentValue = this.character.hp;
+        maxValue = this.character.maxHp;
+        break;
+      case CharacterStats.sanity:
+        currentValue = this.character.sanity;
+        maxValue = this.character.maxSanity;
+        break;
+      case CharacterStats.stressPoints:
+        currentValue = this.character.effortPoints;
+        maxValue = this.character.maxEffortPoints;
+        break;
+    }
     const dialogResponse = this.modalService.open(
       EditProgressBarValuesDialogComponent,
       {
         data: {
-          currentValue: this.character.hp,
-          maxValue: this.character.maxHp,
+          currentValue: currentValue,
+          maxValue: maxValue,
         },
       }
     );

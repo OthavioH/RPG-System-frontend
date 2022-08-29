@@ -2,6 +2,8 @@ import { Component, Input, NgZone, OnInit, SimpleChanges } from '@angular/core';
 import { GameSettingsService } from 'src/app/game-settings.service';
 import { IGameSettings } from 'src/models/GameSettings';
 import { generateRandomId } from '../../view_utils';
+import { MatDialog } from '@angular/material/dialog';
+import { RollAttributeDialogComponent } from '../../roll-attribute-dialog/roll-attribute-dialog.component';
 
 @Component({
   selector: 'app-roll-dice-dialog',
@@ -9,44 +11,33 @@ import { generateRandomId } from '../../view_utils';
   styleUrls: ['./roll-dice-dialog.component.scss'],
 })
 export class RollDiceDialogComponent implements OnInit {
-
-  showCooldownError:boolean;
+  showCooldownError: boolean;
   currentState = 'noDice';
 
-  diceTimer:number;
-  diceMaxCooldown:number;
-  diceInScreenTime:number;
-  timestamp:number;
+  diceTimer: number;
+  diceMaxCooldown: number;
+  diceInScreenTime: number;
+  timestamp: number;
 
-  diceResult:number;
+  gameSettings: IGameSettings;
 
-  gameSettings:IGameSettings;
+  @Input() characterName: string;
 
-  @Input() characterName:string;
-
-  constructor(private gameSettingsService: GameSettingsService, private ngZone: NgZone) {
+  constructor(
+    private gameSettingsService: GameSettingsService,
+    private ngZone: NgZone,
+    private dialogService: MatDialog
+  ) {
     this.showCooldownError = false;
-  }
-
-  async initVariables() {
-    this.gameSettings = await this.gameSettingsService.getGameSettings();
-
-    this.diceMaxCooldown = this.gameSettings.diceCooldown;
-
-    this.diceTimer = this.diceMaxCooldown -1;
-    this.diceInScreenTime = this.gameSettings.diceScreenTime -1;
-
-    this.gameSettingsService.onNewTimerEmitted$.subscribe((timer)=>{
-      if (timer >= this.diceMaxCooldown -1) {
-        this.showCooldownError = false;
-      }
-      this.diceTimer = timer;
-
+    this.gameSettingsService.getGameSettings().then((gameSettings) => {
+      this.gameSettings = gameSettings;
+      this.diceMaxCooldown = gameSettings.diceCooldown;
+      this.diceInScreenTime = gameSettings.diceScreenTime - 1;
     });
   }
 
   ngOnInit(): void {
-    this.initVariables();
+    this.timestamp = Date.now();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -54,47 +45,41 @@ export class RollDiceDialogComponent implements OnInit {
   }
 
   changeDiceAnimationState(): void {
-    this.currentState = this.currentState === 'noDice' ? 'runningDice' : 'noDice';
+    this.currentState =
+      this.currentState === 'noDice' ? 'runningDice' : 'noDice';
   }
 
-  rollDice(diceFaces: number, ): void {
-    if (this.diceTimer == this.diceMaxCooldown -1) {
-      this.changeDiceAnimationState();
+  async rollDice(diceFaces: string) {
+    const diceFacesArray = diceFaces.split('d');
+    const diceFacesCount = Number(diceFacesArray[0]);
+    const diceFacesMax = Number(diceFacesArray[1]);
 
-      this.showCooldownError = false;
-      this.diceResult = this.getRandom(diceFaces);
+    const diceResultList: number[] = [];
 
-      this.gameSettingsService.addNewRoll({id:generateRandomId(),characterName:this.characterName,diceResult:this.diceResult, diceFaces:diceFaces});
-      this.timerCount();
+    for (let i = 0; i < diceFacesCount; i++) {
+      diceResultList.push(this.getRandom(diceFacesMax));
     }
-    else {
-      this.showCooldownError = true;
-    }
-  }
 
-  async timerCount() {
-    const diceScreenTimeInterval = setInterval(() =>{
-      this.diceInScreenTime--;
-      if (this.diceInScreenTime < 0) {
-        this.diceInScreenTime = this.gameSettings.diceScreenTime -1;
-        clearInterval(diceScreenTimeInterval);
-        this.changeDiceAnimationState();
-      }
-    },1000);
+    diceResultList.forEach(async (dice) => {
+      let id = generateRandomId();
 
-    const diceTimerInterval = setInterval(() =>{
-      this.diceTimer--;
-      if (this.diceTimer < 0) {
-        this.diceTimer = this.diceMaxCooldown -1;
-        clearInterval(diceTimerInterval);
-      }
-      this.gameSettingsService.emitTimer(this.diceTimer >= 0 ? this.diceTimer : this.diceMaxCooldown -1);
-    },1000);
+      await this.gameSettingsService.addNewRoll({
+        id: id,
+        characterName: this.characterName,
+        diceResult: dice,
+        diceFaces: diceFacesMax,
+      });
+    });
 
+    this.dialogService.open(RollAttributeDialogComponent, {
+      data: {
+        diceResultList: diceResultList,
+        hasToSum: true,
+      },
+    });
   }
 
   getRandom(max: number): number {
-    return Math.floor( Math.random() * max + 1);
+    return Math.floor(Math.random() * max + 1);
   }
-
 }
