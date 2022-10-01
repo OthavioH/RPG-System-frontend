@@ -1,15 +1,15 @@
 <div class="col justify-content-between rounded-2 bg-dark p-4 h-auto overflow-auto yellow-scrollbar-thin px-4"
   style="min-height:300px;max-height:500px;width:600px;">
   <p class="d-flex text-white fs-2 text-center enigma-font row fw-bold w-100 col mb-3">Rolando
-    {{diceResultList.length}} dados</p>
+    {{data.diceResultList.length}} dados</p>
   <div class="d-flex flex-wrap justify-content-between row px-4 mt-3 py-2 overflow-auto" style="min-height: 150px;">
     <div #diceDiv class="d-flex col align-self-center justify-content-center mb-3 rounded-circle"
       style="width: 170px;height: 170px;position: relative;"
-      *ngFor="let _ of [].constructor(diceResultList.length);let i = index;">
+      *ngFor="let _ of [].constructor(data.diceResultList.length);let i = index;">
       <div class="fs-3 text-white text-center drawn-font text-shadow-4" style="position: absolute;z-index: 10;top:43%;">
-        {{diceResultList[i]}}</div>
+        {{data.diceResultList[i]}}</div>
       <app-dice-animation
-        [diceImageUrl]="'./../../../../assets/dado.gif'+'?timestamp='+timestamp+'&diceScreen='+gameSettings.diceScreenTime+'&diceCoolDown='+gameSettings.diceCooldown+gameSettings+'&rollsQtd='+gameSettings.lastRolls">
+        [diceImageUrl]="'./../../../../assets/dado.gif'+'?timestamp='+timestamp+'&diceScreen='+diceInScreenTime">
       </app-dice-animation>
     </div>
   </div>

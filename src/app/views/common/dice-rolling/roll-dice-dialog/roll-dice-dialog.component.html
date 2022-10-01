@@ -1,33 +1,9 @@
 <div class="d-flex flex-wrap justify-content-center w-auto">
-  <app-dice-roll-animation *ngIf="currentState === 'noDice' ? 'runningDice' : 'noDice'" [diceResult]="diceResult"
-    [shouldShow]="currentState === 'noDice' ? false : true"
-    [imageUrl]="'./../../../../assets/dado.gif'+'?timestamp='+timestamp+'&diceScreen='+gameSettings.diceScreenTime+'&diceCoolDown='+gameSettings.diceCooldown+gameSettings+'&rollsQtd='+gameSettings.lastRolls">
-  </app-dice-roll-animation>
-</div>
-<div class="d-flex flex-wrap justify-content-center w-auto">
   <mat-form-field appearance="fill" class="w-auto">
     <mat-label class="text-light">Tipo de dado</mat-label>
-    <select matNativeControl class="text-light" #diceFaces>
-      <option value="3">D3</option>
-      <option value="4">D4</option>
-      <option value="6">D6</option>
-      <option value="8">D8</option>
-      <option value="10">D10</option>
-      <option value="12">D12</option>
-      <option value="16">D16</option>
-      <option value="20">D20</option>
-      <option value="30">D30</option>
-      <option value="100">D100</option>
-    </select>
+    <input #diceRoll matInput type="text" class="text-light" name="" id="">
   </mat-form-field>
-</div>
-
-<div class="input-group mb-3 justify-content-around">
-  <button class="btn btn-outline-warning" type="button" role="button" (click)="rollDice(+diceFaces.value)">Rolar
+  <button class="btn btn-outline-warning mt-2 ms-3" type="button" style="height: 35px;"
+    (click)="rollDice(diceRoll.value)" role="button">Rolar
     dado</button>
-</div>
-
-<div *ngIf="showCooldownError">
-  <p class="text-danger text-center fs-6">O dado está em cooldown ({{diceTimer == diceMaxCooldown -1 ? 0 : diceTimer
-    +1}}s)</p>
 </div>

@@ -1,5 +1,11 @@
 import { Component, Inject, Input, OnInit, SimpleChanges } from '@angular/core';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GameSettingsService } from 'src/app/game-settings.service';
 import { IGameSettings } from 'src/models/GameSettings';
@@ -11,46 +17,51 @@ import { generateRandomId } from '../view_utils';
   styleUrls: ['./roll-attribute-dialog.component.scss'],
 })
 export class RollAttributeDialogComponent implements OnInit {
-
-  timestamp:number;
-  diceInScreenTime:number;
-  strResult: string = "Resultado: ";
+  timestamp: number = 0;
+  diceInScreenTime: number = 0;
+  strResult: string = 'Resultado: ';
 
   gameSettings: IGameSettings;
 
-  constructor(public dialogRef: MatDialogRef<RollAttributeDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public diceResultList:number[],
-    private gameSettingsService: GameSettingsService,
-  ) { }
-
-  ngOnInit(): void {
-
-    this.initVariables();
-
+  constructor(
+    public dialogRef: MatDialogRef<RollAttributeDialogComponent>,
+    @Inject(MAT_DIALOG_DATA)
+    public data: { diceResultList: number[]; hasToSum: boolean },
+    private gameSettingsService: GameSettingsService
+  ) {
+    this.timestamp = Date.now();
   }
 
-  getRandom(max: number): number {
-    return Math.floor( Math.random() * max + 1);
+  ngOnInit(): void {
+    this.initVariables();
   }
 
   async initVariables() {
-    this.gameSettings = await this.gameSettingsService.getGameSettings();
+    await this.gameSettingsService.getGameSettings().then((gameSettings) => {
+      this.gameSettings = gameSettings;
+      console.log(this.gameSettings);
 
-    if (this.diceResultList.length < 1) {
-      this.strResult += `${Math.min(...this.diceResultList)}.`;
-    }
-    else if (this.diceResultList.length == 1){
-      this.strResult += `${this.diceResultList[0]}.`;
-    }
-    else {
-      this.strResult += `${Math.max(...this.diceResultList)}.`;
-    }
+      if (this.data.diceResultList.length < 1 && !this.data.hasToSum) {
+        this.strResult += `${Math.min(...this.data.diceResultList)}.`;
+      } else if (this.data.diceResultList.length == 1 && !this.data.hasToSum) {
+        this.strResult += `${this.data.diceResultList[0]}.`;
+      } else if (!this.data.hasToSum) {
+        this.strResult += `${Math.max(...this.data.diceResultList)}.`;
+      } else {
+        let total = 0;
+        for (let i = 0; i < this.data.diceResultList.length; i++) {
+          const number = this.data.diceResultList[i];
+          total += number;
+        }
 
-    this.diceInScreenTime = this.gameSettings.diceScreenTime -1;
+        this.strResult += `${total}.`;
+      }
+
+      this.diceInScreenTime = this.gameSettings.diceScreenTime - 1;
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.timestamp = Date.now();
   }
-
 }
