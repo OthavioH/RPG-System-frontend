@@ -1,4 +1,4 @@
 <div class="col justify-content-between rounded-2 bg-dark p-4 w-auto h-auto overflow-hidden" style="max-height:500px;max-width: 500px;min-width:300px;">
     <p class="text-white fs-4 w-100 text-center d-flex col mb-3">{{ability.name}}</p>
-    <p class="text-white b-3 d-flex col text-break w-100" id="disabledInput" style="white-space:pre-wrap;" type="text" placeholder="Nome">{{ability.description}}</p>
+    <div [innerHTML]="ability.description"></div>
 </div>

@@ -26,5 +26,5 @@
         <span class="fw-bold me-1 text-warning">Resistência:</span>
         <span>{{ritual.resistance}}</span>
     </div>
-    <p class="text-white b-3 d-flex col text-break w-100" id="disabledInput" style="white-space:pre-wrap;" type="text" placeholder="Descrição">{{ritual.description}}</p>
+    <div [innerHTML]="ritual.description"></div>
 </div>
