@@ -34,6 +34,7 @@ import {
 import { generateRandomId } from '../common/view_utils';
 import { GameSettingsService } from '../../game-settings.service';
 import getCharacterRituals from 'src/app/utils/getCharacterRituals';
+import getCharacterAbilities from 'src/app/utils/getCharacterAbilities';
 
 @Component({
   selector: 'app-character',
@@ -43,6 +44,8 @@ import getCharacterRituals from 'src/app/utils/getCharacterRituals';
 export class CharacterComponent implements OnInit {
   character: ICharacter;
   characterRituals: IRitual[];
+  characterAbilities: IAbility[];
+
   routeSubscription: Subscription;
 
   onCharacterChanged: Subscription;
@@ -65,24 +68,15 @@ export class CharacterComponent implements OnInit {
         getCharacterRituals(this.character, this.gameSettingsService).then((rituals)=>{
           this.characterRituals = rituals;
         });
-        this.sortListsAlphabetically();
+
+        getCharacterAbilities(this.character, this.gameSettingsService).then((abilities)=>{
+          this.characterAbilities = abilities;
+        });
+
         this.titleService.setTitle(`Personagem | ${this.character.name}`);
         this.imgUrl = this.character.profileImageUrl ?? this.defaultImgUrl;
       }
     );
-  }
-
-  sortListsAlphabetically() {
-    if (this.character.skills != null) {
-      this.character.skills = this.character.skills.sort((a, b) =>
-        a.name.localeCompare(b.name)
-      );
-    }
-    if (this.character.abilities != null) {
-      this.character.abilities = this.character.abilities.sort((a, b) =>
-        a.name.localeCompare(b.name)
-      );
-    }
   }
 
   onImageError(event) {
@@ -110,7 +104,7 @@ export class CharacterComponent implements OnInit {
   async onDoubleClickAttribute(attribute: IAttribute): Promise<void> {
     const attributeValue = attribute.value <= 0 ? 2 : attribute.value;
     const diceResults = this.getDicesResults(attributeValue);
-    this.modalService.open(RollAttributeDialogComponent, { data: diceResults });
+    this.modalService.open(RollAttributeDialogComponent, { data: { diceResultList:diceResults, hasToSum:false } });
     for (let i = 0; i < diceResults.length; i++) {
       const diceValue = diceResults[i];
       await this.gameSettingsService.addNewRoll({
@@ -139,17 +133,6 @@ export class CharacterComponent implements OnInit {
     for (const skill of this.character.skills) {
       if (skill.id == skillId) {
         skill.value = newSkillValue;
-      }
-    }
-  }
-
-  onSelectSkillExperienceLevel(
-    newExperienceLevel: any,
-    newSkill: ISkill
-  ): void {
-    for (const skill of this.character.skills) {
-      if (skill.id == newSkill.id) {
-        skill.experienceLevel = newExperienceLevel;
       }
     }
   }
@@ -312,7 +295,7 @@ export class CharacterComponent implements OnInit {
 
   deleteAbility(abilityId: string): void {
     this.character.abilities = this.character.abilities.filter(
-      (abilities) => abilities.id != abilityId
+      (ability) => ability != abilityId
     );
     this.character.saveCharacter();
   }

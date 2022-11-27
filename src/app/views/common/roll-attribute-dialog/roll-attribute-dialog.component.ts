@@ -39,7 +39,6 @@ export class RollAttributeDialogComponent implements OnInit {
   async initVariables() {
     await this.gameSettingsService.getGameSettings().then((gameSettings) => {
       this.gameSettings = gameSettings;
-      console.log(this.gameSettings);
 
       if (this.data.diceResultList.length < 1 && !this.data.hasToSum) {
         this.strResult += `${Math.min(...this.data.diceResultList)}.`;

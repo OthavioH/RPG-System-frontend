@@ -13,7 +13,7 @@ import { CharactersService } from '../../characters/shared/services/characters.s
 export class ChooseAbilitiesDialogComponent implements OnInit {
 
   chooseAbilityList:IAbility[] = [];
-  selectedAbilityList: IAbility[] = [];
+  selectedAbilityList: string[] = [];
   gameSettingsAbilityList:IAbility[] = [];
 
   constructor(
@@ -22,11 +22,11 @@ export class ChooseAbilitiesDialogComponent implements OnInit {
     public gameSettingsService: GameSettingsService,
     public charactersService: CharactersService,
     ) {
-      
+
     }
 
   ngOnInit(): void {
-    
+
     this.initLists();
   }
 
@@ -44,7 +44,7 @@ export class ChooseAbilitiesDialogComponent implements OnInit {
         for (let j = 0; j < secondList.length; j++) {
           if (firstList[i].name == secondList[j].name) {
             foundMatch = true;
-          } 
+          }
         }
         if (!foundMatch) {
           newList.push(firstList[i]);
@@ -57,9 +57,9 @@ export class ChooseAbilitiesDialogComponent implements OnInit {
     return newList;
   }
 
-  async onSelectAbility(selectedAbility: IAbility){
+  async onSelectAbility(selectedAbility: string){
     if (this.selectedAbilityList.includes(selectedAbility)) {
-      this.selectedAbilityList = this.selectedAbilityList.filter(ability => ability.id != selectedAbility.id);
+      this.selectedAbilityList = this.selectedAbilityList.filter(ability => ability != selectedAbility);
     }
     else {
       this.selectedAbilityList.push(selectedAbility);

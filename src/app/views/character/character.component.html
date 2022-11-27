@@ -299,7 +299,7 @@
         <div class="d-flex flex-wrap justify-content-between col-md-12 ps-1 pe-4 mt-3 py-2 overflow-auto"
           style="max-height:500px;">
           <div class="d-flex col-md-12 flex-nowrap justify-content-between mb-2 me-5 w-auto"
-            *ngFor="let ability of character.abilities">
+            *ngFor="let ability of characterAbilities">
             <button class="btn btn-outline-danger w-auto me-2 col" (click)="deleteAbility(ability.id)"
               style="height:fit-content;max-width: 40px;font-size: 14px;">
               <i class="bi bi-trash3 text-light"></i>
