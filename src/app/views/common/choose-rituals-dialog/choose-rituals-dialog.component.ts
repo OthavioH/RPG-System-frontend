@@ -13,7 +13,7 @@ import { CharactersService } from '../../characters/shared/services/characters.s
 export class ChooseRitualsDialogComponent implements OnInit {
 
   chooseRitualList:IRitual[] = [];
-  selectedRitualList: IRitual[] = [];
+  selectedRitualList: string[] = [];
   gameSettingsRitualList:IRitual[] = [];
 
   constructor(
@@ -22,11 +22,11 @@ export class ChooseRitualsDialogComponent implements OnInit {
     public gameSettingsService: GameSettingsService,
     public charactersService: CharactersService,
     ) {
-      
+
     }
 
   ngOnInit(): void {
-    
+
     this.initLists();
   }
 
@@ -44,7 +44,7 @@ export class ChooseRitualsDialogComponent implements OnInit {
         for (let j = 0; j < secondList.length; j++) {
           if (firstList[i].name == secondList[j].name) {
             foundMatch = true;
-          } 
+          }
         }
         if (!foundMatch) {
           newList.push(firstList[i]);
@@ -57,12 +57,12 @@ export class ChooseRitualsDialogComponent implements OnInit {
     return newList;
   }
 
-  async onSelectRitual(selectedAbility: IRitual){
-    if (this.selectedRitualList.includes(selectedAbility)) {
-      this.selectedRitualList = this.selectedRitualList.filter(ability => ability.id != selectedAbility.id);
+  async onSelectRitual(selectedRitualID: string){
+    if (this.selectedRitualList.includes(selectedRitualID)) {
+      this.selectedRitualList = this.selectedRitualList.filter(ritual => ritual != selectedRitualID);
     }
     else {
-      this.selectedRitualList.push(selectedAbility);
+      this.selectedRitualList.push(selectedRitualID);
     }
   }
 

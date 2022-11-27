@@ -27,7 +27,7 @@ export class ICharacter {
     skills?: ISkill[];
     attributes: CharacterAttributes;
     abilities?: IAbility[];
-    rituals?: IRitual[];
+    rituals?: string[];
     weapons?: IWeapon[];
     inventory?: Inventory;
     passiveDefense?: number;

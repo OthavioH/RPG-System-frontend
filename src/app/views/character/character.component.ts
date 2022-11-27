@@ -33,6 +33,7 @@ import {
 } from '../../../models/EditWeaponDialogAction';
 import { generateRandomId } from '../common/view_utils';
 import { GameSettingsService } from '../../game-settings.service';
+import getCharacterRituals from 'src/app/utils/getCharacterRituals';
 
 @Component({
   selector: 'app-character',
@@ -41,6 +42,7 @@ import { GameSettingsService } from '../../game-settings.service';
 })
 export class CharacterComponent implements OnInit {
   character: ICharacter;
+  characterRituals: IRitual[];
   routeSubscription: Subscription;
 
   onCharacterChanged: Subscription;
@@ -60,6 +62,9 @@ export class CharacterComponent implements OnInit {
     this.routeSubscription = this.activatedRoute.data.subscribe(
       (info: { character: ICharacter }) => {
         this.character = new ICharacter(this.charactersService, info.character);
+        getCharacterRituals(this.character, this.gameSettingsService).then((rituals)=>{
+          this.characterRituals = rituals;
+        });
         this.sortListsAlphabetically();
         this.titleService.setTitle(`Personagem | ${this.character.name}`);
         this.imgUrl = this.character.profileImageUrl ?? this.defaultImgUrl;
@@ -75,11 +80,6 @@ export class CharacterComponent implements OnInit {
     }
     if (this.character.abilities != null) {
       this.character.abilities = this.character.abilities.sort((a, b) =>
-        a.name.localeCompare(b.name)
-      );
-    }
-    if (this.character.rituals != null) {
-      this.character.rituals = this.character.rituals.sort((a, b) =>
         a.name.localeCompare(b.name)
       );
     }
@@ -317,9 +317,9 @@ export class CharacterComponent implements OnInit {
     this.character.saveCharacter();
   }
 
-  deleteRitual(ritualId: string): void {
+  deleteRitual(deletedRitualID: string): void {
     this.character.rituals = this.character.rituals.filter(
-      (ritual) => ritual.id != ritualId
+      (ritualID) => ritualID != deletedRitualID
     );
     this.character.saveCharacter();
   }
