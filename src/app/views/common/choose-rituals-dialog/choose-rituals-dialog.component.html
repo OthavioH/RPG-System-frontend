@@ -7,7 +7,7 @@
     <div class="d-flex flex-wrap justify-content-between mb-2 d-flex text-wrap"
       style="min-height: 35px;height:fit-content;" *ngFor="let ritual of chooseRitualList">
       <input type="checkbox" class="btn-check" [id]="'checkRitual'+ritual.name" autocomplete="off"
-        (change)="onSelectRitual(ritual)">
+        (change)="onSelectRitual(ritual.id)">
       <label class="btn btn-outline-warning shadow-none" [for]="'checkRitual'+ritual.name">{{ritual.name}}</label>
     </div>
   </div>

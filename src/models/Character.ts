@@ -1,8 +1,6 @@
 import { CharactersService } from "src/app/views/characters/shared/services/characters.service";
-import { IAbility } from "./Ability";
 import { CharacterAttributes } from "./CharacterAttributes";
 import { Inventory } from "./Inventory";
-import { IRitual } from "./Ritual";
 import { ISkill } from "./Skill";
 import { IWeapon } from "./Weapon";
 
@@ -26,8 +24,8 @@ export class ICharacter {
     proficiences: string;
     skills?: ISkill[];
     attributes: CharacterAttributes;
-    abilities?: IAbility[];
-    rituals?: IRitual[];
+    abilities?: string[];
+    rituals?: string[];
     weapons?: IWeapon[];
     inventory?: Inventory;
     passiveDefense?: number;

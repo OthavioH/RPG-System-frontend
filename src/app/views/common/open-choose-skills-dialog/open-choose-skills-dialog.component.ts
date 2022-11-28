@@ -22,11 +22,11 @@ export class OpenChooseSkillsDialogComponent implements OnInit {
     public gameSettingsService: GameSettingsService,
     public charactersService: CharactersService,
     ) {
-      
+
     }
 
   ngOnInit(): void {
-    
+
     this.initLists();
   }
 
@@ -44,7 +44,7 @@ export class OpenChooseSkillsDialogComponent implements OnInit {
         for (let j = 0; j < secondList.length; j++) {
           if (firstList[i].name == secondList[j].name) {
             foundMatch = true;
-          } 
+          }
         }
         if (!foundMatch) {
           newList.push(firstList[i]);
