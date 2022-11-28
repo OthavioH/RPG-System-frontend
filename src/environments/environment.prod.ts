@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://18.231.191.4:3333',
+  apiUrl: 'http://52.67.12.185:3333/',
   frontendUrl:'https://rpg-system-frontend.vercel.app/',
 };
