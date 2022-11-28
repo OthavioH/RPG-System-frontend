@@ -104,7 +104,7 @@
   <div class="d-flex flex-row flex-wrap row">
     <div class="d-flex col-md-6 mt-3 shadow">
       <div
-        class="container rounded-3 pb-2 pt-5 pb-4 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300">
+        class="container rounded-3 pb-2 pt-5 pb-4 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300 overflow-auto">
         <div class="row d-flex justify-content-between col-md-12">
           <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Defesas</p>
         </div>
@@ -112,34 +112,32 @@
           style="min-height: 150px;">
           <div class="d-flex col justify-content-between mb-2 me-5 w-auto">
             <div class="col">
-              <div class="card align-items-center bg-warning border-2 border-warning" role="button"
+              <div class="align-items-center bg-transparent border border-1 border-transparent rounded-top"
                 style="width:fit-content;height:fit-content">
-                <div class="card-header bg-warning row pt-3 px-0 mx-0" style="width:115px;height:fit-content;">
-                  <p class="text-light text-center fs-5 text-break fw-bold user-select-none"
-                    style="text-shadow: 1px 1px 4px black;">Passiva</p>
+                <div class="bg-light border-light border-bottom border-1 rounded-top row pt-3 px-0 mx-0" style="width:190px;height:fit-content;">
+                  <p class="text-dark text-center fs-5 fw-bold courier-font user-select-none">PASSIVA</p>
                 </div>
-                <div class="card-body py-0 my-0 bg-dark rounded-bottom row align-items-center px-0 mx-0"
-                  style="width:115px;height:50px;">
+                <div class="py-0 my-0 bg-transparent row align-items-center px-0 mx-0"
+                  style="width:190px;height:65px;">
                   <input type="text"
-                    class="col form-control text-center border-0 shadow-none bg-transparent fw-bold text-light w-100"
-                    [(ngModel)]="character.passiveDefense" style="width:50px;">
+                    class="col form-control text-center enigma-font border-0 bg-transparent shadow-none fw-bold text-light w-100"
+                    [(ngModel)]="character.passiveDefense" style="width:50px;font-size: 39px;">
                 </div>
               </div>
             </div>
           </div>
-          <div class="d-flex col justify-content-between mb-2 me-5 w-auto">
+          <div class="d-flex col justify-content-between mb-2 w-auto">
             <div class="col">
-              <div class="card align-items-center bg-warning border-2 border-warning" role="button"
+              <div class="align-items-center bg-transparent border border-1 border-light rounded-top"
                 style="width:fit-content;height:fit-content">
-                <div class="card-header bg-warning row pt-3 px-0 mx-0" style="width:115px;height:fit-content;">
-                  <p class="text-light text-center fs-5 text-break fw-bold user-select-none"
-                    style="text-shadow: 1px 1px 4px black;">Esquiva</p>
+                <div class=" bg-light border-light border-bottom border-1 rounded-top row pt-3 px-0 mx-0" style="width:190px;height:fit-content;">
+                  <p class="text-dark text-center fs-5 fw-bold courier-font user-select-none">ESQUIVA</p>
                 </div>
-                <div class="card-body py-0 my-0 bg-dark rounded-bottom row align-items-center px-0 mx-0"
-                  style="width:115px;height:50px;">
+                <div class="py-0 my-0 bg-transparent row align-items-center px-0 mx-0"
+                  style="width:190px;height:65px;">
                   <input type="text"
-                    class="col form-control text-center border-0 shadow-none bg-transparent fw-bold text-light w-100"
-                    [(ngModel)]="character.dodgeDefense" style="width:50px;">
+                    class="col form-control text-center enigma-font border-0 bg-transparent shadow-none fw-bold text-light w-100"
+                    [(ngModel)]="character.dodgeDefense" style="font-size: 39px;">
                 </div>
               </div>
             </div>
@@ -148,70 +146,36 @@
         <div class="row d-flex justify-content-between col-md-12">
           <p class="text-center fs-2 enigma-font fw-bold text-light w-25 col">Resistências</p>
         </div>
-        <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 overflow-auto"
-          style="min-height: 150px;">
-          <div class="d-flex col mb-2 w-auto">
-            <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
-              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                style="height:50px;text-shadow: 1px 1px 4px black;">Física</div>
-              <input type="text"
-                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                style="width:40px;height:50px;" [(ngModel)]="character.physicsResistance">
-            </div>
+        <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2">
+          <div class="input-wrapper d-flex col mb-2 w-auto">
+            <label for="asdasd" class="d-flex flex-md-grow-1 justify-content-center text-light courier-font fw-bold align-self-center">FÍSICA</label>
+            <input type="text" id="physics" class="form-control text-center physics-input enigma-font bg-transparent fw-bold text-light fs-3 p-0" style="height: 60px;width: 70px;" [(ngModel)]="character.physicsResistance">
           </div>
-          <div class="d-flex col mb-2 w-auto">
-            <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
-              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                style="height:50px;text-shadow: 1px 1px 4px black;">Balística</div>
-              <input type="text"
-                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                style="width:40px;height:50px;" [(ngModel)]="character.ballisticResistance">
-            </div>
+          <div class="input-wrapper d-flex col mb-2 w-auto">
+            <label for="asdasd" class="d-flex flex-md-grow-1 justify-content-center text-light courier-font fw-bold align-self-center">BALÍSTICA</label>
+            <input type="text" id="physics" class="form-control text-center physics-input enigma-font bg-transparent fw-bold text-light fs-3 p-0" style="height: 60px;width: 95px;" [(ngModel)]="character.ballisticResistance">
           </div>
-          <div class="d-flex col mb-2 w-auto">
-            <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
-              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                style="height:50px;text-shadow: 1px 1px 4px black;">Mental</div>
-              <input type="text"
-                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                style="width:40px;height:50px;" [(ngModel)]="character.insanityResistance">
-            </div>
+          <div class="input-wrapper d-flex col mb-2 w-auto">
+            <label for="asdasd" class="d-flex flex-md-grow-1 justify-content-center text-light courier-font fw-bold align-self-center">MENTAL</label>
+            <input type="text" id="physics" class="form-control text-center physics-input enigma-font bg-transparent fw-bold text-light fs-3 p-0" style="height: 60px;width: 70px;" [(ngModel)]="character.insanityResistance">
           </div>
-          <div class="d-flex col mb-2 w-auto">
-            <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
-              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                style="height:50px;text-shadow: 1px 1px 4px black;">Sangue</div>
-              <input type="text"
-                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                style="width:40px;height:50px;" [(ngModel)]="character.bloodResistance">
-            </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2">
+          <div class="input-wrapper d-flex col mb-2 w-auto">
+            <label for="asdasd" class="d-flex flex-md-grow-1 justify-content-center courier-font fw-bold align-self-center">SANGUE</label>
+            <input type="text" id="physics" class="form-control text-center physics-input enigma-font bg-transparent fw-bold fs-3 p-0" style="height: 60px;width: 70px;border-color: red !important;color:red;" [(ngModel)]="character.bloodResistance">
           </div>
-          <div class="d-flex col mb-2 w-auto">
-            <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
-              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                style="height:50px;text-shadow: 1px 1px 4px black;">Energia</div>
-              <input type="text"
-                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                style="width:40px;height:50px;" [(ngModel)]="character.energyResistance">
-            </div>
+          <div class="input-wrapper d-flex col mb-2 w-auto">
+            <label for="asdasd" class="d-flex flex-md-grow-1 justify-content-center text-light courier-font fw-bold align-self-center">CONHECIMENTO</label>
+            <input type="text" id="physics" class="form-control text-center physics-input enigma-font bg-transparent fw-bold fs-3 p-0" style="height: 60px;width: 120px;border-color: #fbbf0d !important;color:#fbbf0d;" [(ngModel)]="character.knowledgeResistance">
           </div>
-          <div class="d-flex col mb-2 w-auto">
-            <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
-              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                style="height:50px;text-shadow: 1px 1px 4px black;">Morte</div>
-              <input type="text"
-                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                style="width:40px;height:50px;" [(ngModel)]="character.deathResistance">
-            </div>
+          <div class="input-wrapper d-flex col mb-2 w-auto">
+            <label for="asdasd" class="d-flex flex-md-grow-1 justify-content-center text-light courier-font fw-bold align-self-center">ENERGIA</label>
+            <input type="text" id="physics" class="form-control text-center physics-input enigma-font bg-transparent fw-bold fs-3 p-0" style="height: 60px;width: 78px;border-color: rgb(174, 3, 174) !important;color:rgb(174, 3, 174);" [(ngModel)]="character.energyResistance">
           </div>
-          <div class="d-flex col mb-2 w-auto">
-            <div class="bg-transparent row" role="button" style="min-width:100px;width:fit-content;height:50px;">
-              <div class="bg-warning rounded-start pt-3 text-light text-center fs-6 fw-bold user-select-none w-auto"
-                style="height:50px;text-shadow: 1px 1px 4px black;">Conhecimento</div>
-              <input type="text"
-                class="form-control text-center rounded-right bg-dark fw-bold text-light rtb-border-light"
-                style="width:40px;height:50px;" [(ngModel)]="character.knowledgeResistance">
-            </div>
+          <div class="input-wrapper d-flex col mb-2 w-auto">
+            <label for="asdasd" class="d-flex flex-md-grow-1 justify-content-center text-light courier-font fw-bold align-self-center" style="left:1.7em !important;">MORTE</label>
+            <input type="text" id="physics" class="form-control text-center physics-input enigma-font bg-transparent fw-bold fs-3 p-0" style="height: 60px;width: 70px;border-color: gray !important;color:gray;" [(ngModel)]="character.deathResistance">
           </div>
         </div>
       </div>
