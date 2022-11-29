@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://15.229.49.110:3333',
+  apiUrl: 'http://backendrpgsystem-env.eba-mvx94qia.sa-east-1.elasticbeanstalk.com',
   frontendUrl:'https://rpg-system-frontend.vercel.app/',
 };
