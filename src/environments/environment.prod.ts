@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://18.230.22.87:8080',
+  apiUrl: 'https://apirpgsheetcreator.com.br',
   frontendUrl:'https://rpg-system-frontend.vercel.app/',
 };
