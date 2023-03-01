@@ -13,5 +13,6 @@ This is a RPG sheet system to play with my friends. It's my greatest personal pr
 
 ## 🛎 Made with
 - Angular
+- Typescript
 - Bootstrap
 - Socket.io
