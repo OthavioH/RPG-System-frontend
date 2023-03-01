@@ -1,4 +1,4 @@
-# RpgSystem (Front-end)
+# RpgSystem (Front-end) 🎲
 
 ## 📄 Purpose
 This is a RPG sheet system to play with my friends. It's my greatest personal project and I'm very proud of what I did and learned from it.
