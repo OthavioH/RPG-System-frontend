@@ -31,7 +31,7 @@ Abilities, skills, attributes, inventory, weapons, resistences, level, name and 
 <img src="https://user-images.githubusercontent.com/46772924/222442383-daa2b250-e0f7-41fa-a16f-264585f2a617.png" width="700px"/><img src="https://user-images.githubusercontent.com/46772924/222442495-246c0896-c7ef-4cee-b3f2-070b1701d1e2.png" width="700px"/>
 <img src="https://user-images.githubusercontent.com/46772924/222442580-9f3ea0d8-8ce2-4132-a6fb-9aa88dc653cb.png" width="700px"/>
 
-There is even a feature to roll a dice if you click at an attribute or by typing 1d6, 1d12, 1d8 and more at the input.
+There is even a feature to roll a dice if you click at an attribute or by typing 1d6, 3d12, 2d8 and more at the input.
 
 <img src="https://user-images.githubusercontent.com/46772924/222442760-5b960f94-1cbd-4782-8257-6888be10da1f.png" width="700px"/>
 
