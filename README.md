@@ -1,5 +1,12 @@
 # RpgSystem (Front-end) 🎲
 
+## Links
+- [Purpose](https://github.com/OthavioH/RPG-System-frontend/edit/master/README.md#-purpose)
+- [Features](https://github.com/OthavioH/RPG-System-frontend/edit/master/README.md#-features)
+- [Screens](https://github.com/OthavioH/RPG-System-frontend/edit/master/README.md#-screens)
+- [Made with](https://github.com/OthavioH/RPG-System-frontend/edit/master/README.md#-made-with)
+
+
 ## 📄 Purpose
 This is a RPG sheet system to play "Paranormal Order" with friends. It's my greatest personal project and I'm very proud of what I did and learned from it.
 
@@ -33,9 +40,10 @@ If you click on rituals, abilities, skills or inventory item it will appear a di
 <img src="https://user-images.githubusercontent.com/46772924/222442856-4a782b6f-4522-4bdd-acf5-97b670b54a2d.png" alt="dialog showing all the ritual info" width="500px"/><img src="https://user-images.githubusercontent.com/46772924/222442953-71f2d035-d08d-43c0-bf54-26200c87dcc9.png" alt="dialog showing all the skill info" width="500px"/>
 <img src="https://user-images.githubusercontent.com/46772924/222443038-8699bf52-b7d3-485a-a344-9f0e9b8c7b87.png" alt="dialog showing all the ability info" width="500px"/><img src="https://user-images.githubusercontent.com/46772924/222443183-b1484c34-e988-4237-80bf-32e2bfd159c9.png" alt="dialog showing all the inventory item info" width="500px"/>
 
-### "Secret" Threat Page
+### "Secret" Threat Page 👹
+
 I've created a Threat page for the Game Master to control not only the players' sheets but the threats' sheets too.
-And I intended to create that feeling of a macabre page because creatures in "Paranormal Order" are not normal, they are literally creatures from a paranormal dimension.
+And I intended to create that feeling of a macabre page because creatures in "Paranormal Order" are not normal, they are literally creatures from a paranormal dimension. The only way to access it is by going to the "/threats" endpoint.
 
 <img src="https://user-images.githubusercontent.com/46772924/222450946-63e5fbe9-1704-4c5a-bcfb-e6d96ece8d0e.png" width="700px"/>
 
