@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://apirpgsheetcreator.com.br',
-  frontendUrl:'https://rpg-system-frontend.vercel.app/',
+  apiUrl: 'https://rpg-system-backend.onrender.com',
+  frontendUrl: 'https://rpg-system-frontend.vercel.app/',
 };
