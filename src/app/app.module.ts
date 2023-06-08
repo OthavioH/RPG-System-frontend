@@ -55,6 +55,9 @@ import { ThreatsCardComponent } from './views/common/threats-card/threats-card.c
 import { CreateThreatDialogComponent } from './views/common/create-threat-dialog/create-threat-dialog.component';
 import { ThreatPageComponent } from './views/threat-page/threat-page.component';
 import { DeleteThreatDialogComponent } from './views/common/delete-threat-dialog/delete-threat-dialog.component';
+import { CharactersResolver } from './views/characters/guards/characters.resolver';
+import { HomePageComponent } from './home-page/home-page.component';
+import { CharactersService } from './views/characters/shared/services/characters.service';
 
 @NgModule({
   declarations: [
@@ -97,6 +100,7 @@ import { DeleteThreatDialogComponent } from './views/common/delete-threat-dialog
     CreateThreatDialogComponent,
     ThreatPageComponent,
     DeleteThreatDialogComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -117,6 +121,8 @@ import { DeleteThreatDialogComponent } from './views/common/delete-threat-dialog
     MatTableModule,
   ],
   providers: [
+    CharactersService,
+    CharactersResolver,
     { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' },
   ],
   exports: [AppRoutingModule],

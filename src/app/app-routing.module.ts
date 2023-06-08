@@ -11,12 +11,15 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
 import { PortraitPageComponent } from './views/portrait-page/portrait-page.component';
 import { ThreatPageComponent } from './views/threat-page/threat-page.component';
 import { ThreatResolver } from './views/threat-page/threat-resolver.resolver';
+import { HomePageComponent } from './home-page/home-page.component';
+import { LoadingGuard } from './views/characters/guards/loading-guard.guard';
 
 const routes: Routes = [
   {
     path: 'dashboard',
     component: CharactersComponent,
     resolve: { gameSettings: CharactersResolver },
+    canActivate: [LoadingGuard],
   },
   {
     path: 'threats',
@@ -53,7 +56,11 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+  {
+    path: '',
+    pathMatch: 'full',
+    component: HomePageComponent,
+  },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
 
