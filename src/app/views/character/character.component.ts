@@ -6,7 +6,7 @@ import { CharactersService } from '../characters/shared/services/characters.serv
 import { ICharacter } from 'src/models/Character';
 import { EditProgressBarValuesDialogComponent } from '../common/edit-hp-dialog/edit-progress-bar-values-dialog.component';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OpenChooseSkillsDialogComponent } from '../common/open-choose-skills-dialog/open-choose-skills-dialog.component';
 import { AttributeDialogComponent } from '../common/attribute-dialog/attribute-dialog.component';
 import { IAttribute } from 'src/models/Attribute';
@@ -65,13 +65,17 @@ export class CharacterComponent implements OnInit {
     this.routeSubscription = this.activatedRoute.data.subscribe(
       (info: { character: ICharacter }) => {
         this.character = new ICharacter(this.charactersService, info.character);
-        getCharacterRituals(this.character, this.gameSettingsService).then((rituals)=>{
-          this.characterRituals = rituals;
-        });
+        getCharacterRituals(this.character, this.gameSettingsService).then(
+          (rituals) => {
+            this.characterRituals = rituals;
+          }
+        );
 
-        getCharacterAbilities(this.character, this.gameSettingsService).then((abilities)=>{
-          this.characterAbilities = abilities;
-        });
+        getCharacterAbilities(this.character, this.gameSettingsService).then(
+          (abilities) => {
+            this.characterAbilities = abilities;
+          }
+        );
 
         this.titleService.setTitle(`Personagem | ${this.character.name}`);
         this.imgUrl = this.character.profileImageUrl ?? this.defaultImgUrl;
@@ -104,7 +108,9 @@ export class CharacterComponent implements OnInit {
   async onDoubleClickAttribute(attribute: IAttribute): Promise<void> {
     const attributeValue = attribute.value <= 0 ? 2 : attribute.value;
     const diceResults = this.getDicesResults(attributeValue);
-    this.modalService.open(RollAttributeDialogComponent, { data: { diceResultList:diceResults, hasToSum:false } });
+    this.modalService.open(RollAttributeDialogComponent, {
+      data: { diceResultList: diceResults, hasToSum: false },
+    });
     for (let i = 0; i < diceResults.length; i++) {
       const diceValue = diceResults[i];
       await this.gameSettingsService.addNewRoll({
