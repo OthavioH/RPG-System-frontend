@@ -1,9 +1,18 @@
-<div class="d-flex flex-wrap justify-content-center w-auto">
-  <mat-form-field appearance="fill" class="w-auto">
-    <mat-label class="text-light">Tipo de dado</mat-label>
-    <input #diceRoll matInput type="text" class="text-light" name="" id="">
-  </mat-form-field>
-  <button class="btn btn-outline-warning mt-2 ms-3" type="button" style="height: 35px;"
-    (click)="rollDice(diceRoll.value)" role="button">Rolar
-    dado</button>
+<div class="d-flex flex-wrap justify-content-center align-center w-auto">
+  <input
+    #diceRoll
+    type="text"
+    class="text-light rounded rounded-3 enigma-font"
+    name="diceRoll"
+    id="dice-type-input"
+    placeholder="Tipo de dado"
+  />
+  <button
+    class="btn btn-outline-warning ms-3 w-auto h-auto"
+    type="button"
+    (click)="rollDice(diceRoll.value)"
+    role="button"
+  >
+    <img src="../../../../../assets/d20.png" id="d20icon" />
+  </button>
 </div>

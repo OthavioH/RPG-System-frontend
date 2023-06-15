@@ -1,0 +1,22 @@
+#dice-type-input {
+  width: auto;
+  background-color: transparent;
+  color: white;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0px 10px;
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px double var(--golden-color);
+  }
+}
+
+#d20icon {
+  width: 30px;
+  height: 30px;
+}
+
+button:hover img:only-of-type {
+  filter: brightness(0%);
+}

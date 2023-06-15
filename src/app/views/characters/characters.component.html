@@ -29,7 +29,10 @@
     >
       Personagens
     </p>
-    <div class="container d-flex flex-row flex-wrap justify-content-around">
+    <div
+      class="container d-flex flex-row flex-wrap justify-content-around"
+      style="gap: 8px"
+    >
       <app-character-card
         *ngFor="let character of charactersList"
         [character]="character"
