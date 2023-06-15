@@ -1,9 +1,13 @@
-<div class="progress-bar-container {{color}}">
+<div class="progress-bar-container {{ color }}">
   <div class="progress-bar-content" *ngIf="hasOverlapedText">
     <div class="align-middle">
-      <p class="drawn-font fs-3 text-center text-white">{{value}}/{{total}}</p>
+      <p class="drawn-font fs-3 text-center text-white">
+        {{ value }}/{{ total }}
+      </p>
     </div>
   </div>
-  <div class="progress-bar {{color}}" [ngStyle]="{'width': currentValue + '%'}">
-  </div>
+  <div
+    class="progress-bar {{ color }}"
+    [ngStyle]="{ width: currentValue + '%' }"
+  ></div>
 </div>
