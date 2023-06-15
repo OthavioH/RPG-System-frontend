@@ -11,7 +11,7 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
 import { PortraitPageComponent } from './views/portrait-page/portrait-page.component';
 import { ThreatPageComponent } from './views/threat-page/threat-page.component';
 import { ThreatResolver } from './views/threat-page/threat-resolver.resolver';
-import { HomePageComponent } from './home-page/home-page.component';
+import { HomePageComponent } from './views/home-page/home-page.component';
 import { LoadingGuard } from './views/characters/guards/loading-guard.guard';
 
 const routes: Routes = [

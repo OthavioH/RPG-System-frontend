@@ -41,7 +41,7 @@ import { EditRitualDialogComponent } from '../common/edit-ritual-dialog/edit-rit
 import { findCharacterIndex } from '../common/view_utils';
 import { ShowRitualDialogComponent } from '../common/show-ritual-dialog/show-ritual-dialog.component';
 import { WebSocketService } from '../shared/web-socket.service';
-import { loadingObserver$ } from 'src/app/home-page/home-page.component';
+import { loadingObserver$ } from 'src/app/views/home-page/home-page.component';
 
 @Component({
   selector: 'app-characters',
@@ -142,6 +142,7 @@ export class CharactersComponent implements OnInit {
               changedCharacter
             );
             this.charactersList[index] = changedCharacter;
+            console.log(this.charactersList);
           }
         }
       });

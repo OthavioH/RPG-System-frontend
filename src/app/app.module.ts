@@ -56,7 +56,7 @@ import { CreateThreatDialogComponent } from './views/common/create-threat-dialog
 import { ThreatPageComponent } from './views/threat-page/threat-page.component';
 import { DeleteThreatDialogComponent } from './views/common/delete-threat-dialog/delete-threat-dialog.component';
 import { CharactersResolver } from './views/characters/guards/characters.resolver';
-import { HomePageComponent } from './home-page/home-page.component';
+import { HomePageComponent } from './views/home-page/home-page.component';
 import { CharactersService } from './views/characters/shared/services/characters.service';
 
 @NgModule({
