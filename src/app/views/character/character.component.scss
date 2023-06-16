@@ -1,6 +1,6 @@
-.my-modal-content{
-    background-color: transparent;
-    border:none !important;
+.my-modal-content {
+  background-color: transparent;
+  border: none !important;
 }
 
 .my-modal-content .modal-header,
@@ -10,7 +10,7 @@
 }
 
 .properties-yellow-hover:hover {
-  background:#e0ac10 !important;
+  background: #e0ac10 !important;
 }
 
 .opacity30 {
@@ -19,26 +19,27 @@
 }
 
 .elevated-container {
-  background:none;
+  background: none;
   border: none;
 }
 
 .shield {
-    position: relative;
-    width: 10em;
-    height: 10em;
+  position: relative;
+  width: 10em;
+  height: 10em;
 }
-.shield:before, .shield:after {
-    content:"";
-    border-radius: 0;
-    border-top-right-radius: 100% 100%;
-    border-bottom-right-radius: 125% 100%;
-    width: 6.275em;
-    height: 6em;
-    transform-origin: bottom left;
-    transform: scale(1,1) translateX(5em) rotate(-20deg);
-    position:absolute;
-    bottom:-42.5%;
+.shield:before,
+.shield:after {
+  content: "";
+  border-radius: 0;
+  border-top-right-radius: 100% 100%;
+  border-bottom-right-radius: 125% 100%;
+  width: 6.275em;
+  height: 6em;
+  transform-origin: bottom left;
+  transform: scale(1, 1) translateX(5em) rotate(-20deg);
+  position: absolute;
+  bottom: -42.5%;
 }
 
 .no-arrows {
@@ -53,7 +54,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -72,13 +73,13 @@ input[type=number] {
 
 .outro-lado {
   min-height: 150px;
-  min-width:500px;
+  min-width: 500px;
 }
 
 .attributes-size {
-  width:108px;
-  height:35px;
-  color:white;
+  width: 108px;
+  height: 35px;
+  color: white;
 }
 
 .attributes-size:hover {
@@ -87,27 +88,27 @@ input[type=number] {
 
 .agility-position {
   top: 12%;
-  left:205%;
+  left: 205%;
 }
 
 .int-position {
-  top:33%;
-  left:245%;
+  top: 33%;
+  left: 245%;
 }
 
 .for-position {
-  top:33%;
-  left:-140%;
+  top: 33%;
+  left: -140%;
 }
 
 .pre-position {
-  top:73%;
-  left:-195%;
+  top: 73%;
+  left: -195%;
 }
 
 .vig-position {
-  top:73%;
-  left:-95%;
+  top: 73%;
+  left: -95%;
 }
 
 @media screen and (max-width: 1400px) {
@@ -136,8 +137,8 @@ input[type=number] {
     margin-right: 7px;
   }
   .attributes-size {
-    width:85px;
-    height:35px;
+    width: 85px;
+    height: 35px;
   }
 }
 
@@ -172,18 +173,13 @@ input[type=number] {
     margin-right: 35px;
   }
   .attributes-size {
-    width:62px;
-    height:27px;
+    width: 62px;
+    height: 27px;
   }
 }
 
 .paranormal-text {
-  font-family: 'Paranormal',Arial, Helvetica, sans-serif;
-}
-
-.enigma-font {
-  font-family: 'EnigmaSans';
-  letter-spacing: 5px;
+  font-family: "Paranormal", Arial, Helvetica, sans-serif;
 }
 
 .rounded-circle {
@@ -198,8 +194,8 @@ input[type=number] {
   letter-spacing: 2px !important;
 }
 
-.courier-font{
-  font-family: 'Courier New', Courier, monospace;
+.courier-font {
+  font-family: "Courier New", Courier, monospace;
 }
 
 fieldset {
@@ -232,7 +228,7 @@ label {
   position: absolute;
   top: 0;
   z-index: 1;
-  left:1.4em;
+  left: 1.4em;
   background-color: black;
   color: white;
   padding: 0 2px;
@@ -265,9 +261,31 @@ label {
   border-color: black;
 }
 
-.shield:after {transform: scale(-1,1) translateX(-5em) rotate(-20deg);}
-.shield, .shield:before, .shield:after {background: grey;}
-.shield.test, .shield.test:before, .shield.test:after {background: rgba(0, 127, 0, 0.5);}
-.red, .red:before, .red:after {background:red;}
-.green, .green:before, .green:after {background:green;}
-.blue, .blue:before, .blue:after {background:blue;}
+.shield:after {
+  transform: scale(-1, 1) translateX(-5em) rotate(-20deg);
+}
+.shield,
+.shield:before,
+.shield:after {
+  background: grey;
+}
+.shield.test,
+.shield.test:before,
+.shield.test:after {
+  background: rgba(0, 127, 0, 0.5);
+}
+.red,
+.red:before,
+.red:after {
+  background: red;
+}
+.green,
+.green:before,
+.green:after {
+  background: green;
+}
+.blue,
+.blue:before,
+.blue:after {
+  background: blue;
+}

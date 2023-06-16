@@ -7,7 +7,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { loadingObserver$ } from 'src/app/home-page/home-page.component';
+import { loadingObserver$ } from 'src/app/views/home-page/home-page.component';
 
 @Injectable({
   providedIn: 'root',

@@ -1,22 +1,22 @@
-.my-modal-content{
+.my-modal-content {
   background-color: transparent;
-  border:none !important;
+  border: none !important;
 }
 
 .my-modal-content .modal-header,
 .my-modal-content .modal-body,
 .my-modal-content .modal-footer {
-border: 0 !important;
+  border: 0 !important;
 }
 
 .opacity30 {
-opacity: 0.3;
-filter: alpha(opacity=30); /* For IE8 and earlier */
+  opacity: 0.3;
+  filter: alpha(opacity=30); /* For IE8 and earlier */
 }
 
 .elevated-container {
-background:none;
-border: none;
+  background: none;
+  border: none;
 }
 
 .shield {
@@ -24,181 +24,199 @@ border: none;
   width: 10em;
   height: 10em;
 }
-.shield:before, .shield:after {
-  content:"";
+.shield:before,
+.shield:after {
+  content: "";
   border-radius: 0;
   border-top-right-radius: 100% 100%;
   border-bottom-right-radius: 125% 100%;
   width: 6.275em;
   height: 6em;
   transform-origin: bottom left;
-  transform: scale(1,1) translateX(5em) rotate(-20deg);
-  position:absolute;
-  bottom:-42.5%;
+  transform: scale(1, 1) translateX(5em) rotate(-20deg);
+  position: absolute;
+  bottom: -42.5%;
 }
 
 .outro-lado-bg {
-width: 624px;
-height: 500px;
-background-image: url("./../../../../assets/Atributes.png");
-background-size: contain;
-background-repeat: no-repeat;
-background-position: 50% 50%;
-}
-
-.border-transparent {
-border: none;
-}
-
-.outro-lado {
-min-height: 150px;
-min-width:500px;
-}
-
-.attributes-size {
-width:108px;
-height:35px;
-color:white;
-}
-
-.agility-position {
-top: 10%;
-left:205%;
-}
-
-.int-position {
-top:33%;
-left:245%;
-}
-
-.for-position {
-top:33%;
-left:-140%;
-}
-
-.pre-position {
-top:73%;
-left:-195%;
-}
-
-.vig-position {
-top:73%;
-left:-95%;
-}
-
-@media screen and (max-width: 1400px) {
-.outro-lado {
-  max-height: 400px;
-  max-width: 50px;
-}
-.outro-lado-bg {
-  max-height: 400px;
-  max-width: 50px;
+  width: 624px;
+  height: 500px;
   background-image: url("./../../../../assets/Atributes.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
-.agility-position {
-  margin-left: -1.3px;
+
+.border-transparent {
+  border: none;
 }
-.for-position {
-  margin-right: 3px;
+
+.outro-lado {
+  min-height: 150px;
+  min-width: 500px;
 }
-.pre-position {
-  margin-right: 4px;
-}
-.vig-position {
-  margin-right: 7px;
-}
+
 .attributes-size {
-  width:85px;
-  height:35px;
+  width: 108px;
+  height: 35px;
+  color: white;
 }
+
+.agility-position {
+  top: 10%;
+  left: 205%;
+}
+
+.int-position {
+  top: 33%;
+  left: 245%;
+}
+
+.for-position {
+  top: 33%;
+  left: -140%;
+}
+
+.pre-position {
+  top: 73%;
+  left: -195%;
+}
+
+.vig-position {
+  top: 73%;
+  left: -95%;
+}
+
+@media screen and (max-width: 1400px) {
+  .outro-lado {
+    max-height: 400px;
+    max-width: 50px;
+  }
+  .outro-lado-bg {
+    max-height: 400px;
+    max-width: 50px;
+    background-image: url("./../../../../assets/Atributes.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  .agility-position {
+    margin-left: -1.3px;
+  }
+  .for-position {
+    margin-right: 3px;
+  }
+  .pre-position {
+    margin-right: 4px;
+  }
+  .vig-position {
+    margin-right: 7px;
+  }
+  .attributes-size {
+    width: 85px;
+    height: 35px;
+  }
 }
 
 @media screen and (max-width: 980px) {
-.outro-lado {
-  max-height: 200px;
-  max-width: 150px;
-}
-.outro-lado-bg {
-  max-height: 300px;
-  max-width: 150px;
-  background-image: url("./../../../../assets/Atributes.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: 10% 10%;
-}
-.agility-position {
-  margin-left: -15.3px;
-}
-.for-position {
-  margin-right: 20px;
-}
-.int-position {
-  margin-left: -8.5px;
-}
-.pre-position {
-  margin-top: 3px;
-  margin-right: 24px;
-}
-.vig-position {
-  margin-top: 3px;
-  margin-right: 54px;
-}
-.attributes-size {
-  width:62px;
-  height:27px;
-}
+  .outro-lado {
+    max-height: 200px;
+    max-width: 150px;
+  }
+  .outro-lado-bg {
+    max-height: 300px;
+    max-width: 150px;
+    background-image: url("./../../../../assets/Atributes.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 10% 10%;
+  }
+  .agility-position {
+    margin-left: -15.3px;
+  }
+  .for-position {
+    margin-right: 20px;
+  }
+  .int-position {
+    margin-left: -8.5px;
+  }
+  .pre-position {
+    margin-top: 3px;
+    margin-right: 24px;
+  }
+  .vig-position {
+    margin-top: 3px;
+    margin-right: 54px;
+  }
+  .attributes-size {
+    width: 62px;
+    height: 27px;
+  }
 }
 
 .paranormal-text {
-font-family: 'Paranormal',Arial, Helvetica, sans-serif;
-}
-
-.enigma-font {
-font-family: 'EnigmaSans';
-letter-spacing: 5px;
+  font-family: "Paranormal", Arial, Helvetica, sans-serif;
 }
 
 .rounded-circle {
-border-radius: 50em;
+  border-radius: 50em;
 }
 
 .bg-full-black {
-background-color: #000;
+  background-color: #000;
 }
 
 .ls-5 {
-letter-spacing: 5px;
+  letter-spacing: 5px;
 }
 
 .rtb-border-light {
-border-right: 2px solid #e0ac10;
-border-top: 2px solid #e0ac10;
-border-bottom: 2px solid #e0ac10;
-border-left: none;
+  border-right: 2px solid #e0ac10;
+  border-top: 2px solid #e0ac10;
+  border-bottom: 2px solid #e0ac10;
+  border-left: none;
 }
 
 .rounded-right {
-border-top-right-radius: 5px;
-border-bottom-right-radius: 5px;
-border-top-left-radius: 0px;
-border-bottom-left-radius: 0px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
 .form-control:focus {
-box-shadow: none;
+  box-shadow: none;
 }
 
 .text-shadow-hover:hover {
-text-shadow: 1px 1px 4px black;
+  text-shadow: 1px 1px 4px black;
 }
 
-.shield:after {transform: scale(-1,1) translateX(-5em) rotate(-20deg);}
-.shield, .shield:before, .shield:after {background: grey;}
-.shield.test, .shield.test:before, .shield.test:after {background: rgba(0, 127, 0, 0.5);}
-.red, .red:before, .red:after {background:red;}
-.green, .green:before, .green:after {background:green;}
-.blue, .blue:before, .blue:after {background:blue;}
+.shield:after {
+  transform: scale(-1, 1) translateX(-5em) rotate(-20deg);
+}
+.shield,
+.shield:before,
+.shield:after {
+  background: grey;
+}
+.shield.test,
+.shield.test:before,
+.shield.test:after {
+  background: rgba(0, 127, 0, 0.5);
+}
+.red,
+.red:before,
+.red:after {
+  background: red;
+}
+.green,
+.green:before,
+.green:after {
+  background: green;
+}
+.blue,
+.blue:before,
+.blue:after {
+  background: blue;
+}

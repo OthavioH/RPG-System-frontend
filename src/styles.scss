@@ -1,127 +1,143 @@
 /* You can add global styles to this file, and also import other style files */
-@import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import "./../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
-@import '~@angular/material/theming';
-@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+@import "~@angular/material/theming";
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
 
 @include mat-core();
 
 @font-face {
-    font-family: 'Paranormal';
-    src: local("Paranormal"),url('./assets/fonts/AFonteParanormal-Regular.otf') format("opentype");
+  font-family: "Paranormal";
+  src: local("Paranormal"),
+    url("./assets/fonts/AFonteParanormal-Regular.otf") format("opentype");
 }
 
 @font-face {
-  font-family: 'EnigmaSans';
-  src: local("EnigmaSans"),url('./assets/fonts/veterantypewriter.ttf');
+  font-family: "EnigmaSans";
+  src: local("EnigmaSans"), url("./assets/fonts/veterantypewriter.ttf");
 }
 
 @font-face {
-  font-family: 'BabyDoll';
-  src: local("BabyDoll"),url('./assets/fonts/BabyDoll.otf') format("opentype");
+  font-family: "BabyDoll";
+  src: local("BabyDoll"), url("./assets/fonts/BabyDoll.otf") format("opentype");
 }
 
 @font-face {
-  font-family: 'SavaBlack';
-  src: local("SavaPro-Black"), url('./assets/fonts/SavaPro-Black.otf') format("opentype");
+  font-family: "SavaBlack";
+  src: local("SavaPro-Black"),
+    url("./assets/fonts/SavaPro-Black.otf") format("opentype");
 }
 
 @font-face {
-  font-family: 'Skribler';
-  src: local("Skribler"), url('./assets/fonts/Skribler.ttf') format("truetype");
+  font-family: "Skribler";
+  src: local("Skribler"), url("./assets/fonts/Skribler.ttf") format("truetype");
 }
 
-html, body { height: 100%;}
-body { margin: 0; background-color:rgba(0, 0, 0, 0.781);
-    background: url('/../assets/calamidade.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.781);
+  background: url("/../assets/calamidade.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 * {
-    font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+:root {
+  --golden-color: #ffc107;
+}
+
+.enigma-font {
+  font-family: "EnigmaSans";
+  letter-spacing: 5px;
 }
 
 .font-spartan {
-    font-family: 'League Spartan', sans-serif;
+  font-family: "League Spartan", sans-serif;
 }
 
 .drawn-font {
-  font-family: 'BabyDoll';
+  font-family: "BabyDoll";
 }
 
 .character-img {
-    object-fit: cover;
-    width:89px;
-    height:90px;
-    aspect-ratio: initial;
+  object-fit: cover;
+  width: 89px;
+  height: 90px;
+  aspect-ratio: initial;
 }
 
 .threat-img {
   object-fit: cover;
-  width:95px;
-  height:120px;
+  width: 95px;
+  height: 120px;
   aspect-ratio: initial;
 }
 
 .border-white {
-  border:3px solid #fff;
+  border: 3px solid #fff;
 }
 
 .border-yellow {
-  border:3px solid #ffc107;
+  border: 3px solid var(--golden-color);
 }
 
 .not-playable-image {
-  background:none;
+  background: none;
 }
 
 .playable-dice {
-  background: url('./assets/dado.gif') no-repeat;
-  background-size:cover;
+  background: url("./assets/dado.gif") no-repeat;
+  background-size: cover;
 }
 
 .yellow-scrollbar-thin::-webkit-scrollbar {
   width: 10px;
-  border-radius:10px;
+  border-radius: 10px;
 }
 
 .yellow-scrollbar-thin::-webkit-scrollbar-track {
   background: #7a7a7a;
-  border-radius:10px;
+  border-radius: 10px;
 }
 
 .yellow-scrollbar-thin::-webkit-scrollbar-thumb {
   background: #ffc107;
-  border-radius:10px;
+  border-radius: 10px;
 }
 
 .yellow-scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background: #212529;
-  border-radius:10px;
+  border-radius: 10px;
 }
 
 .scrollbar-thin::-webkit-scrollbar {
   height: 10px;
   width: 13px;
-  border-radius:10px;
+  border-radius: 10px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-track {
   background: #7a7a7a;
-  border-radius:10px;
+  border-radius: 10px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
   background: #212529;
-  border-radius:10px;
+  border-radius: 10px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background: #ffc107;
-  border-radius:10px;
+  border-radius: 10px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-button {
@@ -137,11 +153,11 @@ body { margin: 0; background-color:rgba(0, 0, 0, 0.781);
 }
 
 mat-dialog-container {
-    background-color: transparent !important;
-    padding: 0px 0px 0px 0px !important;
-    overflow: hidden !important;
-    width: auto;
-    height: auto;
+  background-color: transparent !important;
+  padding: 0px 0px 0px 0px !important;
+  overflow: hidden !important;
+  width: auto;
+  height: auto;
 }
 
 .bg-full-black {

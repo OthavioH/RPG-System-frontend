@@ -7,27 +7,26 @@ import { DeleteCharacterDialogComponent } from '../delete-character-dialog/delet
 @Component({
   selector: 'app-character-card',
   templateUrl: './character-card.component.html',
-  styleUrls: ['./character-card.component.scss']
+  styleUrls: ['./character-card.component.scss'],
 })
 export class CharacterCardComponent implements OnInit {
-
   @Input()
-  character:ICharacter;
+  character: ICharacter;
 
   defaultImgUrl = '/../../assets/unknown_character_transparent.png';
 
-  constructor(private modalService:MatDialog,private sanitizer:DomSanitizer) {
+  constructor(
+    private modalService: MatDialog,
+    private sanitizer: DomSanitizer
+  ) {}
+
+  ngOnInit(): void {}
+
+  openDeleteCharacterDialog(id: number): void {
+    this.modalService.open(DeleteCharacterDialogComponent, { data: id });
   }
 
-  ngOnInit(): void {
-  }
-
-  openDeleteCharacterDialog(id:number):void{
-    this.modalService.open(DeleteCharacterDialogComponent, {data:id})
-  }
-
-  onImageError(event:any):void {
+  onImageError(event: any): void {
     event.target.src = this.defaultImgUrl;
   }
-
 }

@@ -29,19 +29,10 @@
     >
       Personagens
     </p>
-    <div class="container d-flex flex-row flex-wrap justify-content-around">
-      <div
-        class="card mb-2 align-items-center"
-        role="button"
-        (click)="openCreateCharacterDialog()"
-        style="width: 200px; height: 515px; border-radius: 10px"
-      >
-        <div
-          class="card-body justify-content-center my-auto row align-items-center"
-        >
-          <i class="bi bi-plus-square-fill text-dark h1"></i>
-        </div>
-      </div>
+    <div
+      class="container d-flex flex-row flex-wrap justify-content-around"
+      style="gap: 8px"
+    >
       <app-character-card
         *ngFor="let character of charactersList"
         [character]="character"
@@ -51,6 +42,17 @@
       class="container d-flex flex-row flex-wrap justify-content-around my-4"
     >
       <app-initiative-list></app-initiative-list>
+    </div>
+    <div
+      class="container d-flex flex-row flex-wrap justify-content-center w-100 my-4"
+    >
+      <button
+        class="btn btn-outline-warning float-end shadow-none"
+        type="button"
+        (click)="openCreateCharacterDialog()"
+      >
+        Criar Personagem
+      </button>
     </div>
   </section>
 

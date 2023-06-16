@@ -9,6 +9,10 @@ export function findCharacterIndex(
   characterList: ICharacter[],
   characterToFind: ICharacter
 ): number {
-  const character = characterList.find((c) => c.id == characterToFind.id);
+  console.log(characterToFind);
+
+  const character = characterList.find((c) => c.name == characterToFind.name);
+  console.log(character);
+
   return characterList.indexOf(character);
 }
