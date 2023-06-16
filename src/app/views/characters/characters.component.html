@@ -24,19 +24,21 @@
     <p class="text-center fs-1 text-light enigma-font fw-bolder mb-4">
       Dashboard
     </p>
-    <p
-      class="text-center text-warning fs-3 text-white enigma-font fw-bold mb-4"
-    >
-      Personagens
-    </p>
-    <div
-      class="container d-flex flex-row flex-wrap justify-content-around"
-      style="gap: 8px"
-    >
-      <app-character-card
-        *ngFor="let character of charactersList"
-        [character]="character"
-      ></app-character-card>
+    <div *ngIf="charactersList.length > 0">
+      <p
+        class="text-center text-warning fs-3 text-white enigma-font fw-bold mb-4"
+      >
+        Personagens
+      </p>
+      <div
+        class="container d-flex flex-row flex-wrap justify-content-around"
+        style="gap: 8px"
+      >
+        <app-character-card
+          *ngFor="let character of charactersList"
+          [character]="character"
+        ></app-character-card>
+      </div>
     </div>
     <div
       class="container d-flex flex-row flex-wrap justify-content-around my-4"
