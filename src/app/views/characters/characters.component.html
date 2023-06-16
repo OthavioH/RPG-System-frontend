@@ -57,12 +57,12 @@
   </section>
 
   <section class="container w-100 px-0">
-    <div class="d-flex flex-row flex-wrap row">
-      <div class="d-flex col-md-6 mt-3">
+    <div class="sections-wrapper">
+      <div class="d-flex flex-column mt-3 black-container">
         <div
-          class="container rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300"
+          class="container d-flex flex-column rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary min-height-300 min-width-300 w-100"
         >
-          <div class="row d-flex justify-content-between col-md-12">
+          <div class="d-flex flex-row justify-content-between w-100">
             <p class="text-start fs-3 fw-bold text-white enigma-font w-25">
               Perícias
             </p>
@@ -74,43 +74,45 @@
             </button>
           </div>
           <div
-            class="row d-flex justify-content-between col-md-12 px-4 py-2 mt-3 overflow-auto yellow-scrollbar-thin"
+            class="d-flex flex-row flex-wrap justify-content-between px-4 py-2 mt-3 overflow-auto yellow-scrollbar-thin w-100"
             style="max-height: 400px"
           >
             <div
-              class="d-flex col-md-6 flex-nowrap mb-2"
+              class="d-flex flex-column flex-wrap mb-2 w-auto"
               *ngFor="let skill of skillList"
             >
-              <button
-                class="btn btn-outline-danger w-auto me-2 col-md-2"
-                (click)="deleteSkill(skill.id)"
-              >
-                <i class="bi bi-trash3 text-light"></i>
-              </button>
-              <button
-                class="btn btn-outline-warning w-auto me-2 col-md-2"
-                (click)="openEditSkillDialog(skill)"
-              >
-                <i class="bi bi-pencil text-light"></i>
-              </button>
-              <input
-                class="form-control w-auto text-light btn-outline-secondary bg-transparent shadow-none"
-                style="min-width: 100px"
-                id="disabledInput"
-                type="text"
-                [value]="skill.name"
-                readonly
-                (click)="openSkillDialog(skill)"
-              />
+              <div class="d-flex flex-row">
+                <button
+                  class="btn btn-outline-danger w-auto me-2 col-md-2"
+                  (click)="deleteSkill(skill.id)"
+                >
+                  <i class="bi bi-trash3 text-light"></i>
+                </button>
+                <button
+                  class="btn btn-outline-warning w-auto me-2 col-md-2"
+                  (click)="openEditSkillDialog(skill)"
+                >
+                  <i class="bi bi-pencil text-light"></i>
+                </button>
+                <input
+                  class="form-control w-auto text-light btn-outline-secondary bg-transparent shadow-none"
+                  style="min-width: 100px"
+                  id="disabledInput"
+                  type="text"
+                  [value]="skill.name"
+                  readonly
+                  (click)="openSkillDialog(skill)"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="d-flex col-md-6 mt-3">
+      <div class="d-flex flex-column mt-3 black-container">
         <div
-          class="container rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300"
+          class="container d-flex flex-column rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary min-height-300 min-width-300 w-100"
         >
-          <div class="row d-flex justify-content-between col-md-12">
+          <div class="d-flex flex-row justify-content-between w-100">
             <p class="text-start fs-3 fw-bold text-white enigma-font w-25">
               Habilidades
             </p>
@@ -122,43 +124,45 @@
             </button>
           </div>
           <div
-            class="row d-flex justify-content-between col-md-12 px-4 py-2 mt-3 overflow-auto yellow-scrollbar-thin"
+            class="d-flex flex-row flex-wrap justify-content-between px-4 py-2 mt-3 overflow-auto yellow-scrollbar-thin w-100"
             style="max-height: 400px"
           >
             <div
-              class="d-flex col-md-6 flex-nowrap mb-2"
+              class="d-flex flex-column mb-2 w-auto"
               *ngFor="let ability of gameSettings.abilities"
             >
-              <button
-                class="btn btn-outline-danger w-auto me-2 col-md-2"
-                (click)="deleteAbility(ability.id)"
-              >
-                <i class="bi bi-trash3 text-light"></i>
-              </button>
-              <button
-                class="btn btn-outline-warning w-auto me-2 col-md-2"
-                (click)="openEditAbilityDialog(ability)"
-              >
-                <i class="bi bi-pencil text-light"></i>
-              </button>
-              <input
-                class="form-control w-auto text-light btn-outline-secondary bg-transparent shadow-none"
-                style="min-width: 100px"
-                id="disabledInput"
-                type="text"
-                [value]="ability.name"
-                readonly
-                (click)="openAbilityDialog(ability)"
-              />
+              <div class="d-flex flex-row">
+                <button
+                  class="btn btn-outline-danger w-auto me-2 col-md-2"
+                  (click)="deleteAbility(ability.id)"
+                >
+                  <i class="bi bi-trash3 text-light"></i>
+                </button>
+                <button
+                  class="btn btn-outline-warning w-auto me-2 col-md-2"
+                  (click)="openEditAbilityDialog(ability)"
+                >
+                  <i class="bi bi-pencil text-light"></i>
+                </button>
+                <input
+                  class="form-control w-auto text-light btn-outline-secondary bg-transparent shadow-none"
+                  style="min-width: 100px"
+                  id="disabledInput"
+                  type="text"
+                  [value]="ability.name"
+                  readonly
+                  (click)="openAbilityDialog(ability)"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="d-flex col-md-6 mt-3">
+      <div class="d-flex flex-column mt-3 black-container">
         <div
-          class="container rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300"
+          class="container rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300 w-100"
         >
-          <div class="row d-flex justify-content-between col-md-12">
+          <div class="d-flex flex-row justify-content-between w-100">
             <p class="text-start fs-3 fw-bold text-white enigma-font w-25">
               Rituais
             </p>
@@ -170,53 +174,55 @@
             </button>
           </div>
           <div
-            class="row d-flex justify-content-between col-md-12 px-4 py-2 mt-3 overflow-auto yellow-scrollbar-thin"
+            class="d-flex flex-row flex-wrap justify-content-between px-4 py-2 mt-3 overflow-auto yellow-scrollbar-thin w-100"
             style="max-height: 400px"
           >
             <div
-              class="d-flex col-md-6 flex-nowrap mb-2"
+              class="d-flex flex-column mb-2 w-auto"
               *ngFor="let ritual of gameSettings.rituals"
             >
-              <button
-                class="btn btn-outline-danger w-auto me-2 col-md-2"
-                (click)="deleteRitual(ritual.id)"
-              >
-                <i class="bi bi-trash3 text-light"></i>
-              </button>
-              <button
-                class="btn btn-outline-warning w-auto me-2 col-md-2"
-                (click)="openEditRitualDialog(ritual)"
-              >
-                <i class="bi bi-pencil text-light"></i>
-              </button>
-              <input
-                class="form-control w-auto text-light btn-outline-secondary bg-transparent shadow-none"
-                style="min-width: 100px"
-                id="disabledInput"
-                type="text"
-                [value]="ritual.name"
-                readonly
-                (click)="openRitualDialog(ritual)"
-              />
+              <div class="d-flex flex-row">
+                <button
+                  class="btn btn-outline-danger w-auto me-2 col-md-2"
+                  (click)="deleteRitual(ritual.id)"
+                >
+                  <i class="bi bi-trash3 text-light"></i>
+                </button>
+                <button
+                  class="btn btn-outline-warning w-auto me-2 col-md-2"
+                  (click)="openEditRitualDialog(ritual)"
+                >
+                  <i class="bi bi-pencil text-light"></i>
+                </button>
+                <input
+                  class="form-control w-auto text-light btn-outline-secondary bg-transparent shadow-none"
+                  style="min-width: 100px"
+                  id="disabledInput"
+                  type="text"
+                  [value]="ritual.name"
+                  readonly
+                  (click)="openRitualDialog(ritual)"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="d-flex col-md-6 mt-3">
+      <div class="d-flex flex-column mt-3 black-container">
         <div
-          class="container rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary col-md-12 min-height-300 min-width-300"
+          class="container d-flex flex-column rounded-3 pb-2 pt-5 px-4 bg-full-black border border-secondary min-height-300 min-width-300 w-100"
         >
           <p class="text-center fs-3 fw-bold text-white enigma-font w-100">
             Configurações
           </p>
           <p class="text-start fs-6 text-danger" style="width: auto">
-            Tente manter o cooldown do dado maior que o tempo na tela para que
-            não haja nenhum bug com a visualização do dado
+            Mantenha o cooldown do dado maior que o tempo na tela para evitar
+            problemas com a visualização do dado
           </p>
-          <div class="mt-2 row w-100">
+          <div class="mt-2 d-flex flex-row w-100">
             <label
               for="diceScreenTime"
-              class="text-start fs-6 col-5 text-light w-auto"
+              class="text-start fs-6 d-flex flex-column text-light w-auto me-2"
               >Tempo de dado na tela:</label
             >
             <input
@@ -224,19 +230,18 @@
               type="number"
               name="diceScreenTime"
               id="diceScreenTime"
-              class="input-group-text col-1"
+              class="settings-input d-flex flex-column"
               [(ngModel)]="gameSettings.diceScreenTime"
               (change)="onChangeDiceScreenTime(+diceScreenTime.value)"
               min="1"
               step="1"
               max="20"
-              style="min-width: 50px"
             />
           </div>
-          <div class="mt-2 row w-100">
+          <div class="mt-2 flex flex-row w-100">
             <label
               for="diceCooldown"
-              class="text-start fs-6 col-5 text-light w-auto"
+              class="text-start fs-6 text-light w-auto me-2"
               >Cooldown do dado:</label
             >
             <input
@@ -244,12 +249,11 @@
               type="number"
               name="diceCooldown"
               id="diceCooldown"
-              class="input-group-text col-1"
+              class="settings-input"
               [(ngModel)]="gameSettings.diceCooldown"
               min="1"
               step="1"
               max="20"
-              style="min-width: 50px"
             />
           </div>
           <div class="mt-2 row justify-content-end w-100">

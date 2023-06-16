@@ -1,15 +1,47 @@
-<div class="col justify-content-between rounded-2 bg-dark p-4 overflow-auto scrollbar-thin"
-  style="min-height:400px;min-width: 400px;max-height:600px;max-width:600px;">
+<div
+  class="col justify-content-between rounded-2 bg-dark p-4 overflow-auto scrollbar-thin"
+  style="
+    min-height: 400px;
+    min-width: 400px;
+    max-height: 600px;
+    max-width: 600px;
+  "
+>
   <p class="text-white fs-4 w-100 text-center d-flex col">Criar nova ameaça</p>
-  <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
+  <mat-form-field
+    color="accent"
+    class="w-100 d-flex col mb-3"
+    style="min-width: 200px"
+  >
     <mat-label>Nome</mat-label>
-    <input #newThreatName matInput type="text" class="text-light" aria-label="nome-habilidade" />
+    <input
+      #newThreatName
+      matInput
+      type="text"
+      class="text-light"
+      aria-label="nome-habilidade"
+    />
   </mat-form-field>
-  <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
+  <mat-form-field
+    color="accent"
+    class="w-100 d-flex col mb-3"
+    style="min-width: 200px"
+  >
     <mat-label>VD</mat-label>
-    <input #newThreatVD matInput type="number" min="0" value="0" aria-label="nome-habilidade" />
+    <input
+      #newThreatVD
+      matInput
+      type="number"
+      min="0"
+      value="0"
+      aria-label="nome-habilidade"
+    />
   </mat-form-field>
-  <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
+  <mat-form-field
+    color="accent"
+    class="w-100 d-flex col mb-3"
+    style="min-width: 200px"
+  >
     <mat-label>Elemento principal</mat-label>
     <mat-select #newThreatElement matInput>
       <mat-option value="Energia" class="bg-purple text-shadow">
@@ -21,9 +53,7 @@
       <mat-option value="Morte" class="bg-full-black text-shadow">
         Morte
       </mat-option>
-      <mat-option value="Medo" class="bg-blue text-shadow">
-        Medo
-      </mat-option>
+      <mat-option value="Medo" class="bg-blue text-shadow"> Medo </mat-option>
       <mat-option value="Conhecimento" class="bg-warning text-shadow">
         Conhecimento
       </mat-option>
@@ -33,68 +63,94 @@
     <p class="fs-6 text-light">Elementos secundários</p>
   </div>
   <div class="w-100 mb-3">
-    <mat-checkbox #energyCheckbox class="col me-3 text-purple" value="energia"
-      (change)="onElementSelected(energyCheckbox.value)">
+    <mat-checkbox
+      #energyCheckbox
+      class="col me-3 text-purple"
+      value="energia"
+      (change)="onElementSelected(energyCheckbox.value)"
+    >
       Energia
     </mat-checkbox>
-    <mat-checkbox #fearCheckbox class="col me-3 text-light-blue" value="medo"
-      (change)="onElementSelected(fearCheckbox.value)">
+    <mat-checkbox
+      #fearCheckbox
+      class="col me-3 text-light-blue"
+      value="medo"
+      (change)="onElementSelected(fearCheckbox.value)"
+    >
       Medo
     </mat-checkbox>
-    <mat-checkbox #knowledgeCheckbox class="col me-3 text-yellow" value="conhecimento"
-      (change)="onElementSelected(knowledgeCheckbox.value)">
+    <mat-checkbox
+      #knowledgeCheckbox
+      class="col me-3 text-yellow"
+      value="conhecimento"
+      (change)="onElementSelected(knowledgeCheckbox.value)"
+    >
       Conhecimento
     </mat-checkbox>
-    <mat-checkbox #bloodCheckbox class="col me-3 text-red" value="sangue"
-      (change)="onElementSelected(bloodCheckbox.value)">
+    <mat-checkbox
+      #bloodCheckbox
+      class="col me-3 text-red"
+      value="sangue"
+      (change)="onElementSelected(bloodCheckbox.value)"
+    >
       Sangue
     </mat-checkbox>
-    <mat-checkbox #deathCheckbox class="col me-3 text-black" value="morte"
-      (change)="onElementSelected(deathCheckbox.value)">
+    <mat-checkbox
+      #deathCheckbox
+      class="col me-3 text-black"
+      value="morte"
+      (change)="onElementSelected(deathCheckbox.value)"
+    >
       Morte
     </mat-checkbox>
-    <mat-checkbox #unknownCheckbox class="col me-3 text-light" value="?"
-      (change)="onElementSelected(unknownCheckbox.value)">
+    <mat-checkbox
+      #unknownCheckbox
+      class="col me-3 text-light"
+      value="?"
+      (change)="onElementSelected(unknownCheckbox.value)"
+    >
       ?
     </mat-checkbox>
   </div>
-  <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
+  <mat-form-field
+    color="accent"
+    class="w-100 d-flex col mb-3"
+    style="min-width: 200px"
+  >
     <mat-label>Tipo de ameaça</mat-label>
     <mat-select #newThreatType matInput>
-      <mat-option value="criatura">
-        Criatura
-      </mat-option>
-      <mat-option value="relíquia">
-        Relíquia
-      </mat-option>
-      <mat-option value="animal">
-        Animal
-      </mat-option>
-      <mat-option value="pessoa">
-        Pessoa
-      </mat-option>
+      <mat-option value="criatura"> Criatura </mat-option>
+      <mat-option value="relíquia"> Relíquia </mat-option>
+      <mat-option value="animal"> Animal </mat-option>
+      <mat-option value="pessoa"> Pessoa </mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
+  <mat-form-field
+    color="accent"
+    class="w-100 d-flex col mb-3"
+    style="min-width: 200px"
+  >
     <mat-label>Tamanho</mat-label>
     <mat-select #newThreatSize matInput>
-      <mat-option value="pequeno">
-        Pequeno
-      </mat-option>
-      <mat-option value="médio">
-        Médio
-      </mat-option>
-      <mat-option value="grande">
-        Grande
-      </mat-option>
-      <mat-option value="enorme">
-        Enorme
-      </mat-option>
-      <mat-option value="colossal">
-        Colossal
-      </mat-option>
+      <mat-option value="pequeno"> Pequeno </mat-option>
+      <mat-option value="médio"> Médio </mat-option>
+      <mat-option value="grande"> Grande </mat-option>
+      <mat-option value="enorme"> Enorme </mat-option>
+      <mat-option value="colossal"> Colossal </mat-option>
     </mat-select>
   </mat-form-field>
-  <button mat-button class="float-end"
-    (click)="createNewThreat(newThreatName.value,+newThreatVD.value,newThreatElement.value, newThreatType.value, newThreatSize.value)">OK</button>
+  <button
+    class="flex btn btn-outline-danger w-auto float-end"
+    (click)="
+      createNewThreat(
+        newThreatName.value,
+        +newThreatVD.value,
+        newThreatElement.value,
+        newThreatType.value,
+        newThreatSize.value
+      )
+    "
+  >
+    OK
+  </button>
 </div>

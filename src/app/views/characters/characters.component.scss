@@ -29,3 +29,41 @@ text-light-dark-hover:focus {
 .bg-secondary {
   background: black;
 }
+
+.sections-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+}
+
+.black-container {
+  width: 48%;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
+}
+
+.settings-input {
+  width: auto;
+  min-width: 100px;
+  background-color: transparent;
+  color: white;
+
+  border: none;
+  border-bottom: 2px double var(--golden-color);
+  text-align: center;
+
+  font-family: "EnigmaSans";
+  letter-spacing: 3px;
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px double var(--golden-color);
+  }
+}

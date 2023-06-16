@@ -1,13 +1,40 @@
-<div class="col justify-content-between rounded-2 bg-dark p-4" style="min-height:270px;min-width: 200px;">
-    <p class="text-white fs-4 w-100 text-center d-flex col">Alterar valor</p>
-    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
-        <mat-label>Atual</mat-label>
-        <input #currentValue matInput type="number" class="text-light" [value]="value"/>
-    </mat-form-field>
-    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
-        <mat-label>Máximo</mat-label>
-        <input #maxValue matInput type="number" class="text-light" [value]="maxLimit" />
-    </mat-form-field>
-    <button mat-button class="float-end" (click)="updateValues(+currentValue.value, +maxValue.value)">OK</button>
+<div
+  class="col justify-content-between rounded-2 bg-dark p-4"
+  style="min-height: 270px; min-width: 200px"
+>
+  <p class="text-white fs-4 w-100 text-center d-flex col">Alterar valor</p>
+  <mat-form-field
+    color="accent"
+    class="w-100 d-flex col mb-3"
+    style="min-width: 200px"
+  >
+    <mat-label>Atual</mat-label>
+    <input
+      #currentValue
+      matInput
+      type="number"
+      class="text-light"
+      [value]="value"
+    />
+  </mat-form-field>
+  <mat-form-field
+    color="accent"
+    class="w-100 d-flex col mb-3"
+    style="min-width: 200px"
+  >
+    <mat-label>Máximo</mat-label>
+    <input
+      #maxValue
+      matInput
+      type="number"
+      class="text-light"
+      [value]="maxLimit"
+    />
+  </mat-form-field>
+  <button
+    class="flex btn btn-outline-warning w-auto float-end"
+    (click)="updateValues(+currentValue.value, +maxValue.value)"
+  >
+    OK
+  </button>
 </div>
-

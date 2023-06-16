@@ -53,7 +53,7 @@
 
 .outro-lado {
   min-height: 150px;
-  min-width: 500px;
+  min-width: 300px;
 }
 
 .attributes-size {
@@ -63,96 +63,107 @@
 }
 
 .agility-position {
-  top: 10%;
-  left: 205%;
+  top: 12%;
+  left: 228%;
 }
 
 .int-position {
   top: 33%;
-  left: 245%;
+  left: 270%;
 }
 
 .for-position {
   top: 33%;
-  left: -140%;
+  left: -115%;
 }
 
 .pre-position {
   top: 73%;
-  left: -195%;
+  left: -175%;
 }
 
 .vig-position {
   top: 73%;
-  left: -95%;
-}
-
-@media screen and (max-width: 1400px) {
-  .outro-lado {
-    max-height: 400px;
-    max-width: 50px;
-  }
-  .outro-lado-bg {
-    max-height: 400px;
-    max-width: 50px;
-    background-image: url("./../../../../assets/Atributes.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-  }
-  .agility-position {
-    margin-left: -1.3px;
-  }
-  .for-position {
-    margin-right: 3px;
-  }
-  .pre-position {
-    margin-right: 4px;
-  }
-  .vig-position {
-    margin-right: 7px;
-  }
-  .attributes-size {
-    width: 85px;
-    height: 35px;
-  }
+  left: -70%;
 }
 
 @media screen and (max-width: 980px) {
   .outro-lado {
-    max-height: 200px;
+    max-height: 400px;
     max-width: 150px;
   }
   .outro-lado-bg {
-    max-height: 300px;
-    max-width: 150px;
+    max-height: 400px;
+    max-width: 50px;
     background-image: url("./../../../../assets/Atributes.png");
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: 10% 10%;
+    background-position: center center;
   }
   .agility-position {
-    margin-left: -15.3px;
+    top: 20%;
+    left: 167%;
   }
-  .for-position {
-    margin-right: 20px;
-  }
+
   .int-position {
-    margin-left: -8.5px;
+    top: 37%;
+    left: 218%;
   }
+
+  .for-position {
+    top: 37%;
+    left: -182%;
+  }
+
   .pre-position {
-    margin-top: 3px;
-    margin-right: 24px;
+    top: 68%;
+    left: -240%;
   }
+
   .vig-position {
-    margin-top: 3px;
-    margin-right: 54px;
+    top: 68%;
+    left: -116%;
   }
   .attributes-size {
     width: 62px;
     height: 27px;
   }
 }
+
+// @media screen and (max-width: 600px) {
+//   .outro-lado {
+//     max-height: 400px;
+//     max-width: 150px;
+//     max-width: fit-content;
+//   }
+//   .outro-lado-bg {
+//     max-height: 400px;
+//     max-width: 50px;
+//     background-image: url("./../../../../assets/Atributes.png");
+//     background-size: contain;
+//     background-repeat: no-repeat;
+//     background-position: center center;
+//   }
+//   .agility-position {
+//     margin-left: 18px;
+//   }
+//   .for-position {
+//     margin-right: 12px;
+//   }
+//   .int-position {
+//     margin-left: 21px;
+//   }
+//   .pre-position {
+//     margin-right: 11px;
+//   }
+//   .vig-position {
+//     margin-right: -22px;
+//   }
+//   .attributes-size {
+//     width: 62px;
+//     height: 27px;
+//   }
+// }
 
 .paranormal-text {
   font-family: "Paranormal", Arial, Helvetica, sans-serif;
