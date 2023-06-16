@@ -1,7 +1,16 @@
-<div class="col justify-content-between rounded-2 bg-dark p-4 w-auto h-auto overflow-hidden" style="max-height:500px;max-width: 500px;min-width:300px;">
-    <p class="text-white fs-4 w-100 text-center d-flex col mb-3">Deseja apagar o personagem?</p>
-    <div class="float-end">
-        <button mat-button class="btn-outline-success" (click)="closeDialog()">Cancelar</button>
-        <button mat-button class="btn-outline-danger" (click)="onConfirmButtonClicked()">OK</button>
-    </div>
+<div
+  class="col justify-content-between rounded-2 bg-dark p-4 w-auto h-auto overflow-hidden"
+  style="max-height: 500px; max-width: 500px; min-width: 300px"
+>
+  <p class="text-white fs-4 w-100 text-center d-flex col mb-3">
+    Deseja apagar o personagem?
+  </p>
+  <div class="d-flex float-end" style="gap: 10px">
+    <button class="btn btn-outline-danger" (click)="closeDialog()">
+      <i class="bi bi-hand-thumbs-down"></i>
+    </button>
+    <button class="btn btn-outline-success" (click)="onConfirmButtonClicked()">
+      <i class="bi bi-hand-thumbs-up"></i>
+    </button>
+  </div>
 </div>

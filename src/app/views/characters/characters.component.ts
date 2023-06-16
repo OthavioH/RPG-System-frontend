@@ -116,10 +116,14 @@ export class CharactersComponent implements OnInit {
         if (data != null) {
           switch (data.operation) {
             case 'delete':
-              this.charactersList.slice(
-                findCharacterIndex(this.charactersList, data.character),
-                1
+
+              const characterIndex = findCharacterIndex(
+                this.charactersList,
+                data.character
               );
+
+              this.charactersList.splice(characterIndex, 1);
+
               break;
 
             case 'create':
