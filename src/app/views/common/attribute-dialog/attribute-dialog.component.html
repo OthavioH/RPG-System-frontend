@@ -1,53 +1,91 @@
 <div
-  class="col justify-content-between rounded-2 bg-full-black border-white p-4 w-auto h-auto overflow-hidden yellow-scrollbar-thin"
-  style="max-height:600px;max-width: 650px;min-width:300px;">
+  class="col justify-content-between rounded-2 bg-full-black border-white py-4 w-auto h-auto overflow-hidden yellow-scrollbar-thin"
+  style="max-height: 600px; max-width: 650px; min-width: 300px"
+>
   <div
-    class="d-flex flex-wrap justify-content-between row row-cols-2 px-4 mt-3 py-2 outro-lado-bg outro-lado overflow-hidden">
+    class="d-flex flex-wrap justify-content-between row row-cols-2 mt-3 py-2 outro-lado-bg outro-lado"
+  >
     <div class="d-flex col justify-content-between mb-2 me-5">
       <div class="col">
-        <div class="card align-items-center bg-transparent border-transparent agility-position">
-          <div class="card-body p-0 m-0 bg-transparent row align-items-center attributes-size">
-            <input #agilityValue type="text"
+        <div
+          class="card align-items-center bg-transparent border-transparent agility-position"
+        >
+          <div
+            class="card-body p-0 m-0 bg-transparent row align-items-center attributes-size"
+          >
+            <input
+              #agilityValue
+              type="text"
               class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold w-100 border-transparent attributes-size"
-              [(ngModel)]="character.attributes.agility.value">
+              [(ngModel)]="character.attributes.agility.value"
+            />
           </div>
         </div>
       </div>
       <div class="col">
-        <div class="card align-items-center bg-transparent border-transparent int-position">
-          <div class="card-body p-0 m-0 bg-transparent row align-items-center attributes-size">
-            <input #intValue type="text"
+        <div
+          class="card align-items-center bg-transparent border-transparent int-position"
+        >
+          <div
+            class="card-body p-0 m-0 bg-transparent row align-items-center attributes-size"
+          >
+            <input
+              #intValue
+              type="text"
               class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold w-100 border-transparent attributes-size"
-              [(ngModel)]="character.attributes.intelligence.value">
+              [(ngModel)]="character.attributes.intelligence.value"
+            />
           </div>
         </div>
       </div>
       <div class="col">
-        <div class="card align-items-center bg-transparent border-transparent for-position">
-          <div class="card-body p-0 m-0 bg-transparent row align-items-center attributes-size">
-            <input #forValue type="text"
+        <div
+          class="card align-items-center bg-transparent border-transparent for-position"
+        >
+          <div
+            class="card-body p-0 m-0 bg-transparent row align-items-center attributes-size"
+          >
+            <input
+              #forValue
+              type="text"
               class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold w-100 border-transparent attributes-size"
-              [(ngModel)]="character.attributes.strength.value">
+              [(ngModel)]="character.attributes.strength.value"
+            />
           </div>
         </div>
       </div>
       <div class="col">
-        <div class="card align-items-center bg-transparent border-transparent pre-position">
-          <div class="card-body p-0 m-0 bg-transparent row align-items-center attributes-size">
-            <input #preValue type="text"
+        <div
+          class="card align-items-center bg-transparent border-transparent pre-position"
+        >
+          <div
+            class="card-body p-0 m-0 bg-transparent row align-items-center attributes-size"
+          >
+            <input
+              #preValue
+              type="text"
               class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold w-100 border-transparent attributes-size"
-              [(ngModel)]="character.attributes.presence.value">
+              [(ngModel)]="character.attributes.presence.value"
+            />
           </div>
         </div>
       </div>
       <div class="col">
-        <div class="card align-items-center bg-transparent border-transparent vig-position">
-          <div class="card-body p-0 m-0 bg-transparent row align-items-center attributes-size">
-            <input #vigValue type="text"
+        <div
+          class="card align-items-center bg-transparent border-transparent vig-position"
+        >
+          <div
+            class="card-body p-0 m-0 bg-transparent row align-items-center attributes-size"
+          >
+            <input
+              #vigValue
+              type="text"
               class="col form-control text-center fs-3 border-0 shadow-none bg-full-black fw-bold w-100 border-transparent attributes-size"
-              [(ngModel)]="character.attributes.vigor.value">
+              [(ngModel)]="character.attributes.vigor.value"
+            />
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

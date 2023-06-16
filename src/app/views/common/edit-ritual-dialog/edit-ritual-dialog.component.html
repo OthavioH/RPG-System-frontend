@@ -1,53 +1,160 @@
-<div class="col justify-content-between rounded-2 bg-dark p-4 overflow-auto" style="min-height:270px;min-width: 200px;max-height: 700px;">
-    <p class="text-white fs-4 w-100 text-center d-flex col">Editar ritual</p>
-    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
-        <mat-label>Nome do ritual</mat-label>
-        <input #newRitualName matInput type="text" class="text-light" aria-label="nome-habilidade" [(ngModel)]="ritual.name"/>
-    </mat-form-field>
-    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
-        <mat-label>Circulo</mat-label>
-        <input #newRitualCircle matInput type="text" class="text-light" aria-label="nome-habilidade" [(ngModel)]="ritual.circle"/>
-    </mat-form-field>
-    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
-        <mat-label>Execução</mat-label>
-        <input #newRitualExecution matInput type="text" class="text-light" aria-label="nome-habilidade" [(ngModel)]="ritual.execution"/>
-    </mat-form-field>
-    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
-        <mat-label>Alcance</mat-label>
-        <input #newRitualRange matInput type="text" class="text-light" aria-label="nome-habilidade" [(ngModel)]="ritual.range"/>
-    </mat-form-field>
-    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
-        <mat-label>Alvo</mat-label>
-        <input #newRitualTarget matInput type="text" class="text-light" aria-label="nome-habilidade" [(ngModel)]="ritual.target"/>
-    </mat-form-field>
-    <mat-form-field color="accent" class="w-100 d-flex col  mb-3" style="min-width: 200px;">
-        <mat-label>Duração</mat-label>
-        <input #newRitualDuration matInput type="text" class="text-light" aria-label="nome-habilidade" [(ngModel)]="ritual.duration"/>
-    </mat-form-field>
-    <div class="w-100">
-        <p class="fs-4 text-warning">Elementos</p>
-    </div>
-    <div class="w-100">
-        <mat-checkbox #energyCheckbox class="col me-3 text-purple" value="energia" [checked]="isActive(energyCheckbox.value)" (change)="onElementSelected(energyCheckbox.value)">
-            Energia
-        </mat-checkbox>
-        <mat-checkbox #fearCheckbox class="col me-3 text-light-blue" value="medo" [checked]="isActive(fearCheckbox.value)" (change)="onElementSelected(fearCheckbox.value)">
-            Medo
-        </mat-checkbox>
-        <mat-checkbox #knowledgeCheckbox class="col me-3 text-yellow" value="conhecimento" [checked]="isActive(knowledgeCheckbox.value)" (change)="onElementSelected(knowledgeCheckbox.value)">
-            Conhecimento
-        </mat-checkbox>
-        <mat-checkbox #bloodCheckbox class="col me-3 text-red" value="sangue" [checked]="isActive(bloodCheckbox.value)" (change)="onElementSelected(bloodCheckbox.value)">
-            Sangue
-        </mat-checkbox>
-        <mat-checkbox #deathCheckbox class="col me-3 text-black" value="morte" [checked]="isActive(deathCheckbox.value)" (change)="onElementSelected(deathCheckbox.value)">
-            Morte
-        </mat-checkbox>
-        <mat-checkbox #unknownCheckbox class="col me-3 text-light" value="?" [checked]="isActive(unknownCheckbox.value)" (change)="onElementSelected(unknownCheckbox.value)">
-            ?
-        </mat-checkbox>
-    </div>
-    <editor [(ngModel)]="ritual.description" [init]="{
+<div
+  class="col justify-content-between rounded-2 bg-dark p-4 overflow-auto"
+  style="min-height: 270px; min-width: 200px; max-height: 700px"
+>
+  <p class="text-white fs-4 w-100 text-center d-flex col">Editar ritual</p>
+  <mat-form-field
+    color="accent"
+    class="w-100 d-flex col mb-3"
+    style="min-width: 200px"
+  >
+    <mat-label>Nome do ritual</mat-label>
+    <input
+      #newRitualName
+      matInput
+      type="text"
+      class="text-light"
+      aria-label="nome-habilidade"
+      [(ngModel)]="ritual.name"
+    />
+  </mat-form-field>
+  <mat-form-field
+    color="accent"
+    class="w-100 d-flex col mb-3"
+    style="min-width: 200px"
+  >
+    <mat-label>Circulo</mat-label>
+    <input
+      #newRitualCircle
+      matInput
+      type="text"
+      class="text-light"
+      aria-label="nome-habilidade"
+      [(ngModel)]="ritual.circle"
+    />
+  </mat-form-field>
+  <mat-form-field
+    color="accent"
+    class="w-100 d-flex col mb-3"
+    style="min-width: 200px"
+  >
+    <mat-label>Execução</mat-label>
+    <input
+      #newRitualExecution
+      matInput
+      type="text"
+      class="text-light"
+      aria-label="nome-habilidade"
+      [(ngModel)]="ritual.execution"
+    />
+  </mat-form-field>
+  <mat-form-field
+    color="accent"
+    class="w-100 d-flex col mb-3"
+    style="min-width: 200px"
+  >
+    <mat-label>Alcance</mat-label>
+    <input
+      #newRitualRange
+      matInput
+      type="text"
+      class="text-light"
+      aria-label="nome-habilidade"
+      [(ngModel)]="ritual.range"
+    />
+  </mat-form-field>
+  <mat-form-field
+    color="accent"
+    class="w-100 d-flex col mb-3"
+    style="min-width: 200px"
+  >
+    <mat-label>Alvo</mat-label>
+    <input
+      #newRitualTarget
+      matInput
+      type="text"
+      class="text-light"
+      aria-label="nome-habilidade"
+      [(ngModel)]="ritual.target"
+    />
+  </mat-form-field>
+  <mat-form-field
+    color="accent"
+    class="w-100 d-flex col mb-3"
+    style="min-width: 200px"
+  >
+    <mat-label>Duração</mat-label>
+    <input
+      #newRitualDuration
+      matInput
+      type="text"
+      class="text-light"
+      aria-label="nome-habilidade"
+      [(ngModel)]="ritual.duration"
+    />
+  </mat-form-field>
+  <div class="w-100">
+    <p class="fs-4 text-warning">Elementos</p>
+  </div>
+  <div class="w-100">
+    <mat-checkbox
+      #energyCheckbox
+      class="col me-3 text-purple"
+      value="energia"
+      [checked]="isActive(energyCheckbox.value)"
+      (change)="onElementSelected(energyCheckbox.value)"
+    >
+      Energia
+    </mat-checkbox>
+    <mat-checkbox
+      #fearCheckbox
+      class="col me-3 text-light-blue"
+      value="medo"
+      [checked]="isActive(fearCheckbox.value)"
+      (change)="onElementSelected(fearCheckbox.value)"
+    >
+      Medo
+    </mat-checkbox>
+    <mat-checkbox
+      #knowledgeCheckbox
+      class="col me-3 text-yellow"
+      value="conhecimento"
+      [checked]="isActive(knowledgeCheckbox.value)"
+      (change)="onElementSelected(knowledgeCheckbox.value)"
+    >
+      Conhecimento
+    </mat-checkbox>
+    <mat-checkbox
+      #bloodCheckbox
+      class="col me-3 text-red"
+      value="sangue"
+      [checked]="isActive(bloodCheckbox.value)"
+      (change)="onElementSelected(bloodCheckbox.value)"
+    >
+      Sangue
+    </mat-checkbox>
+    <mat-checkbox
+      #deathCheckbox
+      class="col me-3 text-black"
+      value="morte"
+      [checked]="isActive(deathCheckbox.value)"
+      (change)="onElementSelected(deathCheckbox.value)"
+    >
+      Morte
+    </mat-checkbox>
+    <mat-checkbox
+      #unknownCheckbox
+      class="col me-3 text-light"
+      value="?"
+      [checked]="isActive(unknownCheckbox.value)"
+      (change)="onElementSelected(unknownCheckbox.value)"
+    >
+      ?
+    </mat-checkbox>
+  </div>
+  <editor
+    [(ngModel)]="ritual.description"
+    [init]="{
       base_url: '/tinymce',
       suffix: '.min',
       language_url: 'languages/pt_BR.js',
@@ -55,17 +162,21 @@
       height: 500,
       width: '100%',
       menubar: false,
-      plugins: [
-      ],
+      plugins: [],
       codesample_languages: [
-        {text: 'TypeScript', value: 'typescript'},
-        {text: 'JavaScript', value: 'javascript'},
-        {text: 'HTML/XML', value: 'markup'},
-        {text: 'CSS', value: 'css'},
+        { text: 'TypeScript', value: 'typescript' },
+        { text: 'JavaScript', value: 'javascript' },
+        { text: 'HTML/XML', value: 'markup' },
+        { text: 'CSS', value: 'css' }
       ],
-      toolbar:
-        'undo redo | bold italic'
-     }"></editor>
-    <div class="mb-2"></div>
-    <button mat-button class="float-end" (click)="editRitual()">OK</button>
+      toolbar: 'undo redo | bold italic'
+    }"
+  ></editor>
+  <div class="mb-2"></div>
+  <button
+    class="flex btn btn-outline-warning w-auto float-end"
+    (click)="editRitual()"
+  >
+    OK
+  </button>
 </div>

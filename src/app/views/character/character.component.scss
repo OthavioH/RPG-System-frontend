@@ -43,6 +43,7 @@
 }
 
 .no-arrows {
+  appearance: none;
   -moz-appearance: textfield;
   -webkit-appearance: none;
 }
@@ -55,11 +56,12 @@ input::-webkit-inner-spin-button {
 
 /* Firefox */
 input[type="number"] {
+  appearance: none;
   -moz-appearance: textfield;
 }
 
 .outro-lado-bg {
-  width: 624px;
+  width: 90%;
   height: 500px;
   background-image: url("./../../../assets/Atributes.png");
   background-size: contain;
@@ -111,9 +113,31 @@ input[type="number"] {
   left: -95%;
 }
 
+@media screen and (min-width: 1400px) {
+  .agility-position {
+    left: 165%;
+  }
+
+  .int-position {
+    left: 205%;
+  }
+
+  .for-position {
+    left: -175%;
+  }
+
+  .pre-position {
+    left: -235%;
+  }
+
+  .vig-position {
+    left: -135%;
+  }
+}
+
 @media screen and (max-width: 1400px) {
   .outro-lado {
-    max-height: 400px;
+    max-height: 200px;
     max-width: 50px;
   }
   .outro-lado-bg {
@@ -143,10 +167,6 @@ input[type="number"] {
 }
 
 @media screen and (max-width: 980px) {
-  .outro-lado {
-    max-height: 200px;
-    max-width: 150px;
-  }
   .outro-lado-bg {
     max-height: 300px;
     max-width: 150px;

@@ -1,13 +1,39 @@
-<div class="col justify-content-between rounded-2 bg-dark p-4" style="min-height:300px;min-width: 300px;">
-    <p class="text-white fs-4 w-100 text-center d-flex col">Alterar Imagem</p>
-    <div class="d-flex justify-content-center row mb-3">
-        <div class="mt-2 align-center justify-content-center" style="width:fit-content;height:fit-content;">
-            <img class="img rounded-circle border-yellow character-img" src="{{imgUrl}}" (error)="onImageError($event)" alt="">
-        </div>
+<div
+  class="col justify-content-between rounded-2 bg-dark p-4"
+  style="min-height: 300px; min-width: 300px"
+>
+  <p class="text-white fs-4 w-100 text-center d-flex col">Alterar Imagem</p>
+  <div class="d-flex justify-content-center row mb-3">
+    <div
+      class="mt-2 align-center justify-content-center"
+      style="width: fit-content; height: fit-content"
+    >
+      <img
+        class="img rounded-circle border-yellow character-img"
+        src="{{ imgUrl }}"
+        (error)="onImageError($event)"
+        alt=""
+      />
     </div>
-    <mat-form-field color="accent" class="w-100 d-flex mb-3" style="min-width: 200px;">
-        <mat-label>Link da imagem</mat-label>
-        <input #imageChangeInput matInput type="text" class="text-light" [value]="imgUrl"/>
-    </mat-form-field>
-    <button mat-button class="float-end" (click)="changeImage(imageChangeInput.value)">OK</button>
+  </div>
+  <mat-form-field
+    color="accent"
+    class="w-100 d-flex mb-3"
+    style="min-width: 200px"
+  >
+    <mat-label>Link da imagem</mat-label>
+    <input
+      #imageChangeInput
+      matInput
+      type="text"
+      class="text-light"
+      [value]="imgUrl"
+    />
+  </mat-form-field>
+  <button
+    class="flex btn btn-outline-warning w-auto float-end"
+    (click)="changeImage(imageChangeInput.value)"
+  >
+    Salvar
+  </button>
 </div>

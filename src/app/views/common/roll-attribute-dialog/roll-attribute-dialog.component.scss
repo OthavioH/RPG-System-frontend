@@ -1,0 +1,13 @@
+.dice-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
+}
+
+.dialog-title {
+  font-size: 1.5rem;
+}
