@@ -1,6 +1,7 @@
 .dice-row {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
 
   @media screen and (max-width: 767px) {
